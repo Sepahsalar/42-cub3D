@@ -5,82 +5,107 @@
 #                                                     +:+ +:+         +:+      #
 #    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/26 15:48:51 by nnourine          #+#    #+#              #
-#    Updated: 2024/07/19 11:48:48 by nnourine         ###   ########.fr        #
+#    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
+#    Updated: 2024/07/19 15:59:50 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Color
+# Colors for echo
 COLOR = \033[0;34m
 RESET_COLOR = \033[0m
 
-# Executable name
+# Project name
 NAME = cub3D
 
 # Compiler and flags
 CC = cc
-RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
-GENERAL_LIB_FLAGS = -L$(LIBFT) -L$(LIBPRINT) -lft -lftprintf
-MATH = -lm
-LMX_FLAGS = -L$(LIBMLX)/build -lmlx42 -ldl -pthread -lm -lglfw
 
 # Directories
 SRCDIR = src/c_files
 INCDIR = include
+OBJDIR = obj
+
+# Libraries
 LIBMLX = lib/MLX42
-LMXINC = $(LIBMLX)/include
 LIBFT = lib/libft
-LIBPRINT = lib/ft_printf
+LIB_BREW = /Users/${USER}/.brew/Cellar/glfw/3.4/lib
+LIBFTPRINTF = lib/ft_printf
 
-# Files
-SRCS = $(SRCDIR)/cub3D.c
-OBJS = $(SRCS:.c=.o)
+# Header files
+HEADERS	= -I $(INCDIR) -I $(LIBMLX)/include
 
-# Phony targets
-.PHONY: all clean fclean re clone_mlx
+# Library flags
+LIBFT_FLAGS = -L$(LIBFT) -L$(LIBFTPRINTF) -lft -lftprintf
+LMX_FLAGS = -L$(LIBMLX)/build -L$(LIB_BREW) -lmlx42 -ldl -pthread -lglfw -lm
+LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
+
+# Source files
+SRCS = $(SRCDIR)/calculate_character_size.c  \
+       $(SRCDIR)/check_exit.c  \
+       $(SRCDIR)/check_near_wall.c  \
+       $(SRCDIR)/check_reach_to_collectible.c  \
+       $(SRCDIR)/check_with_wall_instance.c  \
+       $(SRCDIR)/create_background.c  \
+       $(SRCDIR)/create_elements.c  \
+       $(SRCDIR)/create_window_elements.c  \
+       $(SRCDIR)/escape_key.c  \
+       $(SRCDIR)/exit.c  \
+       $(SRCDIR)/map_to_instance.c  \
+       $(SRCDIR)/map_to_instance_resize.c  \
+       $(SRCDIR)/press_key.c  \
+       $(SRCDIR)/point_data_start.c  \
+       $(SRCDIR)/resize.c  \
+       $(SRCDIR)/player.c \
+       $(SRCDIR)/start_position.c \
+       $(SRCDIR)/touch_cell.c \
+       $(SRCDIR)/check_ber.c \
+       $(SRCDIR)/map_data.c \
+       $(SRCDIR)/check_side_wall.c \
+       $(SRCDIR)/check_rectangular.c \
+       $(SRCDIR)/check_character_number.c \
+       $(SRCDIR)/check_valid_path.c \
+       $(SRCDIR)/validate_map.c \
+       $(SRCDIR)/so_long.c
+
+# Object files
+OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
+
+# Targets
+.PHONY: all clean fclean re
 
 # Default target
-all: $(LIBMLX)/build $(NAME)
+all: $(NAME)
 
-# Clone MLX42 repository
-clone_mlx:
-	git clone https://github.com/codam-coding-college/MLX42.git $(LIBMLX)
-
-# Build MLX42
-$(LIBMLX)/build: $(LIBMLX)
-	cmake -B $(LIBMLX)/build $(LIBMLX)
-	cmake --build $(LIBMLX)/build -j4
-
-# Linking
+# Build target
 $(NAME): $(OBJS)
-	@$(MAKE) -C $(LIBFT)
-	@$(MAKE) -C $(LIBPRINT)
-	@$(CC) $(CFLAGS) $(MATH) $(GENERAL_LIB_FLAGS) $(LMX_FLAGS) $(OBJS) -o $@
+	@cmake $(LIBMLX) -B $(LIBMLX)/build
+	@make -C $(LIBMLX)/build -j4
+	@make -C $(LIBFT)
+	@make -C $(LIBFTPRINTF)
+	@$(CC) $(OBJS) $(CFLAGS) $(LIBS_FLAGS) $(HEADERS) -o $(NAME)
 	@echo "$(COLOR)Compiling and linking: done$(RESET_COLOR)"
 
-# Compiling
-$(SRCDIR)/%.o: $(SRCDIR)/%.c
-	@$(CC) $(CFLAGS) -I$(INCDIR) -I$(LMXINC) -c $< -o $@
+# Object file compilation
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	@mkdir -p $(OBJDIR)
+	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
 
-# Clean-up
+# Clean target
 clean:
-	@$(RM) $(OBJS)
-	@$(MAKE) -C $(LIBFT) clean
-	@$(MAKE) -C $(LIBPRINT) clean
-	@$(RM) -r $(LIBMLX)/build
-	@echo "$(COLOR)Clean-up: done$(RESET_COLOR)"
+	@rm -f $(OBJS)
+	@rm -rf $(OBJDIR)
+	@make -C $(LIBFT) clean
+	@make -C $(LIBFTPRINTF) clean
+	@rm -rf $(LIBMLX)/build
+	@echo "$(COLOR)Clean: done$(RESET_COLOR)"
 
-# Full clean
-fclean:
-	@$(RM) $(OBJS)
-	@$(MAKE) -C $(LIBFT) clean
-	@$(MAKE) -C $(LIBPRINT) clean
-	@$(RM) -r $(LIBMLX)/build
-	@$(RM) $(NAME)
-	@$(MAKE) -C $(LIBFT) fclean
-	@$(MAKE) -C $(LIBPRINT) fclean
+# Full clean target
+fclean: clean
+	@rm -f $(NAME)
+	@make -C $(LIBFT) fclean
+	@make -C $(LIBFTPRINTF) fclean
 	@echo "$(COLOR)Full clean: done$(RESET_COLOR)"
 
-# Recompile
+# Rebuild target
 re: fclean all
