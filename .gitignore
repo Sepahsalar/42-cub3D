@@ -50,3 +50,14 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# MLX42 Specific
+
+# Ignore the MLX42 directory and its build artifacts
+lib/MLX42/
+
+# Ignore the build directory inside MLX42
+lib/MLX42/build/
+
+# Final executable
+cub3D
