@@ -6,16 +6,18 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/19 12:00:15 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/19 12:01:05 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/19 12:05:34 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef cube3D_H
 # define cube3D_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
+# include <stdlib.h>  // For malloc, free, exit
+# include <string.h>  // For strerror
+# include <unistd.h>  // For open, close, read, write
+# include <fcntl.h>   // For file control options
+# include <errno.h>   // For errno
 # include <math.h>
 # include "../lib/libft/libft.h"
 # include "../lib/ft_printf/ft_printf.h"
