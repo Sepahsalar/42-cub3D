@@ -6,11 +6,11 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:03:55 by nnourine          #+#    #+#             */
-/*   Updated: 2024/03/08 10:37:51 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:06:05 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../include/cub3D.h"
 
 int	ft_width_counter(char *map)
 {

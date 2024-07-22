@@ -6,11 +6,11 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:04:03 by nnourine          #+#    #+#             */
-/*   Updated: 2024/03/08 10:43:29 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:06:05 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../include/cub3D.h"
 
 mlx_image_t	*ft_create_image(mlx_t *window, char c,
 	int image_width, int image_height)

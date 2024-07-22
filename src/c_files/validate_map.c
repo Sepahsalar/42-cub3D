@@ -6,11 +6,11 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:10:45 by nnourine          #+#    #+#             */
-/*   Updated: 2024/03/08 11:49:42 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:06:05 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../include/cub3D.h"
 
 void	ft_check_surrounded_wall(char	*map)
 {

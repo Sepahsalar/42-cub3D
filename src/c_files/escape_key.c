@@ -6,11 +6,11 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:32:36 by nnourine          #+#    #+#             */
-/*   Updated: 2024/03/01 16:47:45 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:06:05 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../include/cub3D.h"
 
 void	ft_escape_key(void *param)
 {

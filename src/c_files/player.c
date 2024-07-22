@@ -6,11 +6,11 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 13:51:48 by nnourine          #+#    #+#             */
-/*   Updated: 2024/03/05 15:15:28 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:06:05 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../include/cub3D.h"
 
 int	ft_player_position_x(char *map)
 {

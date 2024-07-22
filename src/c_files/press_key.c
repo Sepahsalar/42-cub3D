@@ -6,11 +6,11 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/29 13:03:31 by nnourine          #+#    #+#             */
-/*   Updated: 2024/03/05 15:16:07 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:06:05 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../include/cub3D.h"
 
 void	ft_move_up(void *param)
 {
@@ -28,7 +28,7 @@ void	ft_move_up(void *param)
 	if (ft_check_near_wall(((t_window_elements *) param), 'U'))
 	{
 		*movement_count = *movement_count + 1;
-		ft_printf("Movement Count:%d\n", *movement_count);
+		printf("Movement Count:%d\n", *movement_count);
 		player->instances[0].y -= player->height;
 		(*(((t_window_elements *) param)->elements)
 				->player_collectible).player_position.y += -1;
@@ -53,7 +53,7 @@ void	ft_move_down(void *param)
 	if (ft_check_near_wall(((t_window_elements *) param), 'D'))
 	{
 		*movement_count = *movement_count + 1;
-		ft_printf("Movement Count:%d\n", *movement_count);
+		printf("Movement Count:%d\n", *movement_count);
 		player->instances[0].y += player->height;
 		(*(((t_window_elements *) param)->elements)
 				->player_collectible).player_position.y += +1;
@@ -78,7 +78,7 @@ void	ft_move_right(void *param)
 	if (ft_check_near_wall(((t_window_elements *) param), 'R'))
 	{
 		*movement_count = *movement_count + 1;
-		ft_printf("Movement Count:%d\n", *movement_count);
+		printf("Movement Count:%d\n", *movement_count);
 		player->instances[0].x += player->width;
 		(*(((t_window_elements *) param)->elements)
 				->player_collectible).player_position.x += +1;
@@ -103,7 +103,7 @@ void	ft_move_left(void *param)
 	if (ft_check_near_wall(((t_window_elements *) param), 'L'))
 	{
 		*movement_count = *movement_count + 1;
-		ft_printf("Movement Count:%d\n", *movement_count);
+		printf("Movement Count:%d\n", *movement_count);
 		player->instances[0].x -= player->width;
 		(*(((t_window_elements *) param)->elements)
 				->player_collectible).player_position.x += -1;

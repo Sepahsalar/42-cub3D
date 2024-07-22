@@ -6,7 +6,7 @@
 #    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/07/19 15:59:50 by nnourine         ###   ########.fr        #
+#    Updated: 2024/07/19 16:04:00 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,13 +30,12 @@ OBJDIR = obj
 LIBMLX = lib/MLX42
 LIBFT = lib/libft
 LIB_BREW = /Users/${USER}/.brew/Cellar/glfw/3.4/lib
-LIBFTPRINTF = lib/ft_printf
 
 # Header files
 HEADERS	= -I $(INCDIR) -I $(LIBMLX)/include
 
 # Library flags
-LIBFT_FLAGS = -L$(LIBFT) -L$(LIBFTPRINTF) -lft -lftprintf
+LIBFT_FLAGS = -L$(LIBFT) -lft
 LMX_FLAGS = -L$(LIBMLX)/build -L$(LIB_BREW) -lmlx42 -ldl -pthread -lglfw -lm
 LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
 
@@ -82,7 +81,6 @@ $(NAME): $(OBJS)
 	@cmake $(LIBMLX) -B $(LIBMLX)/build
 	@make -C $(LIBMLX)/build -j4
 	@make -C $(LIBFT)
-	@make -C $(LIBFTPRINTF)
 	@$(CC) $(OBJS) $(CFLAGS) $(LIBS_FLAGS) $(HEADERS) -o $(NAME)
 	@echo "$(COLOR)Compiling and linking: done$(RESET_COLOR)"
 
@@ -96,15 +94,12 @@ clean:
 	@rm -f $(OBJS)
 	@rm -rf $(OBJDIR)
 	@make -C $(LIBFT) clean
-	@make -C $(LIBFTPRINTF) clean
 	@rm -rf $(LIBMLX)/build
-	@echo "$(COLOR)Clean: done$(RESET_COLOR)"
 
 # Full clean target
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT) fclean
-	@make -C $(LIBFTPRINTF) fclean
 	@echo "$(COLOR)Full clean: done$(RESET_COLOR)"
 
 # Rebuild target

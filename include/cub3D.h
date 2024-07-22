@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/03/08 11:48:43 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/19 16:11:04 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
-# include <stdlib.h>
-# include <unistd.h>
-# include <fcntl.h>
+# include <stdlib.h>  // For malloc, free, exit
+# include <string.h>  // For strerror
+# include <unistd.h>  // For open, close, read, write
+# include <fcntl.h>   // For file control options
+# include <errno.h>   // For errno
+# include <stdio.h>   // For printf
 # include <math.h>
 # include "../lib/libft/libft.h"
-# include "../lib/ft_printf/ft_printf.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
 # define START_IMAGE_SIZE 100
@@ -212,4 +214,4 @@ void					ft_check_left_side_wall(char *map);
 void					ft_check_right_side_wall(char *map);
 void					ft_check_ber(char *map);
 
-#endif // SO_LONG_H
+#endif // CUB3D_H

@@ -6,11 +6,11 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 13:22:07 by nnourine          #+#    #+#             */
-/*   Updated: 2024/03/08 11:20:11 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/19 17:29:58 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/so_long.h"
+#include "../../include/cub3D.h"
 
 void	ft_get_monitor_size(int *monitor_width, int *monitor_height)
 {
