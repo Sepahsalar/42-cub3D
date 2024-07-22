@@ -6,7 +6,7 @@
 #    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/07/19 16:04:00 by nnourine         ###   ########.fr        #
+#    Updated: 2024/07/22 14:26:57 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,32 +40,10 @@ LMX_FLAGS = -L$(LIBMLX)/build -L$(LIB_BREW) -lmlx42 -ldl -pthread -lglfw -lm
 LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
 
 # Source files
-SRCS = $(SRCDIR)/calculate_character_size.c  \
-       $(SRCDIR)/check_exit.c  \
-       $(SRCDIR)/check_near_wall.c  \
-       $(SRCDIR)/check_reach_to_collectible.c  \
-       $(SRCDIR)/check_with_wall_instance.c  \
-       $(SRCDIR)/create_background.c  \
-       $(SRCDIR)/create_elements.c  \
-       $(SRCDIR)/create_window_elements.c  \
-       $(SRCDIR)/escape_key.c  \
-       $(SRCDIR)/exit.c  \
-       $(SRCDIR)/map_to_instance.c  \
-       $(SRCDIR)/map_to_instance_resize.c  \
-       $(SRCDIR)/press_key.c  \
-       $(SRCDIR)/point_data_start.c  \
-       $(SRCDIR)/resize.c  \
-       $(SRCDIR)/player.c \
-       $(SRCDIR)/start_position.c \
-       $(SRCDIR)/touch_cell.c \
-       $(SRCDIR)/check_ber.c \
-       $(SRCDIR)/map_data.c \
-       $(SRCDIR)/check_side_wall.c \
-       $(SRCDIR)/check_rectangular.c \
-       $(SRCDIR)/check_character_number.c \
-       $(SRCDIR)/check_valid_path.c \
-       $(SRCDIR)/validate_map.c \
-       $(SRCDIR)/so_long.c
+SRCS = $(SRCDIR)/map_parser.c  \
+		$(SRCDIR)/main.c  \
+		$(SRCDIR)/termiante.c \
+		$(SRCDIR)/map_parser_utils.c \
 
 # Object files
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)

@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_near_wall.c                                  :+:      :+:    :+:   */
+/*   map_parser_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/29 13:04:23 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/19 16:06:05 by nnourine         ###   ########.fr       */
+/*   Created: 2024/07/22 14:26:07 by nnourine          #+#    #+#             */
+/*   Updated: 2024/07/22 14:26:30 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
-int	ft_check_near_wall(t_window_elements *window_elements, char move)
+void	reader(t_all *all)
 {
-	mlx_image_t	*player;
-	mlx_image_t	*wall;
-	int			count;
-	int			index;
-
-	player = (window_elements->elements)->player;
-	wall = (window_elements->elements)->wall;
-	count = wall->count;
-	index = 0;
-	while (index < count)
+	char	c[2];
+	int		byte;
+	char	*temp;
+	
+	c[1] = '\0';
+	all->strmap = NULL;
+	all->fd = open(all->argv, O_RDONLY);
+	check_failure(all->fd, NULL, 1, all);
+	byte = read(all->fd, c, 1);
+	check_failure(byte, NULL, 1, all);
+	while (byte)
 	{
-		index = ft_check_with_wall_instance(player, wall, index, move);
-		if (!index)
-			return (0);
+		temp = all->strmap;
+		all->strmap = ft_strjoin(all->strmap, c);
+		free(temp);
+		check_failure(0, all->strmap, 2, all);
+		byte = read(all->fd, c, 1);
+		check_failure(byte, NULL, 1, all);
 	}
-	return (1);
 }
