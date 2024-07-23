@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/22 14:39:57 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/23 09:51:36 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,6 @@ t_map	*map_parser(t_all *all)
 	printf("Ceil: %s\n", all->map->ceil);
 	remove_white_space(all);
 	printf("%s\n", all->strmap);
-	// create_loc(all);
+	create_loc(all);
 	return (map); 
 }

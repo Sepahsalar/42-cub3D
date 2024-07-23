@@ -6,7 +6,7 @@
 #    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/07/22 14:26:57 by nnourine         ###   ########.fr        #
+#    Updated: 2024/07/23 09:38:13 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS = $(SRCDIR)/map_parser.c  \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/termiante.c \
 		$(SRCDIR)/map_parser_utils.c \
+		$(SRCDIR)/create_loc.c \
 
 # Object files
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
