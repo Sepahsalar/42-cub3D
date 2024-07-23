@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/22 14:27:56 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/23 09:33:48 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_loc
 	int				y;
 	int				z;
 	char			c;
+	int				distance;
 	struct s_loc	*next;
 	struct s_loc	*previous;
 }					t_loc;
