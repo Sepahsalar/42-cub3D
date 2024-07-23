@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/23 09:33:48 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/23 09:37:50 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ t_map	*map_parser(t_all *all);
 void	terminate(t_all *all, int status);
 void	check_failure(int input1, void *input2, int type, t_all *all);
 void	reader(t_all *all);
+void	create_loc(t_all *all);
 
 #endif // CUB3D_H
