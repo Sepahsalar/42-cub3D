@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:07:14 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/23 09:54:01 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:47:50 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,21 +28,17 @@ t_loc	*clean_loc(t_loc *first)
 	return (0);
 }
 
-t_loc	*create_loc_node(char *temp, int x, int y, int z)
+t_loc	*create_loc_node(char temp, int x, int y)
 {
-	t_loc			*new;
+	t_loc	*new;
 
 	new = malloc(sizeof(t_loc));
 	if (!new)
 		return (0);
 	ft_memset(new, 0, sizeof(t_loc));
-	
-	
-	new->c = *temp;
+	new->c = temp;
 	new->x = x;
 	new->y = y;
-	new->z = z;
-	new->distance = 0;
 	return (new);
 }
 
@@ -62,7 +58,7 @@ void	create_loc(t_all *all)
 	{
 		if(*temp != '\n')
 		{
-			new = create_loc_node(temp, x, y, 0);
+			new = create_loc_node(*temp, x, y);
 			if (!(all->map->start))
 					all->map->start = new;
 			else

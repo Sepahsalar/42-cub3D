@@ -6,7 +6,7 @@
 #    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/07/23 09:38:13 by nnourine         ###   ########.fr        #
+#    Updated: 2024/07/24 14:44:48 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,11 +40,12 @@ LMX_FLAGS = -L$(LIBMLX)/build -L$(LIB_BREW) -lmlx42 -ldl -pthread -lglfw -lm
 LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
 
 # Source files
-SRCS = $(SRCDIR)/map_parser.c  \
+SRCS = $(SRCDIR)/create_loc.c \
+		$(SRCDIR)/create_render.c \
 		$(SRCDIR)/main.c  \
-		$(SRCDIR)/termiante.c \
+		$(SRCDIR)/map_parser.c  \
 		$(SRCDIR)/map_parser_utils.c \
-		$(SRCDIR)/create_loc.c \
+		$(SRCDIR)/termiante.c \
 
 # Object files
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)

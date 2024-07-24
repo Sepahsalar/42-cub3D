@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/24 11:52:48 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:43:05 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,18 @@ void	terminate(t_all *all, int status)
 		free(all->map->west);
 	if (all->map->east)
 		free(all->map->east);
-	if (all->map->floor)
-		free(all->map->floor);
-	if (all->map->ceil)
-		free(all->map->ceil);
+	if (all->map->f)
+		free(all->map->f);
+	if (all->map->c)
+		free(all->map->c);
+	if (all->map->start)
+		clean_loc(all->map->start);
 	if (all->map)
 		free(all->map); //update this to free_map
 	if (all->strmap)
 		free(all->strmap);
+	if (all->render)
+		clean_loc(all->render); //update this to free_render
 	if (status)
 		ft_putendl_fd("Error", 2);
 	free(all);

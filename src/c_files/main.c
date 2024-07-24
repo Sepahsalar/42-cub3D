@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/24 13:17:17 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/24 15:12:55 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,9 +205,9 @@ char *get_texture(t_all *all, char c)
 char *get_color(t_all *all, char c)
 {
 	if (c == 'F')
-		return (all->map->floor);
+		return (all->map->f);
 	else
-		return (all->map->ceil);
+		return (all->map->c);
 }
 
 char *get_texture_color(t_all *all, double angle, char c)
@@ -223,36 +223,43 @@ char *get_texture_color(t_all *all, double angle, char c)
 		return (color);
 }
 
+int height(double distance, char c)
+{
+	double half_full_height;
+	double target_height;
+	
+	half_full_height = ft_tan(VAOV / 2) * distance;
+	if (c == 'F')
+		target_height = half_full_height - PERSON;
+	else
+		target_height = half_full_height - WALL + PERSON;
+	if (target_height <= 0)
+		return (0);
+	else
+		return (floor(WINDOW_HEIGHT * target_height / (2 * half_full_height)));
+}
+
 void	size_grid(t_all *all)
 {
-	// t_loc *loc;
-	t_loc *temp_loc;
-	// int x;
-	// int y;
-	// int angle;
-	// double angle_rad;
-	double temp_x;
-	double temp_y;
-	// double min_d;
-	// double final_x;
-	// double final_y;
-
-	int x_player;
-	int y_player;
-	double angle_player;
-	double temp_angle;
-	double ray_angle;
-	int 	x_size_game;
-	int 	y_size_game;
-	int 	x_min;
-	int 	x_max;
-	int 	y_min;
-	int 	y_max;
-	int 	i;
-	double 	max_d;
-	char 	type_intersection;
-	double 	temp_distance;
-	char wall;
+	t_loc		*temp_loc;
+	double		temp_x;
+	double		temp_y;
+	int			x_player;
+	int			y_player;
+	double		angle_player;
+	double		temp_angle;
+	double		ray_angle;
+	int 		x_size_game;
+	int 		y_size_game;
+	int 		x_min;
+	int 		x_max;
+	int 		y_min;
+	int 		y_max;
+	int 		i;
+	double 		max_d;
+	char 		type_intersection;
+	double 		temp_distance;
+	t_render	data_rander;
 
 	x_player = start_loc_player(all, 'x');
 	y_player = start_loc_player(all, 'y');
@@ -307,87 +314,14 @@ void	size_grid(t_all *all)
 			}
 			i++;
 		}
-		wall = wall_selection(ray_angle, type_intersection);
+		data_rander.wall_texture = wall_selection(ray_angle, type_intersection);
+		data_rander.ceil_height = height(temp_distance, 'C');
+		data_rander.floor_height = height(temp_distance, 'F');
+		data_rander.wall_height = WINDOW_HEIGHT - data_rander.ceil_height - data_rander.floor_height;
+		data_rander.x = (int)(temp_angle / WIDTH_INTERVAL);
+		create_render(all, data_rander);
 		temp_angle+= WIDTH_INTERVAL;
 	}
-	// loc = all->map->start;
-	// x = 0;
-	// y = 0;
-	// while (loc)
-	// {
-	// 	if (x < loc->x)
-	// 		x = loc->x;
-	// 	if (y < loc->y)
-	// 		y = loc->y;
-	// 	loc = loc->next;
-	// }
-	// printf("size of map : x = %d, y = %d\n", x + 1, y + 1);
-	// loc = all->map->start;
-	// while (loc)
-	// {
-	// 	if (loc->c == 'N' || loc->c == 'S' || loc->c == 'W' || loc->c == 'E')
-	// 		break ;
-	// 	loc = loc->next;
-	// }
-	// printf("loc of player : x = %d, y = %d\n", loc->x, loc->y);
-	// angle = 45;
-	// min_d = sqrt(pow(x + 1, 2) + pow(y + 1, 2));
-	// // while (angle < 90)
-	// // {
-	// 	angle_rad = angle * M_PI / 180;
-	// 	temp_x = loc->x;
-	// 	while (temp_x < x + 1)
-	// 	{
-	// 		temp_loc = all->map->start;
-	// 		temp_y = (tan((M_PI / 2) - angle_rad) * (temp_x - loc->x)) + loc->y;
-	// 		while (temp_loc)
-	// 		{
-	// 			if (temp_loc->x == temp_x && temp_loc->y <= ceil(temp_y) && temp_loc->y >= floor(temp_y) && temp_loc->c == '1')
-	// 			{
-	// 				if (sqrt(pow(temp_x - loc->x, 2) + pow(temp_y - loc->y, 2)) < min_d)
-	// 				{
-	// 					min_d = sqrt(pow(temp_x - loc->x, 2) + pow(temp_y - loc->y, 2));
-	// 					final_x = temp_loc->x;
-	// 					final_y = temp_loc->y;
-	// 				}
-	// 			}
-	// 			temp_loc = temp_loc->next;
-	// 		}
-			
-	// 		// printf("angle = %d, for x = %f, intersection y = %f\n", angle, temp_x, temp_y);
-	// 		temp_x++;
-	// 	}
-	// 	printf("final x = %f, final y = %f\n", final_x, final_y);
-	// 	temp_y = loc->y;
-	// 	min_d = sqrt(pow(x + 1, 2) + pow(y + 1, 2));
-	// 	while (temp_y)
-	// 	{
-	// 		temp_loc = all->map->start;
-	// 		temp_x = temp_y - loc->y / tan((M_PI / 2) - angle_rad) + loc->x;
-	// 		while (temp_loc)
-	// 		{
-	// 			// printf("loc->x = %d, loc->y = %d, temp_x = %f, temp_y = %f\n", loc->x, loc->y, temp_x, temp_y);
-	// 			if (temp_loc->y == temp_y && temp_loc->x <= ceil(temp_x) && temp_loc->x >= floor(temp_x) && temp_loc->c == '1')
-	// 			{
-	// 				if (sqrt(pow(temp_x - loc->x, 2) + pow(temp_y - loc->y, 2)) < min_d)
-	// 				{
-	// 					min_d = sqrt(pow(temp_x - loc->x, 2) + pow(temp_y - loc->y, 2));
-	// 					final_x = temp_loc->x;
-	// 					final_y = temp_loc->y;
-	// 				}
-	// 			}
-	// 			temp_loc = temp_loc->next;
-	// 		}
-			
-	// 		// printf("angle = %d, for y = %f, intersection x = %f\n", angle, temp_y, temp_x);
-	// 		// printf("floor y = %f and ceil y = %f\n", floor(temp_y), ceil(temp_y));
-	// 		temp_y--;
-	// 	}
-	// 	printf("final x = %f, final y = %f\n", final_x, final_y);	
-	// // 	angle++;
-		
-	// // }
-	
 }
 
 int main(int argc, char **argv)
@@ -401,6 +335,7 @@ int main(int argc, char **argv)
 	all->argv = argv[1];
 	all->fd = -1;
 	all->map = map_parser(all);
+	all->render = NULL;
 	size_grid(all);
 	terminate(all, 0);
 }

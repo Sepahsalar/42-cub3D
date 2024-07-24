@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/23 09:51:36 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/24 14:13:02 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,10 +112,10 @@ t_map	*map_parser(t_all *all)
 	printf("West: %s\n", all->map->west);
 	all->map->east = finder(all, "EA");
 	printf("East: %s\n", all->map->east);
-	all->map->floor = finder(all, "F");
-	printf("Floor: %s\n", all->map->floor);
-	all->map->ceil = finder(all, "C");
-	printf("Ceil: %s\n", all->map->ceil);
+	all->map->f = finder(all, "F");
+	printf("Floor: %s\n", all->map->f);
+	all->map->c = finder(all, "C");
+	printf("Ceil: %s\n", all->map->c);
 	remove_white_space(all);
 	printf("%s\n", all->strmap);
 	create_loc(all);
