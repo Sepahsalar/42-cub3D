@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/24 14:43:05 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:39:28 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	terminate(t_all *all, int status)
 	if (status)
 		ft_putendl_fd("Error", 2);
 	free(all);
+	// mlx_terminate(all->window);
 	exit(status);
 }
 

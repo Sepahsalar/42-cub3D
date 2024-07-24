@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/24 14:51:29 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/24 16:29:44 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	create_render(t_all *all, t_render data_render)
 	int		y;
 
 	old = last_node(all->render);
-	printf("old: %p\n", old);
 	y = 0;
 	while (y < WINDOW_HEIGHT)
 	{

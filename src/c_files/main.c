@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/24 15:12:55 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/24 18:50:57 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int min_y(int y_player, double angle)
 {
 	while (angle < 0)
 		angle = angle + FULL_CIRCLE_DEGREES;
-	if (angle >= 0 && angle <= FULL_CIRCLE_DEGREES * 3 / 4)
+	if (angle >= 0 && angle <= FULL_CIRCLE_DEGREES / 2)
 		return(y_player);
 	else
 		return (0);
@@ -84,7 +84,7 @@ int max_y(int y_player, int y_game_size, double angle)
 {
 	while (angle < 0)
 		angle = angle + FULL_CIRCLE_DEGREES;
-	if (angle >= 0 && angle <= FULL_CIRCLE_DEGREES * 3 / 4)
+	if (angle >= 0 && angle <= FULL_CIRCLE_DEGREES / 2)
 		return(y_game_size - 1);
 	else
 		return (y_player);
@@ -119,13 +119,13 @@ double start_angle_player(t_all *all)
 		if (loc->c == 'N' || loc->c == 'S' || loc->c == 'W' || loc->c == 'E')
 		{
 			if (loc->c == 'N')
-				return ((double)90);
-			else if (loc->c == 'S')
 				return ((double)270);
+			else if (loc->c == 'S')
+				return ((double)90);
 			else if (loc->c == 'W')
-				return ((double)180);
-			else
 				return ((double)0);
+			else
+				return ((double)180);
 		}
 		loc = loc->next;
 	}
@@ -174,53 +174,36 @@ char	wall_helper(char c1, char c2, char c3)
 		return (c3);
 }
 
+// char	wall_selection(double angle, char c)
+// {
+// 	while (angle < 0)
+// 		angle = angle + FULL_CIRCLE_DEGREES;
+// 	if (angle >= 0 && angle <= FULL_CIRCLE_DEGREES / 4)
+// 		return (wall_helper(c, 'W', 'S'));
+// 	else if (angle > FULL_CIRCLE_DEGREES / 4
+// 		&& angle <= FULL_CIRCLE_DEGREES / 2)
+// 		return (wall_helper(c, 'E', 'S'));
+// 	else if (angle > FULL_CIRCLE_DEGREES / 2
+// 		&& angle <= FULL_CIRCLE_DEGREES * 3 / 4)
+// 		return (wall_helper(c, 'E', 'N'));
+// 	else
+// 		return (wall_helper(c, 'W', 'N'));
+// }
+
 char	wall_selection(double angle, char c)
 {
 	while (angle < 0)
 		angle = angle + FULL_CIRCLE_DEGREES;
 	if (angle >= 0 && angle <= FULL_CIRCLE_DEGREES / 4)
-		return (wall_helper(c, 'W', 'S'));
+		return (wall_helper(c, 'W', 'N'));
 	else if (angle > FULL_CIRCLE_DEGREES / 4
 		&& angle <= FULL_CIRCLE_DEGREES / 2)
-		return (wall_helper(c, 'E', 'S'));
+		return (wall_helper(c, 'E', 'N'));
 	else if (angle > FULL_CIRCLE_DEGREES / 2
 		&& angle <= FULL_CIRCLE_DEGREES * 3 / 4)
-		return (wall_helper(c, 'E', 'N'));
+		return (wall_helper(c, 'E', 'S'));
 	else
-		return (wall_helper(c, 'W', 'N'));
-}
-
-char *get_texture(t_all *all, char c)
-{
-	if (c == 'N')
-		return (all->map->north);
-	else if (c == 'S')
-		return (all->map->south);
-	else if (c == 'W')
-		return (all->map->west);
-	else
-		return (all->map->east);
-}
-
-char *get_color(t_all *all, char c)
-{
-	if (c == 'F')
-		return (all->map->f);
-	else
-		return (all->map->c);
-}
-
-char *get_texture_color(t_all *all, double angle, char c)
-{
-	char *texture;
-	char *color;
-
-	texture = get_texture(all, wall_selection(angle, c));
-	color = get_color(all, c);
-	if (texture)
-		return (texture);
-	else
-		return (color);
+		return (wall_helper(c, 'W', 'S'));
 }
 
 int height(double distance, char c)
@@ -270,11 +253,16 @@ void	size_grid(t_all *all)
 	temp_angle = 0;
 	while (temp_angle < HAOV)
 	{
-		ray_angle = angle_player + (HAOV / 2) - temp_angle;
+		ray_angle = angle_player - (HAOV / 2) + temp_angle;
 		x_min = min_x(x_player, ray_angle);
 		x_max = max_x(x_player, x_size_game, ray_angle);
 		y_min = min_y(y_player, ray_angle);
 		y_max = max_y(y_player, y_size_game, ray_angle);
+		if (temp_angle == 179)
+		{
+			printf("ray_angle:%f, x:%d, y:%d\n", ray_angle, x_player, y_player);
+			printf("x_min:%d, x_max:%d, y_min:%d, y_max:%d\n", x_min, x_max, y_min, y_max);
+		}
 		temp_distance = max_d;
 		i = x_min;
 		while (i < x_max)
@@ -319,6 +307,11 @@ void	size_grid(t_all *all)
 		data_rander.floor_height = height(temp_distance, 'F');
 		data_rander.wall_height = WINDOW_HEIGHT - data_rander.ceil_height - data_rander.floor_height;
 		data_rander.x = (int)(temp_angle / WIDTH_INTERVAL);
+		if (temp_angle == 179)
+		{
+			printf("ray_angle:%f, x:%d, y:%d\n", ray_angle, x_player, y_player);
+			printf("distance:%f, type of inersection:%c , wall_texture: %c\n", temp_distance, type_intersection, data_rander.wall_texture);
+		}
 		create_render(all, data_rander);
 		temp_angle+= WIDTH_INTERVAL;
 	}
@@ -336,6 +329,37 @@ int main(int argc, char **argv)
 	all->fd = -1;
 	all->map = map_parser(all);
 	all->render = NULL;
+	// all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT,	argv[0], false);
+	// all->elems = create_elements(all);
 	size_grid(all);
+	// t_loc *temp;
+	// // temp = all->render;
+	// // while (temp)
+	// // {
+	// // 	printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
+	// // 	temp = temp->next;
+	// // }
+	// int x = 0;
+	// int y = 0;
+	// while (y < WINDOW_HEIGHT)
+	// {
+	// 	x = 0;
+	// 	while (x < WINDOW_WIDTH)
+	// 	{
+	// 		temp = all->render;
+	// 		while (temp)
+	// 		{
+	// 			// printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
+	// 			if (temp->x == x && temp->y == y)
+	// 				break;
+	// 			temp = temp->next;
+	// 		}
+	// 		if (temp)
+	// 			printf("%c",temp->c);
+	// 		x++;
+	// 	}
+	// 	printf("\n");
+	// 	y++;
+	// }
 	terminate(all, 0);
 }

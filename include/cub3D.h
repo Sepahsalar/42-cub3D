@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/24 14:58:07 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/24 18:36:35 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@
 # define FULL_CIRCLE_DEGREES 360
 # define VAOV 120.0
 # define HAOV 180.0
-# define WINDOW_HEIGHT 600
-# define WINDOW_WIDTH 800
-# define HEIGHT_INTERVAL VAOV / WINDOW_HEIGHT
-# define WIDTH_INTERVAL HAOV / WINDOW_WIDTH
+# define WINDOW_HEIGHT 120
+# define WINDOW_WIDTH 180
+# define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
+// # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
+# define WIDTH_INTERVAL 1
 # define PERSON 1.80
 # define WALL 3.0
 
@@ -65,6 +66,16 @@ typedef struct s_map
 	t_loc	*start;
 }			t_map;
 
+typedef struct s_elem
+{
+	mlx_image_t	*north;
+	mlx_image_t	*west;
+	mlx_image_t	*south;
+	mlx_image_t	*east;
+	mlx_image_t	*f;
+	mlx_image_t	*c;
+}				t_elem;
+
 typedef struct s_all
 {
 	t_map	*map;
@@ -72,6 +83,8 @@ typedef struct s_all
 	int		fd;
 	char	*strmap;
 	char	*argv;
+	mlx_t	*window;
+	t_elem	*elems;
 }			t_all;
 
 t_map	*map_parser(t_all *all);
@@ -82,5 +95,6 @@ void	create_loc(t_all *all);
 t_loc	*create_loc_node(char temp, int x, int y);
 t_loc	*clean_loc(t_loc *first);
 void	create_render(t_all *all, t_render data_render);
+t_elem	*create_elements(t_all *all);
 
 #endif // CUB3D_H
