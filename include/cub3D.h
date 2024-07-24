@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/23 11:22:04 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/24 13:07:15 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@
 # define START_IMAGE_SIZE 100
 # define MIN_IMAGE_SIZE 10
 # define MAX_MONITOR_USAGE 0.95
+# define FULL_CIRCLE_DEGREES 360
+# define VAOV 120
+# define HAOV 180
+# define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 800
+# define HEIGHT_INTERVAL VAOV / WINDOW_HEIGHT
+# define WIDTH_INTERVAL HAOV / WINDOW_WIDTH
 
 typedef struct s_loc
 {
