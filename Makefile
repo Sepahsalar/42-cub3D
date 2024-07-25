@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/07/24 14:44:48 by nnourine         ###   ########.fr        #
+#    Updated: 2024/07/25 15:57:40 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ $(NAME): $(OBJS)
 
 # Object file compilation
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
+#	@git clone https://github.com/codam-coding-college/MLX42.git $(LIBMLX)
 	@mkdir -p $(OBJDIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
 
@@ -75,6 +76,7 @@ clean:
 	@rm -rf $(OBJDIR)
 	@make -C $(LIBFT) clean
 	@rm -rf $(LIBMLX)/build
+#	@rm -rf $(LIBMLX)
 
 # Full clean target
 fclean: clean

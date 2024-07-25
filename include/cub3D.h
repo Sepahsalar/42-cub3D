@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/25 15:16:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/25 17:19:25 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 # define FULL_CIRCLE_DEGREES 360
 # define VAOV 120.0
 # define HAOV 180.0
-# define WINDOW_HEIGHT 120
-# define WINDOW_WIDTH 180
+# define WINDOW_HEIGHT 20
+# define WINDOW_WIDTH 30
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
-// # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
-# define WIDTH_INTERVAL 15
+# define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
+// # define WIDTH_INTERVAL 12
 # define PERSON 1.5
 # define WALL 3.0
 
@@ -46,6 +46,8 @@ typedef struct s_loc
 	int				y0;
 	int				x1;
 	int				y1;
+	float			x_mid;
+	float			y_mid;
 	struct s_loc	*next;
 	struct s_loc	*previous;
 }					t_loc;
