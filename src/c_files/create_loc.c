@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:07:14 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/24 14:47:50 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:44:49 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ t_loc	*create_loc_node(char temp, int x, int y)
 	new->c = temp;
 	new->x = x;
 	new->y = y;
+	new->x0 = x;
+	new->y0 = y;
+	new->x1 = x + 1;
+	new->y1 = y + 1;
 	return (new);
 }
 

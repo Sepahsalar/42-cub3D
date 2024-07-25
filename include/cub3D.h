@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/25 13:11:27 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:16:49 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define WINDOW_WIDTH 180
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
 // # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
-# define WIDTH_INTERVAL 1
+# define WIDTH_INTERVAL 15
 # define PERSON 1.5
 # define WALL 3.0
 
@@ -42,6 +42,10 @@ typedef struct s_loc
 	int				x;
 	int				y;
 	char			c;
+	int				x0;
+	int				y0;
+	int				x1;
+	int				y1;
 	struct s_loc	*next;
 	struct s_loc	*previous;
 }					t_loc;
