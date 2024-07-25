@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/24 18:50:57 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:25:44 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,33 @@ double ft_tan(double a)
 	return (tan(angle));
 }
 
+double ft_sin(double a)
+{
+	double angle;
+
+	angle = M_PI * a / 180;
+	return (sin(angle));
+}
+
+double ft_cos(double a)
+{
+	double angle;
+
+	angle = M_PI * a / 180;
+	return (cos(angle));
+}
+
 double find_y(double angle, int x_player, int y_player, int x_target)
 {
 	double	y_target;
-
+	
+	// if (ceil(angle) == floor(angle))
+	// {
+	// 	if ((int)angle % 180 == 90 && x_target == x_player)
+	// 		return (y_player);
+	// 	else if ((int)angle % 180 == 90)
+	// 		return (-1);
+	// }
 	y_target = ((x_target - x_player) * ft_tan(angle)) + y_player;
 	return (y_target);
 	
@@ -34,6 +57,17 @@ double find_x(double angle, int x_player, int y_player, int y_target)
 {
 	double	x_target;
 
+	// if (ceil(angle) == floor(angle))
+	// {
+	// 	if ((int)angle % 180 == 90 && y_target == y_player)
+	// 		return (x_player);
+	// 	else if ((int)angle % 180 == 90)
+	// 		return (-1);
+	// 	else if ((int)angle % 180 == 0 && y_target == y_player)
+	// 		return (x_player);
+	// 	else if ((int)angle % 180 == 0)
+	// 		return (-1);
+	// }
 	x_target = ((y_target - y_player) / ft_tan(angle)) + x_player;
 	return (x_target);
 	
@@ -243,6 +277,8 @@ void	size_grid(t_all *all)
 	char 		type_intersection;
 	double 		temp_distance;
 	t_render	data_rander;
+	int			final_x;
+	int			final_y;
 
 	x_player = start_loc_player(all, 'x');
 	y_player = start_loc_player(all, 'y');
@@ -251,67 +287,147 @@ void	size_grid(t_all *all)
 	y_size_game = game_size(all, 'y');
 	max_d = max_distance(all);
 	temp_angle = 0;
-	while (temp_angle < HAOV)
+
+	printf("*************************************************\n\n\n");
+	while (temp_angle <= HAOV)
 	{
 		ray_angle = angle_player - (HAOV / 2) + temp_angle;
 		x_min = min_x(x_player, ray_angle);
 		x_max = max_x(x_player, x_size_game, ray_angle);
 		y_min = min_y(y_player, ray_angle);
 		y_max = max_y(y_player, y_size_game, ray_angle);
-		if (temp_angle == 179)
-		{
-			printf("ray_angle:%f, x:%d, y:%d\n", ray_angle, x_player, y_player);
-			printf("x_min:%d, x_max:%d, y_min:%d, y_max:%d\n", x_min, x_max, y_min, y_max);
-		}
 		temp_distance = max_d;
 		i = x_min;
-		while (i < x_max)
+		// if (temp_angle == 90)
+			printf("ray_angle:%f, x_min:%d, x_max:%d, y_min:%d, y_max:%d\n", ray_angle, x_min, x_max, y_min, y_max);
+		if (ceil(ray_angle) == floor(ray_angle) && (int)ray_angle % 180 == 90)
 		{
 			temp_loc = all->map->start;
-			temp_y = find_y(ray_angle, x_player, y_player, i);
 			while (temp_loc)
 			{
-				if (temp_loc->x == i && temp_loc->y <= ceil(temp_y) && temp_loc->y >= floor(temp_y) && temp_loc->c == '1')
+				if (temp_loc->x == x_player && temp_loc->y <= y_max && temp_loc->y >= y_min && temp_loc->c == '1')
 				{
-					if (distance((double)i, temp_y, x_player, y_player) < temp_distance)
+					if (abs(temp_loc->y - y_player) < temp_distance)
 					{
-						temp_distance = distance((double)i, temp_y, x_player, y_player);
-						type_intersection = 'x';
-					}
-				}
-				temp_loc = temp_loc->next;
-			}
-			i++;
-		}
-		i = y_min;
-		while(i < y_max)
-		{
-			temp_loc = all->map->start;
-			temp_x = find_x(ray_angle, x_player, y_player, i);
-			while (temp_loc)
-			{
-				if (temp_loc->y == i && temp_loc->x <= ceil(temp_x) && temp_loc->x >= floor(temp_x) && temp_loc->c == '1')
-				{
-					if (distance(temp_x, (double)i, x_player, y_player) < temp_distance)
-					{
-						temp_distance = distance(temp_x, (double)i, x_player, y_player);
+						temp_distance = abs(temp_loc->y - y_player);
+						final_x = temp_loc->x;
+						final_y = temp_loc->y;
 						type_intersection = 'y';
+						// if (temp_angle == 90)
+							printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 					}
 				}
 				temp_loc = temp_loc->next;
 			}
-			i++;
 		}
+		else if (ceil(ray_angle) == floor(ray_angle) && (int)ray_angle % 180 == 0)
+		{
+			temp_loc = all->map->start;
+			while (temp_loc)
+			{
+				if (temp_loc->y == y_player && temp_loc->x <= x_max && temp_loc->x >= x_min && temp_loc->c == '1')
+				{
+					if (abs(temp_loc->x - x_player) < temp_distance)
+					{
+						temp_distance = abs(temp_loc->x - x_player);
+						final_x = temp_loc->x;
+						final_y = temp_loc->y;
+						type_intersection = 'x';
+						// if (temp_angle == 90)
+							printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
+					}
+				}
+				temp_loc = temp_loc->next;
+			}
+		}
+		else
+		{
+			while (i <= x_max)
+			{
+				temp_loc = all->map->start;
+				temp_y = find_y(ray_angle, x_player, y_player, i);
+				// if (temp_angle == 90)
+					printf("for x: %d, temp_y:%f\n", i,temp_y);
+				
+				while (temp_loc)
+				{
+					if (temp_loc->x == i && temp_loc->y <= ceil(temp_y) && temp_loc->y >= floor(temp_y) && temp_loc->c == '1')
+					{
+						if (distance((double)i, temp_y, x_player, y_player) < temp_distance)
+						{
+							temp_distance = distance((double)i, temp_y, x_player, y_player);
+							final_x = temp_loc->x;
+							final_y = temp_loc->y;
+							type_intersection = 'x';
+							// if (temp_angle == 90)
+								printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
+						}
+					}
+					// if ((temp_loc->x == i || temp_loc->x + 1 == i) && temp_loc->y <= ceil(temp_y) && temp_loc->y >= floor(temp_y) && temp_loc->c == '1')
+					// {
+					// 	if (distance((double)i, temp_y, x_player, y_player) < temp_distance)
+					// 	{
+					// 		temp_distance = distance((double)i, temp_y, x_player, y_player);
+					// 		final_x = temp_loc->x;
+					// 		final_y = temp_loc->y;
+					// 		type_intersection = 'x';
+					// 		// if (temp_angle == 90)
+					// 			printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
+					// 	}
+					// }
+					temp_loc = temp_loc->next;
+				}
+				i++;
+			}
+			i = y_min;
+			while(i <= y_max)
+			{
+				temp_loc = all->map->start;
+				temp_x = find_x(ray_angle, x_player, y_player, i);
+				// if (temp_angle == 90)
+					printf("for y: %d, temp_x:%f\n", i, temp_x);
+				while (temp_loc)
+				{
+					if (temp_loc->y == i && temp_loc->x <= ceil(temp_x) && temp_loc->x >= floor(temp_x) && temp_loc->c == '1')
+					{
+						if (distance(temp_x, (double)i, x_player, y_player) < temp_distance)
+						{
+							temp_distance = distance(temp_x, (double)i, x_player, y_player);
+							final_x = temp_loc->x;
+							final_y = temp_loc->y;
+							type_intersection = 'y';
+							// if (temp_angle == 90)
+								printf("from second loop : type: %c, final_x:%d, final_y:%d, temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
+						}
+					}
+					// if ((temp_loc->y == i || temp_loc->y + 1 == i) && temp_loc->x <= ceil(temp_x) && temp_loc->x >= floor(temp_x) && temp_loc->c == '1')
+					// {
+					// 	if (distance(temp_x, (double)i, x_player, y_player) < temp_distance)
+					// 	{
+					// 		temp_distance = distance(temp_x, (double)i, x_player, y_player);
+					// 		final_x = temp_loc->x;
+					// 		final_y = temp_loc->y;
+					// 		type_intersection = 'y';
+					// 		// if (temp_angle == 90)
+					// 			printf("from second loop : type: %c, final_x:%d, final_y:%d, temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
+					// 	}
+					// }
+					temp_loc = temp_loc->next;
+				}
+				i++;
+			}
+		}
+		temp_distance = temp_distance * fabs(ft_sin(temp_angle));
 		data_rander.wall_texture = wall_selection(ray_angle, type_intersection);
 		data_rander.ceil_height = height(temp_distance, 'C');
 		data_rander.floor_height = height(temp_distance, 'F');
 		data_rander.wall_height = WINDOW_HEIGHT - data_rander.ceil_height - data_rander.floor_height;
 		data_rander.x = (int)(temp_angle / WIDTH_INTERVAL);
-		if (temp_angle == 179)
-		{
-			printf("ray_angle:%f, x:%d, y:%d\n", ray_angle, x_player, y_player);
-			printf("distance:%f, type of inersection:%c , wall_texture: %c\n", temp_distance, type_intersection, data_rander.wall_texture);
-		}
+		// if (temp_angle == 90)
+		// {
+			printf("temp_angle:%f, ray_angle: %f, temp_distance:%f, wall_texture:%c, ceil_height:%d, floor_height:%d, wall_height:%d, x:%d\n", temp_angle, ray_angle, temp_distance, data_rander.wall_texture, data_rander.ceil_height, data_rander.floor_height, data_rander.wall_height, data_rander.x);
+			printf("\n\n");
+		// }
 		create_render(all, data_rander);
 		temp_angle+= WIDTH_INTERVAL;
 	}
@@ -332,34 +448,34 @@ int main(int argc, char **argv)
 	// all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT,	argv[0], false);
 	// all->elems = create_elements(all);
 	size_grid(all);
-	// t_loc *temp;
-	// // temp = all->render;
-	// // while (temp)
-	// // {
-	// // 	printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
-	// // 	temp = temp->next;
-	// // }
-	// int x = 0;
-	// int y = 0;
-	// while (y < WINDOW_HEIGHT)
+	t_loc *temp;
+	// temp = all->render;
+	// while (temp)
 	// {
-	// 	x = 0;
-	// 	while (x < WINDOW_WIDTH)
-	// 	{
-	// 		temp = all->render;
-	// 		while (temp)
-	// 		{
-	// 			// printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
-	// 			if (temp->x == x && temp->y == y)
-	// 				break;
-	// 			temp = temp->next;
-	// 		}
-	// 		if (temp)
-	// 			printf("%c",temp->c);
-	// 		x++;
-	// 	}
-	// 	printf("\n");
-	// 	y++;
+	// 	printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
+	// 	temp = temp->next;
 	// }
+	int x = 0;
+	int y = 0;
+	while (y < WINDOW_HEIGHT)
+	{
+		x = 0;
+		while (x < WINDOW_WIDTH)
+		{
+			temp = all->render;
+			while (temp)
+			{
+				// printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
+				if (temp->x == x && temp->y == y)
+					break;
+				temp = temp->next;
+			}
+			if (temp)
+				printf("%c",temp->c);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
 	terminate(all, 0);
 }

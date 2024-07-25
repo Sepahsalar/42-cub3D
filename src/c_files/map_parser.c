@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/24 14:13:02 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/25 11:58:35 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	update_map(t_all *all, char *found)
 			end_part1 = temp;
 		temp++;
 	}
+	// printf("end_part1: %s\n", end_part1);
 	while (*found != '\n')
 		found++;
 	start_part2 = found + 1;
@@ -35,7 +36,7 @@ void	update_map(t_all *all, char *found)
 	len2 = ft_strlen(start_part2);
 	temp = malloc(len1 + len2 + 1);
 	check_failure(0, temp, 2, all);
-	ft_memcpy(temp, temp, len1);
+	ft_memcpy(temp, all->strmap, len1);
 	ft_memcpy(temp + len1, start_part2, len2 + 1);
 	free(all->strmap);
 	all->strmap = temp;
@@ -61,7 +62,10 @@ char	*custom_strdup(t_all *all, char *found)
 	check_failure(0, dup, 2, all);
 	ft_memcpy(dup, start, len);
 	dup[len] = '\0';
+	// printf("map before update*************\n%s\n", all->strmap);
+	// printf("found before update*************\n%s\n", found);
 	update_map(all, found);
+	// printf("map after update*************\n%s\n", all->strmap);
 	return (dup);    
 }
 
@@ -70,6 +74,7 @@ char	*finder(t_all *all, char *str)
     char *found;
     
 	found = ft_strnstr(all->strmap, str, ft_strlen(all->strmap));
+	// printf("for str: %s\nfound*************\n%s\n", str, found);
     if (found)
 		return(custom_strdup(all, found));
 	return (NULL);
