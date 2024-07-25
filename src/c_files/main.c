@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/25 15:27:50 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:41:00 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3D.h"
 
+// add deleting mlx42 in makefile
 
 double ft_tan(double a)
 {
@@ -41,13 +42,6 @@ double find_y(double angle, int x_player, int y_player, int x_target)
 {
 	double	y_target;
 	
-	// if (ceil(angle) == floor(angle))
-	// {
-	// 	if ((int)angle % 180 == 90 && x_target == x_player)
-	// 		return (y_player);
-	// 	else if ((int)angle % 180 == 90)
-	// 		return (-1);
-	// }
 	y_target = ((x_target - x_player) * ft_tan(angle)) + y_player;
 	return (y_target);
 	
@@ -57,17 +51,6 @@ double find_x(double angle, int x_player, int y_player, int y_target)
 {
 	double	x_target;
 
-	// if (ceil(angle) == floor(angle))
-	// {
-	// 	if ((int)angle % 180 == 90 && y_target == y_player)
-	// 		return (x_player);
-	// 	else if ((int)angle % 180 == 90)
-	// 		return (-1);
-	// 	else if ((int)angle % 180 == 0 && y_target == y_player)
-	// 		return (x_player);
-	// 	else if ((int)angle % 180 == 0)
-	// 		return (-1);
-	// }
 	x_target = ((y_target - y_player) / ft_tan(angle)) + x_player;
 	return (x_target);
 	
@@ -208,22 +191,6 @@ char	wall_helper(char c1, char c2, char c3)
 		return (c3);
 }
 
-// char	wall_selection(double angle, char c)
-// {
-// 	while (angle < 0)
-// 		angle = angle + FULL_CIRCLE_DEGREES;
-// 	if (angle >= 0 && angle <= FULL_CIRCLE_DEGREES / 4)
-// 		return (wall_helper(c, 'W', 'S'));
-// 	else if (angle > FULL_CIRCLE_DEGREES / 4
-// 		&& angle <= FULL_CIRCLE_DEGREES / 2)
-// 		return (wall_helper(c, 'E', 'S'));
-// 	else if (angle > FULL_CIRCLE_DEGREES / 2
-// 		&& angle <= FULL_CIRCLE_DEGREES * 3 / 4)
-// 		return (wall_helper(c, 'E', 'N'));
-// 	else
-// 		return (wall_helper(c, 'W', 'N'));
-// }
-
 char	wall_selection(double angle, char c)
 {
 	while (angle < 0)
@@ -298,8 +265,7 @@ void	size_grid(t_all *all)
 		y_max = max_y(y_player, y_size_game, ray_angle);
 		temp_distance = max_d;
 		i = x_min;
-		// if (temp_angle == 90)
-			printf("ray_angle:%f, x_min:%d, x_max:%d, y_min:%d, y_max:%d\n", ray_angle, x_min, x_max, y_min, y_max);
+		printf("ray_angle:%f, x_min:%d, x_max:%d, y_min:%d, y_max:%d\n", ray_angle, x_min, x_max, y_min, y_max);
 		if (ceil(ray_angle) == floor(ray_angle) && (int)ray_angle % 180 == 90)
 		{
 			temp_loc = all->map->start;
@@ -307,24 +273,23 @@ void	size_grid(t_all *all)
 			{
 				if (temp_loc->x == x_player && temp_loc->y <= y_max && temp_loc->y >= y_min && temp_loc->c == '1')
 				{
-					if ((int)ray_angle % 360 == 270 && abs(temp_loc->y1 - y_player) < temp_distance)
+					// if ((int)ray_angle % 360 == 270 && abs(temp_loc->y1 - y_player) < temp_distance)
+					if (abs(temp_loc->y - y_player) < temp_distance)
 					{
-						temp_distance = abs(temp_loc->y1 - y_player);
+						temp_distance = abs(temp_loc->y - y_player);
 						final_x = temp_loc->x;
 						final_y = temp_loc->y;
 						type_intersection = 'y';
-						// if (temp_angle == 90)
-							printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
+						printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 					}
-					else if (abs(temp_loc->y0 - y_player) < temp_distance)
-					{
-						temp_distance = abs(temp_loc->y0 - y_player);
-						final_x = temp_loc->x;
-						final_y = temp_loc->y;
-						type_intersection = 'y';
-						// if (temp_angle == 90)
-							printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
-					}
+					// else if (abs(temp_loc->y0 - y_player) < temp_distance)
+					// {
+					// 	temp_distance = abs(temp_loc->y0 - y_player);
+					// 	final_x = temp_loc->x;
+					// 	final_y = temp_loc->y;
+					// 	type_intersection = 'y';
+					// 		printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
+					// }
 				}
 				temp_loc = temp_loc->next;
 			}
@@ -336,24 +301,23 @@ void	size_grid(t_all *all)
 			{
 				if (temp_loc->y == y_player && temp_loc->x <= x_max && temp_loc->x >= x_min && temp_loc->c == '1')
 				{
-					if ((int)ray_angle % 360 != 0 && abs(temp_loc->x1 - x_player) < temp_distance)
+					// if ((int)ray_angle % 360 != 0 && abs(temp_loc->x1 - x_player) < temp_distance)
+					if (abs(temp_loc->x - x_player) < temp_distance)
 					{
-						temp_distance = abs(temp_loc->x1 - x_player);
+						temp_distance = abs(temp_loc->x - x_player);
 						final_x = temp_loc->x;
 						final_y = temp_loc->y;
 						type_intersection = 'x';
-						// if (temp_angle == 90)
 							printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 					}
-					else if (abs(temp_loc->x0 - x_player) < temp_distance)
-					{
-						temp_distance = abs(temp_loc->x0 - x_player);
-						final_x = temp_loc->x;
-						final_y = temp_loc->y;
-						type_intersection = 'x';
-						// if (temp_angle == 90)
-							printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
-					}
+					// else if (abs(temp_loc->x0 - x_player) < temp_distance)
+					// {
+					// 	temp_distance = abs(temp_loc->x0 - x_player);
+					// 	final_x = temp_loc->x;
+					// 	final_y = temp_loc->y;
+					// 	type_intersection = 'x';
+					// 		printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
+					// }
 				}
 				temp_loc = temp_loc->next;
 			}
@@ -364,7 +328,6 @@ void	size_grid(t_all *all)
 			{
 				temp_loc = all->map->start;
 				temp_y = find_y(ray_angle, x_player, y_player, i);
-				// if (temp_angle == 90)
 					printf("for x: %d, temp_y:%f\n", i,temp_y);
 				
 				while (temp_loc)
@@ -377,7 +340,7 @@ void	size_grid(t_all *all)
 					// 		final_x = temp_loc->x;
 					// 		final_y = temp_loc->y;
 					// 		type_intersection = 'x';
-					// 		// if (temp_angle == 90)
+			
 					// 			printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 					// 	}
 					// }
@@ -389,7 +352,7 @@ void	size_grid(t_all *all)
 					// 		final_x = temp_loc->x;
 					// 		final_y = temp_loc->y;
 					// 		type_intersection = 'x';
-					// 		// if (temp_angle == 90)
+			
 					// 			printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 					// 	}
 					// }
@@ -401,7 +364,7 @@ void	size_grid(t_all *all)
 							final_x = temp_loc->x;
 							final_y = temp_loc->y;
 							type_intersection = 'x';
-							// if (temp_angle == 90)
+
 								printf("from first loop : type: %c, final_x:%d, final_y:%d , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 						}
 					}
@@ -414,7 +377,6 @@ void	size_grid(t_all *all)
 			{
 				temp_loc = all->map->start;
 				temp_x = find_x(ray_angle, x_player, y_player, i);
-				// if (temp_angle == 90)
 					printf("for y: %d, temp_x:%f\n", i, temp_x);
 				while (temp_loc)
 				{
@@ -426,7 +388,7 @@ void	size_grid(t_all *all)
 					// 		final_x = temp_loc->x;
 					// 		final_y = temp_loc->y;
 					// 		type_intersection = 'y';
-					// 		// if (temp_angle == 90)
+			
 					// 			printf("from second loop : type: %c, final_x:%d, final_y:%d, temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 					// 	}
 					// }
@@ -438,7 +400,7 @@ void	size_grid(t_all *all)
 					// 		final_x = temp_loc->x;
 					// 		final_y = temp_loc->y;
 					// 		type_intersection = 'y';
-					// 		// if (temp_angle == 90)
+			
 					// 			printf("from second loop : type: %c, final_x:%d, final_y:%d, temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 					// 	}
 					// }
@@ -450,7 +412,7 @@ void	size_grid(t_all *all)
 							final_x = temp_loc->x;
 							final_y = temp_loc->y;
 							type_intersection = 'y';
-							// if (temp_angle == 90)
+
 								printf("from second loop : type: %c, final_x:%d, final_y:%d, temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 						}
 					}
@@ -468,7 +430,6 @@ void	size_grid(t_all *all)
 		data_rander.floor_height = height(temp_distance, 'F');
 		data_rander.wall_height = WINDOW_HEIGHT - data_rander.ceil_height - data_rander.floor_height;
 		data_rander.x = (int)(temp_angle / WIDTH_INTERVAL);
-		// if (temp_angle == 90)
 		// {
 			printf("temp_angle:%f, ray_angle: %f, temp_distance:%f, wall_texture:%c, ceil_height:%d, floor_height:%d, wall_height:%d, x:%d\n", temp_angle, ray_angle, temp_distance, data_rander.wall_texture, data_rander.ceil_height, data_rander.floor_height, data_rander.wall_height, data_rander.x);
 			printf("\n\n");
