@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:07:14 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/25 17:05:15 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/05 13:04:31 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_loc	*create_loc_node(char temp, int x, int y)
 	new->y0 = y;
 	new->x1 = x + 1;
 	new->y1 = y + 1;
-	new->x_mid = (new->x0 + new->x1) / 2;
-	new->y_mid = (new->y0 + new->y1) / 2;
+	new->x_mid = new->x0 + 0.5;
+	new->y_mid = new->y0 + 0.5;
 	return (new);
 }
 

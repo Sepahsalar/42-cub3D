@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/05 12:29:31 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/05 15:19:11 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@
 # define MAX_MONITOR_USAGE 0.95
 # define FULL_CIRCLE_DEGREES 360
 # define VAOV 120.0
-# define HAOV 180.0
-# define WINDOW_HEIGHT 12
-# define WINDOW_WIDTH 18
+# define HAOV (double)180.0
+# define WINDOW_HEIGHT 30
+# define WINDOW_WIDTH 45
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
-// # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
-# define WIDTH_INTERVAL 15
+# define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
+#define NLOOP WINDOW_WIDTH
+// # define WIDTH_INTERVAL 0.4
 # define PERSON 1.5
 # define WALL 3.0
 
