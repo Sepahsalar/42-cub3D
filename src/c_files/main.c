@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/05 18:11:03 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/05 18:16:25 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -491,7 +491,7 @@ int main(int argc, char **argv)
 			temp = all->render;
 			while (temp)
 			{
-				// printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
+				printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
 				if (temp->x == x && temp->y == y)
 					break;
 				temp = temp->next;
