@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/05 15:19:11 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/05 18:03:43 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@
 # define MAX_MONITOR_USAGE 0.95
 # define FULL_CIRCLE_DEGREES 360
 # define VAOV 120.0
-# define HAOV (double)180.0
-# define WINDOW_HEIGHT 30
-# define WINDOW_WIDTH 45
+# define HAOV 180.0
+# define WINDOW_HEIGHT 200
+# define WINDOW_WIDTH 300
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
 # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
 #define NLOOP WINDOW_WIDTH
@@ -55,9 +55,9 @@ typedef struct s_loc
 
 typedef struct s_render
 {
-	int		ceil_height;
-	int		floor_height;
-	int		wall_height;
+	double	ceil_height;
+	double	floor_height;
+	double	wall_height;
 	char	wall_texture;
 	int		x;
 }			t_render;
@@ -83,6 +83,19 @@ typedef struct s_elem
 	mlx_image_t	*c;
 }				t_elem;
 
+typedef struct s_strip
+{
+	int				x;
+	char			wall;
+	double			wall_h;
+	double			ceil_h;
+	double			floor_h;
+	int				wall_length;
+	int				index;
+	struct s_strip	*previous;
+	struct s_strip	*next;
+}					t_strip;
+
 typedef struct s_all
 {
 	t_map	*map;
@@ -92,6 +105,7 @@ typedef struct s_all
 	char	*argv;
 	mlx_t	*window;
 	t_elem	*elems;
+	t_strip	*strip;
 }			t_all;
 
 t_map	*map_parser(t_all *all);
@@ -103,5 +117,8 @@ t_loc	*create_loc_node(char temp, int x, int y);
 t_loc	*clean_loc(t_loc *first);
 void	create_render(t_all *all, t_render data_render);
 t_elem	*create_elements(t_all *all);
+void	create_strip(t_all *all, t_render data_render);
+void 	fill_index_strip(t_all *all);
+void 	fill_length_strip(t_all *all);
 
 #endif // CUB3D_H

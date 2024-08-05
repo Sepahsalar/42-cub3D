@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
+#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/07/25 15:57:40 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/05 17:06:44 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
 # Source files
 SRCS = $(SRCDIR)/create_loc.c \
 		$(SRCDIR)/create_render.c \
+		$(SRCDIR)/create_strip.c \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/map_parser.c  \
 		$(SRCDIR)/map_parser_utils.c \

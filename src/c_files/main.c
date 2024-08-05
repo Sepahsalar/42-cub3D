@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/05 15:53:39 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/05 18:04:03 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,7 @@ char	wall_selection(double angle, char c)
 		return (wall_helper(c, 'W', 'S'));
 }
 
-int height(double distance, char c)
+double height(double distance, char c)
 {
 	double half_full_height;
 	double target_height;
@@ -415,23 +415,24 @@ void	size_grid(t_all *all)
 		if (temp_angle == 0)
 			distance_left = temp_distance;
 		distance_right = find_right_distance(all);
-		printf("distance_left:%f, distance_right:%f\n", distance_left, distance_right);
+		// printf("distance_left:%f, distance_right:%f\n", distance_left, distance_right);
 		if (temp_angle >= 0 && temp_angle <= 90)
 			temp_distance = temp_distance * fabs(ft_sin(temp_angle)) + distance_left;
 		else
 			// temp_distance = distance_right - (temp_distance * fabs(ft_sin(temp_angle)));
 			temp_distance = temp_distance * fabs(ft_sin(temp_angle)) + distance_right;
-		printf("after sinus: temp_distance:%f\n", temp_distance);
+		// printf("after sinus: temp_distance:%f\n", temp_distance);
 		data_rander.wall_texture = wall_selection(ray_angle, type_intersection);
 		data_rander.ceil_height = height(temp_distance, 'C');
 		data_rander.floor_height = height(temp_distance, 'F');
 		data_rander.wall_height = WINDOW_HEIGHT - data_rander.ceil_height - data_rander.floor_height;
 		data_rander.x = (int)(temp_angle / WIDTH_INTERVAL);
-		{
-			printf("temp_angle:%f, ray_angle: %f, temp_distance:%f, wall_texture:%c, ceil_height:%d, floor_height:%d, wall_height:%d, x:%d\n", temp_angle, ray_angle, temp_distance, data_rander.wall_texture, data_rander.ceil_height, data_rander.floor_height, data_rander.wall_height, data_rander.x);
-			printf("\n\n");
-		}
+		// {
+		// 	printf("temp_angle:%f, ray_angle: %f, temp_distance:%f, wall_texture:%c, ceil_height:%d, floor_height:%d, wall_height:%d, x:%d\n", temp_angle, ray_angle, temp_distance, data_rander.wall_texture, data_rander.ceil_height, data_rander.floor_height, data_rander.wall_height, data_rander.x);
+		// 	printf("\n\n");
+		// }
 		create_render(all, data_rander);
+		create_strip(all, data_rander);
 		// printf("temp_angle:%f\n", temp_angle);
 		counter++;
 		temp_angle+= WIDTH_INTERVAL;
@@ -451,37 +452,56 @@ int main(int argc, char **argv)
 	all->fd = -1;
 	all->map = map_parser(all);
 	all->render = NULL;
+	all->strip = NULL;
 	// all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT,	argv[0], false);
 	// all->elems = create_elements(all);
 	size_grid(all);
-	t_loc *temp;
-	temp = all->render;
-	// while (temp)
-	// {
-	// 	printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
-	// 	temp = temp->next;
-	// }
-	int x = 0;
-	int y = 0;
-	while (y <= WINDOW_HEIGHT)
+	fill_index_strip(all);
+	fill_length_strip(all);
+	printf("*************************************************\n\n\n");
+	char wall;
+	wall = '\0';
+	t_strip *node;
+	node = all->strip;
+	while (node)
 	{
-		x = 0;
-		while (x <= WINDOW_WIDTH)
-		{
-			temp = all->render;
-			while (temp)
-			{
-				// printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
-				if (temp->x == x && temp->y == y)
-					break;
-				temp = temp->next;
-			}
-			if (temp)
-				printf("%c",temp->c);
-			x++;
-		}
-		printf("\n");
-		y++;
+		// if (node->wall != wall)
+		// {
+		// 	printf("wall:%c with length of : %d started at x:%d\n", node->wall, node->wall_length, node->x);
+		// 	wall = node->wall;
+		// }
+		printf("wall:%c with height of : %f started at x:%d\n", node->wall, node->wall_h, node->x);
+		node = node->next;
 	}
+	
+	// t_loc *temp;
+	// temp = all->render;
+	// // while (temp)
+	// // {
+	// // 	printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
+	// // 	temp = temp->next;
+	// // }
+	// int x = 0;
+	// int y = 0;
+	// while (y <= WINDOW_HEIGHT)
+	// {
+	// 	x = 0;
+	// 	while (x <= WINDOW_WIDTH)
+	// 	{
+	// 		temp = all->render;
+	// 		while (temp)
+	// 		{
+	// 			// printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
+	// 			if (temp->x == x && temp->y == y)
+	// 				break;
+	// 			temp = temp->next;
+	// 		}
+	// 		if (temp)
+	// 			printf("%c",temp->c);
+	// 		x++;
+	// 	}
+	// 	printf("\n");
+	// 	y++;
+	// }
 	terminate(all, 0);
 }
