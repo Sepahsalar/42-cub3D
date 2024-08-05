@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/05 18:04:03 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/05 18:11:03 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -474,34 +474,34 @@ int main(int argc, char **argv)
 		node = node->next;
 	}
 	
-	// t_loc *temp;
-	// temp = all->render;
-	// // while (temp)
-	// // {
-	// // 	printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
-	// // 	temp = temp->next;
-	// // }
-	// int x = 0;
-	// int y = 0;
-	// while (y <= WINDOW_HEIGHT)
+	t_loc *temp;
+	temp = all->render;
+	// while (temp)
 	// {
-	// 	x = 0;
-	// 	while (x <= WINDOW_WIDTH)
-	// 	{
-	// 		temp = all->render;
-	// 		while (temp)
-	// 		{
-	// 			// printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
-	// 			if (temp->x == x && temp->y == y)
-	// 				break;
-	// 			temp = temp->next;
-	// 		}
-	// 		if (temp)
-	// 			printf("%c",temp->c);
-	// 		x++;
-	// 	}
-	// 	printf("\n");
-	// 	y++;
+	// 	printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
+	// 	temp = temp->next;
 	// }
+	int x = 0;
+	int y = 0;
+	while (y <= WINDOW_HEIGHT)
+	{
+		x = 0;
+		while (x <= WINDOW_WIDTH)
+		{
+			temp = all->render;
+			while (temp)
+			{
+				// printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
+				if (temp->x == x && temp->y == y)
+					break;
+				temp = temp->next;
+			}
+			if (temp)
+				printf("%c",temp->c);
+			x++;
+		}
+		printf("\n");
+		y++;
+	}
 	terminate(all, 0);
 }
