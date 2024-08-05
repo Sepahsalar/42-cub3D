@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/25 18:15:46 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:29:31 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 # define FULL_CIRCLE_DEGREES 360
 # define VAOV 120.0
 # define HAOV 180.0
-# define WINDOW_HEIGHT 60
-# define WINDOW_WIDTH 90
+# define WINDOW_HEIGHT 12
+# define WINDOW_WIDTH 18
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
-# define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
-// # define WIDTH_INTERVAL 12
+// # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
+# define WIDTH_INTERVAL 15
 # define PERSON 1.5
 # define WALL 3.0
 

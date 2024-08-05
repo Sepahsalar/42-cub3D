@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/25 18:19:12 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/05 12:26:02 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,13 +227,42 @@ int height(double distance, char c)
 		return (floor(WINDOW_HEIGHT * target_height / (2 * half_full_height)));
 }
 
+double find_right_distance(t_all *all)
+{
+	t_loc	*temp_loc;
+	double	temp_distance;
+	double	x_player;
+	double	y_player;
+	double 	max_d;
+	double 	x_min;
+	double 	x_max;
+	int 	x_size_game;
+	
+	x_player = start_loc_player(all, 'x');
+	y_player = start_loc_player(all, 'y');
+	max_d = max_distance(all);
+	x_size_game = game_size(all, 'x');
+	x_min = min_x(x_player, 360);
+	x_max = max_x(x_player, x_size_game, 360);
+	temp_distance = max_d;
+	temp_loc = all->map->start;
+	while (temp_loc)
+	{
+		if (temp_loc->y_mid == y_player && temp_loc->x_mid <= x_max && temp_loc->x_mid >= x_min && temp_loc->c == '1')
+			if (fabs(temp_loc->x_mid - x_player) < temp_distance)
+				temp_distance = fabs(temp_loc->x_mid - x_player);
+		temp_loc = temp_loc->next;
+	}
+	return (temp_distance);
+}
+
 void	size_grid(t_all *all)
 {
 	t_loc		*temp_loc;
 	double		temp_x;
 	double		temp_y;
-	double			x_player;
-	double			y_player;
+	double		x_player;
+	double		y_player;
 	double		angle_player;
 	double		temp_angle;
 	double		ray_angle;
@@ -248,8 +277,10 @@ void	size_grid(t_all *all)
 	char 		type_intersection;
 	double 		temp_distance;
 	t_render	data_rander;
-	double			final_x;
-	double			final_y;
+	double		final_x;
+	double		final_y;
+	double 		distance_left;
+	double 		distance_right;
 
 	x_player = start_loc_player(all, 'x');
 	y_player = start_loc_player(all, 'y');
@@ -269,14 +300,14 @@ void	size_grid(t_all *all)
 		y_max = max_y(y_player, y_size_game, ray_angle);
 		temp_distance = max_d;
 		i = x_min;
-		// printf("y = %f(x - %d) + %d\n", ft_tan(ray_angle), x_player, y_player);
-		// printf("ray_angle:%f, x_min:%d, x_max:%d, y_min:%d, y_max:%d\n", ray_angle, x_min, x_max, y_min, y_max);
+		printf("y = %f(x - %f) + %f\n", ft_tan(ray_angle), x_player, y_player);
+		printf("ray_angle:%f, x_min:%f, x_max:%f, y_min:%f, y_max:%f\n", ray_angle, x_min, x_max, y_min, y_max);
 		if (ceil(ray_angle) == floor(ray_angle) && (int)ray_angle % 180 == 90)
 		{
 			temp_loc = all->map->start;
 			while (temp_loc)
 			{
-				if (temp_loc->x == x_player && temp_loc->y <= y_max && temp_loc->y >= y_min && temp_loc->c == '1')
+				if (temp_loc->x_mid == x_player && temp_loc->y_mid <= y_max && temp_loc->y_mid >= y_min && temp_loc->c == '1')
 				{
 					// if ((int)ray_angle % 360 == 270 && abs(temp_loc->y1 - y_player) < temp_distance)
 					if (fabs(temp_loc->y_mid - y_player) < temp_distance)
@@ -304,7 +335,7 @@ void	size_grid(t_all *all)
 			temp_loc = all->map->start;
 			while (temp_loc)
 			{
-				if (temp_loc->y == y_player && temp_loc->x <= x_max && temp_loc->x >= x_min && temp_loc->c == '1')
+				if (temp_loc->y_mid == y_player && temp_loc->x_mid <= x_max && temp_loc->x_mid >= x_min && temp_loc->c == '1')
 				{
 					// if ((int)ray_angle % 360 != 0 && abs(temp_loc->x1 - x_player) < temp_distance)
 					if (fabs(temp_loc->x_mid - x_player) < temp_distance)
@@ -313,7 +344,7 @@ void	size_grid(t_all *all)
 						final_x = temp_loc->x;
 						final_y = temp_loc->y;
 						type_intersection = 'x';
-						// printf("from first loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
+						printf("from second loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 					}
 					// else if (abs(temp_loc->x0 - x_player) < temp_distance)
 					// {
@@ -334,7 +365,6 @@ void	size_grid(t_all *all)
 				temp_loc = all->map->start;
 				temp_y = find_y(ray_angle, x_player, y_player, i);
 					// printf("for x: %d, temp_y:%f\n", i,temp_y);
-				
 				while (temp_loc)
 				{
 					// if (temp_loc->x == i && temp_loc->y <= ceil(temp_y) && temp_loc->y >= floor(temp_y) && temp_loc->c == '1')
@@ -435,19 +465,28 @@ void	size_grid(t_all *all)
 				i++;
 			}
 		}
-		// printf("final_x:%d, final_y:%d\n", final_x, final_y);
-		// printf("before sinus: temp_distance:%f\n", temp_distance);
-		temp_distance = temp_distance * fabs(ft_sin(temp_angle));
-		// printf("after sinus: temp_distance:%f\n", temp_distance);
+		printf("final_x:%f, final_y:%f\n", final_x, final_y);
+		printf("before sinus: temp_distance:%f\n", temp_distance);
+		// distance_left = 0;
+		if (temp_angle == 0)
+			distance_left = temp_distance;
+		distance_right = find_right_distance(all);
+		printf("distance_left:%f, distance_right:%f\n", distance_left, distance_right);
+		if (temp_angle >= 0 && temp_angle <= 90)
+			temp_distance = temp_distance * fabs(ft_sin(temp_angle)) + distance_left;
+		else
+			// temp_distance = distance_right - (temp_distance * fabs(ft_sin(temp_angle)));
+			temp_distance = temp_distance * fabs(ft_sin(temp_angle)) + distance_right;
+		printf("after sinus: temp_distance:%f\n", temp_distance);
 		data_rander.wall_texture = wall_selection(ray_angle, type_intersection);
 		data_rander.ceil_height = height(temp_distance, 'C');
 		data_rander.floor_height = height(temp_distance, 'F');
 		data_rander.wall_height = WINDOW_HEIGHT - data_rander.ceil_height - data_rander.floor_height;
 		data_rander.x = (int)(temp_angle / WIDTH_INTERVAL);
-		// {
-			// printf("temp_angle:%f, ray_angle: %f, temp_distance:%f, wall_texture:%c, ceil_height:%d, floor_height:%d, wall_height:%d, x:%d\n", temp_angle, ray_angle, temp_distance, data_rander.wall_texture, data_rander.ceil_height, data_rander.floor_height, data_rander.wall_height, data_rander.x);
-			// printf("\n\n");
-		// }
+		{
+			printf("temp_angle:%f, ray_angle: %f, temp_distance:%f, wall_texture:%c, ceil_height:%d, floor_height:%d, wall_height:%d, x:%d\n", temp_angle, ray_angle, temp_distance, data_rander.wall_texture, data_rander.ceil_height, data_rander.floor_height, data_rander.wall_height, data_rander.x);
+			printf("\n\n");
+		}
 		create_render(all, data_rander);
 		temp_angle+= WIDTH_INTERVAL;
 	}
