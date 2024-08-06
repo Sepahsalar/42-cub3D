@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/06 12:36:40 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/06 14:34:49 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ typedef struct s_all
 	t_strip		*strip;
 }				t_all;
 
+int		color(int r, int g, int b, int a);
 t_map	*map_parser(t_all *all);
 void	terminate(t_all *all, int status);
 void	check_failure(int input1, void *input2, int type, t_all *all);
@@ -138,6 +139,11 @@ void	create_elements(t_all *all);
 void	create_strip(t_all *all, t_render data_render);
 void 	fill_index_strip(t_all *all);
 void 	fill_length_strip(t_all *all);
-void clean_strip(t_strip *first);
+void	clean_strip(t_strip *first);
+void	strip_to_floor(t_all *all);
+void	strip_to_wall(t_all *all);
+void	strip_to_ceil(t_all *all);
+t_data	*last_node_data(t_data *node);
+void	create_instance(t_all *all);
 
 #endif // CUB3D_H

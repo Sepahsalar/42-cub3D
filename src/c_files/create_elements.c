@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:45:45 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/06 12:04:27 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/06 14:35:31 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void image(t_all *all, char type)
 		all->elems->north = picture;
 }
 
-static int	color(int r, int g, int b, int a)
+int	color(int r, int g, int b, int a)
 {
 	return (r << 24 | g << 16 | b << 8 | a);
 }
@@ -169,8 +169,8 @@ void	create_elements(t_all *all)
 	color_pixel(all, 'f');
 	color_pixel(all, 'c');
 	// printf("here\n");
-	// image(all, 'N');
-	// image(all, 'S');
-	// image(all, 'W');
-	// image(all, 'E');
+	image(all, 'N');
+	image(all, 'S');
+	image(all, 'W');
+	image(all, 'E');
 }

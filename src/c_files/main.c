@@ -455,33 +455,17 @@ int main(int argc, char **argv)
 	all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT,	argv[0], false);
 	if (!all->window)
 		terminate(all, 1);
-	
-	create_elements(all);
-	printf("after create elements\n");
-	mlx_image_t *image;
-	image = all->elems->f;
-	printf("*************************************************\n\n\n");
-	printf("pixel at 0,0 : %hhu \n",image->pixels[0]);
-	printf("pixel at 0,1 : %hhu \n",image->pixels[1]);
-	printf("pixel at 0,2 : %hhu \n",image->pixels[2]);
-	printf("pixel at 0,3 : %hhu \n",image->pixels[3]);
-	// int i = 0;
-	// int j = 0;
-	// printf("*************************************************\n\n\n");
-	// while (i < image->width)
-	// {
-	// 	j = 0;
-	// 	while (j < image->height)
-	// 	{
-			// // printf("pixel at x:%d, y:%d is %d\n", i, j, image->pixels[0]);
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
 	size_grid(all);
 	fill_index_strip(all);
 	fill_length_strip(all);
-	
+	create_elements(all);
+	all->display = malloc(sizeof(t_display));
+	if(!all->display)
+		terminate(all, 1);
+	strip_to_wall(all);
+	strip_to_floor(all);
+	strip_to_ceil(all);
+	create_instance(all);
 	
 	
 	// t_loc *temp;

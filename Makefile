@@ -6,7 +6,7 @@
 #    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/06 11:44:38 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/06 14:33:38 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,12 +41,16 @@ LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
 
 # Source files
 SRCS =  $(SRCDIR)/create_elements.c \
+		$(SRCDIR)/create_instance.c \
 		$(SRCDIR)/create_loc.c \
 		$(SRCDIR)/create_render.c \
 		$(SRCDIR)/create_strip.c \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/map_parser.c  \
 		$(SRCDIR)/map_parser_utils.c \
+		$(SRCDIR)/strip_to_ceil.c \
+		$(SRCDIR)/strip_to_floor.c \
+		$(SRCDIR)/strip_to_wall.c \
 		$(SRCDIR)/termiante.c \
 
 # Object files
