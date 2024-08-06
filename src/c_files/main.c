@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/06 09:07:31 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:06:24 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 // add deleting mlx42 in makefile
 
-// shorue partab ray az noghteie vasat
-// mokhtasat player az noghteie vasat
-// fasele az vasat ta noghteie brakhord
+// remember to delete render at the end (not clean,
+// delete it since we do not need it anymore)
 
 double ft_tan(double a)
 {
@@ -249,13 +248,13 @@ double find_right_distance(t_all *all)
 	temp_loc = all->map->start;
 	while (temp_loc)
 	{
-		// printf("before if: temp_loc->x_mid:%f, x_max:%f, x_min:%f, temp_loc->c:%c\n", temp_loc->x_mid, x_max, x_min, temp_loc->c);
+		// // printf("before if: temp_loc->x_mid:%f, x_max:%f, x_min:%f, temp_loc->c:%c\n", temp_loc->x_mid, x_max, x_min, temp_loc->c);
 		if (temp_loc->y_mid == y_player && temp_loc->x_mid <= x_max && temp_loc->x_mid >= x_min && temp_loc->c == '1')
 		{
-			// printf("after first if : temp_loc->x_mid:%f, x_max:%f, x_min:%f, temp_loc->c:%c\n", temp_loc->x_mid, x_max, x_min, temp_loc->c);
+			// // printf("after first if : temp_loc->x_mid:%f, x_max:%f, x_min:%f, temp_loc->c:%c\n", temp_loc->x_mid, x_max, x_min, temp_loc->c);
 			if (fabs(temp_loc->x_mid - x_player) < temp_distance)
 			{
-				// printf("temp_loc->x_mid:%f, x_player:%f\n", temp_loc->x_mid, x_player);
+				// // printf("temp_loc->x_mid:%f, x_player:%f\n", temp_loc->x_mid, x_player);
 				temp_distance = fabs(temp_loc->x_mid - x_player);
 			}
 		}
@@ -301,7 +300,7 @@ void	size_grid(t_all *all)
 	int counter;
 	counter = 0;
 
-	printf("*************************************************\n\n\n");
+	// printf("*************************************************\n\n\n");
 	// while (temp_angle <= (double)HAOV)
 	while (counter <= NLOOP)
 	{
@@ -312,8 +311,8 @@ void	size_grid(t_all *all)
 		y_max = max_y(y_player, y_size_game, ray_angle);
 		temp_distance = max_d;
 		i = x_min;
-		printf("y = %f(x - %f) + %f\n", ft_tan(ray_angle), x_player, y_player);
-		printf("ray_angle:%f, x_min:%f, x_max:%f, y_min:%f, y_max:%f\n", ray_angle, x_min, x_max, y_min, y_max);
+		// // printf("y = %f(x - %f) + %f\n", ft_tan(ray_angle), x_player, y_player);
+		// // printf("ray_angle:%f, x_min:%f, x_max:%f, y_min:%f, y_max:%f\n", ray_angle, x_min, x_max, y_min, y_max);
 		if (ceil(ray_angle) == floor(ray_angle) && (int)ray_angle % 180 == 90)
 		{
 			temp_loc = all->map->start;
@@ -328,7 +327,7 @@ void	size_grid(t_all *all)
 						final_x = temp_loc->x;
 						final_y = temp_loc->y;
 						type_intersection = 'y';
-						// printf("from first loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
+						// // printf("from first loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 					}
 				}
 				temp_loc = temp_loc->next;
@@ -347,7 +346,7 @@ void	size_grid(t_all *all)
 						final_x = temp_loc->x;
 						final_y = temp_loc->y;
 						type_intersection = 'x';
-						// printf("from second loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
+						// // printf("from second loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 					}
 				}
 				temp_loc = temp_loc->next;
@@ -359,13 +358,13 @@ void	size_grid(t_all *all)
 			{
 				temp_loc = all->map->start;
 				temp_y = find_y(ray_angle, x_player, y_player, i);
-					// printf("for x: %d, temp_y:%f\n", i,temp_y);
+					// // printf("for x: %d, temp_y:%f\n", i,temp_y);
 				while (temp_loc)
 				{
 					if (temp_loc->x0 <= i && i <= temp_loc->x1 && temp_loc->y0 <= temp_y &&  temp_y <= temp_loc->y1 && temp_loc->c == '1')
 					{
-						printf("temp_loc->x:%d , temp_loc->y:%d, temp_loc_x_range(x0:%d,x1:%d), temp_loc_y_range(y0:%d,y1:%d)\n", temp_loc->x, temp_loc->y, temp_loc->x0, temp_loc->x1, temp_loc->y0, temp_loc->y1);
-						printf("distance in first loop for intersection (x:%d and y:%f) and player(%f, %f) is %f\n", i, temp_y , x_player, y_player, distance((double)i, temp_y, x_player, y_player));
+						// printf("temp_loc->x:%d , temp_loc->y:%d, temp_loc_x_range(x0:%d,x1:%d), temp_loc_y_range(y0:%d,y1:%d)\n", temp_loc->x, temp_loc->y, temp_loc->x0, temp_loc->x1, temp_loc->y0, temp_loc->y1);
+						// printf("distance in first loop for intersection (x:%d and y:%f) and player(%f, %f) is %f\n", i, temp_y , x_player, y_player, distance((double)i, temp_y, x_player, y_player));
 						if (distance((double)i, temp_y, x_player, y_player) < temp_distance)
 						// if (distance((double)temp_loc->x, (double)temp_loc->y, x_player, y_player) < temp_distance)
 						{
@@ -374,7 +373,7 @@ void	size_grid(t_all *all)
 							final_x = temp_loc->x;
 							final_y = temp_loc->y;
 							type_intersection = 'x';
-							printf("from first loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
+							// printf("from first loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 						}
 					}
 					temp_loc = temp_loc->next;
@@ -386,13 +385,13 @@ void	size_grid(t_all *all)
 			{
 				temp_loc = all->map->start;
 				temp_x = find_x(ray_angle, x_player, y_player, i);
-				// printf("for y: %d, temp_x:%f\n", i, temp_x);
+				// // printf("for y: %d, temp_x:%f\n", i, temp_x);
 				while (temp_loc)
 				{
-				// printf("temp_loc->y0:%d, i:%d, temp_loc->y1:%d, temp_x:%f, temp_loc->x0:%d, temp_loc->x1:%d, temp_loc->c:%c\n", temp_loc->y0, i, temp_loc->y1, temp_x, temp_loc->x0, temp_loc->x1, temp_loc->c);
+				// // printf("temp_loc->y0:%d, i:%d, temp_loc->y1:%d, temp_x:%f, temp_loc->x0:%d, temp_loc->x1:%d, temp_loc->c:%c\n", temp_loc->y0, i, temp_loc->y1, temp_x, temp_loc->x0, temp_loc->x1, temp_loc->c);
 					if (temp_loc->y0 <= i && i <= temp_loc->y1 && temp_loc->x0 <= temp_x && temp_x <= temp_loc->x1 && temp_loc->c == '1')
 					{
-						printf("distance in second loop for intersection (x:%f and y:%d) and player(%f, %f) is %f\n", temp_x, i , x_player, y_player, distance(temp_x, (double)i, x_player, y_player));
+						// printf("distance in second loop for intersection (x:%f and y:%d) and player(%f, %f) is %f\n", temp_x, i , x_player, y_player, distance(temp_x, (double)i, x_player, y_player));
 						if (distance(temp_x, (double)i, x_player, y_player) < temp_distance)
 						// if (distance((double)temp_loc->x, (double)temp_loc->y, x_player, y_player) < temp_distance)
 						{
@@ -401,7 +400,7 @@ void	size_grid(t_all *all)
 							final_x = temp_loc->x;
 							final_y = temp_loc->y;
 							type_intersection = 'y';
-							printf("from second loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
+							// printf("from second loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 						}
 					}
 					temp_loc = temp_loc->next;
@@ -409,35 +408,35 @@ void	size_grid(t_all *all)
 				i++;
 			}
 		}
-		printf("final_x:%f, final_y:%f\n", final_x, final_y);
-		printf("before sinus: temp_distance:%f\n", temp_distance);
+		// printf("final_x:%f, final_y:%f\n", final_x, final_y);
+		// printf("before sinus: temp_distance:%f\n", temp_distance);
 		// distance_left = 0;
 		if (temp_angle == 0)
 			distance_left = temp_distance;
 		distance_right = find_right_distance(all);
-		// printf("distance_left:%f, distance_right:%f\n", distance_left, distance_right);
+		// // printf("distance_left:%f, distance_right:%f\n", distance_left, distance_right);
 		if (temp_angle >= 0 && temp_angle <= 90)
 			temp_distance = temp_distance * fabs(ft_sin(temp_angle)) + distance_left;
 		else
 			// temp_distance = distance_right - (temp_distance * fabs(ft_sin(temp_angle)));
 			temp_distance = temp_distance * fabs(ft_sin(temp_angle)) + distance_right;
-		// printf("after sinus: temp_distance:%f\n", temp_distance);
+		// // printf("after sinus: temp_distance:%f\n", temp_distance);
 		data_rander.wall_texture = wall_selection(ray_angle, type_intersection);
 		data_rander.ceil_height = height(temp_distance, 'C');
 		data_rander.floor_height = height(temp_distance, 'F');
 		data_rander.wall_height = WINDOW_HEIGHT - data_rander.ceil_height - data_rander.floor_height;
 		data_rander.x = (int)(temp_angle / WIDTH_INTERVAL);
 		// {
-		// 	printf("temp_angle:%f, ray_angle: %f, temp_distance:%f, wall_texture:%c, ceil_height:%d, floor_height:%d, wall_height:%d, x:%d\n", temp_angle, ray_angle, temp_distance, data_rander.wall_texture, data_rander.ceil_height, data_rander.floor_height, data_rander.wall_height, data_rander.x);
-		// 	printf("\n\n");
+		// 	// printf("temp_angle:%f, ray_angle: %f, temp_distance:%f, wall_texture:%c, ceil_height:%d, floor_height:%d, wall_height:%d, x:%d\n", temp_angle, ray_angle, temp_distance, data_rander.wall_texture, data_rander.ceil_height, data_rander.floor_height, data_rander.wall_height, data_rander.x);
+		// 	// printf("\n\n");
 		// }
 		create_render(all, data_rander);
 		create_strip(all, data_rander);
-		// printf("temp_angle:%f\n", temp_angle);
+		// // printf("temp_angle:%f\n", temp_angle);
 		counter++;
 		temp_angle+= WIDTH_INTERVAL;
 	}
-	// printf("temp_angle:%f\n", temp_angle);
+	// // printf("temp_angle:%f\n", temp_angle);
 }
 
 int main(int argc, char **argv)
@@ -453,34 +452,40 @@ int main(int argc, char **argv)
 	all->map = map_parser(all);
 	all->render = NULL;
 	all->strip = NULL;
-	// all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT,	argv[0], false);
-	// all->elems = create_elements(all);
+	all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT,	argv[0], false);
+	if (!all->window)
+		terminate(all, 1);
+	
+	create_elements(all);
+	printf("after create elements\n");
+	mlx_image_t *image;
+	image = all->elems->f;
+	printf("*************************************************\n\n\n");
+	printf("pixel at 0,0 : %hhu \n",image->pixels[0]);
+	printf("pixel at 0,1 : %hhu \n",image->pixels[1]);
+	printf("pixel at 0,2 : %hhu \n",image->pixels[2]);
+	printf("pixel at 0,3 : %hhu \n",image->pixels[3]);
+	// int i = 0;
+	// int j = 0;
+	// printf("*************************************************\n\n\n");
+	// while (i < image->width)
+	// {
+	// 	j = 0;
+	// 	while (j < image->height)
+	// 	{
+			// // printf("pixel at x:%d, y:%d is %d\n", i, j, image->pixels[0]);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
 	size_grid(all);
 	fill_index_strip(all);
 	fill_length_strip(all);
-	printf("*************************************************\n\n\n");
-	char wall;
-	wall = '\0';
-	t_strip *node;
-	node = all->strip;
-	while (node)
-	{
-		// if (node->wall != wall)
-		// {
-		// 	printf("wall:%c with length of : %d started at x:%d\n", node->wall, node->wall_length, node->x);
-		// 	wall = node->wall;
-		// }
-		printf("wall:%c with height of : %f started at x:%d\n", node->wall, node->wall_h, node->x);
-		node = node->next;
-	}
+	
+	
 	
 	// t_loc *temp;
-	// temp = all->render;
-	// // while (temp)
-	// // {
-	// // 	printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
-	// // 	temp = temp->next;
-	// // }
+	// temp = all->render; // 
 	// int x = 0;
 	// int y = 0;
 	// while (y <= WINDOW_HEIGHT)
@@ -491,17 +496,17 @@ int main(int argc, char **argv)
 	// 		temp = all->render;
 	// 		while (temp)
 	// 		{
-	// 			printf("x:%d, y:%d, material:%c\n", temp->x, temp->y, temp->c);
 	// 			if (temp->x == x && temp->y == y)
 	// 				break;
 	// 			temp = temp->next;
 	// 		}
 	// 		if (temp)
-	// 			printf("%c",temp->c);
+	// 			// printf("%c",temp->c);
 	// 		x++;
 	// 	}
-	// 	printf("\n");
+	// 	// printf("\n");
 	// 	y++;
 	// }
+	mlx_loop(all->window);
 	terminate(all, 0);
 }

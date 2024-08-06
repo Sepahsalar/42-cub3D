@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/05 17:06:44 by nnourine         ###   ########.fr        #
+#    Updated: 2024/08/06 11:44:38 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ LMX_FLAGS = -L$(LIBMLX)/build -L$(LIB_BREW) -lmlx42 -ldl -pthread -lglfw -lm
 LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
 
 # Source files
-SRCS = $(SRCDIR)/create_loc.c \
+SRCS =  $(SRCDIR)/create_elements.c \
+		$(SRCDIR)/create_loc.c \
 		$(SRCDIR)/create_render.c \
 		$(SRCDIR)/create_strip.c \
 		$(SRCDIR)/main.c  \

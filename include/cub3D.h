@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/06 09:06:00 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/06 12:36:40 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,23 @@ typedef struct s_elem
 	mlx_image_t	*c;
 }				t_elem;
 
+typedef struct s_data
+{
+	int				x;
+	int				y;
+	mlx_image_t		*image;
+	struct s_data	*previous;
+	struct s_data	*next;
+}					t_data;
+
+
+typedef struct s_display
+{
+	t_data	*wall;
+	t_data	*floor;
+	t_data	*ceil;	
+}			t_display;
+
 typedef struct s_strip
 {
 	int				x;
@@ -98,15 +115,16 @@ typedef struct s_strip
 
 typedef struct s_all
 {
-	t_map	*map;
-	t_loc	*render;
-	int		fd;
-	char	*strmap;
-	char	*argv;
-	mlx_t	*window;
-	t_elem	*elems;
-	t_strip	*strip;
-}			t_all;
+	t_map		*map;
+	t_loc		*render;
+	int			fd;
+	char		*strmap;
+	char		*argv;
+	mlx_t		*window;
+	t_elem		*elems;
+	t_display	*display;
+	t_strip		*strip;
+}				t_all;
 
 t_map	*map_parser(t_all *all);
 void	terminate(t_all *all, int status);
@@ -116,7 +134,7 @@ void	create_loc(t_all *all);
 t_loc	*create_loc_node(char temp, int x, int y);
 t_loc	*clean_loc(t_loc *first);
 void	create_render(t_all *all, t_render data_render);
-t_elem	*create_elements(t_all *all);
+void	create_elements(t_all *all);
 void	create_strip(t_all *all, t_render data_render);
 void 	fill_index_strip(t_all *all);
 void 	fill_length_strip(t_all *all);
