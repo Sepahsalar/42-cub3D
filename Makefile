@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
+#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/06 14:33:38 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/06 19:04:14 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ RESET_COLOR = \033[0m
 NAME = cub3D
 
 # Compiler and flags
-CC = cc
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 # Directories

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strip_to_floor.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/06 16:09:03 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/06 19:03:21 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void strip_to_floor(t_all *all)
     t_strip     *strip;
     mlx_image_t *base_image;
     mlx_image_t *new_image;
-    int         length;
+    // int         length;
     int         height;
     uint8_t     *pixel;
     int         int_color;
@@ -42,7 +42,7 @@ void strip_to_floor(t_all *all)
     {
         base_image = all->elems->f;
         height = WINDOW_HEIGHT - round(strip->ceil_h) - round(strip->wall_h);
-        length = 1;
+        // length = 1;
         new_image = mlx_new_image(all->window, 1, height);
         if (!new_image)
             terminate(all, 1);

@@ -94,7 +94,7 @@ void strip_to_ceil(t_all *all)
     t_strip     *strip;
     mlx_image_t *base_image;
     mlx_image_t *new_image;
-    int         length;
+    // int         length;
     int         height;
     uint8_t     *pixel;
     int         int_color;
@@ -110,7 +110,7 @@ void strip_to_ceil(t_all *all)
     {
         base_image = all->elems->c;
         height = round(strip->ceil_h);
-        length = 1;
+        // length = 1;
         new_image = mlx_new_image(all->window, 1, height);
         if (!new_image)
             terminate(all, 1);

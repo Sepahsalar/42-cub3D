@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/06 17:38:11 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/06 19:02:37 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -284,8 +284,8 @@ void	size_grid(t_all *all)
 	char 		type_intersection;
 	double 		temp_distance;
 	t_render	data_rander;
-	double		final_x;
-	double		final_y;
+	// double		final_x;
+	// double		final_y;
 	double 		distance_left;
 	double 		distance_right;
 
@@ -324,8 +324,8 @@ void	size_grid(t_all *all)
 					if (fabs(temp_loc->y_mid - y_player) < temp_distance)
 					{
 						temp_distance = fabs(temp_loc->y_mid - y_player);
-						final_x = temp_loc->x;
-						final_y = temp_loc->y;
+						// final_x = temp_loc->x;
+						// final_y = temp_loc->y;
 						type_intersection = 'y';
 						// // printf("from first loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 					}
@@ -343,8 +343,8 @@ void	size_grid(t_all *all)
 					if (fabs(temp_loc->x_mid - x_player) < temp_distance)
 					{
 						temp_distance = fabs(temp_loc->x_mid - x_player);
-						final_x = temp_loc->x;
-						final_y = temp_loc->y;
+						// final_x = temp_loc->x;
+						// final_y = temp_loc->y;
 						type_intersection = 'x';
 						// // printf("from second loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 					}
@@ -370,8 +370,8 @@ void	size_grid(t_all *all)
 						{
 							temp_distance = distance((double)i, temp_y, x_player, y_player);
 							// temp_distance = distance((double)temp_loc->x, (double)temp_loc->y, x_player, y_player);
-							final_x = temp_loc->x;
-							final_y = temp_loc->y;
+							// final_x = temp_loc->x;
+							// final_y = temp_loc->y;
 							type_intersection = 'x';
 							// printf("from first loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 						}
@@ -397,8 +397,8 @@ void	size_grid(t_all *all)
 						{
 							// temp_distance = distance((double)temp_loc->x, (double)temp_loc->y, x_player, y_player);
 							temp_distance = distance(temp_x, (double)i, x_player, y_player);
-							final_x = temp_loc->x;
-							final_y = temp_loc->y;
+							// final_x = temp_loc->x;
+							// final_y = temp_loc->y;
 							type_intersection = 'y';
 							// printf("from second loop : type: %c, final_x:%f, final_y:%f , temp_distance: %f\n",type_intersection, final_x, final_y, temp_distance);
 						}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/06 17:37:17 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/06 20:41:03 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@
 // # define WIDTH_INTERVAL 0.4
 # define PERSON 2.0
 # define WALL 3.0
+
+# define BRICKS_IN_H 2
+# define BRICKS_WIDTH 128
+# define BRICKS_HEIGHT BRICKS_WIDTH
+
+
 
 typedef struct s_loc
 {
