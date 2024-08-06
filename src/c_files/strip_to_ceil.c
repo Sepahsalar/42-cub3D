@@ -109,7 +109,7 @@ void strip_to_ceil(t_all *all)
     while(strip)
     {
         base_image = all->elems->c;
-        height = WINDOW_HEIGHT - round(strip->ceil_h) - round(strip->wall_h);
+        height = round(strip->ceil_h);
         length = 1;
         new_image = mlx_new_image(all->window, 1, height);
         if (!new_image)

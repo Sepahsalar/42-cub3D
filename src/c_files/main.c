@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/06 15:33:29 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/06 17:38:11 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -422,8 +422,9 @@ void	size_grid(t_all *all)
 			temp_distance = temp_distance * fabs(ft_sin(temp_angle)) + distance_right;
 		// // printf("after sinus: temp_distance:%f\n", temp_distance);
 		data_rander.wall_texture = wall_selection(ray_angle, type_intersection);
-		data_rander.ceil_height = height(temp_distance, 'C');
 		data_rander.floor_height = height(temp_distance, 'F');
+		data_rander.ceil_height = height(temp_distance, 'C');
+		
 		data_rander.wall_height = WINDOW_HEIGHT - data_rander.ceil_height - data_rander.floor_height;
 		data_rander.x = (int)(temp_angle / WIDTH_INTERVAL);
 		// {

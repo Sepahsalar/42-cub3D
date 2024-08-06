@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/06 16:14:54 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/06 17:37:17 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
 #define NLOOP WINDOW_WIDTH
 // # define WIDTH_INTERVAL 0.4
-# define PERSON 1.5
+# define PERSON 2.0
 # define WALL 3.0
 
 typedef struct s_loc
@@ -145,5 +145,6 @@ void	strip_to_wall(t_all *all);
 void	strip_to_ceil(t_all *all);
 t_data	*last_node_data(t_data *node);
 void	create_instance(t_all *all);
+mlx_image_t *image_maker(t_all *all, char type);
 
 #endif // CUB3D_H

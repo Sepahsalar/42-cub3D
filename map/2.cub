@@ -1,7 +1,7 @@
-NO ./src/images/wall.png
+NO ./src/images/wall2.png
 SO ./src/images/wall.png
-WE ./src/images/wall.png
-EA ./src/images/wall.png
+WE ./src/images/wall3.png
+EA ./src/images/exit.png
 
 F 40,220,45
 C 40,220,220
@@ -9,10 +9,10 @@ C 40,220,220
 
 
 
-11111
-10001
-10N01
-10001
-10001
-10001
-11111
+111111111
+100000001
+100000001
+10N000001
+100000001
+100000001
+111111111
