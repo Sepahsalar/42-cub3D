@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/06 18:58:04 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/06 19:10:16 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,9 @@ void strip_to_wall(t_all *all)
     int         original_height;
     int         original_width;
     mlx_image_t *built;
-    int i2;
-    int j2;
-    float ratio;
+    int         i2;
+    int         j2;
+    double      ratio;
     
     // char type;
 
@@ -135,14 +135,14 @@ void strip_to_wall(t_all *all)
         new_image = mlx_new_image(all->window, 1, height);
         if (!new_image)
             terminate(all, 1);
-        ratio = height/WALL;
-        int int_ratio = floor(70*ratio); 
+        ratio = strip->wall_h / WALL;
+        int int_ratio = floor(70 * ratio); 
         if (!mlx_resize_image(base_image, int_ratio, int_ratio))
             terminate(all, 1);
         original_height = base_image->height;
         original_width = base_image->width;
         built = mlx_new_image(all->window, length, height);
-        i=0;
+        i = 0;
         j = 0;
         while (i < length)
         {
