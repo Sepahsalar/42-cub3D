@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:45:45 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/06 14:35:31 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/06 15:24:32 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,8 @@ void	create_elements(t_all *all)
 	all->elems = elements;
 	color_pixel(all, 'f');
 	color_pixel(all, 'c');
-	// printf("here\n");
+	printf("floor height: %d and width: %d\n", all->elems->f->height, all->elems->f->width);
+	printf("ceil height: %d and width: %d\n", all->elems->c->height, all->elems->c->width);
 	image(all, 'N');
 	image(all, 'S');
 	image(all, 'W');

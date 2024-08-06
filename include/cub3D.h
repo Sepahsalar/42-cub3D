@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/06 14:34:49 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/06 16:14:54 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define FULL_CIRCLE_DEGREES 360
 # define VAOV 120.0
 # define HAOV 180.0
-# define WINDOW_HEIGHT 200
-# define WINDOW_WIDTH 300
+# define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 900
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
 # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
 #define NLOOP WINDOW_WIDTH

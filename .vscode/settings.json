@@ -2,5 +2,6 @@
 	"files.associations": {
 		"math.h": "c",
 		"libft.h": "c"
-	}
+	},
+	"cmake.sourceDirectory": "/home/asohrabi/github/42-cub3D/lib/MLX42"
 }

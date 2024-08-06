@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/06 12:06:24 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/06 15:33:29 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -459,13 +459,35 @@ int main(int argc, char **argv)
 	fill_index_strip(all);
 	fill_length_strip(all);
 	create_elements(all);
+	
 	all->display = malloc(sizeof(t_display));
 	if(!all->display)
 		terminate(all, 1);
+	all->display->wall = NULL;
+	all->display->floor = NULL;
+	all->display->ceil = NULL;
 	strip_to_wall(all);
 	strip_to_floor(all);
+	// printf("image height: %d, image width: %d\n", all->elems->f->height, all->elems->f->width);
 	strip_to_ceil(all);
 	create_instance(all);
+	// mlx_resize_image(all->elems->f, WINDOW_WIDTH/2, WINDOW_HEIGHT);
+	// mlx_image_to_window(all->window, all->elems->f, 0, 0);
+	// int i = 0;
+	// int j = 0;
+	// printf("image height: %d, image width: %d\n", all->elems->f->height, all->elems->f->width);
+	// while (i < WINDOW_WIDTH/2)
+	// {
+	// 	j = 0;
+	// 	while (j < 1)
+	// 	{
+	// 		mlx_image_to_window(all->window, all->elems->f, i, j);
+	// 		printf("image height: %d, image width: %d\n", all->elems->f->height, all->elems->f->width);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
+		
 	
 	
 	// t_loc *temp;
