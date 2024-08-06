@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/05 18:03:43 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/06 09:06:00 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,5 +120,6 @@ t_elem	*create_elements(t_all *all);
 void	create_strip(t_all *all, t_render data_render);
 void 	fill_index_strip(t_all *all);
 void 	fill_length_strip(t_all *all);
+void clean_strip(t_strip *first);
 
 #endif // CUB3D_H

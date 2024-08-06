@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/24 16:39:28 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/06 09:06:32 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	terminate(t_all *all, int status)
 {
 	if (all->fd != -1)
 		close(all->fd);
+	if (all->strip)
+		clean_strip(all->strip);
 	if (all->map->north)
 		free(all->map->north);
 	if (all->map->south)

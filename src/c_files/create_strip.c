@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/05 17:54:53 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/06 09:05:37 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,20 @@ t_strip *create_strip_node(t_render data_render)
 	new->next = 0;
 	new->previous = 0;
 	return (new);
+}
+
+void clean_strip(t_strip *first)
+{
+	t_strip *node;
+	t_strip *temp;
+
+	node = first;
+	while (node)
+	{
+		temp = node->next;
+		free(node);
+		node = temp;
+	}
 }
 
 void	create_strip(t_all *all, t_render data_render)
