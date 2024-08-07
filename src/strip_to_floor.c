@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   strip_to_floor.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/06 19:03:21 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:28:15 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../include/cub3D.h"
 
 // t_data *last_node_data(t_data *node)
 // {

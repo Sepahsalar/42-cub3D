@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 11:20:54 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:28:15 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../include/cub3D.h"
 
 // add deleting mlx42 in makefile
 

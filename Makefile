@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/07 10:47:44 by nnourine         ###   ########.fr        #
+#    Updated: 2024/08/07 11:26:55 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 # Directories
-SRCDIR = src/c_files
+SRCDIR = src
 INCDIR = include
 OBJDIR = obj
 

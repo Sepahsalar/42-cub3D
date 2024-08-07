@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   create_instance.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:17:35 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/07 11:20:54 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:27:51 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../include/cub3D.h"
 
 void load_image(t_all *all, char type)
 {

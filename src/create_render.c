@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   create_render.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/24 16:29:44 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:28:15 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../include/cub3D.h"
 
 char texture_finder(int y, t_render data_render)
 {

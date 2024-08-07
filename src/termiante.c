@@ -6,11 +6,11 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/06 14:53:01 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:28:15 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../include/cub3D.h"
 
 void	terminate(t_all *all, int status)
 {

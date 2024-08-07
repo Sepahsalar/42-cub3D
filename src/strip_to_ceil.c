@@ -10,7 +10,7 @@
 // /*                                                                            */
 // /* ************************************************************************** */
 
-// #include "../../include/cub3D.h"
+// #include "../include/cub3D.h"
 
 // // t_data *last_node_data(t_data *node)
 // // {
@@ -78,7 +78,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../include/cub3D.h"
 
 
 void strip_to_ceil(t_all *all)

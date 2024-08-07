@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:26:07 by nnourine          #+#    #+#             */
-/*   Updated: 2024/07/22 14:26:30 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:28:15 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../include/cub3D.h"
 
 void	reader(t_all *all)
 {

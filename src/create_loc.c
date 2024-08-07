@@ -6,11 +6,11 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:07:14 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/05 13:04:31 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:28:15 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/cub3D.h"
+#include "../include/cub3D.h"
 
 
 t_loc	*clean_loc(t_loc *first)
