@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/06 20:26:13 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/07 10:06:42 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,15 +97,102 @@ t_data  *last_node_data(t_data *node)
 
 // 
 
+// void strip_to_wall(t_all *all)
+// {
+//     t_strip     *strip;
+//     mlx_image_t *brick;
+// 	mlx_image_t *wall_before_resize;
+// 	mlx_image_t *real_wall;
+// 	int brick_in_width;
+// 	int wall_br_height;
+// 	int wall_br_width;
+//     mlx_image_t *new_image;
+//     int         length;
+//     int         height;
+//     uint8_t     *pixel;
+//     int         int_color;
+//     int         i;
+//     int j;
+//     t_data      *wall;
+//     t_data      *new;
+//     int         i2;
+//     int         j2;
+
+//     strip = all->strip;
+//     wall = last_node_data(all->display->wall);
+//     while(strip)
+//     {
+//         brick = image_maker(all, strip->wall);
+// 		if (!mlx_resize_image(brick, BRICKS_WIDTH, BRICKS_HEIGHT))
+//             terminate(all, 1);
+// 		wall_br_height = BRICKS_IN_H * BRICKS_HEIGHT;
+// 		brick_in_width = floor(strip->wall_length/WALL) * BRICKS_IN_H;
+// 		wall_br_width = brick_in_width * BRICKS_WIDTH;
+// 		wall_before_resize = mlx_new_image(all->window, wall_br_width, wall_br_height);
+// 		i = 0;
+//         j = 0;
+//         while (i < wall_br_width)
+//         {
+//             j = 0;
+//             while (j < wall_br_height)
+//             {
+//                 i2 = i % BRICKS_WIDTH;
+//                 j2 = j % BRICKS_HEIGHT;
+//                 pixel = brick->pixels + 4*(i2 + j2 * BRICKS_WIDTH);
+//                 int_color = color(pixel[0], pixel[1], pixel[2], pixel[3]);
+//                 mlx_put_pixel(wall_before_resize, i, j, int_color);
+//                 j++;
+//             }
+//             i++;
+//         }
+		
+//         height = round(strip->wall_h);
+//         length = strip->wall_length;
+// 		if (!mlx_resize_image(wall_before_resize, length, height))
+//             terminate(all, 1);
+// 		real_wall = wall_before_resize;
+// 		new_image = mlx_new_image(all->window, 1, height);
+//         if (!new_image)
+//             terminate(all, 1);
+//         i = 0;
+//         while (i < height)
+//         {
+//             pixel = real_wall->pixels + 4*(i * length + strip->index);
+//             int_color = color(pixel[0], pixel[1], pixel[2], pixel[3]);
+//             mlx_put_pixel(new_image, 0, i, int_color);
+//             i++;
+//         }
+//         mlx_delete_image(all->window, brick);
+//         mlx_delete_image(all->window, wall_before_resize);
+//         new = malloc(sizeof(t_data));
+//         if (!new)
+//             terminate(all, 1);
+//         new->image = new_image;
+//         new->x = strip->x;
+//         new->y = round(strip->ceil_h);
+//         new->previous = 0;
+//         new->next = 0;
+//         if (!wall)
+//             all->display->wall = new;
+//         else
+//         {
+//             wall->next = new;
+//             new->previous = wall;
+//         }
+//         strip= strip->next;
+//         wall = new;
+//     }
+// }
+
 void strip_to_wall(t_all *all)
 {
     t_strip     *strip;
     mlx_image_t *brick;
-	mlx_image_t *wall_before_resize;
+	// mlx_image_t *wall_before_resize;
 	mlx_image_t *real_wall;
-	int brick_in_width;
-	int wall_br_height;
-	int wall_br_width;
+	// int brick_in_width;
+	// int wall_br_height;
+	// int wall_br_width;
     mlx_image_t *new_image;
     int         length;
     int         height;
@@ -115,58 +202,41 @@ void strip_to_wall(t_all *all)
     int j;
     t_data      *wall;
     t_data      *new;
-    // int         original_height;
-    // int         original_width;
-    // mlx_image_t *built;
     int         i2;
     int         j2;
-    // double      ratio;
-    
-    // char type;
+	int			h_brick;
+	int			w_brick;
 
     strip = all->strip;
     wall = last_node_data(all->display->wall);
     while(strip)
     {
-        // if (strip->wall == 'E')
-        //     type = 'e';
-        // else if (strip->wall == 'W')
-        //     type = 'w';
-        // else if (strip->wall == 'N')
-        //     type = 'n';
-        // else
-        //     type = 's';
+		height = round(strip->wall_h);
+		length = strip->wall_length;
         brick = image_maker(all, strip->wall);
-		if (!mlx_resize_image(brick, BRICKS_WIDTH, BRICKS_HEIGHT))
-            terminate(all, 1);
-		wall_br_height = BRICKS_IN_H * BRICKS_HEIGHT;
-		brick_in_width = floor(strip->wall_length/WALL) * BRICKS_IN_H;
-		wall_br_width = brick_in_width * BRICKS_WIDTH;
-		wall_before_resize = mlx_new_image(all->window, wall_br_width, wall_br_height);
+		h_brick = round(height / BRICKS_IN_H);
+		w_brick = round (length * BRICKS_IN_H / WALL);
+		if (!mlx_resize_image(brick, w_brick, h_brick))
+			terminate(all, 1);
+		real_wall = mlx_new_image(all->window, length, height);
+		if (!real_wall)
+			terminate(all, 1);
 		i = 0;
-        j = 0;
-        while (i < wall_br_width)
-        {
-            j = 0;
-            while (j < wall_br_height)
-            {
-                i2 = i % BRICKS_WIDTH;
-                j2 = j % BRICKS_HEIGHT;
-                pixel = brick->pixels + 4*(i2 + j2 * BRICKS_WIDTH);
-                int_color = color(pixel[0], pixel[1], pixel[2], pixel[3]);
-                mlx_put_pixel(wall_before_resize, i, j, int_color);
-                j++;
-            }
-            i++;
-        }
-		
-        height = round(strip->wall_h);
-        length = strip->wall_length;
-		if (!mlx_resize_image(wall_before_resize, length, height))
-            terminate(all, 1);
-		// if (!mlx_resize_image(wall_before_resize, 10, 10))
-        //     terminate(all, 1);
-		real_wall = wall_before_resize;
+		j = 0;
+		while (i < length)
+		{
+			j = 0;
+			while (j < height)
+			{
+				i2 = i % w_brick;
+				j2 = j % h_brick;
+				pixel = brick->pixels + 4*(i2 + j2 * w_brick);
+				int_color = color(pixel[0], pixel[1], pixel[2], pixel[3]);
+				mlx_put_pixel(real_wall, i, j, int_color);
+				j++;
+			}
+			i++;
+		}
 		new_image = mlx_new_image(all->window, 1, height);
         if (!new_image)
             terminate(all, 1);
@@ -179,7 +249,7 @@ void strip_to_wall(t_all *all)
             i++;
         }
         mlx_delete_image(all->window, brick);
-        mlx_delete_image(all->window, wall_before_resize);
+        mlx_delete_image(all->window, real_wall);
         new = malloc(sizeof(t_data));
         if (!new)
             terminate(all, 1);

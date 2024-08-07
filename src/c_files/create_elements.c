@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_elements.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:45:45 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/06 17:14:35 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 10:10:04 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,7 +167,7 @@ void	color_pixel(t_all *all, char type)
 		full_color = all->map->f;
 	else
 		full_color = all->map->c;
-	// printf("full_color: %s\n", full_color);
+	// //printf("full_color: %s\n", full_color);
 	image_color = mlx_new_image(all->window, 1, 1);
 	if (!image_color)
 		terminate(all, 1);
@@ -193,8 +193,8 @@ void	create_elements(t_all *all)
 	all->elems = elements;
 	color_pixel(all, 'f');
 	color_pixel(all, 'c');
-	printf("floor height: %d and width: %d\n", all->elems->f->height, all->elems->f->width);
-	printf("ceil height: %d and width: %d\n", all->elems->c->height, all->elems->c->width);
+	//printf("floor height: %d and width: %d\n", all->elems->f->height, all->elems->f->width);
+	//printf("ceil height: %d and width: %d\n", all->elems->c->height, all->elems->c->width);
 	image(all, 'N');
 	image(all, 'S');
 	image(all, 'W');

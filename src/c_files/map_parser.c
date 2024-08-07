@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/06 12:04:27 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 10:10:04 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	update_map(t_all *all, char *found)
 			end_part1 = temp;
 		temp++;
 	}
-	// // printf("end_part1: %s\n", end_part1);
+	// // //printf("end_part1: %s\n", end_part1);
 	while (*found != '\n')
 		found++;
 	start_part2 = found + 1;
@@ -62,10 +62,10 @@ char	*custom_strdup(t_all *all, char *found)
 	check_failure(0, dup, 2, all);
 	ft_memcpy(dup, start, len);
 	dup[len] = '\0';
-	// // printf("map before update*************\n%s\n", all->strmap);
-	// // printf("found before update*************\n%s\n", found);
+	// // //printf("map before update*************\n%s\n", all->strmap);
+	// // //printf("found before update*************\n%s\n", found);
 	update_map(all, found);
-	// // printf("map after update*************\n%s\n", all->strmap);
+	// // //printf("map after update*************\n%s\n", all->strmap);
 	return (dup);    
 }
 
@@ -74,7 +74,7 @@ char	*finder(t_all *all, char *str)
     char *found;
     
 	found = ft_strnstr(all->strmap, str, ft_strlen(all->strmap));
-	// // printf("for str: %s\nfound*************\n%s\n", str, found);
+	// // //printf("for str: %s\nfound*************\n%s\n", str, found);
     if (found)
 		return(custom_strdup(all, found));
 	return (NULL);
@@ -110,19 +110,19 @@ t_map	*map_parser(t_all *all)
 	all->map = map;
 	reader(all);
 	all->map->north = finder(all, "NO");
-	// printf("North: %s\n", all->map->north);
+	// //printf("North: %s\n", all->map->north);
 	all->map->south = finder(all, "SO");
-	// printf("South: %s\n", all->map->south);
+	// //printf("South: %s\n", all->map->south);
 	all->map->west = finder(all, "WE");
-	// printf("West: %s\n", all->map->west);
+	// //printf("West: %s\n", all->map->west);
 	all->map->east = finder(all, "EA");
-	// printf("East: %s\n", all->map->east);
+	// //printf("East: %s\n", all->map->east);
 	all->map->f = finder(all, "F");
-	// printf("Floor: %s\n", all->map->f);
+	// //printf("Floor: %s\n", all->map->f);
 	all->map->c = finder(all, "C");
-	// printf("Ceil: %s\n", all->map->c);
+	// //printf("Ceil: %s\n", all->map->c);
 	remove_white_space(all);
-	// printf("%s\n", all->strmap);
+	// //printf("%s\n", all->strmap);
 	create_loc(all);
 	return (map); 
 }

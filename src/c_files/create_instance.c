@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_instance.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:17:35 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/06 16:13:18 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 10:10:04 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void load_image(t_all *all, char type)
     {
         // if (data->x < WINDOW_WIDTH && data->y < WINDOW_HEIGHT)
         // {
-            printf("data->x: %d ", data->x);
-            printf("data->y: %d\n", data->y);
+            //printf("data->x: %d ", data->x);
+            //printf("data->y: %d\n", data->y);
             if (mlx_image_to_window(all->window, data->image, data->x, data->y) == -1)
                 terminate(all, 1);
         // }
