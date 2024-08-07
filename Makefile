@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
+#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/07 11:26:55 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/07 11:53:13 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,19 +40,19 @@ LMX_FLAGS = -L$(LIBMLX)/build -L$(LIB_BREW) -lmlx42 -ldl -pthread -lglfw -lm
 LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
 
 # Source files
-SRCS =  $(SRCDIR)/create_elements.c \
-		$(SRCDIR)/create_instance.c \
-		$(SRCDIR)/create_loc.c \
-		$(SRCDIR)/create_render.c \
-		$(SRCDIR)/create_strip.c \
+SRCS =  $(SRCDIR)/create_strip.c \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/map_parser.c  \
 		$(SRCDIR)/map_parser_utils.c \
 		$(SRCDIR)/strip_to_wall.c \
-		$(SRCDIR)/termiante.c
+		$(SRCDIR)/termiante.c \
+		$(SRCDIR)/create_loc.c
 		
 # $(SRCDIR)/strip_to_ceil.c
 # $(SRCDIR)/strip_to_floor.c
+# $(SRCDIR)/create_elements.c \
+# $(SRCDIR)/create_instance.c \
+# $(SRCDIR)/create_render.c \
 		
 
 # Object files

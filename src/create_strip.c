@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_strip.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 11:28:15 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:50:16 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,22 @@ t_strip *create_strip_node(t_render data_render)
 	new->wall = data_render.wall_texture;
 	new->index = 0;
 	new->wall_length = 0;
+	new->strip = 0;
 	new->next = 0;
 	new->previous = 0;
 	return (new);
 }
 
-void clean_strip(t_strip *first)
+void clean_strip(t_all *all)
 {
 	t_strip *node;
 	t_strip *temp;
 
-	node = first;
+	node = all->strip;
 	while (node)
 	{
 		temp = node->next;
+		mlx_delete_image(all->window, node->strip);
 		free(node);
 		node = temp;
 	}

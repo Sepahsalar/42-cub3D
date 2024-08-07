@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 11:28:15 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:59:40 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -427,17 +427,10 @@ void	size_grid(t_all *all)
 		
 		data_rander.wall_height = WINDOW_HEIGHT - data_rander.ceil_height - data_rander.floor_height;
 		data_rander.x = (int)(temp_angle / WIDTH_INTERVAL);
-		// {
-		// 	// ////printf("temp_angle:%f, ray_angle: %f, temp_distance:%f, wall_texture:%c, ceil_height:%d, floor_height:%d, wall_height:%d, x:%d\n", temp_angle, ray_angle, temp_distance, data_rander.wall_texture, data_rander.ceil_height, data_rander.floor_height, data_rander.wall_height, data_rander.x);
-		// 	// ////printf("\n\n");
-		// }
-		// create_render(all, data_rander);
 		create_strip(all, data_rander);
-		// // ////printf("temp_angle:%f\n", temp_angle);
 		counter++;
 		temp_angle+= WIDTH_INTERVAL;
 	}
-	// // ////printf("temp_angle:%f\n", temp_angle);
 }
 
 int main(int argc, char **argv)
@@ -451,7 +444,6 @@ int main(int argc, char **argv)
 	all->argv = argv[1];
 	all->fd = -1;
 	all->map = map_parser(all);
-	all->render = NULL;
 	all->strip = NULL;
 	all->floor_color = color_maker(all, 'f');
 	all->ceil_color = color_maker(all, 'c');
@@ -461,61 +453,7 @@ int main(int argc, char **argv)
 	size_grid(all);
 	fill_index_strip(all);
 	fill_length_strip(all);
-	// create_elements(all);
-	
-	all->display = malloc(sizeof(t_display));
-	if(!all->display)
-		terminate(all, 1);
-	all->display->wall = NULL;
-	// all->display->floor = NULL;
-	// all->display->ceil = NULL;
 	strip_to_image(all);
-	// strip_to_floor(all);
-	// ////printf("image height: %d, image width: %d\n", all->elems->f->height, all->elems->f->width);
-	// strip_to_ceil(all);
-	// create_instance(all);
-	// mlx_resize_image(all->elems->f, WINDOW_WIDTH/2, WINDOW_HEIGHT);
-	// mlx_image_to_window(all->window, all->elems->f, 0, 0);
-	// int i = 0;
-	// int j = 0;
-	// ////printf("image height: %d, image width: %d\n", all->elems->f->height, all->elems->f->width);
-	// while (i < WINDOW_WIDTH/2)
-	// {
-	// 	j = 0;
-	// 	while (j < 1)
-	// 	{
-	// 		mlx_image_to_window(all->window, all->elems->f, i, j);
-	// 		////printf("image height: %d, image width: %d\n", all->elems->f->height, all->elems->f->width);
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-		
-	
-	
-	// t_loc *temp;
-	// temp = all->render; // 
-	// int x = 0;
-	// int y = 0;
-	// while (y <= WINDOW_HEIGHT)
-	// {
-	// 	x = 0;
-	// 	while (x <= WINDOW_WIDTH)
-	// 	{
-	// 		temp = all->render;
-	// 		while (temp)
-	// 		{
-	// 			if (temp->x == x && temp->y == y)
-	// 				break;
-	// 			temp = temp->next;
-	// 		}
-	// 		if (temp)
-	// 			// ////printf("%c",temp->c);
-	// 		x++;
-	// 	}
-	// 	// ////printf("\n");
-	// 	y++;
-	// }
 	mlx_loop(all->window);
 	terminate(all, 0);
 }

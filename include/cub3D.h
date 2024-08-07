@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 10:46:55 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:59:01 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
 # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
 #define NLOOP WINDOW_WIDTH
-// # define WIDTH_INTERVAL 0.4
 # define PERSON 2.0
 # define WALL 3.0
 
@@ -89,22 +88,11 @@ typedef struct s_elem
 	mlx_image_t	*c;
 }				t_elem;
 
-typedef struct s_data
+typedef struct s_image
 {
-	int				x;
-	int				y;
 	mlx_image_t		*image;
-	struct s_data	*previous;
 	struct s_data	*next;
-}					t_data;
-
-
-typedef struct s_display
-{
-	t_data	*wall;
-	// t_data	*floor;
-	// t_data	*ceil;
-}			t_display;
+}					t_image;
 
 typedef struct s_strip
 {
@@ -115,6 +103,7 @@ typedef struct s_strip
 	double			floor_h;
 	int				wall_length;
 	int				index;
+	mlx_image_t		*strip;
 	struct s_strip	*previous;
 	struct s_strip	*next;
 }					t_strip;
@@ -124,13 +113,10 @@ typedef struct s_all
 	t_map		*map;
 	int 	floor_color;
 	int 	ceil_color;
-	t_loc		*render;
 	int			fd;
 	char		*strmap;
 	char		*argv;
 	mlx_t		*window;
-	t_elem		*elems;
-	t_display	*display;
 	t_strip		*strip;
 }				t_all;
 
@@ -147,11 +133,10 @@ void	create_elements(t_all *all);
 void	create_strip(t_all *all, t_render data_render);
 void 	fill_index_strip(t_all *all);
 void 	fill_length_strip(t_all *all);
-void	clean_strip(t_strip *first);
+void	clean_strip(t_all *all);
 void	strip_to_floor(t_all *all);
 void	strip_to_wall(t_all *all);
 void	strip_to_ceil(t_all *all);
-t_data	*last_node_data(t_data *node);
 void	create_instance(t_all *all);
 mlx_image_t *image_maker(t_all *all, char type);
 int	color_maker(t_all *all, char type);
