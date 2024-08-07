@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/07 12:17:55 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 12:35:23 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void strip_to_image(t_all *all)
         brick = image_maker(all, strip->wall);
 		h_brick = round(height / BRICKS_IN_H);
 		w_brick = round (length * BRICKS_IN_H / WALL);
+		// h_brick = round(height);
+		// w_brick = round (length / WALL);
 		if (!mlx_resize_image(brick, w_brick, h_brick))
 			terminate(all, 1);
 		real_wall = mlx_new_image(all->window, length, height);

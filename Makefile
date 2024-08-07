@@ -6,7 +6,7 @@
 #    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/07 12:18:48 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/07 12:21:24 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,8 @@ LMX_FLAGS = -L$(LIBMLX)/build -L$(LIB_BREW) -lmlx42 -ldl -pthread -lglfw -lm
 LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
 
 # Source files
-SRCS = $(SRCDIR)/create_strip.c \
-		$(SRCDIR)/create_loc.c \
+SRCS = 	$(SRCDIR)/create_loc.c \
+		$(SRCDIR)/create_strip.c \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/map_parser.c  \
 		$(SRCDIR)/map_parser_utils.c \

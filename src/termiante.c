@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   termiante.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 11:49:38 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/07 12:21:57 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,26 +36,8 @@ void	terminate(t_all *all, int status)
 		free(all->map); //update this to free_map
 	if (all->strmap)
 		free(all->strmap);
-	// if (all->render)
-	// 	clean_loc(all->render); //update this to free_render
 	if (status)
 		ft_putendl_fd("Error", 2);
-	// if (all->elems)
-	// {
-	// 	if (all->elems->north)
-	// 		mlx_delete_image(all->window, all->elems->north);
-	// 	if (all->elems->south)
-	// 		mlx_delete_image(all->window, all->elems->south);
-	// 	if (all->elems->west)
-	// 		mlx_delete_image(all->window, all->elems->west);
-	// 	if (all->elems->east)
-	// 		mlx_delete_image(all->window, all->elems->east);
-	// 	if (all->elems->f)
-	// 		mlx_delete_image(all->window, all->elems->f);
-	// 	if (all->elems->c)
-	// 		mlx_delete_image(all->window, all->elems->c);
-	// 	free(all->elems);
-	// }
 	if (all->window)
 		mlx_terminate(all->window);
 	free(all);
