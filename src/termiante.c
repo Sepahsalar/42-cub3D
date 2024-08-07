@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 13:57:51 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:34:23 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	terminate(t_all *all, int status)
 		free(all->strmap);
 	if (status)
 		ft_putendl_fd("Error", 2);
+	mlx_delete_image(all->window, all->image);
 	if (all->window)
 		mlx_terminate(all->window);
 	free(all);

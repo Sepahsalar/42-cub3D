@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/07 14:29:26 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:32:33 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static void	turn(void *param, char c)
 
 	all = (t_all *)param;
     clean_strip(all);
+    mlx_delete_image(all->window, all->image);
     if (c == 'R')
         all->angle += TURN_INTERVAL;
     else
@@ -92,6 +93,7 @@ static void	move(void *param, char c)
 
 	all = (t_all *)param;
     clean_strip(all);
+    mlx_delete_image(all->window, all->image);
     if (c == 'A')
         all->x -= 1;
     else if (c == 'D')

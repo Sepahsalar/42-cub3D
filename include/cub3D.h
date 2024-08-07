@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 15:45:39 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:31:39 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ typedef struct s_strip
 	double			floor_h;
 	int				wall_length;
 	int				index;
-	mlx_image_t		*image;
 	struct s_strip	*previous;
 	struct s_strip	*next;
 }					t_strip;
@@ -120,6 +119,7 @@ typedef struct s_all
 	char	*argv;
 	mlx_t	*window;
 	t_strip	*strip;
+	mlx_image_t	*image;
 }			t_all;
 
 int			color(int r, int g, int b, int a);

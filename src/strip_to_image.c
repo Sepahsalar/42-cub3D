@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/07 14:33:56 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:29:50 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,75 +74,57 @@ int	color_maker(t_all *all, char type)
 
 void strip_to_image(t_all *all)
 {
-	t_strip		*strip;
-	mlx_image_t	*brick;
-	mlx_image_t	*real_wall;
-	mlx_image_t	*new_image;
-	int			length;
-	int			height;
-	uint8_t		*pixel;
-	int			int_color;
-	int			i;
-	int			j;
-	int			i2;
-	int			j2;
-	int			h_brick;
-	int			w_brick;
+    t_strip     *strip;
+    mlx_image_t *brick;
+    mlx_image_t *final_image;
+    int         length;
+    int         height;
+    uint8_t     *pixel;
+    int         int_color;
+    int         i;
+    int         j;
+    int         i2;
+    int         j2;
+    int         h_brick;
+    int         w_brick;
 
+    final_image = mlx_new_image(all->window, WINDOW_WIDTH, WINDOW_HEIGHT);
+    if (!final_image)
+        terminate(all, 1);
     strip = all->strip;
-    while(strip)
+    while (strip)
     {
-		height = round(strip->wall_h);
-		length = strip->wall_length;
+        height = round(strip->wall_h);
+        length = strip->wall_length;
         brick = image_maker(all, strip->wall);
-		h_brick = round(height / BRICKS_IN_H);
-		w_brick = round (length * BRICKS_IN_H / WALL);
-		// h_brick = round(height);
-		// w_brick = round (length / WALL);
-		if (!mlx_resize_image(brick, w_brick, h_brick))
-			terminate(all, 1);
-		real_wall = mlx_new_image(all->window, length, height);
-		if (!real_wall)
-			terminate(all, 1);
-		i = 0;
-		j = 0;
-		while (i < length)
-		{
-			j = 0;
-			while (j < height)
-			{
-				i2 = i % w_brick;
-				j2 = j % h_brick;
-				pixel = brick->pixels + 4*(i2 + j2 * w_brick);
-				int_color = color(pixel[0], pixel[1], pixel[2], pixel[3]);
-				mlx_put_pixel(real_wall, i, j, int_color);
-				j++;
-			}
-			i++;
-		}
-		new_image = mlx_new_image(all->window, 1, WINDOW_HEIGHT);
-        if (!new_image)
+        if (!brick)
             terminate(all, 1);
-        i = 0;
-        while (i < WINDOW_HEIGHT)
+        h_brick = round(height / BRICKS_IN_H);
+        w_brick = round(length * BRICKS_IN_H / WALL);
+        if (!mlx_resize_image(brick, w_brick, h_brick))
+            terminate(all, 1);
+        for (i = 0; i < WINDOW_HEIGHT; i++)
         {
-			if (i <= (int)round(strip->ceil_h))
-				int_color = all->ceil_color;
-			else if (i > (int)round(strip->ceil_h) && i < ((int)round(strip->ceil_h) + height))
-			{
-				pixel = real_wall->pixels + 4*((i - (int)round(strip->ceil_h)) * length + strip->index);
-				int_color = color(pixel[0], pixel[1], pixel[2], pixel[3]);
-			}
-			else
-				int_color = all->floor_color;
-			
-            mlx_put_pixel(new_image, 0, i, int_color);
-            i++;
+            if (i <= (int)round(strip->ceil_h))
+                int_color = all->ceil_color;
+            else if (i > (int)round(strip->ceil_h) && i < ((int)round(strip->ceil_h) + height))
+            {
+                j = i - (int)round(strip->ceil_h);
+                i2 = strip->index % w_brick;
+                j2 = j % h_brick;
+                pixel = brick->pixels + 4 * (i2 + j2 * w_brick);
+                int_color = color(pixel[0], pixel[1], pixel[2], pixel[3]);
+            }
+            else
+                int_color = all->floor_color;
+
+            if (strip->x >= 0 && strip->x < WINDOW_WIDTH)
+                mlx_put_pixel(final_image, strip->x, i, int_color);
         }
-		mlx_image_to_window(all->window, new_image, strip->x, 0); //
         mlx_delete_image(all->window, brick);
-        mlx_delete_image(all->window, real_wall);
-		strip->image = new_image;
         strip = strip->next;
     }
+    mlx_image_to_window(all->window, final_image, 0, 0);
 }
+
+

@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 15:59:02 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 16:30:56 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -399,11 +399,8 @@ void	size_grid(t_all *all)
 void render(t_all *all)
 {
 	size_grid(all);
-	printf("Strip created\n");
 	fill_index_strip(all);
-	printf("Index filled\n");
 	fill_length_strip(all);
-	printf("Length filled\n");
 	strip_to_image(all);
 }
 
