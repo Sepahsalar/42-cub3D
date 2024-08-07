@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 12:34:09 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:05:51 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,9 @@ typedef struct s_all
 	t_map	*map;
 	int		floor_color;
 	int 	ceil_color;
+	double	x;
+	double	y;
+	double	angle;
 	int		fd;
 	char	*strmap;
 	char	*argv;
@@ -130,5 +133,7 @@ void		clean_strip(t_all *all);
 mlx_image_t	*image_maker(t_all *all, char type);
 int			color_maker(t_all *all, char type);
 void		strip_to_image(t_all *all);
+void		press_key(mlx_key_data_t keydata, void *param);
+void 		render(t_all *all);
 
 #endif // CUB3D_H

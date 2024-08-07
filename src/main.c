@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 12:28:12 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:19:38 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,6 +195,8 @@ char	wall_selection(double angle, char c)
 {
 	while (angle < 0)
 		angle = angle + FULL_CIRCLE_DEGREES;
+	while (angle > 360)
+		angle = angle - FULL_CIRCLE_DEGREES;
 	if (angle >= 0 && angle <= FULL_CIRCLE_DEGREES / 4)
 		return (wall_helper(c, 'W', 'N'));
 	else if (angle > FULL_CIRCLE_DEGREES / 4
@@ -277,9 +279,9 @@ void	size_grid(t_all *all)
 	double 		distance_right;
 	int			counter;
 
-	x_player = start_loc_player(all, 'x');
-	y_player = start_loc_player(all, 'y');
-	angle_player = start_angle_player(all);
+	x_player = all->x;
+	y_player = all->y;
+	angle_player = all->angle;
 	x_size_game = game_size(all, 'x');
 	y_size_game = game_size(all, 'y');
 	max_d = max_distance(all);
@@ -385,6 +387,14 @@ void	size_grid(t_all *all)
 	}
 }
 
+void render(t_all *all)
+{
+	size_grid(all);
+	fill_index_strip(all);
+	fill_length_strip(all);
+	strip_to_image(all);
+}
+
 int main(int argc, char **argv)
 {
 	t_all *all;
@@ -399,13 +409,14 @@ int main(int argc, char **argv)
 	all->strip = NULL;
 	all->floor_color = color_maker(all, 'f');
 	all->ceil_color = color_maker(all, 'c');
+	all->x = start_loc_player(all, 'x');
+	all->y = start_loc_player(all, 'y');
+	all->angle = start_angle_player(all);	
 	all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT,	argv[0], false);
 	if (!all->window)
 		terminate(all, 1);
-	size_grid(all);
-	fill_index_strip(all);
-	fill_length_strip(all);
-	strip_to_image(all);
+	render(all);
+	mlx_key_hook(all->window, &press_key, all);	
 	mlx_loop(all->window);
 	terminate(all, 0);
 }
