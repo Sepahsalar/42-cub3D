@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/07 11:53:13 by nnourine         ###   ########.fr        #
+#    Updated: 2024/08/07 12:18:48 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,20 +40,13 @@ LMX_FLAGS = -L$(LIBMLX)/build -L$(LIB_BREW) -lmlx42 -ldl -pthread -lglfw -lm
 LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
 
 # Source files
-SRCS =  $(SRCDIR)/create_strip.c \
+SRCS = $(SRCDIR)/create_strip.c \
+		$(SRCDIR)/create_loc.c \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/map_parser.c  \
 		$(SRCDIR)/map_parser_utils.c \
-		$(SRCDIR)/strip_to_wall.c \
+		$(SRCDIR)/strip_to_image.c \
 		$(SRCDIR)/termiante.c \
-		$(SRCDIR)/create_loc.c
-		
-# $(SRCDIR)/strip_to_ceil.c
-# $(SRCDIR)/strip_to_floor.c
-# $(SRCDIR)/create_elements.c \
-# $(SRCDIR)/create_instance.c \
-# $(SRCDIR)/create_render.c \
-		
 
 # Object files
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)

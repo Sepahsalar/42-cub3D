@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   strip_to_wall.c                                    :+:      :+:    :+:   */
+/*   strip_to_image.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/07 11:58:18 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/07 12:17:55 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ mlx_image_t *image_maker(t_all *all, char type)
 	mlx_image_t		*picture;
 	char 			*address;
 
-	
 	if (type == 'E')
 		address = all->map->east;
 	else if (type == 'W')
@@ -57,9 +56,9 @@ void clean_2d_char_array(char **array)
 
 int	color_maker(t_all *all, char type)
 {
-	char		*full_color;
-	char		**split;
-	int			int_color;
+	char	*full_color;
+	char	**split;
+	int		int_color;
 
 	if (type == 'f')
 		full_color = all->map->f;
@@ -74,18 +73,18 @@ int	color_maker(t_all *all, char type)
 
 void strip_to_image(t_all *all)
 {
-    t_strip     *strip;
-    mlx_image_t *brick;
-	mlx_image_t *real_wall;
-    mlx_image_t *new_image;
-    int         length;
-    int         height;
-    uint8_t     *pixel;
-    int         int_color;
-    int         i;
-    int j;
-    int         i2;
-    int         j2;
+	t_strip		*strip;
+	mlx_image_t	*brick;
+	mlx_image_t	*real_wall;
+	mlx_image_t	*new_image;
+	int			length;
+	int			height;
+	uint8_t		*pixel;
+	int			int_color;
+	int			i;
+	int			j;
+	int			i2;
+	int			j2;
 	int			h_brick;
 	int			w_brick;
 
@@ -140,8 +139,7 @@ void strip_to_image(t_all *all)
 		mlx_image_to_window(all->window, new_image, strip->x, 0); //
         mlx_delete_image(all->window, brick);
         mlx_delete_image(all->window, real_wall);
-		strip->strip = new_image;
+		strip->image = new_image;
         strip = strip->next;
     }
 }
-

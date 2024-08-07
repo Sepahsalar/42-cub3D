@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 11:59:01 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/07 12:17:20 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,12 @@
 # define WINDOW_WIDTH 1200
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
 # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
-#define NLOOP WINDOW_WIDTH
+# define NLOOP WINDOW_WIDTH
 # define PERSON 2.0
 # define WALL 3.0
-
-# define BRICKS_IN_H 2
+# define BRICKS_IN_H 1
 # define BRICKS_WIDTH 128
 # define BRICKS_HEIGHT BRICKS_WIDTH
-
-
 
 typedef struct s_loc
 {
@@ -103,7 +100,7 @@ typedef struct s_strip
 	double			floor_h;
 	int				wall_length;
 	int				index;
-	mlx_image_t		*strip;
+	mlx_image_t		*image;
 	struct s_strip	*previous;
 	struct s_strip	*next;
 }					t_strip;
@@ -120,26 +117,23 @@ typedef struct s_all
 	t_strip		*strip;
 }				t_all;
 
-int		color(int r, int g, int b, int a);
-t_map	*map_parser(t_all *all);
-void	terminate(t_all *all, int status);
-void	check_failure(int input1, void *input2, int type, t_all *all);
-void	reader(t_all *all);
-void	create_loc(t_all *all);
-t_loc	*create_loc_node(char temp, int x, int y);
-t_loc	*clean_loc(t_loc *first);
-void	create_render(t_all *all, t_render data_render);
-void	create_elements(t_all *all);
-void	create_strip(t_all *all, t_render data_render);
-void 	fill_index_strip(t_all *all);
-void 	fill_length_strip(t_all *all);
-void	clean_strip(t_all *all);
-void	strip_to_floor(t_all *all);
-void	strip_to_wall(t_all *all);
-void	strip_to_ceil(t_all *all);
-void	create_instance(t_all *all);
-mlx_image_t *image_maker(t_all *all, char type);
-int	color_maker(t_all *all, char type);
-void strip_to_image(t_all *all);
+int			color(int r, int g, int b, int a);
+t_map		*map_parser(t_all *all);
+void		terminate(t_all *all, int status);
+void		check_failure(int input1, void *input2, int type, t_all *all);
+void		reader(t_all *all);
+void		create_loc(t_all *all);
+t_loc		*create_loc_node(char temp, int x, int y);
+t_loc		*clean_loc(t_loc *first);
+void		create_render(t_all *all, t_render data_render);
+void		create_elements(t_all *all);
+void		create_strip(t_all *all, t_render data_render);
+void 		fill_index_strip(t_all *all);
+void 		fill_length_strip(t_all *all);
+void		clean_strip(t_all *all);
+void		create_instance(t_all *all);
+mlx_image_t	*image_maker(t_all *all, char type);
+int			color_maker(t_all *all, char type);
+void		strip_to_image(t_all *all);
 
 #endif // CUB3D_H
