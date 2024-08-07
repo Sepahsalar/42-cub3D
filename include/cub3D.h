@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 14:05:51 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:29:31 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define WINDOW_WIDTH 1200
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
 # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
+# define TURN_INTERVAL 15.0
 # define NLOOP WINDOW_WIDTH
 # define PERSON 2.0
 # define WALL 3.0

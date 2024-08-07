@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 14:19:38 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:28:56 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@ char	wall_selection(double angle, char c)
 {
 	while (angle < 0)
 		angle = angle + FULL_CIRCLE_DEGREES;
-	while (angle > 360)
+	while (angle > FULL_CIRCLE_DEGREES)
 		angle = angle - FULL_CIRCLE_DEGREES;
 	if (angle >= 0 && angle <= FULL_CIRCLE_DEGREES / 4)
 		return (wall_helper(c, 'W', 'N'));

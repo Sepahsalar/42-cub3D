@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/07 14:20:04 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 14:29:26 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,21 +77,31 @@ static void	turn(void *param, char c)
 	t_all	*all;
 
 	all = (t_all *)param;
-	// if (near_wall(all, c))
-	// {
-	// 	(*all->move_count)++;
-	// 	ft_printf("Movements: %d\n", (*all->move_count));
-		// move_con(all, c);
-    printf("angle: %f\n", all->angle);
     clean_strip(all);
     if (c == 'R')
-        all->angle += 90.0;
+        all->angle += TURN_INTERVAL;
     else
-        all->angle -= 90.0;
+        all->angle -= TURN_INTERVAL;
+    printf("New angle: %f\n", all->angle);
     render(all);    
-	// 	check_collectible(all);
-	// 	check_exit(all);
-	// }
+}
+
+static void	move(void *param, char c)
+{
+	t_all	*all;
+
+	all = (t_all *)param;
+    clean_strip(all);
+    if (c == 'A')
+        all->x -= 1;
+    else if (c == 'D')
+        all->x += 1;
+    else if (c == 'W')
+        all->y -= 1;
+    else
+        all->y += 1;
+    printf("New x: %f, y: %f\n", all->x, all->y);
+    render(all);    
 }
 
 // void	press_key(mlx_key_data_t keydata, void *param)
@@ -114,13 +124,15 @@ static void	turn(void *param, char c)
 
 void	press_key(mlx_key_data_t keydata, void *param)
 {
-	// if ((keydata.key == MLX_KEY_UP || keydata.key == MLX_KEY_W)
-	// 	&& keydata.action == MLX_PRESS)
-	// 	move(param, 'U');
-	// else if ((keydata.key == MLX_KEY_DOWN || keydata.key == MLX_KEY_S)
-	// 	&& keydata.action == MLX_PRESS)
-	// 	move(param, 'D');
-	if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
+	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
+		move(param, 'W');
+	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
+		move(param, 'S');
+    else if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
+        move(param, 'A');
+    else if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
+        move(param, 'D');
+	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
 		turn(param, 'L');
 	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 		turn(param, 'R');
