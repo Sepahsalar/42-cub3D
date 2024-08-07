@@ -6,7 +6,7 @@
 #    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/06 19:04:14 by nnourine         ###   ########.fr        #
+#    Updated: 2024/08/07 10:47:44 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,10 +48,12 @@ SRCS =  $(SRCDIR)/create_elements.c \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/map_parser.c  \
 		$(SRCDIR)/map_parser_utils.c \
-		$(SRCDIR)/strip_to_ceil.c \
-		$(SRCDIR)/strip_to_floor.c \
 		$(SRCDIR)/strip_to_wall.c \
-		$(SRCDIR)/termiante.c \
+		$(SRCDIR)/termiante.c
+		
+# $(SRCDIR)/strip_to_ceil.c
+# $(SRCDIR)/strip_to_floor.c
+		
 
 # Object files
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)

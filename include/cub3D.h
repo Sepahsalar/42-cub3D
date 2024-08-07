@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 10:19:17 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/07 10:46:55 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ typedef struct s_data
 typedef struct s_display
 {
 	t_data	*wall;
-	t_data	*floor;
-	t_data	*ceil;	
+	// t_data	*floor;
+	// t_data	*ceil;
 }			t_display;
 
 typedef struct s_strip
@@ -122,6 +122,8 @@ typedef struct s_strip
 typedef struct s_all
 {
 	t_map		*map;
+	int 	floor_color;
+	int 	ceil_color;
 	t_loc		*render;
 	int			fd;
 	char		*strmap;
@@ -152,5 +154,7 @@ void	strip_to_ceil(t_all *all);
 t_data	*last_node_data(t_data *node);
 void	create_instance(t_all *all);
 mlx_image_t *image_maker(t_all *all, char type);
+int	color_maker(t_all *all, char type);
+void strip_to_image(t_all *all);
 
 #endif // CUB3D_H

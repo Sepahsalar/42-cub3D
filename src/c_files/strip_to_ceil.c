@@ -80,14 +80,6 @@
 
 #include "../../include/cub3D.h"
 
-// t_data *last_node_data(t_data *node)
-// {
-// 	if (!node)
-// 		return (0);
-// 	while (node->next)
-// 		node = node->next;
-// 	return (node);
-// }
 
 void strip_to_ceil(t_all *all)
 {

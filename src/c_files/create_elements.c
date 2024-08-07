@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:45:45 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/07 10:10:04 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/07 11:20:54 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,23 @@ void clean_2d_char_array(char **array)
 	free(array);
 }
 
+int	color_maker(t_all *all, char type)
+{
+	char		*full_color;
+	char		**split;
+	int			int_color;
+
+	if (type == 'f')
+		full_color = all->map->f;
+	else
+		full_color = all->map->c;
+	split = ft_split(full_color, ',');
+	if (!split)
+		terminate(all, 1);
+	int_color = color(ft_atoi(split[0]), ft_atoi(split[1]), ft_atoi(split[2]), 255);
+	return (int_color);
+}
+
 void	color_pixel(t_all *all, char type)
 {
 	mlx_image_t	*image_color;
@@ -167,7 +184,7 @@ void	color_pixel(t_all *all, char type)
 		full_color = all->map->f;
 	else
 		full_color = all->map->c;
-	// //printf("full_color: %s\n", full_color);
+	// ////printf("full_color: %s\n", full_color);
 	image_color = mlx_new_image(all->window, 1, 1);
 	if (!image_color)
 		terminate(all, 1);
@@ -193,8 +210,8 @@ void	create_elements(t_all *all)
 	all->elems = elements;
 	color_pixel(all, 'f');
 	color_pixel(all, 'c');
-	//printf("floor height: %d and width: %d\n", all->elems->f->height, all->elems->f->width);
-	//printf("ceil height: %d and width: %d\n", all->elems->c->height, all->elems->c->width);
+	////printf("floor height: %d and width: %d\n", all->elems->f->height, all->elems->f->width);
+	////printf("ceil height: %d and width: %d\n", all->elems->c->height, all->elems->c->width);
 	image(all, 'N');
 	image(all, 'S');
 	image(all, 'W');

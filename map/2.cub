@@ -1,7 +1,7 @@
-NO ./src/images/wall.png
-SO ./src/images/wall.png
-WE ./src/images/wall.png
-EA ./src/images/wall.png
+NO ./src/images/wall4.png
+SO ./src/images/wall4.png
+WE ./src/images/wall4.png
+EA ./src/images/wall4.png
 
 F 40,220,45
 C 40,220,220
@@ -12,7 +12,7 @@ C 40,220,220
 11111
 10001
 10001
-10001
+10N01
 10001
 10N01
 11111
