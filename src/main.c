@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 14:28:56 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:59:02 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,50 +278,57 @@ void	size_grid(t_all *all)
 	double 		distance_left;
 	double 		distance_right;
 	int			counter;
+	double		temp_dis;
+	double		ray_angle_c;
+	double		ray_angle_f;
 
 	x_player = all->x;
 	y_player = all->y;
 	angle_player = all->angle;
-	x_size_game = game_size(all, 'x');
-	y_size_game = game_size(all, 'y');
-	max_d = max_distance(all);
+	x_size_game = all->map_width;
+	y_size_game = all->map_height;
+	max_d = all->max_distance;
 	temp_angle = 0;
 	counter = 0;
 	while (counter <= NLOOP)
 	{
 		ray_angle = angle_player - (HAOV / 2) + temp_angle;
+		ray_angle_f = floor(ray_angle);
+		ray_angle_c = ceil(ray_angle);
 		x_min = min_x(x_player, ray_angle);
 		x_max = max_x(x_player, x_size_game, ray_angle);
 		y_min = min_y(y_player, ray_angle);
 		y_max = max_y(y_player, y_size_game, ray_angle);
 		temp_distance = max_d;
 		i = x_min;
-		if (ceil(ray_angle) == floor(ray_angle) && (int)ray_angle % 180 == 90)
+		if (ray_angle_c == ray_angle_f && (int)ray_angle % 180 == 90)
 		{
 			temp_loc = all->map->start;
 			while (temp_loc)
 			{
 				if (temp_loc->x_mid == x_player && temp_loc->y_mid <= y_max && temp_loc->y_mid >= y_min && temp_loc->c == '1')
 				{
-					if (fabs(temp_loc->y_mid - y_player) < temp_distance)
+					temp_dis = fabs(temp_loc->y_mid - y_player);
+					if (temp_dis < temp_distance)
 					{
-						temp_distance = fabs(temp_loc->y_mid - y_player);
+						temp_distance = temp_dis;
 						type_intersection = 'y';
 					}
 				}
 				temp_loc = temp_loc->next;
 			}
 		}
-		else if (ceil(ray_angle) == floor(ray_angle) && (int)ray_angle % 180 == 0)
+		else if (ray_angle_c == ray_angle_f && (int)ray_angle % 180 == 0)
 		{
 			temp_loc = all->map->start;
 			while (temp_loc)
 			{
 				if (temp_loc->y_mid == y_player && temp_loc->x_mid <= x_max && temp_loc->x_mid >= x_min && temp_loc->c == '1')
 				{
-					if (fabs(temp_loc->x_mid - x_player) < temp_distance)
+					temp_dis = fabs(temp_loc->x_mid - x_player);
+					if (temp_dis < temp_distance)
 					{
-						temp_distance = fabs(temp_loc->x_mid - x_player);
+						temp_distance = temp_dis;
 						type_intersection = 'x';
 					}
 				}
@@ -338,9 +345,10 @@ void	size_grid(t_all *all)
 				{
 					if (temp_loc->x0 <= i && i <= temp_loc->x1 && temp_loc->y0 <= temp_y &&  temp_y <= temp_loc->y1 && temp_loc->c == '1')
 					{
-						if (distance((double)i, temp_y, x_player, y_player) < temp_distance)
+						temp_dis = distance((double)i, temp_y, x_player, y_player);
+						if (temp_dis < temp_distance)
 						{
-							temp_distance = distance((double)i, temp_y, x_player, y_player);
+							temp_distance = temp_dis;
 							type_intersection = 'x';
 						}
 					}
@@ -357,9 +365,10 @@ void	size_grid(t_all *all)
 				{
 					if (temp_loc->y0 <= i && i <= temp_loc->y1 && temp_loc->x0 <= temp_x && temp_x <= temp_loc->x1 && temp_loc->c == '1')
 					{
-						if (distance(temp_x, (double)i, x_player, y_player) < temp_distance)
+						temp_dis = distance(temp_x, (double)i, x_player, y_player);
+						if (temp_dis < temp_distance)
 						{
-							temp_distance = distance(temp_x, (double)i, x_player, y_player);
+							temp_distance = temp_dis;
 							type_intersection = 'y';
 						}
 					}
@@ -390,8 +399,11 @@ void	size_grid(t_all *all)
 void render(t_all *all)
 {
 	size_grid(all);
+	printf("Strip created\n");
 	fill_index_strip(all);
+	printf("Index filled\n");
 	fill_length_strip(all);
+	printf("Length filled\n");
 	strip_to_image(all);
 }
 
@@ -411,7 +423,10 @@ int main(int argc, char **argv)
 	all->ceil_color = color_maker(all, 'c');
 	all->x = start_loc_player(all, 'x');
 	all->y = start_loc_player(all, 'y');
-	all->angle = start_angle_player(all);	
+	all->angle = start_angle_player(all);
+	all->map_width = game_size(all, 'x');
+	all->map_height = game_size(all, 'y');
+	all->max_distance = max_distance(all);	
 	all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT,	argv[0], false);
 	if (!all->window)
 		terminate(all, 1);

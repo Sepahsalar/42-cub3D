@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 14:29:31 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/07 15:45:39 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,9 @@ typedef struct s_all
 	double	x;
 	double	y;
 	double	angle;
+	double 	map_width;
+	double 	map_height;
+	double 	max_distance;
 	int		fd;
 	char	*strmap;
 	char	*argv;
