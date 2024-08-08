@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/08 10:20:36 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:28:21 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define FULL_CIRCLE_DEGREES 360
 # define VAOV 120.0
 # define HAOV 180.0
-# define WINDOW_HEIGHT 800
-# define WINDOW_WIDTH 1200
+# define WINDOW_HEIGHT 1800
+# define WINDOW_WIDTH 2700
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
 # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
 # define TURN_INTERVAL 15.0
