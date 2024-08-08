@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/07 16:32:33 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:44:13 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,18 @@ static void	turn(void *param, char c)
     clean_strip(all);
     mlx_delete_image(all->window, all->image);
     if (c == 'R')
+	{
         all->angle += TURN_INTERVAL;
+		if (all->angle >= FULL_CIRCLE_DEGREES)
+			all->angle -= FULL_CIRCLE_DEGREES;
+	}
     else
+	{
         all->angle -= TURN_INTERVAL;
-    printf("New angle: %f\n", all->angle);
+		if (all->angle < 0)
+			all->angle += FULL_CIRCLE_DEGREES;
+	}
+    printf("New-> angle: %f\n", all->angle);
     render(all);    
 }
 
@@ -102,7 +110,7 @@ static void	move(void *param, char c)
         all->y -= 1;
     else
         all->y += 1;
-    printf("New x: %f, y: %f\n", all->x, all->y);
+    printf("New-> x: %f, y: %f\n", all->x, all->y);
     render(all);    
 }
 

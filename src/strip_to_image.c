@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/08 12:26:52 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:35:31 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 	brick = choose_brick(all, strip->wall);
 	h_resized_brick = dimension_resized_brick(strip, 'h');
 	w_resized_brick = dimension_resized_brick(strip, 'w');
-	y_in_wall = y_in_window- (int)round(strip->ceil_h);
+	y_in_wall = y_in_window - (int)round(strip->ceil_h);
 	x_in_resized_brick = strip->index % w_resized_brick;
 	y_in_resized_brick = y_in_wall % h_resized_brick;
 	x_in_brick = round(x_in_resized_brick * brick->width / w_resized_brick);
