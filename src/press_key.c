@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/08 14:06:37 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:27:47 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,27 +72,29 @@
 // 	}
 // }
 
+double under_full_circle(double angle)
+{
+	if (angle >= FULL_CIRCLE_DEGREES)
+		return (angle -= FULL_CIRCLE_DEGREES);
+	if (angle < 0)
+		return (angle += FULL_CIRCLE_DEGREES);
+	return (angle);
+}
+
 static void	turn(void *param, char c)
 {
 	t_all	*all;
 
 	all = (t_all *)param;
-    clean_strip(all);
-    mlx_delete_image(all->window, all->image);
-    if (c == 'R')
-	{
-        all->angle += TURN_INTERVAL;
-		if (all->angle >= FULL_CIRCLE_DEGREES)
-			all->angle -= FULL_CIRCLE_DEGREES;
-	}
-    else
-	{
-        all->angle -= TURN_INTERVAL;
-		if (all->angle < 0)
-			all->angle += FULL_CIRCLE_DEGREES;
-	}
-    printf("New-> angle: %f\n", all->angle);
-    render(all);    
+	clean_strip(all);
+	mlx_delete_image(all->window, all->image);
+	if (c == 'R')
+		all->angle += TURN_INTERVAL;
+	else
+		all->angle -= TURN_INTERVAL;
+	all->angle = under_full_circle(all->angle);
+	printf("New-> angle: %f\n", all->angle);
+	render(all);    
 }
 
 static void	move(void *param, char c)

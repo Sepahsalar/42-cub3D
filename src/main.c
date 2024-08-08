@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/08 14:06:04 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:51:47 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ double distance(double x1, double y1, double x2, double y2)
 
 double min_x(double x_player, double angle)
 {
-	while (angle < 0)
-		angle = angle + FULL_CIRCLE_DEGREES;
+	// while (angle < 0)
+	// 	angle = angle + FULL_CIRCLE_DEGREES;
 	if (angle >= 0 && angle <= FULL_CIRCLE_DEGREES / 4)
 		return(x_player);
 	else if (angle > FULL_CIRCLE_DEGREES / 4
@@ -76,8 +76,8 @@ double min_x(double x_player, double angle)
 
 double max_x(double x_player, int x_game_size, double angle)
 {
-	while (angle < 0)
-		angle = angle + FULL_CIRCLE_DEGREES;
+	// while (angle < 0)
+	// 	angle = angle + FULL_CIRCLE_DEGREES;
 	if (angle >= 0 && angle <= FULL_CIRCLE_DEGREES / 4)
 		return(x_game_size);
 	else if (angle > FULL_CIRCLE_DEGREES / 4
@@ -89,8 +89,8 @@ double max_x(double x_player, int x_game_size, double angle)
 
 double min_y(double y_player, double angle)
 {
-	while (angle < 0)
-		angle = angle + FULL_CIRCLE_DEGREES;
+	// while (angle < 0)
+	// 	angle = angle + FULL_CIRCLE_DEGREES;
 	if (angle >= 0 && angle <= FULL_CIRCLE_DEGREES / 2)
 		return(y_player);
 	else
@@ -99,8 +99,8 @@ double min_y(double y_player, double angle)
 
 double max_y(double y_player, int y_game_size, double angle)
 {
-	while (angle < 0)
-		angle = angle + FULL_CIRCLE_DEGREES;
+	// while (angle < 0)
+	// 	angle = angle + FULL_CIRCLE_DEGREES;
 	if (angle >= 0 && angle <= FULL_CIRCLE_DEGREES / 2)
 		return(y_game_size);
 	else
@@ -286,6 +286,7 @@ void	size_grid(t_all *all)
 	double 		distance_right;
 	int			counter;
 	double		temp_dis;
+	double		distance_from_intersection;
 
 	x_player = all->x;
 	y_player = all->y;
@@ -297,20 +298,18 @@ void	size_grid(t_all *all)
 	counter = 0;
 	while (counter <= NLOOP)
 	{
-		ray_angle = angle_player - (HAOV / 2) + temp_angle;
+		ray_angle = under_full_circle(angle_player - (HAOV / 2) + temp_angle);
 		x_min = min_x(x_player, ray_angle);
 		x_max = max_x(x_player, x_size_game, ray_angle);
 		y_min = min_y(y_player, ray_angle);
 		y_max = max_y(y_player, y_size_game, ray_angle);
 		temp_distance = max_d;
-		i = x_min;
+		i = floor(x_min);
 		if (same(ray_angle, 90) || same(ray_angle, 270))
 		{
-			if (angle_player == 0)
 			temp_loc = all->map->start;
 			while (temp_loc)
 			{
-				if (angle_player == 0)
 				if (temp_loc->x_mid == x_player && temp_loc->y_mid <= y_max && temp_loc->y_mid >= y_min && temp_loc->c == '1')
 				{
 					if (angle_player == 0)
@@ -319,6 +318,7 @@ void	size_grid(t_all *all)
 					{
 						if (angle_player == 0)
 						temp_distance = temp_dis;
+						distance_from_intersection = temp_dis;
 						type_intersection = 'y';
 					}
 				}
@@ -336,6 +336,7 @@ void	size_grid(t_all *all)
 					if (temp_dis < temp_distance)
 					{
 						temp_distance = temp_dis;
+						distance_from_intersection = temp_dis;
 						type_intersection = 'x';
 					}
 				}
@@ -344,7 +345,7 @@ void	size_grid(t_all *all)
 		}
 		else
 		{
-			while (i <= x_max)
+			while (i <= ceil(x_max))
 			{
 				temp_loc = all->map->start;
 				temp_y = find_y(ray_angle, x_player, y_player, i);
@@ -352,10 +353,12 @@ void	size_grid(t_all *all)
 				{
 					if (temp_loc->x0 <= i && i <= temp_loc->x1 && temp_loc->y0 <= temp_y &&  temp_y <= temp_loc->y1 && temp_loc->c == '1')
 					{
-						temp_dis = distance((double)i, temp_y, x_player, y_player);
+						// temp_dis = distance((double)i, temp_y, x_player, y_player);
+						temp_dis = distance((double)i, temp_loc->y_mid, x_player, y_player);
 						if (temp_dis < temp_distance)
 						{
 							temp_distance = temp_dis;
+							distance_from_intersection = distance((double)i, temp_y, x_player, y_player);
 							type_intersection = 'x';
 						}
 					}
@@ -363,8 +366,8 @@ void	size_grid(t_all *all)
 				}
 				i++;
 			}
-			i = y_min;
-			while(i <= y_max)
+			i = floor(y_min);
+			while(i <= ceil(y_max))
 			{
 				temp_loc = all->map->start;
 				temp_x = find_x(ray_angle, x_player, y_player, i);
@@ -372,10 +375,12 @@ void	size_grid(t_all *all)
 				{
 					if (temp_loc->y0 <= i && i <= temp_loc->y1 && temp_loc->x0 <= temp_x && temp_x <= temp_loc->x1 && temp_loc->c == '1')
 					{
-						temp_dis = distance(temp_x, (double)i, x_player, y_player);
+						// temp_dis = distance(temp_x, (double)i, x_player, y_player);
+						temp_dis = distance(temp_loc->x_mid, (double)i, x_player, y_player);
 						if (temp_dis < temp_distance)
 						{
 							temp_distance = temp_dis;
+							distance_from_intersection = distance(temp_x, (double)i, x_player, y_player);
 							type_intersection = 'y';
 						}
 					}
@@ -384,6 +389,9 @@ void	size_grid(t_all *all)
 				i++;
 			}
 		}
+		temp_distance = distance_from_intersection;
+		if (temp_distance < 0.5)
+			temp_distance = 0.5;
 		if (same(temp_angle, 0))
 			distance_left = temp_distance;
 		distance_right = find_right_distance(all);

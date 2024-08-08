@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/08 13:24:33 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/08 15:32:07 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,5 +144,6 @@ int			color_maker(t_all *all, char type);
 void		strip_to_image(t_all *all);
 void		press_key(mlx_key_data_t keydata, void *param);
 void 		render(t_all *all);
+double 		under_full_circle(double angle);
 
 #endif // CUB3D_H
