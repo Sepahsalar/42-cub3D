@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/08 12:28:21 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/08 13:24:33 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@
 # define PERSON 2.0
 # define WALL 3.0
 # define BRICKS_IN_H 1
+#define EPSILON 0.00001
 
 typedef struct s_loc
 {

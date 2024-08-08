@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/08 10:21:12 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:06:04 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,6 +254,13 @@ double find_right_distance(t_all *all)
 	return (temp_distance);
 }
 
+int same(double d1, int d2)
+{
+	if (fabs(d1 - (double)d2) < EPSILON)
+		return (1);
+	return (0);
+}
+
 void	size_grid(t_all *all)
 {
 	t_loc		*temp_loc;
@@ -279,8 +286,6 @@ void	size_grid(t_all *all)
 	double 		distance_right;
 	int			counter;
 	double		temp_dis;
-	double		ray_angle_c;
-	double		ray_angle_f;
 
 	x_player = all->x;
 	y_player = all->y;
@@ -293,24 +298,26 @@ void	size_grid(t_all *all)
 	while (counter <= NLOOP)
 	{
 		ray_angle = angle_player - (HAOV / 2) + temp_angle;
-		ray_angle_f = floor(ray_angle);
-		ray_angle_c = ceil(ray_angle);
 		x_min = min_x(x_player, ray_angle);
 		x_max = max_x(x_player, x_size_game, ray_angle);
 		y_min = min_y(y_player, ray_angle);
 		y_max = max_y(y_player, y_size_game, ray_angle);
 		temp_distance = max_d;
 		i = x_min;
-		if (ray_angle_c == ray_angle_f && (int)ray_angle % 180 == 90)
+		if (same(ray_angle, 90) || same(ray_angle, 270))
 		{
+			if (angle_player == 0)
 			temp_loc = all->map->start;
 			while (temp_loc)
 			{
+				if (angle_player == 0)
 				if (temp_loc->x_mid == x_player && temp_loc->y_mid <= y_max && temp_loc->y_mid >= y_min && temp_loc->c == '1')
 				{
+					if (angle_player == 0)
 					temp_dis = fabs(temp_loc->y_mid - y_player);
 					if (temp_dis < temp_distance)
 					{
+						if (angle_player == 0)
 						temp_distance = temp_dis;
 						type_intersection = 'y';
 					}
@@ -318,7 +325,7 @@ void	size_grid(t_all *all)
 				temp_loc = temp_loc->next;
 			}
 		}
-		else if (ray_angle_c == ray_angle_f && (int)ray_angle % 180 == 0)
+		else if (same(ray_angle, 0) || same(ray_angle, 180))
 		{
 			temp_loc = all->map->start;
 			while (temp_loc)
@@ -377,7 +384,7 @@ void	size_grid(t_all *all)
 				i++;
 			}
 		}
-		if (temp_angle == 0)
+		if (same(temp_angle, 0))
 			distance_left = temp_distance;
 		distance_right = find_right_distance(all);
 		if (temp_angle >= 0 && temp_angle <= 90)
@@ -387,7 +394,6 @@ void	size_grid(t_all *all)
 		data_rander.wall_texture = wall_selection(ray_angle, type_intersection);
 		data_rander.floor_height = height(temp_distance, 'F');
 		data_rander.ceil_height = height(temp_distance, 'C');
-		
 		data_rander.wall_height = WINDOW_HEIGHT - data_rander.ceil_height - data_rander.floor_height;
 		data_rander.x = (int)(temp_angle / WIDTH_INTERVAL);
 		create_strip(all, data_rander);

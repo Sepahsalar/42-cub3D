@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/08 12:35:31 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:07:15 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,10 @@ int get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 	brick = choose_brick(all, strip->wall);
 	h_resized_brick = dimension_resized_brick(strip, 'h');
 	w_resized_brick = dimension_resized_brick(strip, 'w');
+	if (h_resized_brick == 0)
+		h_resized_brick = 1;
+	if (w_resized_brick == 0)
+		w_resized_brick = 1;
 	y_in_wall = y_in_window - (int)round(strip->ceil_h);
 	x_in_resized_brick = strip->index % w_resized_brick;
 	y_in_resized_brick = y_in_wall % h_resized_brick;
@@ -141,8 +145,9 @@ void put_pixels_of_strip(t_all *all, t_strip *strip)
 {
 	int int_color;
 	int j;
-
-	for (j = 0; j < WINDOW_HEIGHT; j++)
+	
+	j = 0;
+	while (j < WINDOW_HEIGHT)
 	{
 		if (j <= (int)round(strip->ceil_h))
 			int_color = all->ceil_color;
@@ -152,6 +157,7 @@ void put_pixels_of_strip(t_all *all, t_strip *strip)
 			int_color = all->floor_color;
 		if (strip->x >= 0 && strip->x < WINDOW_WIDTH)
 			mlx_put_pixel(all->image, strip->x, j, int_color);
+		j++;
 	}
 }
 
