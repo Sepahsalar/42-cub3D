@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 16:30:56 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/08 10:21:12 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -425,6 +425,10 @@ int main(int argc, char **argv)
 	all->map_height = game_size(all, 'y');
 	all->max_distance = max_distance(all);	
 	all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT,	argv[0], false);
+	all->north = image_maker(all, 'N');
+	all->west = image_maker(all, 'W');
+	all->south = image_maker(all, 'S');
+	all->east = image_maker(all, 'E');
 	if (!all->window)
 		terminate(all, 1);
 	render(all);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 16:31:39 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/08 10:20:36 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,10 @@ typedef struct s_all
 	mlx_t	*window;
 	t_strip	*strip;
 	mlx_image_t	*image;
+	mlx_image_t	*north;
+	mlx_image_t	*west;
+	mlx_image_t	*south;
+	mlx_image_t	*east;
 }			t_all;
 
 int			color(int r, int g, int b, int a);
