@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/09 16:49:03 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:10:04 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -478,7 +478,6 @@ void	size_grid(t_all *all)
 	while (counter <= NLOOP)
 	{
 		ray_angle = under_full_circle(angle_player - (HAOV / 2) + temp_angle);
-		printf("start for ray_angle: %f (temp_angle:%f)\n", ray_angle, temp_angle);
 		intersection_distance = 0;
 		// temp_x_min = min_x(x_player, ray_angle);
 		// temp_x_max = max_x(x_player, x_size_game, ray_angle);
@@ -512,9 +511,7 @@ void	size_grid(t_all *all)
 		range.y_min = min_y(y_player, ray_angle);
 		range.y_max = max_y(y_player, y_size_game, ray_angle);
 		create_possibility(all, range);
-		printf("after create possibility\n");
 		find_winner_surface(all);
-		printf("after find_winner_surface\n");
 		winner = NULL;
 		temp_pos = all->possible;
 		if (same(ray_angle, 90) || same(ray_angle, 270))
@@ -571,12 +568,10 @@ void	size_grid(t_all *all)
 			}
 			else
 			{
-				printf("in else of if2\n");
 				while (temp_pos)
 				{
 					if (temp_pos->ew_winner_texture == 'E' && same_double(temp_pos->ew_winner_y, all->y))
 					{
-						printf("in if of else of if2\n");
 						if (!winner)
 							winner = temp_pos;
 						else if (temp_pos->ew_winner_distance < winner->ew_winner_distance)
@@ -590,15 +585,10 @@ void	size_grid(t_all *all)
 		}
 		else
 		{
-			printf("in else\n");
 			while (temp_pos)
 			{
-				printf("(%d,%d):sn_winner_x: %f, sn_winner_y: %f, ew_winner_x: %f, ew_winner_y: %f\n", temp_pos->loc->x,temp_pos->loc->y,temp_pos->sn_winner_x, temp_pos->sn_winner_y, temp_pos->ew_winner_x, temp_pos->ew_winner_y);
-				printf("y ray_line for x = %f is %f but winner_y is : %f\n", temp_pos->ew_winner_x, find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x), temp_pos->ew_winner_y);
-				printf("x ray_line for y = %f is %f but winner_x is : %f\n", temp_pos->sn_winner_y, find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y), temp_pos->sn_winner_x);
 				if (fabs(find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x) - temp_pos->ew_winner_y) < 1)
 				{
-					printf("in if of else\n");
 					if (!winner)
 						winner = temp_pos;
 					else if (temp_pos->ew_winner_distance < winner->ew_winner_distance)
@@ -607,7 +597,6 @@ void	size_grid(t_all *all)
 				}
 				else if (fabs(find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y) - temp_pos->sn_winner_x) < 1)
 				{
-					printf("in if2 of else\n");
 					if (!winner)
 						winner = temp_pos;
 					else if (temp_pos->sn_winner_distance < winner->sn_winner_distance)

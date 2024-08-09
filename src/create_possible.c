@@ -15,7 +15,7 @@ t_possible	*clean_possibility(t_possible *first)
 	return (0);
 }
 
-t_possible	*create_possibility_node(t_loc *temp_loc)
+t_possible	*create_possibility_node(t_all *all, t_loc *temp_loc)
 {
 	t_possible	*new;
 
@@ -24,8 +24,8 @@ t_possible	*create_possibility_node(t_loc *temp_loc)
 		return (0);
 	ft_memset(new, 0, sizeof(t_possible));
     new->loc = temp_loc;
-    new->sn_winner_distance = 1000;
-    new->ew_winner_distance = 1000;
+    new->sn_winner_distance = max_distance(all);
+    new->ew_winner_distance = max_distance(all);
     new->sn_winner_texture = '0';
     new->ew_winner_texture = '0';
     new->sn_winner_x = -1.0;
@@ -49,7 +49,7 @@ void	create_possibility(t_all *all, t_range range)
             && temp_loc->y >= range.y_min && temp_loc->y <= range.y_max
             && temp_loc->c == '1')
         {
-			new = create_possibility_node(temp_loc);
+			new = create_possibility_node(all, temp_loc);
 			if (!(all->possible))
 				all->possible = new;
 			else
@@ -72,10 +72,8 @@ void find_winner_surface(t_all *all)
     temp = all->possible;
     while (temp)
     {
-        printf("x: %d, y: %d-> sx:%f, sy:%f, ex:%f, ey:%f, nx:%f, ny:%f, wx:%f, wy:%f\n", temp->loc->x, temp->loc->y, temp->loc->sx, temp->loc->sy, temp->loc->ex, temp->loc->ey, temp->loc->nx, temp->loc->ny, temp->loc->wx, temp->loc->wy);
         if (temp->loc->sx != -1 && temp->loc->sy != -1)
         {
-            printf("s activated\n");
             temp->sn_winner_distance = sqrt(pow(all->x - temp->loc->sx, 2) + pow(all->y - temp->loc->sy, 2));
             temp->sn_winner_texture = 'S';
             temp->sn_winner_x = temp->loc->sx;
@@ -83,7 +81,6 @@ void find_winner_surface(t_all *all)
         }
         if (temp->loc->ex != -1 && temp->loc->ey != -1)
         {
-            printf("e activated\n");
             temp->ew_winner_distance = sqrt(pow(all->x - temp->loc->ex, 2) + pow(all->y - temp->loc->ey, 2));
             temp->ew_winner_texture = 'E';
             temp->ew_winner_x = temp->loc->ex;
@@ -91,7 +88,6 @@ void find_winner_surface(t_all *all)
         }
         if ((temp->loc->nx != -1 && temp->loc->ny != -1) && sqrt(pow(all->x - temp->loc->nx, 2) + pow(all->y - temp->loc->ny, 2)) < temp->sn_winner_distance)
         {
-            printf("n activated\n");
             temp->sn_winner_distance = sqrt(pow(all->x - temp->loc->nx, 2) + pow(all->y - temp->loc->ny, 2));
             temp->sn_winner_texture = 'N';
             temp->sn_winner_x = temp->loc->nx;
@@ -99,7 +95,6 @@ void find_winner_surface(t_all *all)
         }
         if ((temp->loc->wx != -1 && temp->loc->wy != -1) && sqrt(pow(all->x - temp->loc->wx, 2) + pow(all->y - temp->loc->wy, 2)) < temp->ew_winner_distance)
         {
-            printf("w activated\n");
             temp->ew_winner_distance = sqrt(pow(all->x - temp->loc->wx, 2) + pow(all->y - temp->loc->wy, 2));
             temp->ew_winner_texture = 'W';
             temp->ew_winner_x = temp->loc->wx;

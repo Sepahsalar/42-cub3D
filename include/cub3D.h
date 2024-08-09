@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/09 16:22:17 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/09 17:05:24 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,5 +182,6 @@ void		create_possibility(t_all *all, t_range range);
 void 		find_winner_surface(t_all *all);
 void 		ignore_inside_surface(t_all *all);
 int			game_size(t_all *all, char c);
+double 		max_distance(t_all *all);
 
 #endif // CUB3D_H
