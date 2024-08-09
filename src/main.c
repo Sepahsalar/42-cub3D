@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/09 18:01:28 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/09 18:29:06 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -948,15 +948,23 @@ void	size_grid(t_all *all)
 		{
 			while (temp_pos)
 			{
-				if (fabs(find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x) - temp_pos->ew_winner_y) < 1)
+				if (same_double(ray_angle, 216.30))
 				{
+					printf("(%d,%d)temp_pos->ew_winner_x: %f, temp_pos->ew_winner_y: %f, temp_pos->ew_winner_material:%c\n",temp_pos->loc->x, temp_pos->loc->y,temp_pos->ew_winner_x, temp_pos->ew_winner_y, temp_pos->ew_winner_texture);
+					printf("fabs(find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x) - temp_pos->ew_winner_y): %f\n", fabs(find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x) - temp_pos->ew_winner_y));
+					printf("(%d,%d)temp_pos->sn_winner_x: %f, temp_pos->sn_winner_y: %f,temp_pos->ew_winner_material:%c\n",temp_pos->loc->x,temp_pos->loc->y, temp_pos->sn_winner_x, temp_pos->sn_winner_y, temp_pos->sn_winner_texture);
+					printf("fabs(find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y) - temp_pos->sn_winner_x): %f\n", fabs(find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y) - temp_pos->sn_winner_x));
+				}
+				if (temp_pos->ew_winner_texture != '0' && fabs(find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x) - temp_pos->ew_winner_y) < 1)
+				{
+					printf("we have a winner in first if\n");
 					if (!winner)
 						winner = temp_pos;
 					else if (temp_pos->ew_winner_distance < winner->ew_winner_distance)
 						winner = temp_pos;
 					winner_material = winner->ew_winner_texture;
 				}
-				else if (fabs(find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y) - temp_pos->sn_winner_x) < 1)
+				else if (temp_pos->sn_winner_texture != '0' && fabs(find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y) - temp_pos->sn_winner_x) < 1)
 				{
 					if (!winner)
 						winner = temp_pos;
@@ -972,6 +980,7 @@ void	size_grid(t_all *all)
 		else
 			intersection_distance = distance(all->x, all->y, find_x(ray_angle, all->x, all->y, winner->sn_winner_y), winner->sn_winner_y);
 		
+		// printf("intersection_distance: %f for ray_angle:%f and winner_material:   %c\n", intersection_distance, ray_angle, winner_material);
 		if (intersection_distance < 0.5)
 			intersection_distance = 0.5;
 		// if (same(temp_angle, 0))
@@ -981,21 +990,11 @@ void	size_grid(t_all *all)
 		// 	intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_left;
 		// else
 		// 	intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_right;
-		// if (counter == 0)
-		// 	distance_left = intersection_distance;
-		// else if (counter == 1)
-		// 	distance_right = intersection_distance;
-		// // distance_right = find_right_distance(all);
-		// else
-		// {
-			if (temp_angle >= 0 && temp_angle <= 90)
-				intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_left;
-			else
-				intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_right;
-			printf("distance left: %f and distance right: %f\n", distance_left, distance_right);
-		// }
-		// printf("intersection_distance: %f\n", intersection_distance);
-		// printf("temp_angle: %f\n", temp_angle);
+		if (temp_angle >= 0 && temp_angle <= 90)
+			intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_left;
+		else
+			intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_right;
+		// printf("intersection_distance: %f for ray_angle:%f\n", intersection_distance, ray_angle);
 		data_rander.wall_texture = winner_material;
 		data_rander.floor_height = height(intersection_distance, 'F');
 		data_rander.ceil_height = height(intersection_distance, 'C');
