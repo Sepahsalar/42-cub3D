@@ -6,7 +6,7 @@
 #    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/07 14:13:28 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/09 09:19:58 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 .PHONY: all clean fclean re
 
 # Default target
-all: $(NAME)
+all: clone_mlx42 $(NAME)
 
 # Build target
 $(NAME): $(OBJS)
@@ -68,9 +68,15 @@ $(NAME): $(OBJS)
 
 # Object file compilation
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-#	@git clone https://github.com/codam-coding-college/MLX42.git $(LIBMLX)
 	@mkdir -p $(OBJDIR)
 	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
+
+# Clone the external repo if not already cloned
+clone_mlx42:
+	@if [ ! -d "$(LIBMLX)" ]; then \
+		echo "$(COLOR)Cloning MLX42 repository...$(RESET_COLOR)"; \
+		git clone https://github.com/codam-coding-college/MLX42.git $(LIBMLX); \
+	fi
 
 # Clean target
 clean:
@@ -78,12 +84,12 @@ clean:
 	@rm -rf $(OBJDIR)
 	@make -C $(LIBFT) clean
 	@rm -rf $(LIBMLX)/build
-#	@rm -rf $(LIBMLX)
 
 # Full clean target
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT) fclean
+	@rm -rf $(LIBMLX)
 	@echo "$(COLOR)Full clean: done$(RESET_COLOR)"
 
 # Rebuild target
