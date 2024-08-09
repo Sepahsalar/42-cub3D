@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/08 14:27:47 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/09 10:23:30 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,17 @@ static void	move(void *param, char c)
 
 void	press_key(mlx_key_data_t keydata, void *param)
 {
+// 	t_all	*all;
+// // 
+// 	all = (t_all *)param;
+	// if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
+	// {
+	// 	all->y -= 1;
+	// 	printf("New-> x: %f, y: %f\n", all->x, all->y);
+		
+	// }
+	// else if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
+	// 		move(param, 'W');
 	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
 		move(param, 'W');
 	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)

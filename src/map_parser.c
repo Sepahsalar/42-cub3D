@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 12:22:42 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:00:53 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,5 +112,8 @@ t_map	*map_parser(t_all *all)
 	all->map->c = finder(all, "C");
 	remove_white_space(all);
 	create_loc(all);
+	all->map_width = game_size(all, 'x');
+	all->map_height = game_size(all, 'y');
+	ignore_inside_surface(all);
 	return (map); 
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/08 15:32:07 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/09 16:22:17 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # include "../lib/libft/libft.h"
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
-# define START_IMAGE_SIZE 100
-# define MIN_IMAGE_SIZE 10
-# define MAX_MONITOR_USAGE 0.95
+// # define START_IMAGE_SIZE 100
+// # define MIN_IMAGE_SIZE 10
+// # define MAX_MONITOR_USAGE 0.95
 # define FULL_CIRCLE_DEGREES 360
 # define VAOV 120.0
 # define HAOV 180.0
@@ -33,7 +33,7 @@
 # define WINDOW_WIDTH 2700
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
 # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
-# define TURN_INTERVAL 15.0
+# define TURN_INTERVAL 15
 # define NLOOP WINDOW_WIDTH
 # define PERSON 2.0
 # define WALL 3.0
@@ -51,6 +51,14 @@ typedef struct s_loc
 	int				y1;
 	double			x_mid;
 	double			y_mid;
+	double			sx;
+	double			sy;
+	double			ex;
+	double			ey;
+	double			wx;
+	double			wy;
+	double			nx;
+	double			ny;
 	struct s_loc	*next;
 	struct s_loc	*previous;
 }					t_loc;
@@ -104,6 +112,29 @@ typedef struct s_strip
 	struct s_strip	*next;
 }					t_strip;
 
+typedef struct s_possible
+{
+	t_loc				*loc;
+	double				sn_winner_distance;
+	double				ew_winner_distance;
+	char				sn_winner_texture;
+	char				ew_winner_texture;
+	double				sn_winner_x;
+	double				sn_winner_y;
+	double				ew_winner_x;
+	double				ew_winner_y;
+	struct s_possible	*previous;
+	struct s_possible	*next;
+}						t_possible;
+
+typedef struct s_range
+{
+	int	x_min;
+	int	x_max;
+	int	y_min;
+	int y_max;
+}		t_range;
+
 typedef struct s_all
 {
 	t_map	*map;
@@ -112,6 +143,7 @@ typedef struct s_all
 	double	x;
 	double	y;
 	double	angle;
+	t_possible *possible;
 	double 	map_width;
 	double 	map_height;
 	double 	max_distance;
@@ -145,5 +177,10 @@ void		strip_to_image(t_all *all);
 void		press_key(mlx_key_data_t keydata, void *param);
 void 		render(t_all *all);
 double 		under_full_circle(double angle);
+t_possible	*clean_possibility(t_possible *first);
+void		create_possibility(t_all *all, t_range range);
+void 		find_winner_surface(t_all *all);
+void 		ignore_inside_surface(t_all *all);
+int			game_size(t_all *all, char c);
 
 #endif // CUB3D_H
