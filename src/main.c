@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/09 19:03:50 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/10 13:40:22 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -825,6 +825,7 @@ void	size_grid(t_all *all)
 	t_possible *temp_pos;
 	t_possible	*winner;
 	char		winner_material;
+	int change_formule = 0;
 
 	x_player = all->x;
 	y_player = all->y;
@@ -995,10 +996,18 @@ void	size_grid(t_all *all)
 		// 	intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_left;
 		// else
 		// 	intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_right;
-		if (temp_angle >= 0 && temp_angle <= 90)
+		
+		if (!change_formule)
 			intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_left;
 		else
 			intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_right;
+		if ((intersection_distance * fabs(ft_sin(temp_angle)) + distance_left)
+			== (intersection_distance * fabs(ft_sin(temp_angle)) + distance_right))
+			change_formule = 1;
+		// if (temp_angle >= 0 && temp_angle <= 90)
+		// 	intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_left;
+		// else
+		// 	intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_right;
 		if (same(all->angle, 315))
 			printf("intersection_distance: %f for ray_angle:%f\n", intersection_distance, ray_angle);
 		data_rander.wall_texture = winner_material;
