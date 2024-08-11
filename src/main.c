@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/11 10:36:42 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/11 10:50:08 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1019,7 +1019,7 @@ void	size_grid(t_all *all)
 		// 	intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_left;
 		// else
 		// 	intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_right;
-		
+		// printf("distance_left: %f, distance_right: %f\n", distance_left, distance_right);
 		if (!change_formule)
 			intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_left;
 		else

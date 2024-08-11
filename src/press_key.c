@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/09 17:17:17 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/11 11:04:43 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,52 @@ static void	move(void *param, char c)
 	all = (t_all *)param;
     clean_strip(all);
     mlx_delete_image(all->window, all->image);
-    if (c == 'A')
-        all->x -= 1;
-    else if (c == 'D')
-        all->x += 1;
-    else if (c == 'W')
-        all->y -= 1;
-    else
-        all->y += 1;
+	if (all->angle >= 225 && all->angle < 315)
+	{
+		if (c == 'A')
+		{
+			all->x -= 1;
+		}
+		else if (c == 'D')
+			all->x += 1;
+		else if (c == 'W')
+			all->y -= 1;
+		else
+			all->y += 1;
+	}
+	else if (all->angle >= 135 && all->angle < 225)
+	{
+		if (c == 'W')
+			all->x -= 1;
+		else if (c == 'S')
+			all->x += 1;
+		else if (c == 'A')
+			all->y += 1;
+		else
+			all->y -= 1;
+	}
+	else if (all->angle >= 45 && all->angle < 135)
+	{
+		if(c == 'W')
+			all->y += 1;
+		else if (c == 'S')
+			all->y -= 1;
+		else if (c == 'A')
+			all->x += 1;
+		else
+			all->x -= 1;
+	}
+	else
+	{
+		if (c == 'W')
+			all->x += 1;
+		else if (c == 'S')
+			all->x -= 1;
+		else if (c == 'A')
+			all->y -= 1;
+		else
+			all->y += 1;
+	}
     printf("New-> x: %f, y: %f\n", all->x, all->y);
     render(all);    
 }
