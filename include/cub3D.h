@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/09 18:36:02 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/11 10:37:02 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define FULL_CIRCLE_DEGREES 360
 # define VAOV 120.0
 # define HAOV 180.0
-# define WINDOW_HEIGHT 400
-# define WINDOW_WIDTH 600
+# define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 900
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
 # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
 # define TURN_INTERVAL 15
