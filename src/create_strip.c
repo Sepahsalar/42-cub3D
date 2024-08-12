@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_strip.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/07 16:31:08 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:27:54 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void clean_strip(t_all *all)
 	all->strip = 0;
 }
 
-void	create_strip(t_all *all, t_render data_render)
+void	init_strip(t_all *all, t_render data_render)
 {
 	t_strip	*new;
 	t_strip	*old;
@@ -72,6 +72,69 @@ void	create_strip(t_all *all, t_render data_render)
 	}
 	check_failure(0, new, 2, all);
 }
+
+// void fill_index_strip(t_all *all)
+// {
+// 	t_strip *node;
+// 	int		index;
+// 	char	wall;
+// 	double	slope_1;
+// 	double	slope_2;
+// 	t_strip *temp_a;
+// 	t_strip *temp_b;
+// 	t_strip *temp_c;
+// 	int j = 0;
+
+// 	index = 0;
+// 	temp_a = NULL;
+// 	temp_b = NULL;
+// 	temp_c = NULL;
+// 	node = all->strip;
+// 	wall = node->wall;
+// 	slope_1 = 0;
+// 	slope_2 = 0;
+// 	while (node)
+// 	{
+// 		printf("for node : %d ,the index is %d\n", j , index);
+// 		printf("slope_1 : %f , slope_2 : %f\n", slope_1, slope_2);
+// 		if (temp_a && temp_b && temp_c)
+// 		{
+// 			slope_1 = temp_b->wall_h - temp_a->wall_h;
+// 			slope_2 = temp_c->wall_h - temp_b->wall_h;
+// 		}
+// 		if (node->wall == wall && (fabs(slope_1 - slope_2) < 100000))
+// 			node->index = index;
+// 		else
+// 		{
+// 			wall = node->wall;
+// 			index = 0;
+// 			temp_a = NULL;
+// 			temp_b = NULL;
+// 			temp_c = NULL;
+// 			slope_1 = 0;
+// 			slope_2 = 0;
+// 			node->index = index;
+// 		}
+// 		index++;
+// 		j++;
+// 		temp_a = node;
+// 		if (temp_a)
+// 			temp_b = temp_a->next;
+// 		else
+// 		{
+// 			slope_1 = 0;
+// 			slope_2 = 0;
+// 		}
+// 		if (temp_b)
+// 			temp_c = temp_b->next;
+// 		else
+// 		{
+// 			slope_1 = 0;
+// 			slope_2 = 0;
+// 		}
+// 		node = node->next;
+// 	}
+// }
 
 void fill_index_strip(t_all *all)
 {

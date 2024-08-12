@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/12 10:15:11 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/12 14:53:06 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 # define FULL_CIRCLE_DEGREES 360
 # define VAOV 120.0
 # define HAOV 180.0
-# define WINDOW_HEIGHT 1800
-# define WINDOW_WIDTH 2700
+# define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 900
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
 # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
 # define TURN_INTERVAL 1
@@ -128,6 +128,12 @@ typedef struct s_possible
 	struct s_possible	*next;
 }						t_possible;
 
+typedef struct s_winner
+{
+	t_possible	*pos;
+	char		texture;
+}				t_winner;
+
 typedef struct s_range
 {
 	int	x_min;
@@ -144,6 +150,9 @@ typedef struct s_all
 	double	x;
 	double	y;
 	double	angle;
+	double	left_distance;
+	double	right_distance;
+	int		distance_flag;
 	t_possible *possible;
 	double 	map_width;
 	double 	map_height;
@@ -168,7 +177,7 @@ void		reader(t_all *all);
 void		create_loc(t_all *all);
 t_loc		*create_loc_node(char temp, int x, int y);
 t_loc		*clean_loc(t_loc *first);
-void		create_strip(t_all *all, t_render data_render);
+void		init_strip(t_all *all, t_render data_render);
 void 		fill_index_strip(t_all *all);
 void 		fill_length_strip(t_all *all);
 void		clean_strip(t_all *all);
