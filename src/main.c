@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/12 15:44:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:39:42 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -315,15 +315,25 @@ double calculate_distance(t_all *all, t_winner final, double ray_angle, double t
 		intersection_distance = distance(all->x, all->y, winner->ew_winner_x, find_y(ray_angle, all->x, all->y, winner->ew_winner_x));
 	else
 		intersection_distance = distance(all->x, all->y, find_x(ray_angle, all->x, all->y, winner->sn_winner_y), winner->sn_winner_y);
+	if (same(temp_angle, 0) || same(temp_angle, 180))
+		printf("before sin -> for temp_angle: %f intersection_distance: %f\n", temp_angle, intersection_distance);
 	if (intersection_distance < 0.5)
 		intersection_distance = 0.5;
-	if (!all->distance_flag)
-		intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + all->left_distance;
-	else
-		intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + all->right_distance;
-	if (same((intersection_distance * fabs(ft_sin(temp_angle)) + all->left_distance),
-				(intersection_distance * fabs(ft_sin(temp_angle)) + all->right_distance)))
-			all->distance_flag = 1;
+	intersection_distance = intersection_distance * fabs(ft_cos(all->angle - ray_angle)) + 0.5;
+	// if (!all->distance_flag)
+		// intersection_distance = intersection_distance * (ft_sin(temp_angle)) + all->left_distance;
+	// else
+	// 	intersection_distance = intersection_distance * (ft_sin(temp_angle)) + all->right_distance;
+		// intersection_distance = fabs(all->right_distance - intersection_distance * (ft_sin(temp_angle)));
+
+	// if (same_double((intersection_distance * fabs(ft_sin(temp_angle)) + all->left_distance),
+	// 			(intersection_distance * fabs(ft_sin(temp_angle)) + all->right_distance)))
+	// if (same_double((fabs(all->left_distance - all->right_distance)),0))
+	// {
+	// 	printf("flag changed from %d to 1\n", all->distance_flag);
+	// 	all->distance_flag = 1;
+	// }
+	
 	return (intersection_distance);
 }
 

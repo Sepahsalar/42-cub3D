@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/12 14:53:06 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/12 19:35:13 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@
 
 # define FULL_CIRCLE_DEGREES 360
 # define VAOV 120.0
-# define HAOV 180.0
-# define WINDOW_HEIGHT 600
-# define WINDOW_WIDTH 900
+# define HAOV 60.0
+# define WINDOW_HEIGHT 1200
+# define WINDOW_WIDTH 1800
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
 # define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
-# define TURN_INTERVAL 1
+# define TURN_INTERVAL 15
 # define NLOOP WINDOW_WIDTH
 # define PERSON 2.0
 # define WALL 3.0
@@ -144,30 +144,30 @@ typedef struct s_range
 
 typedef struct s_all
 {
-	t_map	*map;
-	int		floor_color;
-	int 	ceil_color;
-	double	x;
-	double	y;
-	double	angle;
-	double	left_distance;
-	double	right_distance;
-	int		distance_flag;
+	t_map		*map;
+	int			floor_color;
+	int 		ceil_color;
+	double		x;
+	double		y;
+	double		angle;
+	double		left_distance;
+	double		right_distance;
+	int			distance_flag;
 	t_possible *possible;
-	double 	map_width;
-	double 	map_height;
-	double 	max_distance;
-	int		fd;
-	char	*strmap;
-	char	*argv;
-	mlx_t	*window;
-	t_strip	*strip;
+	double 		map_width;
+	double 		map_height;
+	double 		max_distance;
+	int			fd;
+	char		*strmap;
+	char		*argv;
+	mlx_t		*window;
+	t_strip		*strip;
 	mlx_image_t	*image;
 	mlx_image_t	*north;
 	mlx_image_t	*west;
 	mlx_image_t	*south;
 	mlx_image_t	*east;
-}			t_all;
+}				t_all;
 
 int			color(int r, int g, int b, int a);
 t_map		*map_parser(t_all *all);
