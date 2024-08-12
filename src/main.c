@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/11 14:59:56 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/12 10:14:37 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -580,7 +580,7 @@ double find_right_distance(t_all *all)
 	{
 		while (temp_pos)
 		{
-			if (fabs(find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x) - temp_pos->ew_winner_y) < 1)
+			if (temp_pos->ew_winner_texture != '0' && fabs(find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x) - temp_pos->ew_winner_y) <= 0.5)
 			{
 				if (!winner)
 					winner = temp_pos;
@@ -588,7 +588,7 @@ double find_right_distance(t_all *all)
 					winner = temp_pos;
 				winner_material = winner->ew_winner_texture;
 			}
-			else if (fabs(find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y) - temp_pos->sn_winner_x) < 1)
+			else if (temp_pos->sn_winner_texture != '0' && fabs(find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y) - temp_pos->sn_winner_x) <= 0.5)
 			{
 				if (!winner)
 					winner = temp_pos;
@@ -613,29 +613,12 @@ double find_right_distance(t_all *all)
 
 double find_left_distance(t_all *all)
 {
-	// t_loc		*temp_loc;
-	// double		temp_x;
-	// double		temp_y;
 	double		x_player;
 	double		y_player;
 	double		angle_player;
-	double		temp_angle;
 	double		ray_angle;
 	int 		x_size_game;
 	int 		y_size_game;
-	// int			x_min;
-	// int			x_max;
-	// int			y_min;
-	// int			y_max;
-	// double		temp_x_min;
-	// double		temp_y_min;
-	// double		temp_x_max;
-	// double		temp_y_max;
-	// int 		i;
-	// double 		max_d;
-	// char 		type_intersection;
-	// double 		winner_distance;
-	// double		temp_dis;
 	double		intersection_distance;
 	t_range		range;
 	t_possible *temp_pos;
@@ -647,37 +630,8 @@ double find_left_distance(t_all *all)
 	angle_player = all->angle;
 	x_size_game = all->map_width;
 	y_size_game = all->map_height;
-	// max_d = all->max_distance;
-	temp_angle = 0;
-	ray_angle = under_full_circle(angle_player - (HAOV / 2) + temp_angle);
+	ray_angle = under_full_circle(angle_player - (FULL_CIRCLE_DEGREES / 4));
 	intersection_distance = 0;
-	// temp_x_min = min_x(x_player, ray_angle);
-	// temp_x_max = max_x(x_player, x_size_game, ray_angle);
-	// temp_y_min = min_y(y_player, ray_angle);
-	// temp_y_max = max_y(y_player, y_size_game, ray_angle);
-	// printf("temp_min_x: %f, temp_y_min: %f, temp_x_max:%f, temp_y_max:%f\n", temp_x_min, temp_y_min, temp_x_max, temp_y_max);
-	// // winner_distance = max_d;
-	// if (same(temp_x_min, 0))
-	// {
-	// 	range.x_min = 0;
-	// 	range.x_max = ceil(x_player);
-	// }
-	// else
-	// {
-	// 	range.x_min = floor(temp_x_min);
-	// 	range.x_max = all->map_width - 1;
-	// }
-	// if (same(temp_y_min , 0))
-	// {
-	// 	range.y_min = 0;
-	// 	range.y_max = ceil(y_player);
-	// }
-	// else
-	// {
-	// 	range.y_min = floor(range.x_min);
-	// 	range.y_max = all->map_height - 1;
-	// }
-	// printf("min_x: %d, y_min: %d, x_max:%d, y_max:%d\n", range.x_min, range.y_min, range.x_max, range.y_max);
 	range.x_min = min_x(x_player, ray_angle);
 	range.x_max = max_x(x_player, x_size_game, ray_angle);
 	range.y_min = min_y(y_player, ray_angle);
@@ -757,22 +711,62 @@ double find_left_distance(t_all *all)
 	}
 	else
 	{
+		if (same(all->angle, 315))
+			printf("we are calculating left distance and ray angle is: %f\n", ray_angle);
 		while (temp_pos)
 		{
-			if (fabs(find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x) - temp_pos->ew_winner_y) < 1)
+			if (same(all->angle, 315))
+				{
+					printf("***************************\n");
+					printf("angle: %f\n", ray_angle);
+					printf("x_player: %f, y_player: %f\n", all->x, all->y);
+					printf("find_y(ray_angle, all->x, all->y, 4): %f\n", find_y(ray_angle, all->x, all->y, 4.0));
+					printf("find_y(ray_angle, all->x, all->y, 5): %f\n", find_y(ray_angle, all->x, all->y, 5.0));
+					printf("find_y(ray_angle, all->x, all->y, 6): %f\n", find_y(ray_angle, all->x, all->y, 6.0));
+					printf("find_x(ray_angle, all->x, all->y, 4): %f\n", find_x(ray_angle, all->x, all->y, 4.0));
+					printf("find_x(ray_angle, all->x, all->y, 5): %f\n", find_x(ray_angle, all->x, all->y, 5.0));
+					printf("find_x(ray_angle, all->x, all->y, 6): %f\n", find_x(ray_angle, all->x, all->y, 6.0));
+					printf("min_x: %d, max_x: %d, min_y: %d, max_y: %d\n", range.x_min, range.x_max, range.y_min, range.y_max);
+					printf("(%d,%d)temp_pos->ew_winner_x: %f, temp_pos->ew_winner_y: %f, temp_pos->ew_winner_material:%c\n",temp_pos->loc->x, temp_pos->loc->y,temp_pos->ew_winner_x, temp_pos->ew_winner_y, temp_pos->ew_winner_texture);
+					printf("fabs(find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x) - temp_pos->ew_winner_y): %f\n", fabs(find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x) - temp_pos->ew_winner_y));
+					printf("find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x): %f\n", find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x));
+					printf("(%d,%d)temp_pos->sn_winner_x: %f, temp_pos->sn_winner_y: %f,temp_pos->ew_winner_material:%c\n",temp_pos->loc->x,temp_pos->loc->y, temp_pos->sn_winner_x, temp_pos->sn_winner_y, temp_pos->sn_winner_texture);
+					printf("fabs(find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y) - temp_pos->sn_winner_x): %f\n", fabs(find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y) - temp_pos->sn_winner_x));
+					printf("find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y): %f\n", find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y));
+				}
+			if (temp_pos->ew_winner_texture != '0' && fabs(find_y(ray_angle, all->x, all->y, temp_pos->ew_winner_x) - temp_pos->ew_winner_y) <= 0.5)
 			{
-				if (!winner)
+				if (same(all->angle, 315))						
+						printf("we have a winner in first if\n");
+				if (!winner){
+					if (same(all->angle, 315))						
+						printf("we have a winner in first if and winner is null\n");
 					winner = temp_pos;
+				}
 				else if (temp_pos->ew_winner_distance < winner->ew_winner_distance)
+				{
+					if (same(all->angle, 315))						
+						printf("we have a winner in first if and winner is not null\n");
 					winner = temp_pos;
+				}
 				winner_material = winner->ew_winner_texture;
 			}
-			else if (fabs(find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y) - temp_pos->sn_winner_x) < 1)
+			else if (temp_pos->sn_winner_texture != '0' && fabs(find_x(ray_angle, all->x, all->y, temp_pos->sn_winner_y) - temp_pos->sn_winner_x) <= 0.5)
 			{
+				if (same(all->angle, 315))						
+						printf("we have a winner in second if\n");
 				if (!winner)
+				{
+					if (same(all->angle, 315))						
+						printf("we have a winner in second if and winner is null\n");
 					winner = temp_pos;
+				}
 				else if (temp_pos->sn_winner_distance < winner->sn_winner_distance)
+				{
+					if (same(all->angle, 315))						
+						printf("we have a winner in second if and winner is not null\n");
 					winner = temp_pos;
+				}
 				winner_material = winner->sn_winner_texture;
 			}
 			temp_pos = temp_pos->next;
@@ -1003,8 +997,8 @@ void	size_grid(t_all *all)
 			intersection_distance = distance(all->x, all->y, winner->ew_winner_x, find_y(ray_angle, all->x, all->y, winner->ew_winner_x));
 		else
 			intersection_distance = distance(all->x, all->y, find_x(ray_angle, all->x, all->y, winner->sn_winner_y), winner->sn_winner_y);
-		// if (same(all->angle, 330))
-		// 	printf("intersection_distance: %f for ray_angle:%f and winner_material:   %c\n", intersection_distance, ray_angle, winner_material);
+		if ((same(all->angle, 315) || same(all->angle, 45) || same(all->angle, 135) || same(all->angle, 225)) && same(temp_angle, 90 == 0))
+			printf("intersection_distance: %f for ray_angle:%f and and ft_sin(temp_angle):%f and left_dis:%f and right_dis:%f\n", intersection_distance, ray_angle, ft_sin(temp_angle), distance_left, distance_right);
 		if (intersection_distance < 0.5)
 			intersection_distance = 0.5;
 		// printf("distance_left: %f, distance_right: %f\n", distance_left, distance_right);
@@ -1027,6 +1021,8 @@ void	size_grid(t_all *all)
 		if (same((intersection_distance * fabs(ft_sin(temp_angle)) + distance_left),
 				(intersection_distance * fabs(ft_sin(temp_angle)) + distance_right)))
 			change_formule = 1;
+		if ((same(all->angle, 315) || same(all->angle, 45) || same(all->angle, 135) || same(all->angle, 225)) && same(temp_angle, 90 == 0))
+			printf("intersection_distance: %f for ray_angle:%f\n", intersection_distance, ray_angle);
 		// printf("change_formule: %d\n", change_formule);
 		// if (temp_angle >= 0 && temp_angle <= 90)
 		// 	intersection_distance = intersection_distance * fabs(ft_sin(temp_angle)) + distance_left;
