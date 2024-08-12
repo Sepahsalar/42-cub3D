@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_strip.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/12 14:27:54 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:27:11 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,76 @@ void fill_index_strip(t_all *all)
 		node = node->next;
 	}
 }
+
+t_strip *last_wall_node(t_strip *node)
+{
+	if (!node)
+		return (0);
+	while (node && node->index != (node->wall_length) - 1)
+		node = node->next;
+	return (node);
+}
+
+t_strip *first_wall_node(t_strip *node)
+{
+	if (!node)
+		return (0);
+	while (node && node->index != 0)
+		node = node->previous;
+	return (node);
+}
+
+void update_strips(t_all *all)
+{
+	t_strip *node;
+	t_strip *last;
+	t_strip *first;
+	int		index;
+
+	node = all->strip;
+	while (node)
+	{
+		last = last_wall_node(node);
+		first = first_wall_node(node);
+		index = node->index;
+		node->floor_h = first->floor_h + (last->floor_h - first->floor_h) * ((double)index / (double)last->index);
+		node = node->next;
+	}
+	node = all->strip;
+	while (node)
+	{
+		last = last_wall_node(node);
+		first = first_wall_node(node);
+		index = node->index;
+		node->wall_h = (first->wall_h + first->floor_h + (last->wall_h - first->wall_h + last->floor_h - first->floor_h) * ((double)index / (double)last->index)) - node->floor_h;
+		node = node->next;
+	}
+	node = all->strip;
+	while (node)
+	{
+		last = last_wall_node(node);
+		first = first_wall_node(node);
+		node->ceil_h = WINDOW_HEIGHT - node->wall_h - node->floor_h;
+		node = node->next;
+	}
+	// node = all->strip;
+	// while (node)
+	// {
+	// 	last = last_wall_node(node);
+	// 	first = first_wall_node(node);
+	// 	node->ceil_h = first->ceil_h + (last->ceil_h - first->ceil_h) * (index / last->index);
+	// 	node = node->next;
+	// }
+	// node = all->strip;
+	// while (node)
+	// {
+	// 	last = last_wall_node(node);
+	// 	first = first_wall_node(node);
+	// 	node->wall_h = WINDOW_HEIGHT - node->ceil_h - node->floor_h;
+	// 	node = node->next;
+	// }
+}
+
 
 int find_max_index(t_strip *node)
 {

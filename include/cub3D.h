@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/12 19:35:13 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:30:29 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 # define FULL_CIRCLE_DEGREES 360
 # define VAOV 120.0
-# define HAOV 60.0
+# define HAOV 90.0
 # define WINDOW_HEIGHT 1200
 # define WINDOW_WIDTH 1800
 # define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
@@ -193,5 +193,6 @@ void 		find_winner_surface(t_all *all);
 void 		ignore_inside_surface(t_all *all);
 int			game_size(t_all *all, char c);
 double 		max_distance(t_all *all);
+void 		update_strips(t_all *all);
 
 #endif // CUB3D_H
