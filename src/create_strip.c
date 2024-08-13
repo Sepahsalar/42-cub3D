@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/13 17:36:49 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:15:56 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ t_strip *create_strip_node(t_render data_render)
 	new->wall_length = 0;
 	new->next = 0;
 	new->previous = 0;
+	new->x_winner = data_render.x_winner;
+	new->y_winner = data_render.y_winner;
 	return (new);
 }
 
@@ -136,52 +138,22 @@ void	init_strip(t_all *all, t_render data_render)
 // 	}
 // }
 
-void fill_index_strip(t_all *all)
-{
-	t_strip *node;
-	int		index;
-	char	wall;
-
-	index = 0;
-	node = all->strip;
-	wall = node->wall;
-	while (node)
-	{
-		if (node->wall == wall)
-			node->index = index;
-		else
-		{
-			wall = node->wall;
-			index = 0;
-			node->index = index;
-		}
-		index++;
-		node = node->next;
-	}
-}
-
 // void fill_index_strip(t_all *all)
 // {
 // 	t_strip *node;
 // 	int		index;
 // 	char	wall;
-// 	int		x_winner;
-// 	int		y_winner;
 
 // 	index = 0;
 // 	node = all->strip;
 // 	wall = node->wall;
-// 	x_winner = node->x_winner;
-// 	y_winner = node->y_winner;
 // 	while (node)
 // 	{
-// 		if (node->wall == wall && (((node->wall == 'E' || node->wall == 'W') && node->x_winner == x_winner) || ((node->wall == 'N' || node->wall == 'S') && node->y_winner == y_winner)))
+// 		if (node->wall == wall)
 // 			node->index = index;
 // 		else
 // 		{
 // 			wall = node->wall;
-// 			x_winner = node->x_winner;
-// 			y_winner = node->y_winner;
 // 			index = 0;
 // 			node->index = index;
 // 		}
@@ -189,6 +161,44 @@ void fill_index_strip(t_all *all)
 // 		node = node->next;
 // 	}
 // }
+
+void fill_index_strip(t_all *all)
+{
+	t_strip *node;
+	int		index;
+	char	wall;
+	int		x_winner;
+	int		y_winner;
+
+	index = 0;
+	node = all->strip;
+	wall = node->wall;
+	x_winner = node->x_winner;
+	y_winner = node->y_winner;
+	while (node)
+	{
+		if (node->wall == wall && (((node->wall == 'E' || node->wall == 'W') && same_double(node->x_winner, x_winner))
+				|| ((node->wall == 'N' || node->wall == 'S') && same_double(node->y_winner, y_winner))))
+			node->index = index;
+		else
+		{
+			wall = node->wall;
+			x_winner = node->x_winner;
+			y_winner = node->y_winner;
+			index = 0;
+			node->index = index;
+		}
+		index++;
+		node = node->next;
+	}
+	node = all->strip;
+	while (node)
+	{
+		if (node->index == 0)
+			printf("start of wall %c is %d\n", node->wall, node->x);
+		node = node->next;
+	}
+}
 
 t_strip *last_wall_node(t_strip *node)
 {
@@ -218,29 +228,36 @@ void update_strips(t_all *all)
 	node = all->strip;
 	while (node)
 	{
+		if (node->wall_length > 2)
+		{
 		last = last_wall_node(node);
 		first = first_wall_node(node);
 		index = node->index;
 		node->floor_h = first->floor_h + (last->floor_h - first->floor_h) * ((double)index / (double)last->index);
+		}
 		node = node->next;
 	}
 	node = all->strip;
 	while (node)
 	{
+		if (node->wall_length > 2)
+		{
 		last = last_wall_node(node);
 		first = first_wall_node(node);
 		index = node->index;
 		node->wall_h = (first->wall_h + first->floor_h + (last->wall_h - first->wall_h + last->floor_h - first->floor_h) * ((double)index / (double)last->index)) - node->floor_h;
-		node = node->next;
-	}
-	node = all->strip;
-	while (node)
-	{
-		last = last_wall_node(node);
-		first = first_wall_node(node);
 		node->ceil_h = WINDOW_HEIGHT - node->wall_h - node->floor_h;
+		}
 		node = node->next;
 	}
+	// node = all->strip;
+	// while (node)
+	// {
+	// 	last = last_wall_node(node);
+	// 	first = first_wall_node(node);
+	// 	node->ceil_h = WINDOW_HEIGHT - node->wall_h - node->floor_h;
+	// 	node = node->next;
+	// }
 	// node = all->strip;
 	// while (node)
 	// {
@@ -260,16 +277,32 @@ void update_strips(t_all *all)
 }
 
 
+// int find_max_index(t_strip *node)
+// {
+// 	char wall;
+// 	int max;
+
+// 	wall = node->wall;
+// 	max = 0;
+// 	while (node && node->wall == wall)
+// 	{
+// 		max = node->index;
+// 		node = node->next;
+// 	}
+// 	return (max + 1);
+// }
+
 int find_max_index(t_strip *node)
 {
-	char wall;
 	int max;
 
-	wall = node->wall;
 	max = 0;
-	while (node && node->wall == wall)
+	while (node)
 	{
-		max = node->index;
+		if (node->index > max)
+			max = node->index;
+		else
+			break ;
 		node = node->next;
 	}
 	return (max + 1);

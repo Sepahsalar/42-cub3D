@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/13 17:40:56 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:16:21 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,8 +263,16 @@ t_winner	find_general_intersection(t_all *all, double ray_angle)
 	}
 	final.pos = winner;
 	final.texture = winner_material;
-	final.x_winner = winner->loc->x;
-	final.y_winner = winner->loc->y;
+	// final.x_winner = winner->loc->x;
+	// final.y_winner = winner->loc->y;
+	if (winner_material == winner->ew_winner_texture)
+		final.x_winner = winner->ew_winner_x;
+	else
+		final.x_winner = winner->sn_winner_x;
+	if (winner_material == winner->ew_winner_texture)
+		final.y_winner = winner->ew_winner_y;
+	else
+		final.y_winner = winner->sn_winner_y;
 	return (final);
 }
 
@@ -302,8 +310,16 @@ t_winner	find_specific_intersection(t_all *all, double ray_angle, char flag)
 	}
 	final.pos = winner;
 	final.texture = winner_material;
-	final.x_winner = winner->loc->x;
-	final.y_winner = winner->loc->y;
+	if (winner_material == winner->ew_winner_texture)
+		final.x_winner = winner->ew_winner_x;
+	else
+		final.x_winner = winner->sn_winner_x;
+	if (winner_material == winner->ew_winner_texture)
+		final.y_winner = winner->ew_winner_y;
+	else
+		final.y_winner = winner->sn_winner_y;
+	// final.x_winner = winner->loc->x;
+	// final.y_winner = winner->loc->y;
 	return (final);
 }
 

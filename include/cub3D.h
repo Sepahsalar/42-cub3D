@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/13 17:39:05 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:55:29 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ typedef struct s_render
 	double	wall_height;
 	char	wall_texture;
 	int		x;
-	int		x_winner;
-	int		y_winner;
+	double		x_winner;
+	double	y_winner;
 	
 }			t_render;
 
@@ -112,6 +112,8 @@ typedef struct s_strip
 	double			floor_h;
 	int				wall_length;
 	int				index;
+	double				x_winner;
+	double				y_winner;
 	struct s_strip	*previous;
 	struct s_strip	*next;
 }					t_strip;
@@ -135,8 +137,9 @@ typedef struct s_winner
 {
 	t_possible	*pos;
 	char		texture;
-	int			x_winner;
-	int			y_winner;
+	double			x_winner;
+	double			y_winner;
+	
 }				t_winner;
 
 typedef struct s_range
@@ -199,5 +202,6 @@ void 		ignore_inside_surface(t_all *all);
 int			game_size(t_all *all, char c);
 double 		max_distance(t_all *all);
 void 		update_strips(t_all *all);
+int 		same_double(double d1, double d2);
 
 #endif // CUB3D_H
