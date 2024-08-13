@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/12 20:27:11 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:36:49 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,36 @@ void fill_index_strip(t_all *all)
 	}
 }
 
+// void fill_index_strip(t_all *all)
+// {
+// 	t_strip *node;
+// 	int		index;
+// 	char	wall;
+// 	int		x_winner;
+// 	int		y_winner;
+
+// 	index = 0;
+// 	node = all->strip;
+// 	wall = node->wall;
+// 	x_winner = node->x_winner;
+// 	y_winner = node->y_winner;
+// 	while (node)
+// 	{
+// 		if (node->wall == wall && (((node->wall == 'E' || node->wall == 'W') && node->x_winner == x_winner) || ((node->wall == 'N' || node->wall == 'S') && node->y_winner == y_winner)))
+// 			node->index = index;
+// 		else
+// 		{
+// 			wall = node->wall;
+// 			x_winner = node->x_winner;
+// 			y_winner = node->y_winner;
+// 			index = 0;
+// 			node->index = index;
+// 		}
+// 		index++;
+// 		node = node->next;
+// 	}
+// }
+
 t_strip *last_wall_node(t_strip *node)
 {
 	if (!node)
@@ -256,3 +286,5 @@ void fill_length_strip(t_all *all)
 		node = node->next;
 	}
 }
+
+

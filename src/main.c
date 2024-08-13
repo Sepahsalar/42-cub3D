@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/12 20:18:13 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:40:56 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,6 +263,8 @@ t_winner	find_general_intersection(t_all *all, double ray_angle)
 	}
 	final.pos = winner;
 	final.texture = winner_material;
+	final.x_winner = winner->loc->x;
+	final.y_winner = winner->loc->y;
 	return (final);
 }
 
@@ -300,6 +302,8 @@ t_winner	find_specific_intersection(t_all *all, double ray_angle, char flag)
 	}
 	final.pos = winner;
 	final.texture = winner_material;
+	final.x_winner = winner->loc->x;
+	final.y_winner = winner->loc->y;
 	return (final);
 }
 
@@ -393,16 +397,19 @@ double find_lateral_distance(t_all *all, char flag)
 
 t_render create_render_data(t_winner final, double intersection_distance, double temp_angle)
 {
-	t_render	data_rander;
+	t_render	data_render;
 	char		winner_material;
 
 	winner_material = final.texture;
-	data_rander.wall_texture = winner_material;
-	data_rander.floor_height = height(intersection_distance, 'F');
-	data_rander.ceil_height = height(intersection_distance, 'C');
-	data_rander.wall_height = WINDOW_HEIGHT - data_rander.ceil_height - data_rander.floor_height;
-	data_rander.x = (int)(temp_angle / WIDTH_INTERVAL);
-	return (data_rander);
+	data_render.wall_texture = winner_material;
+	data_render.floor_height = height(intersection_distance, 'F');
+	data_render.ceil_height = height(intersection_distance, 'C');
+	data_render.wall_height = WINDOW_HEIGHT - data_render.ceil_height - data_render.floor_height;
+	data_render.x = (int)(temp_angle / WIDTH_INTERVAL);
+	data_render.x_winner = final.x_winner;
+	data_render.y_winner = final.y_winner;
+	
+	return (data_render);
 }
 
 void	create_strip_helper(t_all *all, double temp_angle)

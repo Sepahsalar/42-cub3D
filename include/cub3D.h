@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/12 20:30:29 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:39:05 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ typedef struct s_render
 	double	wall_height;
 	char	wall_texture;
 	int		x;
+	int		x_winner;
+	int		y_winner;
+	
 }			t_render;
 
 typedef struct s_map
@@ -132,6 +135,8 @@ typedef struct s_winner
 {
 	t_possible	*pos;
 	char		texture;
+	int			x_winner;
+	int			y_winner;
 }				t_winner;
 
 typedef struct s_range
