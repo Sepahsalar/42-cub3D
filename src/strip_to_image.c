@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strip_to_image.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/08 15:55:03 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:36:38 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,7 @@ int dimension_resized_brick(t_strip *strip, char type)
 {
 	if (type == 'h')
 		return (round(strip->wall_h / BRICKS_IN_H));
+		// return (round(strip->wall_h / (BRICKS_IN_H * WALL)));
 	else
 		return (round(strip->wall_length * BRICKS_IN_H / WALL));
 }

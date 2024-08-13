@@ -6,11 +6,15 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/13 18:16:21 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:46:11 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+// 1) do not get segfault when the player is outside the map
+// 2) map validation
+// 3) norminette
 
 double ft_tan(double a)
 {
@@ -337,6 +341,8 @@ double calculate_distance(t_all *all, t_winner final, double ray_angle, double t
 		intersection_distance = distance(all->x, all->y, find_x(ray_angle, all->x, all->y, winner->sn_winner_y), winner->sn_winner_y);
 	if (same(temp_angle, 0) || same(temp_angle, 180))
 		printf("before sin -> for temp_angle: %f intersection_distance: %f\n", temp_angle, intersection_distance);
+	// if (intersection_distance < 0.1)
+	// 	intersection_distance = 0.1;
 	if (intersection_distance < 0.5)
 		intersection_distance = 0.5;
 	intersection_distance = intersection_distance * fabs(ft_cos(all->angle - ray_angle)) + 0.5;
@@ -408,6 +414,8 @@ double find_lateral_distance(t_all *all, char flag)
 		intersection_distance = distance(all->x, all->y, find_x(ray_angle, all->x, all->y, final.pos->sn_winner_y), final.pos->sn_winner_y);
 	if (intersection_distance < 0.5)
 		intersection_distance = 0.5;
+	// if (intersection_distance < 0.1)
+	// 	intersection_distance = 0.1;
 	return (intersection_distance);
 }
 
