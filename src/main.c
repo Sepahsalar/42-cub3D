@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 09:57:58 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 10:33:16 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -505,11 +505,31 @@ t_all *init_all(char **argv)
 	return (all);
 }
 
+int check_map_format(char *str)
+{
+	if (ft_strlen(str) < 5)
+		return (0);
+	if (str[ft_strlen(str) - 1] != 'b' || str[ft_strlen(str) - 2] != 'u' || str[ft_strlen(str) - 3] != 'c' || str[ft_strlen(str) - 4] != '.')
+		return (0);
+	return (1);
+}
+
 int main(int argc, char **argv)
 {
 	t_all *all;
 
-	(void)argc;
+	if (argc != 2)
+	{
+		ft_putendl_fd("Invalid number of arguments", 2);
+		ft_putendl_fd("Error", 2);
+		return (1);
+	}
+	if(!check_map_format(argv[1]))
+	{
+		ft_putendl_fd("Invalid map format", 2);
+		ft_putendl_fd("Error", 2);
+		return (1);
+	}
 	all = init_all(argv);
 	render(all);
 	mlx_key_hook(all->window, &press_key, all);	

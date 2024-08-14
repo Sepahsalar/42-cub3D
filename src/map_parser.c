@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/09 16:00:53 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 10:25:48 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	update_map(t_all *all, char *found)
 	all->strmap = temp;
 }
 
-char	*custom_strdup(t_all *all, char *found)
+char	*custom_strdup(t_all *all, char *found, char *str)
 {
 	char	*start;
 	char	*end;
@@ -57,6 +57,13 @@ char	*custom_strdup(t_all *all, char *found)
 	while (end && *end != ' ' && *end != '\n')
 		end++;
 	len = end - start;
+	if (len == 0)
+	{
+		ft_putstr_fd("There is no information for ", 2);
+		ft_putstr_fd(str, 2);
+		ft_putendl_fd(" identifier in the map", 2);
+		terminate(all, 1);
+	}
 	dup = malloc(len + 1);
 	check_failure(0, dup, 2, all);
 	ft_memcpy(dup, start, len);
@@ -71,7 +78,11 @@ char	*finder(t_all *all, char *str)
     
 	found = ft_strnstr(all->strmap, str, ft_strlen(all->strmap));
     if (found)
-		return(custom_strdup(all, found));
+		return(custom_strdup(all, found, str));
+	ft_putstr_fd("There is no ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putendl_fd(" identifier in the map", 2);
+	terminate(all, 1);
 	return (NULL);
 }
 
