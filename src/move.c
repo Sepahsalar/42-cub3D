@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 12:51:06 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 17:38:01 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:29:45 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void	conditional_move(t_all *all, double new_x, double new_y)
 	new_y = (int)(new_y - 0.5);
 	if (!is_wall_there(all, new_x, new_y))
 	{
-		clean_strip(all);
+		clean_strips(all);
 		mlx_delete_image(all->window, all->image);
 		all->x = new_x + 0.5;
 		all->y = new_y + 0.5;
-		render(all);
+		fill_strips(all);
 	}
 }

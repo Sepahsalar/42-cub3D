@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:26:07 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 17:46:05 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:41:04 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,18 @@ static void	update_map(t_all *all, char *found)
 	char	*end_part1;
 	char	*start_part2;
 	char	*temp;
-	int		len1;
-	int		len2;
+	int		len;
 
 	start_part1 = all->strmap;
 	end_part1 = found;
 	start_part2 = found;
 	while (*start_part2 && *start_part2 != '\n')
 		start_part2++;
-	len1 = end_part1 - start_part1;
-	len2 = ft_strlen(start_part2);
-	temp = malloc(len1 + len2 + 1);
+	len = end_part1 - start_part1;
+	temp = malloc(len + ft_strlen(start_part2) + 1);
 	check_failure(0, temp, 2, all);
-	ft_memcpy(temp, all->strmap, len1);
-	ft_memcpy(temp + len1, start_part2, len2 + 1);
+	ft_memcpy(temp, all->strmap, len);
+	ft_memcpy(temp + len, start_part2, ft_strlen(start_part2) + 1);
 	free(all->strmap);
 	all->strmap = temp;
 }

@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 17:15:02 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:29:45 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	terminate(t_all *all, int status)
 	if (all->fd != -1)
 		close(all->fd);
 	if (all->strip)
-		clean_strip(all);
+		clean_strips(all);
 	if (all->map)
 		free_map_contents(all->map);
 	if (all->strmap)

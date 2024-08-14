@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 17:30:30 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:39:00 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 	return (get_pixel(brick, x_in_brick, y_in_brick));
 }
 
-static void	put_pixels_of_strip(t_all *all, t_strip *strip)
+static void	put_pixels_of_strips(t_all *all, t_strip *strip)
 {
 	int	int_color;
 	int	j;
@@ -69,7 +69,7 @@ static void	put_pixels_of_strip(t_all *all, t_strip *strip)
 		if (j <= (int)floor(strip->ceil_h))
 			int_color = all->ceil_color;
 		else if (j > (int)floor(strip->ceil_h)
-				&& j < ((int)(floor(strip->ceil_h) + floor(strip->wall_h))))
+			&& j < ((int)(floor(strip->ceil_h) + floor(strip->wall_h))))
 			int_color = get_pixel_from_brick(all, strip, j);
 		else
 			int_color = all->floor_color;
@@ -89,7 +89,7 @@ void	strip_to_image(t_all *all)
 	strip = all->strip;
 	while (strip)
 	{
-		put_pixels_of_strip(all, strip);
+		put_pixels_of_strips(all, strip);
 		strip = strip->next;
 	}
 	mlx_image_to_window(all->window, all->image, 0, 0);

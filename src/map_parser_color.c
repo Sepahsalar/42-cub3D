@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:42:31 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 17:47:08 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:37:28 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ static void	only_digit(t_all *all, char **split, char type)
 			{
 				clean_2d_char_array(split);
 				ft_putchar_fd(type, 2);
-				ft_putendl_fd(" identifier contains characters which are not digits",
-								2);
+				ft_putendl_fd(" identifier contains characters", 2);
+				ft_putendl_fd(" which are not digits", 2);
 				terminate(all, 1);
 			}
 			j++;
