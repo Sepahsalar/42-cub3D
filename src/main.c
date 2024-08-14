@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 13:44:35 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:35:28 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-// 1) do not get segfault when the player is outside the map
-// 2) map validation
 // 3) norminette
 
 double	ft_tan(double a)
@@ -355,8 +353,8 @@ double	calculate_distance(t_all *all, t_winner final, double ray_angle,
 					all->x, all->y, winner->sn_winner_y), winner->sn_winner_y);
 	if (intersection_distance < 0.5)
 		intersection_distance = 0.5;
-	intersection_distance = intersection_distance
-		* fabs(ft_cos(all->angle - ray_angle)) + DISTANCE_FROM_WALL;
+	intersection_distance = intersection_distance * fabs(ft_cos(all->angle
+				- ray_angle)) + DISTANCE_FROM_WALL;
 	return (intersection_distance);
 }
 
@@ -476,6 +474,7 @@ void	render(t_all *all)
 	fill_index_strip(all);
 	fill_length_strip(all);
 	update_strips(all);
+	fill_number_of_blocks(all);
 	strip_to_image(all);
 }
 

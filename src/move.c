@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 12:51:06 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 13:46:29 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:38:01 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	temp_movment225(double *new_x, double *new_y, char c)
 		(*new_y) += 1;
 }
 
-void	temp_movment135(double *new_x, double *new_y, char c)
+void temp_movment135(double *new_x, double *new_y, char c)
 {
 	if (c == 'W')
 		(*new_x) -= 1;

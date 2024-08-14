@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_strip.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 12:23:13 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:47:22 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -321,6 +321,25 @@ void	fill_length_strip(t_all *all)
 	while (node)
 	{
 		node->wall_length = find_max_index(node);
+		node = node->next;
+	}
+}
+
+void	fill_number_of_blocks(t_all *all)
+{
+	t_strip	*node;
+	t_strip	*start;
+	t_strip	*end;
+
+	node = all->strip;
+	while (node)
+	{
+		start = first_wall_node(node);
+		end = last_wall_node(node);
+		if (same_double(start->x_winner, end->x_winner))
+			node->nb_blocks = fabs(end->y_winner - start->y_winner) + 1;
+		else
+			node->nb_blocks = fabs(end->x_winner - start->x_winner) + 1;
 		node = node->next;
 	}
 }

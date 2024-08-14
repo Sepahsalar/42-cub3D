@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 14:23:41 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:47:39 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@
 # define PERSON 1.8
 # define WALL 3.0
 # define EPSILON 0.00001
-# define DISTANCE_FROM_WALL 5.0
+# define DISTANCE_FROM_WALL 1.5
 
-enum e_general_constants
+enum					e_general_constants
 {
 	FULL_CIRCLE_DEGREES = 360,
 	TURN_INTERVAL = 10,
-	BRICKS_IN_H = 1
 };
 
-enum e_dimensions
+enum					e_dimensions
 {
 	WINDOW_HEIGHT = 900,
 	WINDOW_WIDTH = 1600
@@ -111,6 +110,7 @@ typedef struct s_strip
 	int					index;
 	double				x_winner;
 	double				y_winner;
+	int					nb_blocks;
 	struct s_strip		*previous;
 	struct s_strip		*next;
 }						t_strip;
@@ -209,5 +209,6 @@ void					temp_movment315(double *new_x, double *new_y, char c);
 void					conditional_move(t_all *all, double new_x,
 							double new_y);
 int						is_wall_there(t_all *all, int x, int y);
+void					fill_number_of_blocks(t_all *all);
 
 #endif // CUB3D_H
