@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/13 18:36:03 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 10:51:59 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,5 +203,6 @@ int			game_size(t_all *all, char c);
 double 		max_distance(t_all *all);
 void 		update_strips(t_all *all);
 int 		same_double(double d1, double d2);
+void 		clean_2d_char_array(char **array);
 
 #endif // CUB3D_H

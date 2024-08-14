@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strip_to_image.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/13 18:36:38 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 10:51:07 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	color_maker(t_all *all, char type)
 		full_color = all->map->f;
 	else
 		full_color = all->map->c;
+	if(!full_color)
+		terminate(all, 1);
 	split = ft_split(full_color, ',');
 	if (!split)
 		terminate(all, 1);
