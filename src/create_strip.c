@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_strip.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/13 18:15:56 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 09:58:33 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,8 +194,8 @@ void fill_index_strip(t_all *all)
 	node = all->strip;
 	while (node)
 	{
-		if (node->index == 0)
-			printf("start of wall %c is %d\n", node->wall, node->x);
+		// if (node->index == 0)
+		// 	printf("start of wall %c is %d\n", node->wall, node->x);
 		node = node->next;
 	}
 }

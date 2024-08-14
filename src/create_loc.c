@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:07:14 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 09:52:12 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 10:02:28 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,11 @@ void	create_loc(t_all *all)
 			new = create_loc_node(*temp, x, y);
 			if(*temp == 'N' || *temp == 'S' || *temp == 'E' || *temp == 'W')
 				nbPlayer++;
+			if (*temp != 'N' && *temp != 'S' && *temp != 'E' && *temp != 'W' && *temp != '1' && *temp != '0')
+			{
+				ft_putendl_fd("Invalid character in map", 2);
+				terminate(all, 1);
+			}
 			if (!(all->map->start))
 					all->map->start = new;
 			else

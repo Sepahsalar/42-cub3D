@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/13 18:46:11 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 09:57:58 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -333,14 +333,15 @@ double calculate_distance(t_all *all, t_winner final, double ray_angle, double t
 	char		winner_material;
 	double		intersection_distance;
 	
+	(void)temp_angle;
 	winner = final.pos;
 	winner_material = final.texture;
 	if (winner_material == winner->ew_winner_texture)
 		intersection_distance = distance(all->x, all->y, winner->ew_winner_x, find_y(ray_angle, all->x, all->y, winner->ew_winner_x));
 	else
 		intersection_distance = distance(all->x, all->y, find_x(ray_angle, all->x, all->y, winner->sn_winner_y), winner->sn_winner_y);
-	if (same(temp_angle, 0) || same(temp_angle, 180))
-		printf("before sin -> for temp_angle: %f intersection_distance: %f\n", temp_angle, intersection_distance);
+	// if (same(temp_angle, 0) || same(temp_angle, 180))
+	// 	printf("before sin -> for temp_angle: %f intersection_distance: %f\n", temp_angle, intersection_distance);
 	// if (intersection_distance < 0.1)
 	// 	intersection_distance = 0.1;
 	if (intersection_distance < 0.5)
