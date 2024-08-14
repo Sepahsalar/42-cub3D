@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 18:47:46 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:04:35 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,5 +237,12 @@ double					max_y(double y_player, int y_game_size, double angle);
 t_winner				find_winner(t_all *all, double ray_angle);
 void					create_strips(t_all *all);
 t_all					*init_all(char **argv);
+int						find_min_x(t_all *all, int y);
+int						find_max_x(t_all *all, int y);
+int						find_min_y(t_all *all, int x);
+int						find_max_y(t_all *all, int x);
+void					compare_adjacent_walls(t_loc *temp1, t_loc *temp2);
+void					link_new_node(t_all *all, t_loc *new, t_loc *old);
+void					update_coordinate(t_coordinate *coordinate, char *temp);
 
 #endif // CUB3D_H

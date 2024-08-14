@@ -6,7 +6,7 @@
 #    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/14 18:34:10 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/14 19:04:16 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,11 +42,15 @@ LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
 # Source files
 SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/calculate_distance.c \
+		$(SRCDIR)/compare_adjacent_walls.c\
 		$(SRCDIR)/create_loc.c \
+		$(SRCDIR)/create_loc_utils.c \
 		$(SRCDIR)/create_possible.c \
 		$(SRCDIR)/fill_strips.c \
+		$(SRCDIR)/find_coordinate_ranges.c \
 		$(SRCDIR)/find_winner.c \
 		$(SRCDIR)/ft_math.c \
+		$(SRCDIR)/ignore_inside_surface.c \
 		$(SRCDIR)/init_all.c \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/map_parser.c  \
