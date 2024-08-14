@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:07:14 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 09:48:37 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 09:52:12 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,22 @@ void	create_loc(t_all *all)
 	int		x;
 	int		y;
 	int		index;
+	int		nbPlayer;
 
 	all->map->start = NULL;
 	temp = all->strmap;
 	x = 0;
 	y = 0;
 	index = 0;
+	nbPlayer = 0;
 	while (*temp)
 	{
 		if(*temp != '\n')
 		{
 			index++;
 			new = create_loc_node(*temp, x, y);
+			if(*temp == 'N' || *temp == 'S' || *temp == 'E' || *temp == 'W')
+				nbPlayer++;
 			if (!(all->map->start))
 					all->map->start = new;
 			else
@@ -106,6 +110,11 @@ void	create_loc(t_all *all)
 			x = 0;
 		}
 		temp++;
+	}
+	if (nbPlayer != 1)
+	{
+		ft_putendl_fd("There must be one player", 2);
+		terminate(all, 1);
 	}
 }
 
