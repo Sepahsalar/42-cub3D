@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   termiante.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/08 10:22:05 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 17:15:02 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+static void	free_map_contents(t_map *map)
+{
+	if (map->north)
+		free(map->north);
+	if (map->south)
+		free(map->south);
+	if (map->west)
+		free(map->west);
+	if (map->east)
+		free(map->east);
+	if (map->f)
+		free(map->f);
+	if (map->c)
+		free(map->c);
+	if (map->start)
+		clean_loc(map->start);
+	if (map)
+		free(map); //update this to free_map
+}
 
 void	terminate(t_all *all, int status)
 {
@@ -18,22 +38,8 @@ void	terminate(t_all *all, int status)
 		close(all->fd);
 	if (all->strip)
 		clean_strip(all);
-	if (all->map->north)
-		free(all->map->north);
-	if (all->map->south)
-		free(all->map->south);
-	if (all->map->west)
-		free(all->map->west);
-	if (all->map->east)
-		free(all->map->east);
-	if (all->map->f)
-		free(all->map->f);
-	if (all->map->c)
-		free(all->map->c);
-	if (all->map->start)
-		clean_loc(all->map->start);
 	if (all->map)
-		free(all->map); //update this to free_map
+		free_map_contents(all->map);
 	if (all->strmap)
 		free(all->strmap);
 	if (status)

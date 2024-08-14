@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 16:57:35 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 17:20:06 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,21 @@ void	update_map(t_all *all, char *found)
 	all->strmap = temp;
 }
 
+static int	custom_strdup_len(char *start)
+{
+	char	*end;
+	int		len;
+
+	end = start;
+	while (*end && *end != '\n')
+		end++;
+	len = end - start;
+	return (len);
+}
+
 char	*custom_strdup(t_all *all, char *found, char *str)
 {
 	char	*start;
-	char	*end;
 	int		len;
 	char	*dup;
 	char	*temp;
@@ -47,10 +58,7 @@ char	*custom_strdup(t_all *all, char *found, char *str)
 	start = found;
 	while (*start != ' ')
 		start++;
-	end = start;
-	while (*end && *end != '\n')
-		end++;
-	len = end - start;
+	len = custom_strdup_len(start);
 	dup = malloc(len + 1);
 	check_failure(0, dup, 2, all);
 	ft_memcpy(dup, start, len);
@@ -197,6 +205,7 @@ t_map	*map_parser(t_all *all)
 	map = malloc(sizeof(t_map));
 	if (!map)
 		return (0);
+	ft_memset(map, 0, sizeof(t_map));
 	all->map = map;
 	reader(all);
 	all->map->north = finder(all, "NO");
