@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 18:31:04 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:49:36 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	fill_index_strips(t_all *all)
 	while (node)
 	{
 		if (node->wall == wall && (((node->wall == 'E' || node->wall == 'W')
-					&& same(node->x_winner, x_winner))
+				&& same(node->x_winner, x_winner))
 				|| ((node->wall == 'N' || node->wall == 'S')
 					&& same(node->y_winner, y_winner))))
 			node->index = index;

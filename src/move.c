@@ -24,7 +24,7 @@ void	temp_movment45(double *new_x, double *new_y, char c)
 		(*new_x) -= 1;
 }
 
-void temp_movment135(double *new_x, double *new_y, char c)
+void	temp_movment135(double *new_x, double *new_y, char c)
 {
 	if (c == 'W')
 		(*new_x) -= 1;
