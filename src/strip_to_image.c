@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strip_to_image.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 16:47:22 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:58:51 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	color_maker(t_all *all, char type)
 	clean_2d_char_array(split);
 	return (int_color);
 }
+
 mlx_image_t	*choose_brick(t_all *all, char wall)
 {
 	if (wall == 'N')
@@ -106,15 +107,6 @@ mlx_image_t	*choose_brick(t_all *all, char wall)
 	else
 		return (all->east);
 }
-
-// int	dimension_resized_brick(t_strip *strip, char type)
-// {
-// 	if (type == 'h')
-// 		return (round(strip->wall_h / BRICKS_IN_H));
-// 	// return (round(strip->wall_h / (BRICKS_IN_H * WALL)));
-// 	else
-// 		return (round(strip->wall_length * BRICKS_IN_H / WALL));
-// }
 
 int	dimension_resized_brick(t_strip *strip, char type)
 {
@@ -131,32 +123,6 @@ int	get_pixel(mlx_image_t *image, int i, int j)
 	pixel = image->pixels + 4 * (i + j * image->width);
 	return (color(pixel[0], pixel[1], pixel[2], pixel[3]));
 }
-
-// int	get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
-// {
-// 	mlx_image_t	*brick;
-// 	int			x_in_resized_brick;
-// 	int			y_in_resized_brick;
-// 	int			y_in_wall;
-// 	int			x_in_brick;
-// 	int			y_in_brick;
-// 	int			h_resized_brick;
-// 	int			w_resized_brick;
-
-// 	brick = choose_brick(all, strip->wall);
-// 	h_resized_brick = dimension_resized_brick(strip, 'h');
-// 	w_resized_brick = dimension_resized_brick(strip, 'w');
-// 	if (h_resized_brick == 0)
-// 		h_resized_brick = 1;
-// 	if (w_resized_brick == 0)
-// 		w_resized_brick = 1;
-// 	y_in_wall = y_in_window - (int)round(strip->ceil_h);
-// 	x_in_resized_brick = strip->index % w_resized_brick;
-// 	y_in_resized_brick = y_in_wall % h_resized_brick;
-// 	x_in_brick = round(x_in_resized_brick * brick->width / w_resized_brick);
-// 	y_in_brick = round(y_in_resized_brick * brick->height / h_resized_brick);
-// 	return (get_pixel(brick, x_in_brick, y_in_brick));
-// }
 
 int	get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 {

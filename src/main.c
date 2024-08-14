@@ -3,16 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 16:35:28 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:59:37 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-// 3) norminette
+// 1) main ---------------------- needs 4 more functions
+// 2) create_loc ---------------- needs 9 more functions
+// 3) create_possible ----------- needs 2 more functions
+// 4) create_strip -------------- needs 2 more functions
+// 5) map_parser ---------------- needs 1 more function
+// 6) terminate  ---------------- needs 1 more function
 
 double	ft_tan(double a)
 {
@@ -271,8 +276,6 @@ t_winner	find_general_intersection(t_all *all, double ray_angle)
 	}
 	final.pos = winner;
 	final.texture = winner_material;
-	// final.x_winner = winner->loc->x;
-	// final.y_winner = winner->loc->y;
 	if (winner_material == winner->ew_winner_texture)
 		final.x_winner = winner->ew_winner_x;
 	else
@@ -330,8 +333,6 @@ t_winner	find_specific_intersection(t_all *all, double ray_angle, char flag)
 		final.y_winner = winner->ew_winner_y;
 	else
 		final.y_winner = winner->sn_winner_y;
-	// final.x_winner = winner->loc->x;
-	// final.y_winner = winner->loc->y;
 	return (final);
 }
 
@@ -412,8 +413,6 @@ double	find_lateral_distance(t_all *all, char flag)
 				final.pos->sn_winner_y);
 	if (intersection_distance < 0.5)
 		intersection_distance = 0.5;
-	// if (intersection_distance < 0.1)
-	// 	intersection_distance = 0.1;
 	return (intersection_distance);
 }
 

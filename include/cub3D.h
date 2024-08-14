@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 16:47:39 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:51:18 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@
 # define EPSILON 0.00001
 # define DISTANCE_FROM_WALL 1.5
 
-enum					e_general_constants
+enum	e_general_constants
 {
 	FULL_CIRCLE_DEGREES = 360,
 	TURN_INTERVAL = 10,
 };
 
-enum					e_dimensions
+enum	e_dimensions
 {
 	WINDOW_HEIGHT = 900,
 	WINDOW_WIDTH = 1600

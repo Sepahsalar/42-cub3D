@@ -3,43 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 12:15:17 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:57:35 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-
-// void	update_map(t_all *all, char *found)
-// {
-// 	char	*end_part1;
-// 	char	*start_part2;
-// 	char	*temp;
-// 	int		len1;
-// 	int		len2;
-
-// 	end_part1 = all->strmap;
-// 	temp = all->strmap;
-// 	while(temp < found)
-// 	{
-// 		if (*temp == '\n')
-// 			end_part1 = temp;
-// 		temp++;
-// 	}
-// 	while (*found != '\n')
-// 		found++;
-// 	start_part2 = found + 1;
-// 	len1 = end_part1 - all->strmap;
-// 	len2 = ft_strlen(start_part2);
-// 	temp = malloc(len1 + len2 + 1);
-// 	check_failure(0, temp, 2, all);
-// 	ft_memcpy(temp, all->strmap, len1);
-// 	ft_memcpy(temp + len1, start_part2, len2 + 1);
-// 	free(all->strmap);
-// 	all->strmap = temp;
-// }
 
 void	update_map(t_all *all, char *found)
 {
@@ -64,37 +35,6 @@ void	update_map(t_all *all, char *found)
 	free(all->strmap);
 	all->strmap = temp;
 }
-
-// char	*custom_strdup(t_all *all, char *found, char *str)
-// {
-// 	char	*start;
-// 	char	*end;
-// 	int		len;
-// 	char	*dup;
-
-// 	start = found;
-// 	while (*start != ' ')
-// 		start++;
-// 	while (*start == ' ')
-// 		start++;
-// 	end = start;
-// 	while (end && *end != ' ' && *end != '\n')
-// 		end++;
-// 	len = end - start;
-// 	if (len == 0)
-// 	{
-// 		ft_putstr_fd("There is no information for ", 2);
-// 		ft_putstr_fd(str, 2);
-// 		ft_putendl_fd(" identifier in the map", 2);
-// 		terminate(all, 1);
-// 	}
-// 	dup = malloc(len + 1);
-// 	check_failure(0, dup, 2, all);
-// 	ft_memcpy(dup, start, len);
-// 	dup[len] = '\0';
-// 	update_map(all, found);
-// 	return (dup);
-// }
 
 char	*custom_strdup(t_all *all, char *found, char *str)
 {

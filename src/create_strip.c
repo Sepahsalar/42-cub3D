@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_strip.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 16:47:22 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 16:56:36 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,93 +75,6 @@ void	init_strip(t_all *all, t_render data_render)
 	check_failure(0, new, 2, all);
 }
 
-// void fill_index_strip(t_all *all)
-// {
-// 	t_strip *node;
-// 	int		index;
-// 	char	wall;
-// 	double	slope_1;
-// 	double	slope_2;
-// 	t_strip *temp_a;
-// 	t_strip *temp_b;
-// 	t_strip *temp_c;
-// 	int j = 0;
-
-// 	index = 0;
-// 	temp_a = NULL;
-// 	temp_b = NULL;
-// 	temp_c = NULL;
-// 	node = all->strip;
-// 	wall = node->wall;
-// 	slope_1 = 0;
-// 	slope_2 = 0;
-// 	while (node)
-// 	{
-// 		printf("for node : %d ,the index is %d\n", j , index);
-// 		printf("slope_1 : %f , slope_2 : %f\n", slope_1, slope_2);
-// 		if (temp_a && temp_b && temp_c)
-// 		{
-// 			slope_1 = temp_b->wall_h - temp_a->wall_h;
-// 			slope_2 = temp_c->wall_h - temp_b->wall_h;
-// 		}
-// 		if (node->wall == wall && (fabs(slope_1 - slope_2) < 100000))
-// 			node->index = index;
-// 		else
-// 		{
-// 			wall = node->wall;
-// 			index = 0;
-// 			temp_a = NULL;
-// 			temp_b = NULL;
-// 			temp_c = NULL;
-// 			slope_1 = 0;
-// 			slope_2 = 0;
-// 			node->index = index;
-// 		}
-// 		index++;
-// 		j++;
-// 		temp_a = node;
-// 		if (temp_a)
-// 			temp_b = temp_a->next;
-// 		else
-// 		{
-// 			slope_1 = 0;
-// 			slope_2 = 0;
-// 		}
-// 		if (temp_b)
-// 			temp_c = temp_b->next;
-// 		else
-// 		{
-// 			slope_1 = 0;
-// 			slope_2 = 0;
-// 		}
-// 		node = node->next;
-// 	}
-// }
-
-// void fill_index_strip(t_all *all)
-// {
-// 	t_strip *node;
-// 	int		index;
-// 	char	wall;
-
-// 	index = 0;
-// 	node = all->strip;
-// 	wall = node->wall;
-// 	while (node)
-// 	{
-// 		if (node->wall == wall)
-// 			node->index = index;
-// 		else
-// 		{
-// 			wall = node->wall;
-// 			index = 0;
-// 			node->index = index;
-// 		}
-// 		index++;
-// 		node = node->next;
-// 	}
-// }
-
 void	fill_index_strip(t_all *all)
 {
 	t_strip	*node;
@@ -195,11 +108,7 @@ void	fill_index_strip(t_all *all)
 	}
 	node = all->strip;
 	while (node)
-	{
-		// if (node->index == 0)
-		// 	printf("start of wall %c is %d\n", node->wall, node->x);
 		node = node->next;
-	}
 }
 
 t_strip	*last_wall_node(t_strip *node)
@@ -255,47 +164,7 @@ void	update_strips(t_all *all)
 		}
 		node = node->next;
 	}
-	// node = all->strip;
-	// while (node)
-	// {
-	// 	last = last_wall_node(node);
-	// 	first = first_wall_node(node);
-	// 	node->ceil_h = WINDOW_HEIGHT - node->wall_h - node->floor_h;
-	// 	node = node->next;
-	// }
-	// node = all->strip;
-	// while (node)
-	// {
-	// 	last = last_wall_node(node);
-	// 	first = first_wall_node(node);
-	// 	node->ceil_h = first->ceil_h + (last->ceil_h - first->ceil_h) * (index
-	// / last->index);
-	// 	node = node->next;
-	// }
-	// node = all->strip;
-	// while (node)
-	// {
-	// 	last = last_wall_node(node);
-	// 	first = first_wall_node(node);
-	// 	node->wall_h = WINDOW_HEIGHT - node->ceil_h - node->floor_h;
-	// 	node = node->next;
-	// }
 }
-
-// int find_max_index(t_strip *node)
-// {
-// 	char wall;
-// 	int max;
-
-// 	wall = node->wall;
-// 	max = 0;
-// 	while (node && node->wall == wall)
-// 	{
-// 		max = node->index;
-// 		node = node->next;
-// 	}
-// 	return (max + 1);
-// }
 
 int	find_max_index(t_strip *node)
 {
