@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:23:33 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 19:26:15 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:43:58 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,53 +96,57 @@ t_winner	find_general_intersection(t_all *all, double ray_angle)
 	return (final);
 }
 
-t_winner	find_specific_intersection(t_all *all, double ray_angle, char flag)
+t_winner	find_specific_intersection_vertical(t_all *all, char flag)
 {
 	t_possible	*temp_pos;
-	t_possible	*winner;
-	char		winner_material;
 	t_winner	final;
 
 	temp_pos = all->possible;
-	winner = NULL;
-	winner_material = '0';
-	if (same(ray_angle, 270.0) || same(ray_angle, 90.0))
+	final.pos = NULL;
+	final.texture = '0';
+	while (temp_pos)
 	{
-		while (temp_pos)
-		{
-			if (temp_pos->sn_winner_texture == flag
-				&& same(temp_pos->sn_winner_x, all->x))
-				if (!winner
-					|| (temp_pos->sn_winner_distance < winner->sn_winner_distance))
-					winner = temp_pos;
-			temp_pos = temp_pos->next;
-		}
-		winner_material = flag;
+		if (temp_pos->sn_winner_texture == flag
+			&& same(temp_pos->sn_winner_x, all->x))
+			if (!final.pos
+				|| (temp_pos->sn_winner_distance < final.pos->sn_winner_distance))
+				final.pos = temp_pos;
+		temp_pos = temp_pos->next;
 	}
-	else if (same(ray_angle, 0.0) || same(ray_angle, 180.0))
-	{
-		while (temp_pos)
-		{
-			if (temp_pos->ew_winner_texture == flag
-				&& same(temp_pos->ew_winner_y, all->y))
-				if (!winner
-					|| (temp_pos->ew_winner_distance < winner->ew_winner_distance))
-					winner = temp_pos;
-			temp_pos = temp_pos->next;
-		}
-		winner_material = flag;
-	}
-	final.pos = winner;
-	final.texture = winner_material;
-	if (winner_material == winner->ew_winner_texture)
-		final.x_winner = winner->ew_winner_x;
-	else
-		final.x_winner = winner->sn_winner_x;
-	if (winner_material == winner->ew_winner_texture)
-		final.y_winner = winner->ew_winner_y;
-	else
-		final.y_winner = winner->sn_winner_y;
+	final.texture = flag;
+	final = set_final_x_y_winner(final);
 	return (final);
+}
+
+t_winner	find_specific_intersection_horizental(t_all *all, char flag)
+{
+	t_possible	*temp_pos;
+	t_winner	final;
+
+	temp_pos = all->possible;
+	final.pos = NULL;
+	final.texture = '0';
+	while (temp_pos)
+	{
+		if (temp_pos->ew_winner_texture == flag
+			&& same(temp_pos->ew_winner_y, all->y))
+			if (!final.pos
+				|| (temp_pos->ew_winner_distance < final.pos->ew_winner_distance))
+				final.pos = temp_pos;
+		temp_pos = temp_pos->next;
+	}
+	final.texture = flag;
+	final = set_final_x_y_winner(final);
+	return (final);
+}
+
+
+t_winner	find_specific_intersection(t_all *all, double ray_angle, char flag)
+{
+	if (same(ray_angle, 270.0) || same(ray_angle, 90.0))
+		return (find_specific_intersection_vertical(all, flag));
+	else
+		return (find_specific_intersection_horizental(all, flag));
 }
 
 t_winner	find_intersection(t_all *all, double ray_angle)
