@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/11 11:04:43 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/14 09:19:29 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,21 @@
 // 	}
 // }
 
+int is_wall_there(t_all *all, int x, int y)
+{
+	t_loc	*temp;
+
+	temp = all->map->start;
+	while (temp)
+	{
+		if (temp->x == x && temp->y == y && temp->c == '1')
+			return (1);
+		temp = temp->next;
+	}
+	return (0);
+	
+}
+
 double under_full_circle(double angle)
 {
 	if (angle >= FULL_CIRCLE_DEGREES)
@@ -97,61 +112,127 @@ static void	turn(void *param, char c)
 	render(all);    
 }
 
+// static void	move(void *param, char c)
+// {
+// 	t_all	*all;
+
+// 	all = (t_all *)param;
+//     clean_strip(all);
+//     mlx_delete_image(all->window, all->image);
+// 	if (all->angle >= 225 && all->angle < 315)
+// 	{
+// 		if (c == 'A')
+// 		{
+// 			all->x -= 1;
+// 		}
+// 		else if (c == 'D')
+// 			all->x += 1;
+// 		else if (c == 'W')
+// 			all->y -= 1;
+// 		else
+// 			all->y += 1;
+// 	}
+// 	else if (all->angle >= 135 && all->angle < 225)
+// 	{
+// 		if (c == 'W')
+// 			all->x -= 1;
+// 		else if (c == 'S')
+// 			all->x += 1;
+// 		else if (c == 'A')
+// 			all->y += 1;
+// 		else
+// 			all->y -= 1;
+// 	}
+// 	else if (all->angle >= 45 && all->angle < 135)
+// 	{
+// 		if(c == 'W')
+// 			all->y += 1;
+// 		else if (c == 'S')
+// 			all->y -= 1;
+// 		else if (c == 'A')
+// 			all->x += 1;
+// 		else
+// 			all->x -= 1;
+// 	}
+// 	else
+// 	{
+// 		if (c == 'W')
+// 			all->x += 1;
+// 		else if (c == 'S')
+// 			all->x -= 1;
+// 		else if (c == 'A')
+// 			all->y -= 1;
+// 		else
+// 			all->y += 1;
+// 	}
+//     printf("New-> x: %f, y: %f\n", all->x, all->y);
+//     render(all);    
+// }
+
 static void	move(void *param, char c)
 {
 	t_all	*all;
+	double	new_x;
+	double	new_y;
 
 	all = (t_all *)param;
-    clean_strip(all);
-    mlx_delete_image(all->window, all->image);
+	new_x = all->x;
+	new_y = all->y;
 	if (all->angle >= 225 && all->angle < 315)
 	{
 		if (c == 'A')
-		{
-			all->x -= 1;
-		}
+			new_x -= 1;
 		else if (c == 'D')
-			all->x += 1;
+			new_x += 1;
 		else if (c == 'W')
-			all->y -= 1;
+			new_y -= 1;
 		else
-			all->y += 1;
+			new_y += 1;
 	}
 	else if (all->angle >= 135 && all->angle < 225)
 	{
 		if (c == 'W')
-			all->x -= 1;
+			new_x -= 1;
 		else if (c == 'S')
-			all->x += 1;
+			new_x += 1;
 		else if (c == 'A')
-			all->y += 1;
+			new_y += 1;
 		else
-			all->y -= 1;
+			new_y -= 1;
 	}
 	else if (all->angle >= 45 && all->angle < 135)
 	{
 		if(c == 'W')
-			all->y += 1;
+			new_y += 1;
 		else if (c == 'S')
-			all->y -= 1;
+			new_y -= 1;
 		else if (c == 'A')
-			all->x += 1;
+			new_x += 1;
 		else
-			all->x -= 1;
+			new_x -= 1;
 	}
 	else
 	{
 		if (c == 'W')
-			all->x += 1;
+			new_x += 1;
 		else if (c == 'S')
-			all->x -= 1;
+			new_x -= 1;
 		else if (c == 'A')
-			all->y -= 1;
+			new_y -= 1;
 		else
-			all->y += 1;
+			new_y += 1;
 	}
-    printf("New-> x: %f, y: %f\n", all->x, all->y);
-    render(all);    
+	new_x = (int)(new_x - 0.5);
+	new_y = (int)(new_y - 0.5);
+	if (!is_wall_there(all, new_x, new_y))
+	{
+		clean_strip(all);
+    	mlx_delete_image(all->window, all->image);
+		all->x = new_x + 0.5;
+		all->y = new_y + 0.5;
+    	printf("New-> x: %f, y: %f\n", all->x, all->y);
+		render(all); 
+	}       
 }
 
 // void	press_key(mlx_key_data_t keydata, void *param)
