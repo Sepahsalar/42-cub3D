@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 17:17:05 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 17:28:24 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,36 @@ int	color_maker(t_all *all, char type)
 				ft_atoi(split[2]), ft_atoi(split[3]));
 	clean_2d_char_array(split);
 	return (int_color);
+}
+
+int	get_pixel(mlx_image_t *image, int i, int j)
+{
+	uint8_t	*pixel;
+
+	pixel = image->pixels + 4 * (i + j * image->width);
+	return (color(pixel[0], pixel[1], pixel[2], pixel[3]));
+}
+
+mlx_image_t	*image_maker(t_all *all, char type)
+{
+	mlx_texture_t	*texture;
+	mlx_image_t		*picture;
+	char			*address;
+
+	if (type == 'E')
+		address = all->map->east;
+	else if (type == 'W')
+		address = all->map->west;
+	else if (type == 'S')
+		address = all->map->south;
+	else
+		address = all->map->north;
+	texture = mlx_load_png(address);
+	if (!texture)
+		terminate(all, 1);
+	picture = mlx_texture_to_image(all->window, texture);
+	mlx_delete_texture(texture);
+	if (!picture)
+		terminate(all, 1);
+	return (picture);
 }

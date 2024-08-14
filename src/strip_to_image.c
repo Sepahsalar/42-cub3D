@@ -6,37 +6,13 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 17:17:00 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 17:30:30 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-mlx_image_t	*image_maker(t_all *all, char type)
-{
-	mlx_texture_t	*texture;
-	mlx_image_t		*picture;
-	char			*address;
-
-	if (type == 'E')
-		address = all->map->east;
-	else if (type == 'W')
-		address = all->map->west;
-	else if (type == 'S')
-		address = all->map->south;
-	else
-		address = all->map->north;
-	texture = mlx_load_png(address);
-	if (!texture)
-		terminate(all, 1);
-	picture = mlx_texture_to_image(all->window, texture);
-	mlx_delete_texture(texture);
-	if (!picture)
-		terminate(all, 1);
-	return (picture);
-}
-
-mlx_image_t	*choose_brick(t_all *all, char wall)
+static mlx_image_t	*choose_brick(t_all *all, char wall)
 {
 	if (wall == 'N')
 		return (all->north);
@@ -48,7 +24,7 @@ mlx_image_t	*choose_brick(t_all *all, char wall)
 		return (all->east);
 }
 
-int	dimension_resized_brick(t_strip *strip, char type)
+static int	dimension_resized_brick(t_strip *strip, char type)
 {
 	if (type == 'h')
 		return (round(strip->wall_h));
@@ -56,15 +32,7 @@ int	dimension_resized_brick(t_strip *strip, char type)
 		return (round(strip->wall_length / (2 * strip->nb_blocks)));
 }
 
-int	get_pixel(mlx_image_t *image, int i, int j)
-{
-	uint8_t	*pixel;
-
-	pixel = image->pixels + 4 * (i + j * image->width);
-	return (color(pixel[0], pixel[1], pixel[2], pixel[3]));
-}
-
-int	get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
+static int	get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 {
 	mlx_image_t	*brick;
 	int			x_in_resized_brick;
@@ -90,7 +58,7 @@ int	get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 	return (get_pixel(brick, x_in_brick, y_in_brick));
 }
 
-void	put_pixels_of_strip(t_all *all, t_strip *strip)
+static void	put_pixels_of_strip(t_all *all, t_strip *strip)
 {
 	int	int_color;
 	int	j;
