@@ -6,7 +6,7 @@
 #    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/14 19:04:16 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/14 19:28:14 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,10 +47,14 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/create_loc_utils.c \
 		$(SRCDIR)/create_possible.c \
 		$(SRCDIR)/fill_strips.c \
+		$(SRCDIR)/fill_strips_utils.c \
+		$(SRCDIR)/fill_strips_utils2.c \
+		$(SRCDIR)/fill_strips_utils3.c \
 		$(SRCDIR)/find_coordinate_ranges.c \
 		$(SRCDIR)/find_winner.c \
 		$(SRCDIR)/ft_math.c \
 		$(SRCDIR)/ignore_inside_surface.c \
+		$(SRCDIR)/ignore_inside_surface_utils.c \
 		$(SRCDIR)/init_all.c \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/map_parser.c  \

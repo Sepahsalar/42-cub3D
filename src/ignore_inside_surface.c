@@ -6,13 +6,13 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:54:47 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 18:55:48 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:30:33 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	compare_against_all_nodes(t_all *all, t_loc *temp1)
+static void	compare_against_all_nodes(t_all *all, t_loc *temp1)
 {
 	t_loc	*temp2;
 
@@ -28,37 +28,9 @@ void	compare_against_all_nodes(t_all *all, t_loc *temp1)
 	}
 }
 
-void	ignore_upper_wall(t_all *all, t_loc *temp1)
+static void	ignore_outer_walls_up_down(t_all *all)
 {
-	if (temp1->c == '1')
-	{
-		temp1->nx = -1;
-		temp1->ny = -1;
-	}
-	else
-	{
-		ft_putendl_fd("Not surrounded by walls", 2);
-		terminate(all, 1);
-	}
-}
-
-void	ignore_lower_wall(t_all *all, t_loc *temp1)
-{
-	if (temp1->c == '1')
-	{
-		temp1->sx = -1;
-		temp1->sy = -1;
-	}
-	else
-	{
-		ft_putendl_fd("Not surrounded by walls", 2);
-		terminate(all, 1);
-	}
-}
-
-void	ignore_outer_walls_up_down(t_all *all)
-{
-	t_loc	*temp1;
+	t_loc	*temp;
 	int		i;
 	int		min;
 	int		max;
@@ -68,50 +40,22 @@ void	ignore_outer_walls_up_down(t_all *all)
 	{
 		min = find_min_y(all, i);
 		max = find_max_y(all, i);
-		temp1 = all->map->start;
-		while (temp1)
+		temp = all->map->start;
+		while (temp)
 		{
-			if (temp1->x == i && temp1->y == min)
-				ignore_upper_wall(all, temp1);
-			else if (temp1->x == i && temp1->y == max)
-				ignore_lower_wall(all, temp1);
-			temp1 = temp1->next;
+			if (temp->x == i && temp->y == min)
+				ignore_upper_wall(all, temp);
+			else if (temp->x == i && temp->y == max)
+				ignore_lower_wall(all, temp);
+			temp = temp->next;
 		}
 		i++;
 	}
 }
 
-void	ignore_left_wall(t_all *all, t_loc *temp1)
+static void	ignore_outer_walls_left_right(t_all *all)
 {
-	if (temp1->c == '1')
-	{
-		temp1->wx = -1;
-		temp1->wy = -1;
-	}
-	else
-	{
-		ft_putendl_fd("Not surrounded by walls", 2);
-		terminate(all, 1);
-	}
-}
-
-void	ignore_right_wall(t_all *all, t_loc *temp1)
-{
-	if (temp1->c == '1')
-	{
-		temp1->ex = -1;
-		temp1->ey = -1;
-	}
-	else
-	{
-		ft_putendl_fd("Not surrounded by walls", 2);
-		terminate(all, 1);
-	}
-}
-
-void	ignore_outer_walls_left_right(t_all *all)
-{
-	t_loc	*temp1;
+	t_loc	*temp;
 	int		i;
 	int		min;
 	int		max;
@@ -121,14 +65,14 @@ void	ignore_outer_walls_left_right(t_all *all)
 	{
 		min = find_min_x(all, i);
 		max = find_max_x(all, i);
-		temp1 = all->map->start;
-		while (temp1)
+		temp = all->map->start;
+		while (temp)
 		{
-			if (temp1->y == i && temp1->x == min)
-				ignore_left_wall(all, temp1);
-			else if (temp1->y == i && temp1->x == max)
-				ignore_right_wall(all, temp1);
-			temp1 = temp1->next;
+			if (temp->y == i && temp->x == min)
+				ignore_left_wall(all, temp);
+			else if (temp->y == i && temp->x == max)
+				ignore_right_wall(all, temp);
+			temp = temp->next;
 		}
 		i++;
 	}

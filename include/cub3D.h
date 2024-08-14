@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 19:04:35 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:32:34 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,7 +235,6 @@ double					max_x(double x_player, int x_game_size, double angle);
 double					min_y(double y_player, double angle);
 double					max_y(double y_player, int y_game_size, double angle);
 t_winner				find_winner(t_all *all, double ray_angle);
-void					create_strips(t_all *all);
 t_all					*init_all(char **argv);
 int						find_min_x(t_all *all, int y);
 int						find_max_x(t_all *all, int y);
@@ -244,5 +243,13 @@ int						find_max_y(t_all *all, int x);
 void					compare_adjacent_walls(t_loc *temp1, t_loc *temp2);
 void					link_new_node(t_all *all, t_loc *new, t_loc *old);
 void					update_coordinate(t_coordinate *coordinate, char *temp);
+t_strip					*last_node_strips(t_strip *node);
+t_strip					*last_wall_node(t_strip *node);
+t_strip					*first_wall_node(t_strip *node);
+t_strip					*create_strips_node(t_render data_render);
+void					ignore_upper_wall(t_all *all, t_loc *loc);
+void					ignore_lower_wall(t_all *all, t_loc *loc);
+void					ignore_left_wall(t_all *all, t_loc *loc);
+void					ignore_right_wall(t_all *all, t_loc *loc);
 
 #endif // CUB3D_H
