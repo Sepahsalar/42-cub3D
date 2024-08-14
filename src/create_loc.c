@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_loc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:07:14 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 18:40:11 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:48:02 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_loc	*clean_loc(t_loc *first)
 	return (0);
 }
 
-void init_surface(t_loc *new)
+void	init_surface(t_loc *new)
 {
 	if (new->c != '1')
 	{
@@ -51,7 +51,6 @@ void init_surface(t_loc *new)
 		new->nx = new->x + 0.5;
 		new->ny = new->y;
 	}
-	
 }
 
 t_loc	*create_loc_node(char temp, int x, int y)
@@ -75,7 +74,7 @@ t_loc	*create_loc_node(char temp, int x, int y)
 	return (new);
 }
 
-void check_nb_player(t_all *all, int nb_player)
+void	check_nb_player(t_all *all, int nb_player)
 {
 	if (nb_player != 1)
 	{
@@ -84,23 +83,16 @@ void check_nb_player(t_all *all, int nb_player)
 	}
 }
 
-typedef struct s_coordinate
+void	check_map_character(t_all *all, char c)
 {
-	int		x;
-	int		y;
-}			t_coordinate;
-
-void check_map_character(t_all *all, char c)
-{
-	if (c != 'N' && c != 'S' && c != 'E' && c != 'W'
-				&& c != '1' && c != '0')
+	if (c != 'N' && c != 'S' && c != 'E' && c != 'W' && c != '1' && c != '0')
 	{
 		ft_putendl_fd("Invalid character in map", 2);
 		terminate(all, 1);
 	}
 }
 
-void link_new_node(t_all *all, t_loc *new, t_loc *old)
+void	link_new_node(t_all *all, t_loc *new, t_loc *old)
 {
 	if (!(all->map->start))
 		all->map->start = new;
@@ -112,14 +104,14 @@ void link_new_node(t_all *all, t_loc *new, t_loc *old)
 	check_failure(0, new, 2, all);
 }
 
-void check_character_increase_player(t_all *all, char c, int *nb_player)
+void	check_character_increase_player(t_all *all, char c, int *nb_player)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 		(*nb_player)++;
 	check_map_character(all, c);
 }
 
-void update_coordinate(t_coordinate *coordinate, char *temp)
+void	update_coordinate(t_coordinate *coordinate, char *temp)
 {
 	if (*temp != '\n')
 	{
@@ -131,9 +123,6 @@ void update_coordinate(t_coordinate *coordinate, char *temp)
 		coordinate->x = 0;
 	}
 }
-
-
-
 
 void	create_loc(t_all *all)
 {
@@ -226,7 +215,7 @@ int	find_max_y(t_all *all, int x)
 	return (max);
 }
 
-void south_to_north(t_loc *temp1, t_loc *temp2)
+void	south_to_north(t_loc *temp1, t_loc *temp2)
 {
 	temp1->sx = -1;
 	temp1->sy = -1;
@@ -234,7 +223,7 @@ void south_to_north(t_loc *temp1, t_loc *temp2)
 	temp2->ny = -1;
 }
 
-void north_to_south(t_loc *temp1, t_loc *temp2)
+void	north_to_south(t_loc *temp1, t_loc *temp2)
 {
 	temp1->nx = -1;
 	temp1->ny = -1;
@@ -242,7 +231,7 @@ void north_to_south(t_loc *temp1, t_loc *temp2)
 	temp2->sy = -1;
 }
 
-void east_to_west(t_loc *temp1, t_loc *temp2)
+void	east_to_west(t_loc *temp1, t_loc *temp2)
 {
 	temp1->ex = -1;
 	temp1->ey = -1;
@@ -250,7 +239,7 @@ void east_to_west(t_loc *temp1, t_loc *temp2)
 	temp2->wy = -1;
 }
 
-void west_to_east(t_loc *temp1, t_loc *temp2)
+void	west_to_east(t_loc *temp1, t_loc *temp2)
 {
 	temp1->wx = -1;
 	temp1->wy = -1;
@@ -258,7 +247,7 @@ void west_to_east(t_loc *temp1, t_loc *temp2)
 	temp2->ey = -1;
 }
 
-void compare_update_adjacent_walls(t_loc *temp1, t_loc *temp2)
+void	compare_update_adjacent_walls(t_loc *temp1, t_loc *temp2)
 {
 	if (temp2->c == '1')
 	{
@@ -271,10 +260,9 @@ void compare_update_adjacent_walls(t_loc *temp1, t_loc *temp2)
 		else if (temp1->wx == temp2->ex && temp1->wy == temp2->ey)
 			west_to_east(temp1, temp2);
 	}
-	
 }
 
-void compare_against_all_nodes(t_all *all, t_loc *temp1)
+void	compare_against_all_nodes(t_all *all, t_loc *temp1)
 {
 	t_loc	*temp2;
 
@@ -290,7 +278,7 @@ void compare_against_all_nodes(t_all *all, t_loc *temp1)
 	}
 }
 
-void ignore_upper_wall(t_all *all, t_loc *temp1)
+void	ignore_upper_wall(t_all *all, t_loc *temp1)
 {
 	if (temp1->c == '1')
 	{
@@ -304,7 +292,7 @@ void ignore_upper_wall(t_all *all, t_loc *temp1)
 	}
 }
 
-void ignore_lower_wall(t_all *all, t_loc *temp1)
+void	ignore_lower_wall(t_all *all, t_loc *temp1)
 {
 	if (temp1->c == '1')
 	{
@@ -318,7 +306,7 @@ void ignore_lower_wall(t_all *all, t_loc *temp1)
 	}
 }
 
-void ignore_outer_walls_up_down(t_all *all)
+void	ignore_outer_walls_up_down(t_all *all)
 {
 	t_loc	*temp1;
 	int		i;
@@ -343,7 +331,7 @@ void ignore_outer_walls_up_down(t_all *all)
 	}
 }
 
-void ignore_left_wall(t_all *all, t_loc *temp1)
+void	ignore_left_wall(t_all *all, t_loc *temp1)
 {
 	if (temp1->c == '1')
 	{
@@ -357,7 +345,7 @@ void ignore_left_wall(t_all *all, t_loc *temp1)
 	}
 }
 
-void ignore_right_wall(t_all *all, t_loc *temp1)
+void	ignore_right_wall(t_all *all, t_loc *temp1)
 {
 	if (temp1->c == '1')
 	{
@@ -371,7 +359,7 @@ void ignore_right_wall(t_all *all, t_loc *temp1)
 	}
 }
 
-void ignore_outer_walls_left_right(t_all *all)
+void	ignore_outer_walls_left_right(t_all *all)
 {
 	t_loc	*temp1;
 	int		i;
