@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 16:51:18 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:33:44 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,8 +155,6 @@ typedef struct s_all
 	double				x;
 	double				y;
 	double				angle;
-	double				left_distance;
-	double				right_distance;
 	int					distance_flag;
 	t_possible			*possible;
 	double				map_width;
@@ -183,15 +181,15 @@ void					reader(t_all *all);
 void					create_loc(t_all *all);
 t_loc					*create_loc_node(char temp, int x, int y);
 t_loc					*clean_loc(t_loc *first);
-void					init_strip(t_all *all, t_render data_render);
-void					fill_index_strip(t_all *all);
-void					fill_length_strip(t_all *all);
-void					clean_strip(t_all *all);
+void					init_strips(t_all *all, t_render data_render);
+void					fill_index_strips(t_all *all);
+void					fill_length_strips(t_all *all);
+void					clean_strips(t_all *all);
 mlx_image_t				*image_maker(t_all *all, char type);
 int						color_maker(t_all *all, char type);
 void					strip_to_image(t_all *all);
 void					press_key(mlx_key_data_t keydata, void *param);
-void					render(t_all *all);
+void					fill_strips(t_all *all);
 double					under_full_circle(double angle);
 t_possible				*clean_possibility(t_possible *first);
 void					create_possibility(t_all *all, t_range range);
@@ -200,7 +198,6 @@ void					ignore_inside_surface(t_all *all);
 int						game_size(t_all *all, char c);
 double					max_distance(t_all *all);
 void					update_strips(t_all *all);
-int						same_double(double d1, double d2);
 void					clean_2d_char_array(char **array);
 void					temp_movment225(double *new_x, double *new_y, char c);
 void					temp_movment135(double *new_x, double *new_y, char c);
@@ -210,5 +207,29 @@ void					conditional_move(t_all *all, double new_x,
 							double new_y);
 int						is_wall_there(t_all *all, int x, int y);
 void					fill_number_of_blocks(t_all *all);
+int						get_pixel(mlx_image_t *image, int i, int j);
+char					*custom_strdup(t_all *all, char *found, char *str);
+void					remove_white_space(t_all *all);
+void					check_valid_color(t_all *all, char type);
+double					ft_tan(double a);
+double					ft_cos(double a);
+double					ft_sin(double a);
+double					distance(double x1, double y1, double x2, double y2);
+int						same(double d1, double d2);
+double					height(double distance, char c);
+double					calculate_distance(t_all *all, t_winner final,
+							double ray_angle, double temp_angle);
+int						check_map_format(char *str);
+double					find_x(double angle, double x_player, double y_player,
+							double y_target);
+double					find_y(double angle, double x_player, double y_player,
+							double x_target);
+double					min_x(double x_player, double angle);
+double					max_x(double x_player, int x_game_size, double angle);
+double					min_y(double y_player, double angle);
+double					max_y(double y_player, int y_game_size, double angle);
+t_winner				find_winner(t_all *all, double ray_angle);
+void					create_strips(t_all *all);
+t_all					*init_all(char **argv);
 
 #endif // CUB3D_H

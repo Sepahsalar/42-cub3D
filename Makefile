@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/14 12:53:35 by nnourine         ###   ########.fr        #
+#    Updated: 2024/08/14 18:34:10 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,16 +40,24 @@ LMX_FLAGS = -L$(LIBMLX)/build -L$(LIB_BREW) -lmlx42 -ldl -pthread -lglfw -lm
 LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
 
 # Source files
-SRCS = 	$(SRCDIR)/create_loc.c \
+SRCS = 	$(SRCDIR)/acceptable_range.c \
+		$(SRCDIR)/calculate_distance.c \
+		$(SRCDIR)/create_loc.c \
 		$(SRCDIR)/create_possible.c \
-		$(SRCDIR)/create_strip.c \
+		$(SRCDIR)/fill_strips.c \
+		$(SRCDIR)/find_winner.c \
+		$(SRCDIR)/ft_math.c \
+		$(SRCDIR)/init_all.c \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/map_parser.c  \
+		$(SRCDIR)/map_parser_color.c \
 		$(SRCDIR)/map_parser_utils.c \
 		$(SRCDIR)/move.c \
 		$(SRCDIR)/press_key.c \
 		$(SRCDIR)/strip_to_image.c \
 		$(SRCDIR)/termiante.c \
+		$(SRCDIR)/utils.c \
+		$(SRCDIR)/utils2.c
 
 # Object files
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
