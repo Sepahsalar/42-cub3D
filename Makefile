@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
+#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/09 13:44:52 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/14 12:53:35 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRCS = 	$(SRCDIR)/create_loc.c \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/map_parser.c  \
 		$(SRCDIR)/map_parser_utils.c \
+		$(SRCDIR)/move.c \
 		$(SRCDIR)/press_key.c \
 		$(SRCDIR)/strip_to_image.c \
 		$(SRCDIR)/termiante.c \

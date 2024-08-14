@@ -269,7 +269,7 @@ void	update_strips(t_all *all)
 	// 	last = last_wall_node(node);
 	// 	first = first_wall_node(node);
 	// 	node->ceil_h = first->ceil_h + (last->ceil_h - first->ceil_h) * (index
-				// / last->index);
+	// / last->index);
 	// 	node = node->next;
 	// }
 	// node = all->strip;

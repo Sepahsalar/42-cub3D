@@ -185,7 +185,7 @@ void	only_digit(t_all *all, char **split, char type)
 				clean_2d_char_array(split);
 				ft_putchar_fd(type, 2);
 				ft_putendl_fd(" identifier contains characters which are not digits",
-						2);
+								2);
 				terminate(all, 1);
 			}
 			j++;
