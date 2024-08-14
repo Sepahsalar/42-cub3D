@@ -4,7 +4,7 @@ WE ./textures/wall-3.png
 EA ./textures/wall-5.png
 
 F 40,220,45
-C 40,220,5,12
+C 40,220,45,12l
 
 11111111
 10000001111

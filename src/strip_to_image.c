@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 10:51:07 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 11:14:33 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,10 @@ int	color_maker(t_all *all, char type)
 	split = ft_split(full_color, ',');
 	if (!split)
 		terminate(all, 1);
-	int_color = color(ft_atoi(split[0]), ft_atoi(split[1]), ft_atoi(split[2]), 255);
+	if (!split[3])
+		int_color = color(ft_atoi(split[0]), ft_atoi(split[1]), ft_atoi(split[2]), 255);
+	else
+		int_color = color(ft_atoi(split[0]), ft_atoi(split[1]), ft_atoi(split[2]), ft_atoi(split[3]));
 	clean_2d_char_array(split);
 	return (int_color);
 }
