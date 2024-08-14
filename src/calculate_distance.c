@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:12:44 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 18:15:56 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:09:30 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,20 @@ double	max_distance(t_all *all)
 	return (sqrt(pow(x, 2) + pow(y, 2)));
 }
 
-double	find_y(double angle, double x_player, double y_player, double x_target)
-{
-	double	y_target;
-
-	y_target = ((x_target - x_player) * ft_tan(angle)) + y_player;
-	return (y_target);
-}
-
 double	find_x(double angle, double x_player, double y_player, double y_target)
 {
 	double	x_target;
 
 	x_target = ((y_target - y_player) / ft_tan(angle)) + x_player;
 	return (x_target);
+}
+
+double	find_y(double angle, double x_player, double y_player, double x_target)
+{
+	double	y_target;
+
+	y_target = ((x_target - x_player) * ft_tan(angle)) + y_player;
+	return (y_target);
 }
 
 double	calculate_distance(t_all *all, t_winner final, double ray_angle,
