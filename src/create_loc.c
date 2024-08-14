@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:07:14 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 18:21:12 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 18:40:11 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,7 +290,35 @@ void compare_against_all_nodes(t_all *all, t_loc *temp1)
 	}
 }
 
-void ignore_outer_walls_left_right(t_all *all)
+void ignore_upper_wall(t_all *all, t_loc *temp1)
+{
+	if (temp1->c == '1')
+	{
+		temp1->nx = -1;
+		temp1->ny = -1;
+	}
+	else
+	{
+		ft_putendl_fd("Not surrounded by walls", 2);
+		terminate(all, 1);
+	}
+}
+
+void ignore_lower_wall(t_all *all, t_loc *temp1)
+{
+	if (temp1->c == '1')
+	{
+		temp1->sx = -1;
+		temp1->sy = -1;
+	}
+	else
+	{
+		ft_putendl_fd("Not surrounded by walls", 2);
+		terminate(all, 1);
+	}
+}
+
+void ignore_outer_walls_up_down(t_all *all)
 {
 	t_loc	*temp1;
 	int		i;
@@ -306,40 +334,44 @@ void ignore_outer_walls_left_right(t_all *all)
 		while (temp1)
 		{
 			if (temp1->x == i && temp1->y == min)
-			{
-				if (temp1->c == '1')
-				{
-					temp1->nx = -1;
-					temp1->ny = -1;
-				}
-				else
-				{
-					ft_putendl_fd("Not surrounded by walls", 2);
-					terminate(all, 1);
-				}
-			}
+				ignore_upper_wall(all, temp1);
 			else if (temp1->x == i && temp1->y == max)
-			{
-				if (temp1->c == '1')
-				{
-					temp1->sx = -1;
-					temp1->sy = -1;
-				}
-				else
-				{
-					ft_putendl_fd("Not surrounded by walls", 2);
-					terminate(all, 1);
-				}
-			}
+				ignore_lower_wall(all, temp1);
 			temp1 = temp1->next;
 		}
 		i++;
 	}
-	
-	
 }
 
-void ignore_outer_walls_up_down(t_all *all)
+void ignore_left_wall(t_all *all, t_loc *temp1)
+{
+	if (temp1->c == '1')
+	{
+		temp1->wx = -1;
+		temp1->wy = -1;
+	}
+	else
+	{
+		ft_putendl_fd("Not surrounded by walls", 2);
+		terminate(all, 1);
+	}
+}
+
+void ignore_right_wall(t_all *all, t_loc *temp1)
+{
+	if (temp1->c == '1')
+	{
+		temp1->ex = -1;
+		temp1->ey = -1;
+	}
+	else
+	{
+		ft_putendl_fd("Not surrounded by walls", 2);
+		terminate(all, 1);
+	}
+}
+
+void ignore_outer_walls_left_right(t_all *all)
 {
 	t_loc	*temp1;
 	int		i;
@@ -355,31 +387,9 @@ void ignore_outer_walls_up_down(t_all *all)
 		while (temp1)
 		{
 			if (temp1->y == i && temp1->x == min)
-			{
-				if (temp1->c == '1')
-				{
-					temp1->wx = -1;
-					temp1->wy = -1;
-				}
-				else
-				{
-					ft_putendl_fd("Not surrounded by walls", 2);
-					terminate(all, 1);
-				}
-			}
+				ignore_left_wall(all, temp1);
 			else if (temp1->y == i && temp1->x == max)
-			{
-				if (temp1->c == '1')
-				{
-					temp1->ex = -1;
-					temp1->ey = -1;
-				}
-				else
-				{
-					ft_putendl_fd("Not surrounded by walls", 2);
-					terminate(all, 1);
-				}
-			}
+				ignore_right_wall(all, temp1);
 			temp1 = temp1->next;
 		}
 		i++;
