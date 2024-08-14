@@ -3,65 +3,96 @@
 /*                                                        :::      ::::::::   */
 /*   find_winner.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:23:33 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 18:23:45 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 19:26:15 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
+int does_ray_angle_passes_ew_surface(t_all *all, double ray_angle, t_possible *temp_pos)
+{
+	return (temp_pos->ew_winner_texture != '0' && fabs(find_y(ray_angle, all->x,
+					all->y, temp_pos->ew_winner_x)
+				- temp_pos->ew_winner_y) <= 0.5);
+}
+
+int is_this_ew_surface_closer(t_possible *winner, t_possible *temp_pos, char winner_material)
+{
+	return (!winner || ((winner_material == winner->ew_winner_texture
+						&& temp_pos->ew_winner_distance < winner->ew_winner_distance)
+					|| (winner_material == winner->sn_winner_texture
+						&& temp_pos->ew_winner_distance < winner->sn_winner_distance)));
+}
+
+int does_ray_angle_passes_sn_surface(t_all *all, double ray_angle, t_possible *temp_pos)
+{
+	return (temp_pos->sn_winner_texture != '0' && fabs(find_x(ray_angle, all->x,
+					all->y, temp_pos->sn_winner_y)
+				- temp_pos->sn_winner_x) <= 0.5);
+}
+
+int is_this_sn_surface_closer(t_possible *winner, t_possible *temp_pos, char winner_material)
+{
+	return (!winner || ((winner_material == winner->ew_winner_texture
+						&& temp_pos->sn_winner_distance < winner->ew_winner_distance)
+					|| (winner_material == winner->sn_winner_texture
+						&& temp_pos->sn_winner_distance < winner->sn_winner_distance)));
+}
+
+t_winner	set_final_pos_and_texture(t_winner final, t_possible *temp_pos, char type)
+{
+	if (type == 'x')
+	{
+		final.pos = temp_pos;
+		final.texture = final.pos->ew_winner_texture;
+	}
+	else
+	{
+		final.pos = temp_pos;
+		final.texture = final.pos->sn_winner_texture;
+	}
+	return (final);
+}
+
+t_winner	set_final_x_y_winner(t_winner final)
+{
+	if (final.texture == final.pos->ew_winner_texture)
+		final.x_winner = final.pos->ew_winner_x;
+	else
+		final.x_winner = final.pos->sn_winner_x;
+	if (final.texture == final.pos->ew_winner_texture)
+		final.y_winner = final.pos->ew_winner_y;
+	else
+		final.y_winner = final.pos->sn_winner_y;
+	return (final);
+}
+
 t_winner	find_general_intersection(t_all *all, double ray_angle)
 {
 	t_possible	*temp_pos;
-	t_possible	*winner;
 	t_winner	final;
-	char		winner_material;
 
 	temp_pos = all->possible;
-	winner = NULL;
-	winner_material = '0';
+	final.pos = NULL;
+	final.texture = '0';
 	while (temp_pos)
 	{
-		if (temp_pos->ew_winner_texture != '0' && fabs(find_y(ray_angle, all->x,
-					all->y, temp_pos->ew_winner_x)
-				- temp_pos->ew_winner_y) <= 0.5)
+		if (does_ray_angle_passes_ew_surface(all, ray_angle, temp_pos))
 		{
-			if (!winner || ((winner_material == winner->ew_winner_texture
-						&& temp_pos->ew_winner_distance < winner->ew_winner_distance)
-					|| (winner_material == winner->sn_winner_texture
-						&& temp_pos->ew_winner_distance < winner->sn_winner_distance)))
-			{
-				winner = temp_pos;
-				winner_material = winner->ew_winner_texture;
-			}
+			if (is_this_ew_surface_closer(final.pos, temp_pos, final.texture))
+				final = set_final_pos_and_texture(final, temp_pos, 'x');
 		}
-		if (temp_pos->sn_winner_texture != '0' && fabs(find_x(ray_angle, all->x,
-					all->y, temp_pos->sn_winner_y)
-				- temp_pos->sn_winner_x) <= 0.5)
+		if (does_ray_angle_passes_sn_surface(all, ray_angle, temp_pos))
 		{
-			if (!winner || ((winner_material == winner->ew_winner_texture
-						&& temp_pos->sn_winner_distance < winner->ew_winner_distance)
-					|| (winner_material == winner->sn_winner_texture
-						&& temp_pos->sn_winner_distance < winner->sn_winner_distance)))
-			{
-				winner = temp_pos;
-				winner_material = winner->sn_winner_texture;
-			}
+			if (is_this_sn_surface_closer(final.pos, temp_pos, final.texture))
+				final = set_final_pos_and_texture(final, temp_pos, 'y');
 		}
 		temp_pos = temp_pos->next;
 	}
-	final.pos = winner;
-	final.texture = winner_material;
-	if (winner_material == winner->ew_winner_texture)
-		final.x_winner = winner->ew_winner_x;
-	else
-		final.x_winner = winner->sn_winner_x;
-	if (winner_material == winner->ew_winner_texture)
-		final.y_winner = winner->ew_winner_y;
-	else
-		final.y_winner = winner->sn_winner_y;
+	final = set_final_x_y_winner(final);
 	return (final);
 }
 
