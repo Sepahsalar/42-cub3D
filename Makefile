@@ -6,7 +6,7 @@
 #    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/14 17:19:33 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/14 17:45:38 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRCS = 	$(SRCDIR)/create_loc.c \
 		$(SRCDIR)/create_strip.c \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/map_parser.c  \
+		$(SRCDIR)/map_parser_color.c \
 		$(SRCDIR)/map_parser_utils.c \
 		$(SRCDIR)/move.c \
 		$(SRCDIR)/press_key.c \

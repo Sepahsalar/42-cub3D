@@ -6,74 +6,33 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 17:20:06 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 17:46:12 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	update_map(t_all *all, char *found)
+void	reader(t_all *all)
 {
-	char	*start_part1;
-	char	*end_part1;
-	char	*start_part2;
-	char	*temp;
-	int		len1;
-	int		len2;
-
-	start_part1 = all->strmap;
-	end_part1 = found;
-	start_part2 = found;
-	while (*start_part2 && *start_part2 != '\n')
-		start_part2++;
-	len1 = end_part1 - start_part1;
-	len2 = ft_strlen(start_part2);
-	temp = malloc(len1 + len2 + 1);
-	check_failure(0, temp, 2, all);
-	ft_memcpy(temp, all->strmap, len1);
-	ft_memcpy(temp + len1, start_part2, len2 + 1);
-	free(all->strmap);
-	all->strmap = temp;
-}
-
-static int	custom_strdup_len(char *start)
-{
-	char	*end;
-	int		len;
-
-	end = start;
-	while (*end && *end != '\n')
-		end++;
-	len = end - start;
-	return (len);
-}
-
-char	*custom_strdup(t_all *all, char *found, char *str)
-{
-	char	*start;
-	int		len;
-	char	*dup;
+	char	c[2];
+	int		byte;
 	char	*temp;
 
-	start = found;
-	while (*start != ' ')
-		start++;
-	len = custom_strdup_len(start);
-	dup = malloc(len + 1);
-	check_failure(0, dup, 2, all);
-	ft_memcpy(dup, start, len);
-	dup[len] = '\0';
-	update_map(all, found);
-	temp = ft_strtrim(dup, " ");
-	free(dup);
-	if (ft_strlen(temp) == 0)
+	c[1] = '\0';
+	all->strmap = NULL;
+	all->fd = open(all->argv, O_RDONLY);
+	check_failure(all->fd, NULL, 1, all);
+	byte = read(all->fd, c, 1);
+	check_failure(byte, NULL, 1, all);
+	while (byte)
 	{
-		ft_putstr_fd("There is no information for ", 2);
-		ft_putstr_fd(str, 2);
-		ft_putendl_fd(" identifier in the map", 2);
-		terminate(all, 1);
+		temp = all->strmap;
+		all->strmap = ft_strjoin(all->strmap, c);
+		free(temp);
+		check_failure(0, all->strmap, 2, all);
+		byte = read(all->fd, c, 1);
+		check_failure(byte, NULL, 1, all);
 	}
-	return (temp);
 }
 
 char	*finder(t_all *all, char *str)
@@ -88,114 +47,6 @@ char	*finder(t_all *all, char *str)
 	ft_putendl_fd(" identifier in the map", 2);
 	terminate(all, 1);
 	return (NULL);
-}
-
-void	remove_white_space(t_all *all)
-{
-	char	*start;
-	char	*temp;
-
-	start = all->strmap;
-	temp = all->strmap;
-	while (temp && *temp != '1')
-	{
-		if (*temp == '\n')
-			start = temp + 1;
-		temp++;
-	}
-	// free(all->strmap);
-	temp = ft_strdup(start);
-	check_failure(0, temp, 2, all);
-	free(all->strmap);
-	all->strmap = temp;
-}
-
-int	valid_number(int number)
-{
-	if (number < 0 || number > 255)
-		return (0);
-	return (1);
-}
-
-void	only_digit(t_all *all, char **split, char type)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (split[i])
-	{
-		j = 0;
-		while (split[i][j])
-		{
-			if (!ft_isdigit(split[i][j]) && split[i][j] != ' ')
-			{
-				clean_2d_char_array(split);
-				ft_putchar_fd(type, 2);
-				ft_putendl_fd(" identifier contains characters which are not digits",
-								2);
-				terminate(all, 1);
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-void	only_three_or_four_parts(t_all *all, char **split, char type)
-{
-	int	i;
-
-	i = 0;
-	while (split[i])
-		i++;
-	if (i != 3 && i != 4)
-	{
-		clean_2d_char_array(split);
-		ft_putstr_fd("Wrong number of color parts for ", 2);
-		ft_putchar_fd(type, 2);
-		ft_putendl_fd(" identifier in the map", 2);
-		terminate(all, 1);
-	}
-}
-
-void	valid_range(t_all *all, char **split, char type)
-{
-	int	i;
-
-	i = 0;
-	while (split[i])
-	{
-		if (ft_atoi(split[i]) < 0 || ft_atoi(split[i]) > 255)
-		{
-			clean_2d_char_array(split);
-			ft_putstr_fd("Invalid color range for ", 2);
-			ft_putchar_fd(type, 2);
-			ft_putendl_fd(" identifier in the map", 2);
-			terminate(all, 1);
-		}
-		i++;
-	}
-}
-
-void	check_valid_color(t_all *all, char type)
-{
-	char	*full_color;
-	char	**split;
-
-	if (type == 'F')
-		full_color = all->map->f;
-	else
-		full_color = all->map->c;
-	if (!full_color)
-		terminate(all, 1);
-	split = ft_split(full_color, ',');
-	if (!split)
-		terminate(all, 1);
-	only_three_or_four_parts(all, split, type);
-	only_digit(all, split, type);
-	valid_range(all, split, type);
-	clean_2d_char_array(split);
 }
 
 t_map	*map_parser(t_all *all)

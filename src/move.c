@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 12:51:06 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 16:38:01 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 17:38:01 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	temp_movment225(double *new_x, double *new_y, char c)
+void	temp_movment45(double *new_x, double *new_y, char c)
 {
-	if (c == 'A')
-		(*new_x) -= 1;
-	else if (c == 'D')
-		(*new_x) += 1;
-	else if (c == 'W')
-		(*new_y) -= 1;
-	else
+	if (c == 'W')
 		(*new_y) += 1;
+	else if (c == 'S')
+		(*new_y) -= 1;
+	else if (c == 'A')
+		(*new_x) += 1;
+	else
+		(*new_x) -= 1;
 }
 
 void temp_movment135(double *new_x, double *new_y, char c)
@@ -36,16 +36,16 @@ void temp_movment135(double *new_x, double *new_y, char c)
 		(*new_y) -= 1;
 }
 
-void	temp_movment45(double *new_x, double *new_y, char c)
+void	temp_movment225(double *new_x, double *new_y, char c)
 {
-	if (c == 'W')
-		(*new_y) += 1;
-	else if (c == 'S')
-		(*new_y) -= 1;
-	else if (c == 'A')
-		(*new_x) += 1;
-	else
+	if (c == 'A')
 		(*new_x) -= 1;
+	else if (c == 'D')
+		(*new_x) += 1;
+	else if (c == 'W')
+		(*new_y) -= 1;
+	else
+		(*new_y) += 1;
 }
 
 void	temp_movment315(double *new_x, double *new_y, char c)

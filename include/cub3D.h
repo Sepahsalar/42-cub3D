@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 17:28:56 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 17:43:36 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,5 +211,8 @@ void					conditional_move(t_all *all, double new_x,
 int						is_wall_there(t_all *all, int x, int y);
 void					fill_number_of_blocks(t_all *all);
 int						get_pixel(mlx_image_t *image, int i, int j);
+char					*custom_strdup(t_all *all, char *found, char *str);
+void					remove_white_space(t_all *all);
+void					check_valid_color(t_all *all, char type);
 
 #endif // CUB3D_H
