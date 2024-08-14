@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 12:49:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 13:46:14 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	press_key(mlx_key_data_t keydata, void *param)
 		&& keydata.action == MLX_PRESS)
 		move(param, 'W');
 	else if ((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
-			&& keydata.action == MLX_PRESS)
+		&& keydata.action == MLX_PRESS)
 		move(param, 'S');
 	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
 		move(param, 'A');

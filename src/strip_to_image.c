@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strip_to_image.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 11:14:33 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 13:51:41 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,10 +158,10 @@ void	put_pixels_of_strip(t_all *all, t_strip *strip)
 	j = 0;
 	while (j < WINDOW_HEIGHT)
 	{
-		if (j <= (int)round(strip->ceil_h))
+		if (j <= (int)floor(strip->ceil_h))
 			int_color = all->ceil_color;
-		else if (j > (int)round(strip->ceil_h)
-				&& j < ((int)(round(strip->ceil_h) + round(strip->wall_h))))
+		else if (j > (int)floor(strip->ceil_h)
+				&& j < ((int)(floor(strip->ceil_h) + floor(strip->wall_h))))
 			int_color = get_pixel_from_brick(all, strip, j);
 		else
 			int_color = all->floor_color;

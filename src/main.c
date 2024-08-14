@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 12:24:21 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/14 13:44:35 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -355,8 +355,8 @@ double	calculate_distance(t_all *all, t_winner final, double ray_angle,
 					all->x, all->y, winner->sn_winner_y), winner->sn_winner_y);
 	if (intersection_distance < 0.5)
 		intersection_distance = 0.5;
-	intersection_distance = intersection_distance * fabs(ft_cos(all->angle
-				- ray_angle)) + 0.5;
+	intersection_distance = intersection_distance
+		* fabs(ft_cos(all->angle - ray_angle)) + DISTANCE_FROM_WALL;
 	return (intersection_distance);
 }
 
@@ -431,7 +431,7 @@ t_render	create_render_data(t_winner final, double intersection_distance,
 	data_render.ceil_height = height(intersection_distance, 'C');
 	data_render.wall_height = WINDOW_HEIGHT - data_render.ceil_height
 		- data_render.floor_height;
-	data_render.x = (int)(temp_angle / WIDTH_INTERVAL);
+	data_render.x = (int)(temp_angle / (HAOV / WINDOW_WIDTH));
 	data_render.x_winner = final.x_winner;
 	data_render.y_winner = final.y_winner;
 	return (data_render);
@@ -462,11 +462,11 @@ void	create_strip(t_all *all)
 	all->distance_flag = 0;
 	all->left_distance = find_lateral_distance(all, 'L');
 	all->right_distance = find_lateral_distance(all, 'R');
-	while (counter <= NLOOP)
+	while (counter <= WINDOW_WIDTH)
 	{
 		create_strip_helper(all, temp_angle);
 		counter++;
-		temp_angle += WIDTH_INTERVAL;
+		temp_angle += (HAOV / WINDOW_WIDTH);
 	}
 }
 

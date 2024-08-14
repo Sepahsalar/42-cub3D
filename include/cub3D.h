@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 12:54:00 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 14:23:41 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,31 +15,28 @@
 
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "../lib/libft/libft.h"
-# include <errno.h> // For errno
-# include <fcntl.h> // For file control options
+# include <fcntl.h>
 # include <math.h>
-# include <stdio.h>  // For printf
-# include <stdlib.h> // For malloc, free, exit
-# include <string.h> // For strerror
-# include <unistd.h> // For open, close, read, write
 
-// # define START_IMAGE_SIZE 100
-// # define MIN_IMAGE_SIZE 10
-// # define MAX_MONITOR_USAGE 0.95
-
-# define FULL_CIRCLE_DEGREES 360
-# define VAOV 120.0
+# define VAOV 90.0
 # define HAOV 90.0
-# define WINDOW_HEIGHT 1200
-# define WINDOW_WIDTH 1800
-# define HEIGHT_INTERVAL (VAOV / WINDOW_HEIGHT)
-# define WIDTH_INTERVAL (HAOV / WINDOW_WIDTH)
-# define TURN_INTERVAL 15
-# define NLOOP WINDOW_WIDTH
-# define PERSON 2.0
+# define PERSON 1.8
 # define WALL 3.0
-# define BRICKS_IN_H 1
 # define EPSILON 0.00001
+# define DISTANCE_FROM_WALL 5.0
+
+enum e_general_constants
+{
+	FULL_CIRCLE_DEGREES = 360,
+	TURN_INTERVAL = 10,
+	BRICKS_IN_H = 1
+};
+
+enum e_dimensions
+{
+	WINDOW_HEIGHT = 900,
+	WINDOW_WIDTH = 1600
+};
 
 typedef struct s_loc
 {
