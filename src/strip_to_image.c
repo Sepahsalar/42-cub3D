@@ -12,11 +12,11 @@
 
 #include "../include/cub3D.h"
 
-mlx_image_t *image_maker(t_all *all, char type)
+mlx_image_t	*image_maker(t_all *all, char type)
 {
 	mlx_texture_t	*texture;
 	mlx_image_t		*picture;
-	char 			*address;
+	char			*address;
 
 	if (type == 'E')
 		address = all->map->east;
@@ -38,7 +38,8 @@ mlx_image_t *image_maker(t_all *all, char type)
 
 int	color(int r, int g, int b, int a)
 {
-	if (r >= 0 && g >= 0 && b >= 0 && a >= 0 && r <= 255 && g <= 255 && b <= 255 && a <= 255)
+	if (r >= 0 && g >= 0 && b >= 0 && a >= 0 && r <= 255 && g <= 255 && b <= 255
+		&& a <= 255)
 		return (r << 24 | g << 16 | b << 8 | a);
 	if (r < 0)
 		return (color(0, g, b, a));
@@ -57,9 +58,9 @@ int	color(int r, int g, int b, int a)
 	return (color(r, g, b, 255));
 }
 
-void clean_2d_char_array(char **array)
+void	clean_2d_char_array(char **array)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (array[i])
@@ -80,19 +81,21 @@ int	color_maker(t_all *all, char type)
 		full_color = all->map->f;
 	else
 		full_color = all->map->c;
-	if(!full_color)
+	if (!full_color)
 		terminate(all, 1);
 	split = ft_split(full_color, ',');
 	if (!split)
 		terminate(all, 1);
 	if (!split[3])
-		int_color = color(ft_atoi(split[0]), ft_atoi(split[1]), ft_atoi(split[2]), 255);
+		int_color = color(ft_atoi(split[0]), ft_atoi(split[1]),
+				ft_atoi(split[2]), 255);
 	else
-		int_color = color(ft_atoi(split[0]), ft_atoi(split[1]), ft_atoi(split[2]), ft_atoi(split[3]));
+		int_color = color(ft_atoi(split[0]), ft_atoi(split[1]),
+				ft_atoi(split[2]), ft_atoi(split[3]));
 	clean_2d_char_array(split);
 	return (int_color);
 }
-mlx_image_t *choose_brick(t_all *all, char wall)
+mlx_image_t	*choose_brick(t_all *all, char wall)
 {
 	if (wall == 'N')
 		return (all->north);
@@ -104,26 +107,26 @@ mlx_image_t *choose_brick(t_all *all, char wall)
 		return (all->east);
 }
 
-int dimension_resized_brick(t_strip *strip, char type)
+int	dimension_resized_brick(t_strip *strip, char type)
 {
 	if (type == 'h')
 		return (round(strip->wall_h / BRICKS_IN_H));
-		// return (round(strip->wall_h / (BRICKS_IN_H * WALL)));
+	// return (round(strip->wall_h / (BRICKS_IN_H * WALL)));
 	else
 		return (round(strip->wall_length * BRICKS_IN_H / WALL));
 }
 
-int get_pixel(mlx_image_t *image, int i, int j)
+int	get_pixel(mlx_image_t *image, int i, int j)
 {
-	uint8_t *pixel;
+	uint8_t	*pixel;
 
 	pixel = image->pixels + 4 * (i + j * image->width);
 	return (color(pixel[0], pixel[1], pixel[2], pixel[3]));
 }
 
-int get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
+int	get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 {
-	mlx_image_t *brick;
+	mlx_image_t	*brick;
 	int			x_in_resized_brick;
 	int			y_in_resized_brick;
 	int			y_in_wall;
@@ -147,17 +150,18 @@ int get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 	return (get_pixel(brick, x_in_brick, y_in_brick));
 }
 
-void put_pixels_of_strip(t_all *all, t_strip *strip)
+void	put_pixels_of_strip(t_all *all, t_strip *strip)
 {
-	int int_color;
-	int j;
-	
+	int	int_color;
+	int	j;
+
 	j = 0;
 	while (j < WINDOW_HEIGHT)
 	{
 		if (j <= (int)round(strip->ceil_h))
 			int_color = all->ceil_color;
-		else if (j > (int)round(strip->ceil_h) && j < ((int)(round(strip->ceil_h) + round(strip->wall_h))))
+		else if (j > (int)round(strip->ceil_h)
+				&& j < ((int)(round(strip->ceil_h) + round(strip->wall_h))))
 			int_color = get_pixel_from_brick(all, strip, j);
 		else
 			int_color = all->floor_color;
@@ -167,22 +171,18 @@ void put_pixels_of_strip(t_all *all, t_strip *strip)
 	}
 }
 
-
-void strip_to_image(t_all *all)
+void	strip_to_image(t_all *all)
 {
-    t_strip     *strip;
+	t_strip	*strip;
 
-    all->image = mlx_new_image(all->window, WINDOW_WIDTH, WINDOW_HEIGHT);
-    if (!all->image)
+	all->image = mlx_new_image(all->window, WINDOW_WIDTH, WINDOW_HEIGHT);
+	if (!all->image)
 		terminate(all, 1);
-    strip = all->strip;
-    while (strip)
-    {
+	strip = all->strip;
+	while (strip)
+	{
 		put_pixels_of_strip(all, strip);
-        strip = strip->next;
-    }
-    mlx_image_to_window(all->window, all->image, 0, 0);
+		strip = strip->next;
+	}
+	mlx_image_to_window(all->window, all->image, 0, 0);
 }
-
-
-

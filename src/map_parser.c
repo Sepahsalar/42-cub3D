@@ -53,7 +53,7 @@ void	update_map(t_all *all, char *found)
 	start_part1 = all->strmap;
 	end_part1 = found;
 	start_part2 = found;
-	while(*start_part2 && *start_part2 != '\n')
+	while (*start_part2 && *start_part2 != '\n')
 		start_part2++;
 	len1 = end_part1 - start_part1;
 	len2 = ft_strlen(start_part2);
@@ -93,7 +93,7 @@ void	update_map(t_all *all, char *found)
 // 	ft_memcpy(dup, start, len);
 // 	dup[len] = '\0';
 // 	update_map(all, found);
-// 	return (dup);    
+// 	return (dup);
 // }
 
 char	*custom_strdup(t_all *all, char *found, char *str)
@@ -110,7 +110,7 @@ char	*custom_strdup(t_all *all, char *found, char *str)
 	end = start;
 	while (*end && *end != '\n')
 		end++;
-	len = end - start;	
+	len = end - start;
 	dup = malloc(len + 1);
 	check_failure(0, dup, 2, all);
 	ft_memcpy(dup, start, len);
@@ -125,16 +125,16 @@ char	*custom_strdup(t_all *all, char *found, char *str)
 		ft_putendl_fd(" identifier in the map", 2);
 		terminate(all, 1);
 	}
-	return (temp);    
+	return (temp);
 }
 
 char	*finder(t_all *all, char *str)
 {
-    char *found;
-    
+	char	*found;
+
 	found = ft_strnstr(all->strmap, str, ft_strlen(all->strmap));
-    if (found)
-		return(custom_strdup(all, found, str));
+	if (found)
+		return (custom_strdup(all, found, str));
 	ft_putstr_fd("There is no ", 2);
 	ft_putstr_fd(str, 2);
 	ft_putendl_fd(" identifier in the map", 2);
@@ -144,9 +144,9 @@ char	*finder(t_all *all, char *str)
 
 void	remove_white_space(t_all *all)
 {
-	char *start;
-	char *temp;
-	
+	char	*start;
+	char	*temp;
+
 	start = all->strmap;
 	temp = all->strmap;
 	while (temp && *temp != '1')
@@ -162,44 +162,44 @@ void	remove_white_space(t_all *all)
 	all->strmap = temp;
 }
 
-int valid_number(int number)
+int	valid_number(int number)
 {
 	if (number < 0 || number > 255)
 		return (0);
 	return (1);
 }
 
-void only_digit(t_all *all, char **split, char type)
+void	only_digit(t_all *all, char **split, char type)
 {
-	int i;
-	int j;
-	
+	int	i;
+	int	j;
+
 	i = 0;
-	while(split[i])
+	while (split[i])
 	{
 		j = 0;
-		while(split[i][j])
+		while (split[i][j])
 		{
 			if (!ft_isdigit(split[i][j]) && split[i][j] != ' ')
 			{
 				clean_2d_char_array(split);
 				ft_putchar_fd(type, 2);
-				ft_putendl_fd(" identifier contains characters which are not digits", 2);
+				ft_putendl_fd(" identifier contains characters which are not digits",
+						2);
 				terminate(all, 1);
 			}
 			j++;
 		}
 		i++;
 	}
-	
 }
 
-void only_three_or_four_parts(t_all *all, char **split, char type)
+void	only_three_or_four_parts(t_all *all, char **split, char type)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while(split[i])
+	while (split[i])
 		i++;
 	if (i != 3 && i != 4)
 	{
@@ -211,12 +211,12 @@ void only_three_or_four_parts(t_all *all, char **split, char type)
 	}
 }
 
-void valid_range(t_all *all, char **split, char type)
+void	valid_range(t_all *all, char **split, char type)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
-	while(split[i])
+	while (split[i])
 	{
 		if (ft_atoi(split[i]) < 0 || ft_atoi(split[i]) > 255)
 		{
@@ -239,7 +239,7 @@ void	check_valid_color(t_all *all, char type)
 		full_color = all->map->f;
 	else
 		full_color = all->map->c;
-	if(!full_color)
+	if (!full_color)
 		terminate(all, 1);
 	split = ft_split(full_color, ',');
 	if (!split)
@@ -252,10 +252,10 @@ void	check_valid_color(t_all *all, char type)
 
 t_map	*map_parser(t_all *all)
 {
-    t_map   *map;
+	t_map	*map;
 
-    map = malloc(sizeof(t_map));
-    if (!map)
+	map = malloc(sizeof(t_map));
+	if (!map)
 		return (0);
 	all->map = map;
 	reader(all);
@@ -272,5 +272,5 @@ t_map	*map_parser(t_all *all)
 	all->map_width = game_size(all, 'x');
 	all->map_height = game_size(all, 'y');
 	ignore_inside_surface(all);
-	return (map); 
+	return (map);
 }

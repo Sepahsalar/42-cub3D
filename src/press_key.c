@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   press_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 09:19:29 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:24:44 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-// static int	check_wall(mlx_image_t *player, mlx_image_t *wall, int i, char c)
+// static int	check_wall(mlx_image_t *player, mlx_image_t *wall, int i,
+			// char c)
 // {
 // 	int	p_x;
 // 	int	p_y;
@@ -72,7 +73,7 @@
 // 	}
 // }
 
-int is_wall_there(t_all *all, int x, int y)
+int	is_wall_there(t_all *all, int x, int y)
 {
 	t_loc	*temp;
 
@@ -84,10 +85,9 @@ int is_wall_there(t_all *all, int x, int y)
 		temp = temp->next;
 	}
 	return (0);
-	
 }
 
-double under_full_circle(double angle)
+double	under_full_circle(double angle)
 {
 	if (angle >= FULL_CIRCLE_DEGREES)
 		return (angle -= FULL_CIRCLE_DEGREES);
@@ -109,7 +109,7 @@ static void	turn(void *param, char c)
 		all->angle -= TURN_INTERVAL;
 	all->angle = under_full_circle(all->angle);
 	printf("New-> angle: %f\n", all->angle);
-	render(all);    
+	render(all);
 }
 
 // static void	move(void *param, char c)
@@ -166,7 +166,7 @@ static void	turn(void *param, char c)
 // 			all->y += 1;
 // 	}
 //     printf("New-> x: %f, y: %f\n", all->x, all->y);
-//     render(all);    
+//     render(all);
 // }
 
 static void	move(void *param, char c)
@@ -202,7 +202,7 @@ static void	move(void *param, char c)
 	}
 	else if (all->angle >= 45 && all->angle < 135)
 	{
-		if(c == 'W')
+		if (c == 'W')
 			new_y += 1;
 		else if (c == 'S')
 			new_y -= 1;
@@ -227,12 +227,12 @@ static void	move(void *param, char c)
 	if (!is_wall_there(all, new_x, new_y))
 	{
 		clean_strip(all);
-    	mlx_delete_image(all->window, all->image);
+		mlx_delete_image(all->window, all->image);
 		all->x = new_x + 0.5;
 		all->y = new_y + 0.5;
-    	printf("New-> x: %f, y: %f\n", all->x, all->y);
-		render(all); 
-	}       
+		printf("New-> x: %f, y: %f\n", all->x, all->y);
+		render(all);
+	}
 }
 
 // void	press_key(mlx_key_data_t keydata, void *param)
@@ -255,14 +255,13 @@ static void	move(void *param, char c)
 
 void	press_key(mlx_key_data_t keydata, void *param)
 {
-// 	t_all	*all;
-// // 
-// 	all = (t_all *)param;
+	// 	t_all	*all;
+	// //
+	// 	all = (t_all *)param;
 	// if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
 	// {
 	// 	all->y -= 1;
 	// 	printf("New-> x: %f, y: %f\n", all->x, all->y);
-		
 	// }
 	// else if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
 	// 		move(param, 'W');
@@ -270,14 +269,14 @@ void	press_key(mlx_key_data_t keydata, void *param)
 		move(param, 'W');
 	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
 		move(param, 'S');
-    else if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
-        move(param, 'A');
-    else if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
-        move(param, 'D');
+	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
+		move(param, 'A');
+	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
+		move(param, 'D');
 	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
 		turn(param, 'L');
 	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
 		turn(param, 'R');
 	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-        terminate(param, 0);
+		terminate(param, 0);
 }

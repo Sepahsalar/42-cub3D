@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   create_strip.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 09:58:33 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/14 12:23:13 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-t_strip *last_node_strip(t_strip *node)
+t_strip	*last_node_strip(t_strip *node)
 {
 	if (!node)
 		return (0);
@@ -21,9 +21,9 @@ t_strip *last_node_strip(t_strip *node)
 	return (node);
 }
 
-t_strip *create_strip_node(t_render data_render)
+t_strip	*create_strip_node(t_render data_render)
 {
-	t_strip *new;
+	t_strip	*new;
 
 	new = (t_strip *)malloc(sizeof(t_strip));
 	if (!new)
@@ -43,10 +43,10 @@ t_strip *create_strip_node(t_render data_render)
 	return (new);
 }
 
-void clean_strip(t_all *all)
+void	clean_strip(t_all *all)
 {
-	t_strip *node;
-	t_strip *temp;
+	t_strip	*node;
+	t_strip	*temp;
 
 	node = all->strip;
 	while (node)
@@ -66,7 +66,7 @@ void	init_strip(t_all *all, t_render data_render)
 	old = last_node_strip(all->strip);
 	new = create_strip_node(data_render);
 	if (!old)
-			all->strip = new;
+		all->strip = new;
 	else
 	{
 		old->next = new;
@@ -162,9 +162,9 @@ void	init_strip(t_all *all, t_render data_render)
 // 	}
 // }
 
-void fill_index_strip(t_all *all)
+void	fill_index_strip(t_all *all)
 {
-	t_strip *node;
+	t_strip	*node;
 	int		index;
 	char	wall;
 	int		x_winner;
@@ -177,8 +177,10 @@ void fill_index_strip(t_all *all)
 	y_winner = node->y_winner;
 	while (node)
 	{
-		if (node->wall == wall && (((node->wall == 'E' || node->wall == 'W') && same_double(node->x_winner, x_winner))
-				|| ((node->wall == 'N' || node->wall == 'S') && same_double(node->y_winner, y_winner))))
+		if (node->wall == wall && (((node->wall == 'E' || node->wall == 'W')
+					&& same_double(node->x_winner, x_winner))
+				|| ((node->wall == 'N' || node->wall == 'S')
+					&& same_double(node->y_winner, y_winner))))
 			node->index = index;
 		else
 		{
@@ -200,7 +202,7 @@ void fill_index_strip(t_all *all)
 	}
 }
 
-t_strip *last_wall_node(t_strip *node)
+t_strip	*last_wall_node(t_strip *node)
 {
 	if (!node)
 		return (0);
@@ -209,7 +211,7 @@ t_strip *last_wall_node(t_strip *node)
 	return (node);
 }
 
-t_strip *first_wall_node(t_strip *node)
+t_strip	*first_wall_node(t_strip *node)
 {
 	if (!node)
 		return (0);
@@ -218,11 +220,11 @@ t_strip *first_wall_node(t_strip *node)
 	return (node);
 }
 
-void update_strips(t_all *all)
+void	update_strips(t_all *all)
 {
-	t_strip *node;
-	t_strip *last;
-	t_strip *first;
+	t_strip	*node;
+	t_strip	*last;
+	t_strip	*first;
 	int		index;
 
 	node = all->strip;
@@ -230,10 +232,11 @@ void update_strips(t_all *all)
 	{
 		if (node->wall_length > 2)
 		{
-		last = last_wall_node(node);
-		first = first_wall_node(node);
-		index = node->index;
-		node->floor_h = first->floor_h + (last->floor_h - first->floor_h) * ((double)index / (double)last->index);
+			last = last_wall_node(node);
+			first = first_wall_node(node);
+			index = node->index;
+			node->floor_h = first->floor_h + (last->floor_h - first->floor_h)
+				* ((double)index / (double)last->index);
 		}
 		node = node->next;
 	}
@@ -242,11 +245,13 @@ void update_strips(t_all *all)
 	{
 		if (node->wall_length > 2)
 		{
-		last = last_wall_node(node);
-		first = first_wall_node(node);
-		index = node->index;
-		node->wall_h = (first->wall_h + first->floor_h + (last->wall_h - first->wall_h + last->floor_h - first->floor_h) * ((double)index / (double)last->index)) - node->floor_h;
-		node->ceil_h = WINDOW_HEIGHT - node->wall_h - node->floor_h;
+			last = last_wall_node(node);
+			first = first_wall_node(node);
+			index = node->index;
+			node->wall_h = (first->wall_h + first->floor_h + (last->wall_h
+						- first->wall_h + last->floor_h - first->floor_h)
+					* ((double)index / (double)last->index)) - node->floor_h;
+			node->ceil_h = WINDOW_HEIGHT - node->wall_h - node->floor_h;
 		}
 		node = node->next;
 	}
@@ -263,7 +268,8 @@ void update_strips(t_all *all)
 	// {
 	// 	last = last_wall_node(node);
 	// 	first = first_wall_node(node);
-	// 	node->ceil_h = first->ceil_h + (last->ceil_h - first->ceil_h) * (index / last->index);
+	// 	node->ceil_h = first->ceil_h + (last->ceil_h - first->ceil_h) * (index
+				// / last->index);
 	// 	node = node->next;
 	// }
 	// node = all->strip;
@@ -275,7 +281,6 @@ void update_strips(t_all *all)
 	// 	node = node->next;
 	// }
 }
-
 
 // int find_max_index(t_strip *node)
 // {
@@ -292,9 +297,9 @@ void update_strips(t_all *all)
 // 	return (max + 1);
 // }
 
-int find_max_index(t_strip *node)
+int	find_max_index(t_strip *node)
 {
-	int max;
+	int	max;
 
 	max = 0;
 	while (node)
@@ -308,9 +313,9 @@ int find_max_index(t_strip *node)
 	return (max + 1);
 }
 
-void fill_length_strip(t_all *all)
+void	fill_length_strip(t_all *all)
 {
-	t_strip *node;
+	t_strip	*node;
 
 	node = all->strip;
 	while (node)
@@ -319,5 +324,3 @@ void fill_length_strip(t_all *all)
 		node = node->next;
 	}
 }
-
-

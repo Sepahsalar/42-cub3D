@@ -38,7 +38,7 @@ void	terminate(t_all *all, int status)
 		free(all->strmap);
 	if (status)
 		ft_putendl_fd("Error", 2);
-	if(all->image)
+	if (all->image)
 		mlx_delete_image(all->window, all->image);
 	if (all->north)
 		mlx_delete_image(all->window, all->north);
@@ -56,7 +56,6 @@ void	terminate(t_all *all, int status)
 
 void	check_failure(int input1, void *input2, int type, t_all *all)
 {
-	if ((input1 < 0 && type == 1)
-		|| (type == 2 && input2 == NULL))
+	if ((input1 < 0 && type == 1) || (type == 2 && input2 == NULL))
 		terminate(all, 1);
 }

@@ -73,7 +73,7 @@ void	create_loc(t_all *all)
 {
 	t_loc	*new;
 	t_loc	*old;
-	char 	*temp;
+	char	*temp;
 	int		x;
 	int		y;
 	int		nbPlayer;
@@ -85,20 +85,20 @@ void	create_loc(t_all *all)
 	nbPlayer = 0;
 	while (*temp)
 	{
-		if(*temp != '\n')
+		if (*temp != '\n')
 		{
-			if(*temp == 'N' || *temp == 'S' || *temp == 'E' || *temp == 'W')
+			if (*temp == 'N' || *temp == 'S' || *temp == 'E' || *temp == 'W')
 				nbPlayer++;
-			if (*temp != 'N' && *temp != 'S' && *temp != 'E' && *temp != 'W' && *temp != '1' && *temp != '0' && *temp != ' ')
+			if (*temp != 'N' && *temp != 'S' && *temp != 'E' && *temp != 'W'
+				&& *temp != '1' && *temp != '0' && *temp != ' ')
 			{
 				ft_putendl_fd("Invalid character in map", 2);
 				terminate(all, 1);
 			}
 			if (*temp != ' ')
 				new = create_loc_node(*temp, x, y);
-			
 			if (!(all->map->start))
-					all->map->start = new;
+				all->map->start = new;
 			else
 			{
 				old->next = new;
@@ -122,14 +122,14 @@ void	create_loc(t_all *all)
 	}
 }
 
-int find_min_x(t_all *all, int y)
+int	find_min_x(t_all *all, int y)
 {
 	t_loc	*temp;
 	int		min;
 
 	min = all->map_width;
 	temp = all->map->start;
-	while(temp)
+	while (temp)
 	{
 		if (temp->x < min && temp->y == y)
 			min = temp->x;
@@ -138,14 +138,14 @@ int find_min_x(t_all *all, int y)
 	return (min);
 }
 
-int find_max_x(t_all *all, int y)
+int	find_max_x(t_all *all, int y)
 {
 	t_loc	*temp;
 	int		max;
 
 	max = 0;
 	temp = all->map->start;
-	while(temp)
+	while (temp)
 	{
 		if (temp->x > max && temp->y == y)
 			max = temp->x;
@@ -154,14 +154,14 @@ int find_max_x(t_all *all, int y)
 	return (max);
 }
 
-int find_min_y(t_all *all, int x)
+int	find_min_y(t_all *all, int x)
 {
 	t_loc	*temp;
 	int		min;
 
 	min = all->map_height;
 	temp = all->map->start;
-	while(temp)
+	while (temp)
 	{
 		if (temp->y < min && temp->x == x)
 			min = temp->y;
@@ -170,14 +170,14 @@ int find_min_y(t_all *all, int x)
 	return (min);
 }
 
-int find_max_y(t_all *all, int x)
+int	find_max_y(t_all *all, int x)
 {
 	t_loc	*temp;
 	int		max;
 
 	max = 0;
 	temp = all->map->start;
-	while(temp)
+	while (temp)
 	{
 		if (temp->y > max && temp->x == x)
 			max = temp->y;
@@ -286,13 +286,13 @@ int find_max_y(t_all *all, int x)
 // 	}
 // }
 
-void ignore_inside_surface(t_all *all)
+void	ignore_inside_surface(t_all *all)
 {
 	t_loc	*temp1;
 	t_loc	*temp2;
-	int 	i;
-	int 	min;
-	int 	max;
+	int		i;
+	int		min;
+	int		max;
 
 	temp1 = all->map->start;
 	while (temp1)
@@ -300,32 +300,32 @@ void ignore_inside_surface(t_all *all)
 		if (temp1->c == '1')
 		{
 			temp2 = all->map->start;
-			while(temp2)
+			while (temp2)
 			{
 				if (temp2->c == '1')
 				{
-					if(temp1->sx== temp2->nx && temp1->sy == temp2->ny)
+					if (temp1->sx == temp2->nx && temp1->sy == temp2->ny)
 					{
 						temp1->sx = -1;
 						temp1->sy = -1;
 						temp2->nx = -1;
 						temp2->ny = -1;
 					}
-					else if(temp1->nx== temp2->sx && temp1->ny == temp2->sy)
+					else if (temp1->nx == temp2->sx && temp1->ny == temp2->sy)
 					{
 						temp1->nx = -1;
 						temp1->ny = -1;
 						temp2->sx = -1;
 						temp2->sy = -1;
 					}
-					else if(temp1->ex == temp2->wx && temp1->ey == temp2->wy)
+					else if (temp1->ex == temp2->wx && temp1->ey == temp2->wy)
 					{
 						temp1->ex = -1;
 						temp1->ey = -1;
 						temp2->wx = -1;
 						temp2->wy = -1;
 					}
-					else if(temp1->wx == temp2->ex && temp1->wy == temp2->ey)
+					else if (temp1->wx == temp2->ex && temp1->wy == temp2->ey)
 					{
 						temp1->wx = -1;
 						temp1->wy = -1;
@@ -341,7 +341,7 @@ void ignore_inside_surface(t_all *all)
 	min = 0;
 	max = 0;
 	i = 0;
-	while(i < all->map_width)
+	while (i < all->map_width)
 	{
 		min = find_min_y(all, i);
 		max = find_max_y(all, i);
@@ -350,7 +350,7 @@ void ignore_inside_surface(t_all *all)
 		{
 			if (temp1->x == i && temp1->y == min)
 			{
-				if(temp1->c == '1')
+				if (temp1->c == '1')
 				{
 					temp1->nx = -1;
 					temp1->ny = -1;
@@ -363,7 +363,7 @@ void ignore_inside_surface(t_all *all)
 			}
 			else if (temp1->x == i && temp1->y == max)
 			{
-				if(temp1->c == '1')
+				if (temp1->c == '1')
 				{
 					temp1->sx = -1;
 					temp1->sy = -1;
@@ -379,7 +379,7 @@ void ignore_inside_surface(t_all *all)
 		i++;
 	}
 	i = 0;
-	while(i < all->map_height)
+	while (i < all->map_height)
 	{
 		min = find_min_x(all, i);
 		max = find_max_x(all, i);
@@ -388,7 +388,7 @@ void ignore_inside_surface(t_all *all)
 		{
 			if (temp1->y == i && temp1->x == min)
 			{
-				if(temp1->c == '1')
+				if (temp1->c == '1')
 				{
 					temp1->wx = -1;
 					temp1->wy = -1;
@@ -401,7 +401,7 @@ void ignore_inside_surface(t_all *all)
 			}
 			else if (temp1->y == i && temp1->x == max)
 			{
-				if(temp1->c == '1')
+				if (temp1->c == '1')
 				{
 					temp1->ex = -1;
 					temp1->ey = -1;

@@ -17,7 +17,7 @@ void	reader(t_all *all)
 	char	c[2];
 	int		byte;
 	char	*temp;
-	
+
 	c[1] = '\0';
 	all->strmap = NULL;
 	all->fd = open(all->argv, O_RDONLY);
