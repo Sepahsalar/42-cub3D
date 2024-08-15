@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 18:29:45 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:46:53 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	terminate(t_all *all, int status)
 		mlx_delete_image(all->window, all->east);
 	if (all->window)
 		mlx_terminate(all->window);
+	if (all->window_name)
+		free(all->window_name);
 	free(all);
 	exit(status);
 }

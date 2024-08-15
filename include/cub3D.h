@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 15:35:25 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 17:09:27 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ enum				e_general_constants
 
 enum				e_dimensions
 {
-	WINDOW_HEIGHT = 900,
-	WINDOW_WIDTH = 1600
+	WINDOW_HEIGHT = 225,
+	WINDOW_WIDTH = 400
 };
 
 typedef struct s_loc
@@ -163,6 +163,7 @@ typedef struct s_coordinate
 typedef struct s_all
 {
 	t_map			*map;
+	char			*window_name;
 	int				floor_color;
 	int				ceil_color;
 	double			x;
