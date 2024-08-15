@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 12:18:36 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:39:31 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ static void	check_wrong_identifier(t_all *all)
 		if (*temp != 'N' && *temp != 'S' && *temp != 'E' && *temp != 'W'
 			&& *temp != '1' && *temp != '0' && *temp != ' ' && *temp != '\n')
 		{
-			ft_putendl_fd("Invalid character or extra identifier in the map",
-					2);
+			ft_putstr_fd("Invalid character", 2);
+			ft_putendl_fd(" or extra identifier in the map", 2);
 			terminate(all, 1);
 		}
 		temp++;

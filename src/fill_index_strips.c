@@ -6,19 +6,19 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 14:50:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/15 14:56:47 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:38:03 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-static int node_belongs_to_wall(t_strip *node, t_current_wall current_wall)
+static int	node_belongs_to_wall(t_strip *node, t_current_wall current_wall)
 {
 	if ((node->wall == current_wall.wall)
 		&& (((node->wall == 'E' || node->wall == 'W')
-            && same(node->x_winner, current_wall.x_winner))
-		|| ((node->wall == 'N'	|| node->wall == 'S')
-            && same(node->y_winner, current_wall.y_winner))))
+				&& same(node->x_winner, current_wall.x_winner))
+			|| ((node->wall == 'N' || node->wall == 'S')
+				&& same(node->y_winner, current_wall.y_winner))))
 		return (0);
 	else
 		return (1);
