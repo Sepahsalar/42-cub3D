@@ -6,20 +6,20 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:23:33 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 19:43:58 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/15 10:45:09 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int does_ray_angle_passes_ew_surface(t_all *all, double ray_angle, t_possible *temp_pos)
+int does_ray_angle_passes_ew_surface(t_all *all, double ray_angle, t_loc *temp_pos)
 {
 	return (temp_pos->ew_winner_texture != '0' && fabs(find_y(ray_angle, all->x,
 					all->y, temp_pos->ew_winner_x)
 				- temp_pos->ew_winner_y) <= 0.5);
 }
 
-int is_this_ew_surface_closer(t_possible *winner, t_possible *temp_pos, char winner_material)
+int is_this_ew_surface_closer(t_loc *winner, t_loc *temp_pos, char winner_material)
 {
 	return (!winner || ((winner_material == winner->ew_winner_texture
 						&& temp_pos->ew_winner_distance < winner->ew_winner_distance)
@@ -27,14 +27,14 @@ int is_this_ew_surface_closer(t_possible *winner, t_possible *temp_pos, char win
 						&& temp_pos->ew_winner_distance < winner->sn_winner_distance)));
 }
 
-int does_ray_angle_passes_sn_surface(t_all *all, double ray_angle, t_possible *temp_pos)
+int does_ray_angle_passes_sn_surface(t_all *all, double ray_angle, t_loc *temp_pos)
 {
 	return (temp_pos->sn_winner_texture != '0' && fabs(find_x(ray_angle, all->x,
 					all->y, temp_pos->sn_winner_y)
 				- temp_pos->sn_winner_x) <= 0.5);
 }
 
-int is_this_sn_surface_closer(t_possible *winner, t_possible *temp_pos, char winner_material)
+int is_this_sn_surface_closer(t_loc *winner, t_loc *temp_pos, char winner_material)
 {
 	return (!winner || ((winner_material == winner->ew_winner_texture
 						&& temp_pos->sn_winner_distance < winner->ew_winner_distance)
@@ -42,7 +42,7 @@ int is_this_sn_surface_closer(t_possible *winner, t_possible *temp_pos, char win
 						&& temp_pos->sn_winner_distance < winner->sn_winner_distance)));
 }
 
-t_winner	set_final_pos_and_texture(t_winner final, t_possible *temp_pos, char type)
+t_winner	set_final_pos_and_texture(t_winner final, t_loc *temp_pos, char type)
 {
 	if (type == 'x')
 	{
@@ -72,10 +72,10 @@ t_winner	set_final_x_y_winner(t_winner final)
 
 t_winner	find_general_intersection(t_all *all, double ray_angle)
 {
-	t_possible	*temp_pos;
+	t_loc	*temp_pos;
 	t_winner	final;
 
-	temp_pos = all->possible;
+	temp_pos = all->map->start;
 	final.pos = NULL;
 	final.texture = '0';
 	while (temp_pos)
@@ -98,10 +98,10 @@ t_winner	find_general_intersection(t_all *all, double ray_angle)
 
 t_winner	find_specific_intersection_vertical(t_all *all, char flag)
 {
-	t_possible	*temp_pos;
+	t_loc	*temp_pos;
 	t_winner	final;
 
-	temp_pos = all->possible;
+	temp_pos = all->map->start;
 	final.pos = NULL;
 	final.texture = '0';
 	while (temp_pos)
@@ -120,10 +120,10 @@ t_winner	find_specific_intersection_vertical(t_all *all, char flag)
 
 t_winner	find_specific_intersection_horizental(t_all *all, char flag)
 {
-	t_possible	*temp_pos;
+	t_loc	*temp_pos;
 	t_winner	final;
 
-	temp_pos = all->possible;
+	temp_pos = all->map->start;
 	final.pos = NULL;
 	final.texture = '0';
 	while (temp_pos)
@@ -175,10 +175,13 @@ t_winner	find_winner(t_all *all, double ray_angle)
 	range.x_max = max_x(all->x, all->map_width, ray_angle);
 	range.y_min = min_y(all->y, ray_angle);
 	range.y_max = max_y(all->y, all->map_height, ray_angle);
-	create_possibility(all, range);
+	// create_possibility(all, range);
+	reset_loc(all);
+	find_visible_surface(all, range);
 	find_winner_surface(all);
 	final = find_intersection(all, ray_angle);
-	clean_possibility(all->possible);
-	all->possible = NULL;
+	
+	// clean_possibility(all->possible);
+	// all->possible = NULL;
 	return (final);
 }

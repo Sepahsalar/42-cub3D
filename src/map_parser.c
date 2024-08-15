@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 17:46:12 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 10:52:32 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,12 @@ void	reader(t_all *all)
 	c[1] = '\0';
 	all->strmap = NULL;
 	all->fd = open(all->argv, O_RDONLY);
-	check_failure(all->fd, NULL, 1, all);
+	if (all->fd == -1)
+	{
+		ft_putendl_fd("Could not open the map file", 2);
+		terminate(all, 1);
+	}
+	// check_failure(all->fd, NULL, 1, all);
 	byte = read(all->fd, c, 1);
 	check_failure(byte, NULL, 1, all);
 	while (byte)
