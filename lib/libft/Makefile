@@ -3,14 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/10/26 15:48:51 by nnourine          #+#    #+#              #
-#    Updated: 2024/03/01 12:30:48 by nnourine         ###   ########.fr        #
+#    Updated: 2024/08/15 15:26:21 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME = libft.a
+
 CFLAGS = -Wall -Wextra -Werror
+
 SRC = 	ft_strlen.c \
 		ft_isalpha.c \
 		ft_isdigit.c \
@@ -44,22 +47,18 @@ SRC = 	ft_strlen.c \
 		ft_putnbr_fd.c \
 		ft_putendl_fd.c \
 		ft_putchar_fd.c \
-		ft_strmapi.c
-
-BNS = 	ft_lstnew_bonus.c \
-		ft_lstadd_front_bonus.c \
-		ft_lstsize_bonus.c \
-		ft_lstlast_bonus.c \
-		ft_lstadd_back_bonus.c \
-		ft_lstdelone_bonus.c \
-		ft_lstclear_bonus.c \
-		ft_lstiter_bonus.c \
-		ft_lstmap_bonus.c \
+		ft_strmapi.c \
+		ft_lstnew.c \
+		ft_lstadd_front.c \
+		ft_lstsize.c \
+		ft_lstlast.c \
+		ft_lstadd_back.c \
+		ft_lstdelone.c \
+		ft_lstclear.c \
+		ft_lstiter.c \
+		ft_lstmap.c \
 
 OBJ = $(SRC:.c=.o)
-OBJBNS = $(BNS:.c=.o)
-
-NAME = libft.a
 
 all: $(NAME)
 
@@ -70,7 +69,7 @@ $(NAME): $(OBJ)
 	@ar -rcs $(NAME) $(OBJ)
 
 clean:
-	@rm -f $(OBJ) $(OBJBNS)
+	@rm -f $(OBJ)
 	@rm -rf .bonus
 
 fclean: clean
@@ -78,10 +77,4 @@ fclean: clean
 
 re: fclean all
 
-bonus: .bonus
-
-.bonus: $(OBJBNS) $(OBJ)
-	ar -rcs $(NAME) $(OBJBNS) $(OBJ)
-	@touch .bonus
-
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

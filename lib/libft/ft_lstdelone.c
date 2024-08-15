@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/07 14:22:32 by nnourine          #+#    #+#             */
-/*   Updated: 2023/11/07 15:35:19 by nnourine         ###   ########.fr       */
+/*   Created: 2023/11/07 13:54:28 by nnourine          #+#    #+#             */
+/*   Updated: 2024/08/15 15:24:21 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	t_list	*buffer;
-
-	if (lst && del)
+	if (lst)
 	{
-		while (*lst)
+		if (del)
 		{
-			buffer = (*lst)->next;
-			del((*lst)->content);
-			free(*lst);
-			*lst = buffer;
+			del (lst->content);
+			free (lst);
 		}
-		lst = 0;
 	}
 }
