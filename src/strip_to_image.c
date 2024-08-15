@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/15 13:07:21 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:15:31 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,30 +32,35 @@ static int	dimension_resized_brick(t_strip *strip, char type)
 		return (round(strip->wall_length / (2 * strip->nb_blocks)));
 }
 
+typedef struct s_get_pixel_bricks
+{
+	int		x_in_resized_brick;
+	int		y_in_resized_brick;
+	int		y_in_wall;
+	int		x_in_brick;
+	int		y_in_brick;
+	int		h_resized_brick;
+	int		w_resized_brick;
+}					t_get_pixel_bricks;
+
 static int	get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 {
 	mlx_image_t	*brick;
-	int			x_in_resized_brick;
-	int			y_in_resized_brick;
-	int			y_in_wall;
-	int			x_in_brick;
-	int			y_in_brick;
-	int			h_resized_brick;
-	int			w_resized_brick;
+	t_get_pixel_bricks	size;
 
 	brick = choose_brick(all, strip->wall);
-	h_resized_brick = dimension_resized_brick(strip, 'h');
-	w_resized_brick = dimension_resized_brick(strip, 'w');
-	if (h_resized_brick == 0)
-		h_resized_brick = 1;
-	if (w_resized_brick == 0)
-		w_resized_brick = 1;
-	y_in_wall = y_in_window - (int)round(strip->ceil_h);
-	x_in_resized_brick = strip->index % w_resized_brick;
-	y_in_resized_brick = y_in_wall % h_resized_brick;
-	x_in_brick = round(x_in_resized_brick * brick->width / w_resized_brick);
-	y_in_brick = round(y_in_resized_brick * brick->height / h_resized_brick);
-	return (get_pixel(brick, x_in_brick, y_in_brick));
+	size.h_resized_brick = dimension_resized_brick(strip, 'h');
+	size.w_resized_brick = dimension_resized_brick(strip, 'w');
+	if (size.h_resized_brick == 0)
+		size.h_resized_brick = 1;
+	if (size.w_resized_brick == 0)
+		size.w_resized_brick = 1;
+	size.y_in_wall = y_in_window - (int)round(strip->ceil_h);
+	size.x_in_resized_brick = strip->index % size.w_resized_brick;
+	size.y_in_resized_brick = size.y_in_wall % size.h_resized_brick;
+	size.x_in_brick = round(size.x_in_resized_brick * brick->width / size.w_resized_brick);
+	size.y_in_brick = round(size.y_in_resized_brick * brick->height / size.h_resized_brick);
+	return (get_pixel(brick, size.x_in_brick, size.y_in_brick));
 }
 
 static void	put_pixels_of_strips(t_all *all, t_strip *strip)
