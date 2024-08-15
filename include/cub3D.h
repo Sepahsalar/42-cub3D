@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 13:28:10 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 13:59:33 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,5 +239,8 @@ void				reset_loc(t_all *all);
 void				find_visible_surface(t_all *all, t_range range);
 t_winner			find_specific_intersection(t_all *all, double ray_angle, char flag);
 t_winner			set_final_x_y_winner(t_winner final);
+t_winner			set_final_pos_and_texture(t_winner final, t_loc *temp_pos,
+						char type);
+t_winner			find_general_intersection(t_all *all, double ray_angle);
 
 #endif // CUB3D_H
