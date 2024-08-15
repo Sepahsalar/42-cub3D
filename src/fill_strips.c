@@ -6,14 +6,14 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 13:08:32 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:15:09 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-static t_render	create_render_data(t_winner final, double intersection_distance,
-		double temp_angle)
+static t_render	create_render_data(t_all *all, t_winner final,
+		double intersection_distance)
 {
 	t_render	data_render;
 	char		winner_material;
@@ -24,7 +24,8 @@ static t_render	create_render_data(t_winner final, double intersection_distance,
 	data_render.ceil_height = height(intersection_distance, 'C');
 	data_render.wall_height = WINDOW_HEIGHT - data_render.ceil_height
 		- data_render.floor_height;
-	data_render.x = (int)(temp_angle / (HAOV / WINDOW_WIDTH));
+	data_render.x = all->index;
+	all->index++;
 	data_render.x_winner = final.x_winner;
 	data_render.y_winner = final.y_winner;
 	return (data_render);
@@ -40,7 +41,7 @@ static void	create_strips_helper(t_all *all, double temp_angle)
 	ray_angle = under_full_circle(all->angle - (HAOV / 2) + temp_angle);
 	final = find_winner(all, ray_angle);
 	intersection_distance = calculate_distance(all, final, ray_angle);
-	data_render = create_render_data(final, intersection_distance, temp_angle);
+	data_render = create_render_data(all, final, intersection_distance);
 	init_strips(all, data_render);
 }
 
@@ -62,6 +63,7 @@ static void	create_strips(t_all *all)
 
 void	fill_strips(t_all *all)
 {
+	all->index = 0;
 	create_strips(all);
 	fill_index_strips(all);
 	fill_length_strips(all);

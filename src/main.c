@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 18:08:49 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:21:50 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 // * decide whether we should check for file availability in walls identifier
 
 // * agar zavie rond nabud ham x ham y bere jelo?
+// try to hide mlx42 realted valgrind errors
 
 int	main(int argc, char **argv)
 {

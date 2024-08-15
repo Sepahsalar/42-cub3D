@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 17:09:27 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:04:42 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ enum				e_general_constants
 
 enum				e_dimensions
 {
-	WINDOW_HEIGHT = 225,
-	WINDOW_WIDTH = 400
+	WINDOW_HEIGHT = 900,
+	WINDOW_WIDTH = 1600
 };
 
 typedef struct s_loc
@@ -176,6 +176,7 @@ typedef struct s_all
 	int				fd;
 	char			*strmap;
 	char			*argv;
+	int				index;
 	mlx_t			*window;
 	t_strip			*strip;
 	mlx_image_t		*image;
