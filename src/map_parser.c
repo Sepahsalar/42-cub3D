@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 10:52:32 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:18:36 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,21 @@ char	*finder(t_all *all, char *str)
 	return (NULL);
 }
 
+static void	check_wrong_identifier(t_all *all)
+{
+	char	*temp;
+	temp = all->strmap;
+	while(*temp)
+	{
+		if (*temp != 'N' && *temp != 'S' && *temp != 'E' && *temp != 'W' && *temp != '1' && *temp != '0' && *temp != ' ' && *temp != '\n')
+		{
+			ft_putendl_fd("Invalid character or extra identifier in the map", 2);
+			terminate(all, 1);
+		}
+	temp++;
+	}
+}
+
 t_map	*map_parser(t_all *all)
 {
 	t_map	*map;
@@ -72,6 +87,7 @@ t_map	*map_parser(t_all *all)
 	check_valid_color(all, 'F');
 	all->map->c = finder(all, "C");
 	check_valid_color(all, 'C');
+	check_wrong_identifier(all);
 	remove_white_space(all);
 	create_loc(all);
 	all->map_width = game_size(all, 'x');

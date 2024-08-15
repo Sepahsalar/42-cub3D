@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ignore_inside_surface.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:54:47 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 19:30:33 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 11:37:50 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

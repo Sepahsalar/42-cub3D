@@ -6,7 +6,7 @@
 #    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/15 10:30:08 by nnourine         ###   ########.fr        #
+#    Updated: 2024/08/15 11:07:49 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,6 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/compare_adjacent_walls.c\
 		$(SRCDIR)/create_loc.c \
 		$(SRCDIR)/create_loc_utils.c \
-		$(SRCDIR)/create_possible.c \
 		$(SRCDIR)/fill_strips.c \
 		$(SRCDIR)/fill_strips_utils.c \
 		$(SRCDIR)/fill_strips_utils2.c \

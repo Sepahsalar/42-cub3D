@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 10:28:12 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/15 11:09:45 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct s_loc
 	double				wy;
 	double				nx;
 	double				ny;
-
 	double				sn_winner_distance;
 	double				ew_winner_distance;
 	char				sn_winner_texture;
@@ -66,12 +65,6 @@ typedef struct s_loc
 	double				ew_winner_x;
 	double				ew_winner_y;
 	int					consider;
-
-
-
-
-
-	
 	struct s_loc		*next;
 	struct s_loc		*previous;
 }						t_loc;
@@ -131,21 +124,6 @@ typedef struct s_strip
 	struct s_strip		*next;
 }						t_strip;
 
-// typedef struct s_possible
-// {
-// 	t_loc				*loc;
-// 	double				sn_winner_distance;
-// 	double				ew_winner_distance;
-// 	char				sn_winner_texture;
-// 	char				ew_winner_texture;
-// 	double				sn_winner_x;
-// 	double				sn_winner_y;
-// 	double				ew_winner_x;
-// 	double				ew_winner_y;
-// 	struct s_possible	*previous;
-// 	struct s_possible	*next;
-// }						t_possible;
-
 typedef struct s_winner
 {
 	t_loc			*pos;
@@ -178,7 +156,6 @@ typedef struct s_all
 	double				y;
 	double				angle;
 	int					distance_flag;
-	// t_possible			*possible;
 	double				map_width;
 	double				map_height;
 	double				max_distance;
@@ -213,8 +190,6 @@ void					strip_to_image(t_all *all);
 void					press_key(mlx_key_data_t keydata, void *param);
 void					fill_strips(t_all *all);
 double					under_full_circle(double angle);
-// t_possible				*clean_possibility(t_possible *first);
-void					create_possibility(t_all *all, t_range range);
 void					find_winner_surface(t_all *all);
 void					ignore_inside_surface(t_all *all);
 int						game_size(t_all *all, char c);
