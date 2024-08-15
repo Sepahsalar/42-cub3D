@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:48:29 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 13:05:19 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/15 14:30:49 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,56 @@ void	reset_loc(t_all *all)
 	}
 }
 
+void south_wins(t_all *all, t_loc *temp)
+{
+	temp->sn_winner_distance = sqrt(pow(all->x - temp->sx, 2)
+			+ pow(all->y - temp->sy, 2));
+	temp->sn_winner_texture = 'S';
+	temp->sn_winner_x = temp->sx;
+	temp->sn_winner_y = temp->sy;
+}
+
+void east_wins(t_all *all, t_loc *temp)
+{
+	temp->ew_winner_distance = sqrt(pow(all->x - temp->ex, 2)
+			+ pow(all->y - temp->ey, 2));
+	temp->ew_winner_texture = 'E';
+	temp->ew_winner_x = temp->ex;
+	temp->ew_winner_y = temp->ey;
+}
+
+void north_wins(t_all *all, t_loc *temp)
+{
+	temp->sn_winner_distance = sqrt(pow(all->x - temp->nx, 2)
+			+ pow(all->y - temp->ny, 2));
+	temp->sn_winner_texture = 'N';
+	temp->sn_winner_x = temp->nx;
+	temp->sn_winner_y = temp->ny;
+}
+
+void west_wins(t_all *all, t_loc *temp)
+{
+	temp->ew_winner_distance = sqrt(pow(all->x - temp->wx, 2)
+			+ pow(all->y - temp->wy, 2));
+	temp->ew_winner_texture = 'W';
+	temp->ew_winner_x = temp->wx;
+	temp->ew_winner_y = temp->wy;
+}
+
+int north_is_better_than_south(t_all *all, t_loc *temp)
+{
+	return ((temp->nx != -1 && temp->ny != -1) && sqrt(pow(all->x
+						- temp->nx, 2) + pow(all->y - temp->ny,
+						2)) < temp->sn_winner_distance);
+}
+
+int west_is_better_than_east(t_all *all, t_loc *temp)
+{
+	return ((temp->wx != -1 && temp->wy != -1) && sqrt(pow(all->x
+						- temp->wx, 2) + pow(all->y - temp->wy,
+						2)) < temp->ew_winner_distance);
+}
+
 void	find_winner_surface(t_all *all)
 {
 	t_loc	*temp;
@@ -46,41 +96,13 @@ void	find_winner_surface(t_all *all)
 		if (temp->consider)
 		{
 			if (temp->sx != -1 && temp->sy != -1)
-			{
-				temp->sn_winner_distance = sqrt(pow(all->x - temp->sx, 2)
-						+ pow(all->y - temp->sy, 2));
-				temp->sn_winner_texture = 'S';
-				temp->sn_winner_x = temp->sx;
-				temp->sn_winner_y = temp->sy;
-			}
+				south_wins(all, temp);
 			if (temp->ex != -1 && temp->ey != -1)
-			{
-				temp->ew_winner_distance = sqrt(pow(all->x - temp->ex, 2)
-						+ pow(all->y - temp->ey, 2));
-				temp->ew_winner_texture = 'E';
-				temp->ew_winner_x = temp->ex;
-				temp->ew_winner_y = temp->ey;
-			}
-			if ((temp->nx != -1 && temp->ny != -1) && sqrt(pow(all->x
-						- temp->nx, 2) + pow(all->y - temp->ny,
-						2)) < temp->sn_winner_distance)
-			{
-				temp->sn_winner_distance = sqrt(pow(all->x - temp->nx, 2)
-						+ pow(all->y - temp->ny, 2));
-				temp->sn_winner_texture = 'N';
-				temp->sn_winner_x = temp->nx;
-				temp->sn_winner_y = temp->ny;
-			}
-			if ((temp->wx != -1 && temp->wy != -1) && sqrt(pow(all->x
-						- temp->wx, 2) + pow(all->y - temp->wy,
-						2)) < temp->ew_winner_distance)
-			{
-				temp->ew_winner_distance = sqrt(pow(all->x - temp->wx, 2)
-						+ pow(all->y - temp->wy, 2));
-				temp->ew_winner_texture = 'W';
-				temp->ew_winner_x = temp->wx;
-				temp->ew_winner_y = temp->wy;
-			}
+				east_wins(all, temp);
+			if (north_is_better_than_south(all, temp))
+				north_wins(all, temp);
+			if (west_is_better_than_east(all, temp))
+				west_wins(all, temp);
 		}
 		temp = temp->next;
 	}
