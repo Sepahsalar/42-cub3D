@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_color.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:42:31 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 18:37:28 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 11:05:32 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ static void	only_digit(t_all *all, char **split, char type)
 		j = 0;
 		while (split[i][j])
 		{
-			if (!ft_isdigit(split[i][j]) && split[i][j] != ' ')
+			if (!ft_isdigit(split[i][j]) && split[i][j] != ' '
+				&& split[i][j] != '-')
 			{
 				clean_2d_char_array(split);
 				ft_putchar_fd(type, 2);
-				ft_putendl_fd(" identifier contains characters", 2);
+				ft_putstr_fd(" identifier contains characters", 2);
 				ft_putendl_fd(" which are not digits", 2);
 				terminate(all, 1);
 			}
@@ -47,9 +48,9 @@ static void	only_three_or_four_parts(t_all *all, char **split, char type)
 	if (i != 3 && i != 4)
 	{
 		clean_2d_char_array(split);
-		ft_putstr_fd("Wrong number of color parts for ", 2);
+		ft_putstr_fd("The color for ", 2);
 		ft_putchar_fd(type, 2);
-		ft_putendl_fd(" identifier in the map", 2);
+		ft_putendl_fd(" identifier does not match the RGB or RGBA models", 2);
 		terminate(all, 1);
 	}
 }

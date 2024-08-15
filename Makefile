@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
+#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/14 19:28:14 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/15 13:05:33 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,6 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/compare_adjacent_walls.c\
 		$(SRCDIR)/create_loc.c \
 		$(SRCDIR)/create_loc_utils.c \
-		$(SRCDIR)/create_possible.c \
 		$(SRCDIR)/fill_strips.c \
 		$(SRCDIR)/fill_strips_utils.c \
 		$(SRCDIR)/fill_strips_utils2.c \
@@ -56,6 +55,7 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/ignore_inside_surface.c \
 		$(SRCDIR)/ignore_inside_surface_utils.c \
 		$(SRCDIR)/init_all.c \
+		$(SRCDIR)/loc_visibility.c \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/map_parser.c  \
 		$(SRCDIR)/map_parser_color.c \

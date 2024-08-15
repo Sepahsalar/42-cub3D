@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/14 17:46:12 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:18:36 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,12 @@ void	reader(t_all *all)
 	c[1] = '\0';
 	all->strmap = NULL;
 	all->fd = open(all->argv, O_RDONLY);
-	check_failure(all->fd, NULL, 1, all);
+	if (all->fd == -1)
+	{
+		ft_putendl_fd("Could not open the map file", 2);
+		terminate(all, 1);
+	}
+	// check_failure(all->fd, NULL, 1, all);
 	byte = read(all->fd, c, 1);
 	check_failure(byte, NULL, 1, all);
 	while (byte)
@@ -49,6 +54,24 @@ char	*finder(t_all *all, char *str)
 	return (NULL);
 }
 
+static void	check_wrong_identifier(t_all *all)
+{
+	char	*temp;
+
+	temp = all->strmap;
+	while (*temp)
+	{
+		if (*temp != 'N' && *temp != 'S' && *temp != 'E' && *temp != 'W'
+			&& *temp != '1' && *temp != '0' && *temp != ' ' && *temp != '\n')
+		{
+			ft_putendl_fd("Invalid character or extra identifier in the map",
+					2);
+			terminate(all, 1);
+		}
+		temp++;
+	}
+}
+
 t_map	*map_parser(t_all *all)
 {
 	t_map	*map;
@@ -67,6 +90,7 @@ t_map	*map_parser(t_all *all)
 	check_valid_color(all, 'F');
 	all->map->c = finder(all, "C");
 	check_valid_color(all, 'C');
+	check_wrong_identifier(all);
 	remove_white_space(all);
 	create_loc(all);
 	all->map_width = game_size(all, 'x');

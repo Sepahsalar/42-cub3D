@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 18:33:56 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 13:00:51 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static double	start_loc_player(t_all *all, char c)
 		if (loc->c == 'N' || loc->c == 'S' || loc->c == 'W' || loc->c == 'E')
 		{
 			if (c == 'x')
-				return (loc->x_mid);
+				return (loc->x + 0.5);
 			else
-				return (loc->y_mid);
+				return (loc->y + 0.5);
 		}
 		loc = loc->next;
 	}

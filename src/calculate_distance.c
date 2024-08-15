@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_distance.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:12:44 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 19:09:30 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:58:27 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,12 @@ double	find_y(double angle, double x_player, double y_player, double x_target)
 	return (y_target);
 }
 
-double	calculate_distance(t_all *all, t_winner final, double ray_angle,
-		double temp_angle)
+double	calculate_distance(t_all *all, t_winner final, double ray_angle)
 {
-	t_possible	*winner;
-	char		winner_material;
-	double		intersection_distance;
+	t_loc	*winner;
+	char	winner_material;
+	double	intersection_distance;
 
-	(void)temp_angle;
 	winner = final.pos;
 	winner_material = final.texture;
 	if (winner_material == winner->ew_winner_texture)
