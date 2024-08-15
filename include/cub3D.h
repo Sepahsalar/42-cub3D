@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 19:04:42 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/15 19:49:32 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,6 +180,9 @@ typedef struct s_all
 	mlx_t			*window;
 	t_strip			*strip;
 	mlx_image_t		*image;
+	mlx_image_t		*minimap;
+	mlx_image_t		*wall_small;
+	mlx_image_t		*player;
 	mlx_image_t		*north;
 	mlx_image_t		*west;
 	mlx_image_t		*south;
@@ -268,5 +271,6 @@ void				south_wins(t_all *all, t_loc *temp);
 void				east_wins(t_all *all, t_loc *temp);
 void				north_wins(t_all *all, t_loc *temp);
 void				west_wins(t_all *all, t_loc *temp);
+void 				create_minimap(t_all *all);
 
 #endif // CUB3D_H
