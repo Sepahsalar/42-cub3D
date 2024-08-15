@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_loc_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:02:20 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 19:03:51 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:33:26 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,6 @@ t_loc	*create_loc_node(char temp, int x, int y)
 	new->c = temp;
 	new->x = x;
 	new->y = y;
-	new->x0 = x;
-	new->y0 = y;
-	new->x1 = x + 1;
-	new->y1 = y + 1;
-	new->x_mid = new->x0 + 0.5;
-	new->y_mid = new->y0 + 0.5;
 	init_surface(new);
 	return (new);
 }

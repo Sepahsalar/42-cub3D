@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 11:09:45 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/15 12:33:20 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,6 @@ typedef struct s_loc
 	int					x;
 	int					y;
 	char				c;
-	int					x0;
-	int					y0;
-	int					x1;
-	int					y1;
-	double				x_mid;
-	double				y_mid;
 	double				sx;
 	double				sy;
 	double				ex;
