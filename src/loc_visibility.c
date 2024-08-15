@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:48:29 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 15:05:11 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:41:23 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	reset_loc(t_all *all)
 
 void	find_visible_surface(t_all *all, t_range range)
 {
-	t_loc *temp;
+	t_loc	*temp;
 
 	temp = all->map->start;
 	while (temp)

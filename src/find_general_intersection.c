@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 13:49:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/15 13:58:54 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:38:24 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	sn_surface_distance_check(t_loc *winner, t_loc *temp_pos,
 t_winner	find_general_intersection(t_all *all, double ray_angle)
 {
 	t_loc		*temp_pos;
-	t_winner    final;
+	t_winner	final;
 
 	temp_pos = all->map->start;
 	final.pos = NULL;

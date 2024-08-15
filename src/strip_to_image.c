@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strip_to_image.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/15 15:15:31 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:35:54 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,10 @@ static int	dimension_resized_brick(t_strip *strip, char type)
 		return (round(strip->wall_length / (2 * strip->nb_blocks)));
 }
 
-typedef struct s_get_pixel_bricks
-{
-	int		x_in_resized_brick;
-	int		y_in_resized_brick;
-	int		y_in_wall;
-	int		x_in_brick;
-	int		y_in_brick;
-	int		h_resized_brick;
-	int		w_resized_brick;
-}					t_get_pixel_bricks;
-
 static int	get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 {
-	mlx_image_t	*brick;
-	t_get_pixel_bricks	size;
+	mlx_image_t		*brick;
+	t_pixel_bricks	size;
 
 	brick = choose_brick(all, strip->wall);
 	size.h_resized_brick = dimension_resized_brick(strip, 'h');
@@ -58,8 +47,10 @@ static int	get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 	size.y_in_wall = y_in_window - (int)round(strip->ceil_h);
 	size.x_in_resized_brick = strip->index % size.w_resized_brick;
 	size.y_in_resized_brick = size.y_in_wall % size.h_resized_brick;
-	size.x_in_brick = round(size.x_in_resized_brick * brick->width / size.w_resized_brick);
-	size.y_in_brick = round(size.y_in_resized_brick * brick->height / size.h_resized_brick);
+	size.x_in_brick = round(size.x_in_resized_brick * brick->width
+			/ size.w_resized_brick);
+	size.y_in_brick = round(size.y_in_resized_brick * brick->height
+			/ size.h_resized_brick);
 	return (get_pixel(brick, size.x_in_brick, size.y_in_brick));
 }
 
