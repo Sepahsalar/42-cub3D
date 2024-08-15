@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 13:59:33 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/15 15:10:41 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,14 @@ typedef struct s_range
 	int				y_max;
 }					t_range;
 
+typedef struct s_current_wall
+{
+	char			wall;
+	int				x_winner;
+	int				y_winner;
+	int				index;
+}					t_current_wall;
+
 typedef struct s_coordinate
 {
 	int				x;
@@ -242,5 +250,9 @@ t_winner			set_final_x_y_winner(t_winner final);
 t_winner			set_final_pos_and_texture(t_winner final, t_loc *temp_pos,
 						char type);
 t_winner			find_general_intersection(t_all *all, double ray_angle);
+void				south_wins(t_all *all, t_loc *temp);
+void				east_wins(t_all *all, t_loc *temp);
+void				north_wins(t_all *all, t_loc *temp);
+void				west_wins(t_all *all, t_loc *temp);
 
 #endif // CUB3D_H
