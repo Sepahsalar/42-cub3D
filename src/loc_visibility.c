@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   loc_possibility.c                                  :+:      :+:    :+:   */
+/*   loc_visibility.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:48:29 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 10:46:14 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/15 13:05:19 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	reset_loc(t_all *all)
 {
-	t_loc *loc;
+	t_loc	*loc;
 
 	loc = all->map->start;
-	while(loc)
+	while (loc)
 	{
 		loc->sn_winner_distance = all->max_distance;
 		loc->ew_winner_distance = all->max_distance;
@@ -88,7 +88,7 @@ void	find_winner_surface(t_all *all)
 
 void	find_visible_surface(t_all *all, t_range range)
 {
-	t_loc	*temp;
+	t_loc *temp;
 
 	temp = all->map->start;
 	while (temp)

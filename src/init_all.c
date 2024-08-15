@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/15 12:32:47 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/15 13:00:51 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ t_all	*init_all(char **argv)
 	all->y = start_loc_player(all, 'y');
 	all->angle = start_angle_player(all);
 	all->max_distance = max_distance(all);
-	// reset_loc(all);
 	all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, argv[0], false);
 	if (!all->window)
 		terminate(all, 1);

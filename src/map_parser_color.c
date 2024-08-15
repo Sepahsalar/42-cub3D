@@ -23,7 +23,8 @@ static void	only_digit(t_all *all, char **split, char type)
 		j = 0;
 		while (split[i][j])
 		{
-			if (!ft_isdigit(split[i][j]) && split[i][j] != ' ' && split[i][j] != '-')
+			if (!ft_isdigit(split[i][j]) && split[i][j] != ' '
+				&& split[i][j] != '-')
 			{
 				clean_2d_char_array(split);
 				ft_putchar_fd(type, 2);

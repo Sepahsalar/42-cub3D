@@ -57,15 +57,18 @@ char	*finder(t_all *all, char *str)
 static void	check_wrong_identifier(t_all *all)
 {
 	char	*temp;
+
 	temp = all->strmap;
-	while(*temp)
+	while (*temp)
 	{
-		if (*temp != 'N' && *temp != 'S' && *temp != 'E' && *temp != 'W' && *temp != '1' && *temp != '0' && *temp != ' ' && *temp != '\n')
+		if (*temp != 'N' && *temp != 'S' && *temp != 'E' && *temp != 'W'
+			&& *temp != '1' && *temp != '0' && *temp != ' ' && *temp != '\n')
 		{
-			ft_putendl_fd("Invalid character or extra identifier in the map", 2);
+			ft_putendl_fd("Invalid character or extra identifier in the map",
+					2);
 			terminate(all, 1);
 		}
-	temp++;
+		temp++;
 	}
 }
 

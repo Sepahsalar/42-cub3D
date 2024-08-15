@@ -27,11 +27,10 @@ void	fill_index_strips(t_all *all)
 	y_winner = node->y_winner;
 	while (node)
 	{
-		if (node->wall == wall
-			&& (((node->wall == 'E' || node->wall == 'W')
-					&& same(node->x_winner, x_winner))
-				|| ((node->wall == 'N' || node->wall == 'S')
-					&& same(node->y_winner, y_winner))))
+		if (node->wall == wall && (((node->wall == 'E' || node->wall == 'W')
+					&& same(node->x_winner, x_winner)) || ((node->wall == 'N'
+						|| node->wall == 'S') && same(node->y_winner,
+						y_winner))))
 			node->index = index;
 		else
 		{
