@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/15 19:11:14 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/16 12:48:03 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,5 @@ void	strip_to_image(t_all *all)
 		strip = strip->next;
 	}
 	mlx_image_to_window(all->window, all->image, 0, 0);
+	all->image->instances[0].z = 0;
 }

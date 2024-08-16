@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
+#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/15 15:11:34 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/15 19:41:14 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/map_parser.c  \
 		$(SRCDIR)/map_parser_color.c \
 		$(SRCDIR)/map_parser_utils.c \
+		$(SRCDIR)/minimap.c \
 		$(SRCDIR)/move.c \
 		$(SRCDIR)/press_key.c \
 		$(SRCDIR)/strip_to_image.c \

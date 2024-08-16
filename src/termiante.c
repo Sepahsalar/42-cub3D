@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   termiante.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 17:46:53 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/16 11:26:16 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,9 @@ void	terminate(t_all *all, int status)
 		mlx_delete_image(all->window, all->west);
 	if (all->east)
 		mlx_delete_image(all->window, all->east);
+	//clean all->minimap
+	//clean->all->player_image
+	//clean->all->player_image_at_0
 	if (all->window)
 		mlx_terminate(all->window);
 	if (all->window_name)

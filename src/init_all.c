@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/15 18:08:43 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/16 12:49:40 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_all	*init_all(char **argv)
 	all->y = start_loc_player(all, 'y');
 	all->angle = start_angle_player(all);
 	all->max_distance = max_distance(all);
-	all->window_name = ft_strdup(argv[0]);
+	all->window_name = ft_strdup(argv[0]);//////
 	all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, all->window_name, false);
 	if (!all->window)
 		terminate(all, 1);
@@ -79,6 +79,9 @@ t_all	*init_all(char **argv)
 	all->west = image_maker(all, 'W');
 	all->south = image_maker(all, 'S');
 	all->east = image_maker(all, 'E');
+	all->player_at_0 = image_maker(all, 'P');
+	create_player_image(all);
+	create_minimap(all);
 	
 	return (all);
 }

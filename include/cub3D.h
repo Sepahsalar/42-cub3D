@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 19:04:42 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:53:00 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../lib/libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
+#include <stdio.h>/////
 
 # define VAOV 90.0
 # define HAOV 90.0
@@ -28,7 +29,9 @@
 enum				e_general_constants
 {
 	FULL_CIRCLE_DEGREES = 360,
-	TURN_INTERVAL = 10,
+	TURN_INTERVAL = 15,
+	MINIMAP_GRID_SIZE = 15,
+	MINIMAP_PADDING = 25,
 };
 
 enum				e_dimensions
@@ -61,7 +64,8 @@ typedef struct s_loc
 	int				consider;
 	struct s_loc	*next;
 	struct s_loc	*previous;
-}					t_loc;
+}
+					t_loc;
 
 typedef struct s_render
 {
@@ -86,21 +90,12 @@ typedef struct s_map
 	t_loc			*start;
 }					t_map;
 
-typedef struct s_elem
-{
-	mlx_image_t		*north;
-	mlx_image_t		*west;
-	mlx_image_t		*south;
-	mlx_image_t		*east;
-	mlx_image_t		*f;
-	mlx_image_t		*c;
-}					t_elem;
-
-typedef struct s_image
+typedef struct s_player
 {
 	mlx_image_t		*image;
-	struct s_data	*next;
-}					t_image;
+	double		   	angle;
+	struct s_player	*next;
+}					t_player;
 
 typedef struct s_strip
 {
@@ -160,6 +155,17 @@ typedef struct s_coordinate
 	int				y;
 }					t_coordinate;
 
+typedef struct s_rotate
+{
+	int 			i;
+	int 			j;
+	int 			x;
+	int 			y;
+	int 			new_x;
+	int 			new_y;
+	double 			distance;
+}					t_rotate;
+
 typedef struct s_all
 {
 	t_map			*map;
@@ -180,10 +186,13 @@ typedef struct s_all
 	mlx_t			*window;
 	t_strip			*strip;
 	mlx_image_t		*image;
+	mlx_image_t		*minimap;
+	t_player		*player_image;
 	mlx_image_t		*north;
 	mlx_image_t		*west;
 	mlx_image_t		*south;
 	mlx_image_t		*east;
+	mlx_image_t		*player_at_0;
 }					t_all;
 
 int					color(int r, int g, int b, int a);
@@ -268,5 +277,8 @@ void				south_wins(t_all *all, t_loc *temp);
 void				east_wins(t_all *all, t_loc *temp);
 void				north_wins(t_all *all, t_loc *temp);
 void				west_wins(t_all *all, t_loc *temp);
+void 				create_minimap(t_all *all);
+void 				create_player_image(t_all *all);
+void 				enable_correct_player(t_all *all);
 
 #endif // CUB3D_H
