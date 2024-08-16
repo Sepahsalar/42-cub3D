@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 19:25:50 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/16 14:59:21 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:19:52 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void create_minimap(t_all *all)
 	int i;
 	int j;
 
-	all->minimap = mlx_new_image(all->window, all->map_width * MINIMAP_GRID_SIZE, all->map_height * MINIMAP_GRID_SIZE);
+	all->minimap = mlx_new_image(all->window,
+			all->map_width * MINIMAP_GRID_SIZE, all->map_height * MINIMAP_GRID_SIZE);
 	int_color_wall = color(0, 0, 0, 255);
 	int_color_floor = color(255, 255, 255, 150);
 	i = 0;
@@ -65,8 +66,8 @@ void create_minimap(t_all *all)
 
 mlx_image_t *rotate_image(t_all *all, mlx_image_t *image, double angle)
 {
-	mlx_image_t *new_image;
-	t_rotate rotate;
+	mlx_image_t	*new_image;
+	t_rotate	rotate;
 
 	if (same(angle, 0.0))
 		return (image);
@@ -79,7 +80,7 @@ mlx_image_t *rotate_image(t_all *all, mlx_image_t *image, double angle)
 		{
 			rotate.x = (int)round(rotate.i - image->width / 2.0); //
 			rotate.y = (int)round(rotate.j - image->height / 2.0); //
-			rotate.distance = sqrt(rotate.x * rotate.x + rotate.y * rotate.y);
+			// rotate.distance = sqrt(rotate.x * rotate.x + rotate.y * rotate.y);
 			rotate.new_x = (int)(round(rotate.x * ft_cos(angle) - rotate.y * ft_sin(angle)) + image->width / 2.0); //
 			rotate.new_y = (int)(round(rotate.x * ft_sin(angle) + rotate.y * ft_cos(angle)) + image->height / 2.0); //
 			if(rotate.new_x >= 0 && rotate.new_x < (int)image->width && rotate.new_y >= 0 && rotate.new_y < (int)image->height)

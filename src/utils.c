@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/16 14:59:17 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/16 15:10:00 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ mlx_image_t	*image_maker(t_all *all, char type)
 	else if (type == 'N')
 		address = all->map->north;
 	else
-		address = "./textures/player1.png";
+		address = PLAYER_PATH;
 	texture = mlx_load_png(address);
 	if (!texture)
 		terminate(all, 1);

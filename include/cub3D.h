@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/16 14:53:00 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:00:08 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <fcntl.h>
 # include <math.h>
 #include <stdio.h>/////
+
+# define PLAYER_PATH "./textures/player1.png"
 
 # define VAOV 90.0
 # define HAOV 90.0
@@ -163,7 +165,7 @@ typedef struct s_rotate
 	int 			y;
 	int 			new_x;
 	int 			new_y;
-	double 			distance;
+	// double 			distance;
 }					t_rotate;
 
 typedef struct s_all

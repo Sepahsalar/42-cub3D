@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/16 13:11:35 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/16 15:07:59 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 // * agar zavie rond nabud ham x ham y bere jelo?
 // try to hide mlx42 realted valgrind errors
-#include <stdio.h>
+
 int	main(int argc, char **argv)
 {
 	t_all	*all;

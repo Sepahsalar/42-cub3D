@@ -1,7 +1,7 @@
 NO ./textures/wall-1.png
 SO ./textures/wall-4.png
-WE ./textures/wall-6.png
-EA ./textures/wall-5.png
+WE ./textures/new-wall-3.png
+EA ./textures/wall3.png
 
 F 40,220,45
 C 40,220,220
