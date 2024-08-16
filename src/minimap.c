@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 19:25:50 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/16 16:19:52 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:38:41 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,24 +73,54 @@ mlx_image_t *rotate_image(t_all *all, mlx_image_t *image, double angle)
 		return (image);
 	new_image = mlx_new_image(all->window, image->width, image->height);
 	rotate.i = 0;
-	while (rotate.i < (int)image->width)
+	while (rotate.i < (int)new_image->width) // Iterate over the new image's width
 	{
 		rotate.j = 0;
-		while (rotate.j < (int)image->height)
+		while (rotate.j < (int)new_image->height) // Iterate over the new image's height
 		{
-			rotate.x = (int)round(rotate.i - image->width / 2.0); //
-			rotate.y = (int)round(rotate.j - image->height / 2.0); //
-			// rotate.distance = sqrt(rotate.x * rotate.x + rotate.y * rotate.y);
-			rotate.new_x = (int)(round(rotate.x * ft_cos(angle) - rotate.y * ft_sin(angle)) + image->width / 2.0); //
-			rotate.new_y = (int)(round(rotate.x * ft_sin(angle) + rotate.y * ft_cos(angle)) + image->height / 2.0); //
-			if(rotate.new_x >= 0 && rotate.new_x < (int)image->width && rotate.new_y >= 0 && rotate.new_y < (int)image->height)
-				mlx_put_pixel(new_image, rotate.new_x, rotate.new_y, get_pixel(image, rotate.i, rotate.j));
+			rotate.new_x = (int)round(rotate.i - new_image->width / 2.0);
+			rotate.new_y = (int)round(rotate.j - new_image->height / 2.0);
+			// Reverse mapping
+			rotate.x = (int)(round(rotate.new_x * ft_cos(-angle) - rotate.new_y * ft_sin(-angle)) + image->width / 2.0);
+			rotate.y = (int)(round(rotate.new_x * ft_sin(-angle) + rotate.new_y * ft_cos(-angle)) + image->height / 2.0);
+			if(rotate.x >= 0 && rotate.x < (int)image->width && rotate.y >= 0 && rotate.y < (int)image->height)
+				mlx_put_pixel(new_image, rotate.i, rotate.j, get_pixel(image, rotate.x, rotate.y));
 			(rotate.j)++;
 		}
 		(rotate.i)++;
 	}
 	return (new_image);
 }
+
+
+// mlx_image_t *rotate_image(t_all *all, mlx_image_t *image, double angle)
+// {
+// 	mlx_image_t	*new_image;
+// 	t_rotate	rotate;
+
+// 	if (same(angle, 0.0))
+// 		return (image);
+// 	new_image = mlx_new_image(all->window, image->width, image->height);
+// 	rotate.i = 0;
+// 	while (rotate.i < (int)image->width)
+// 	{
+// 		rotate.j = 0;
+// 		while (rotate.j < (int)image->height)
+// 		{
+// 			rotate.x = (int)round(rotate.i - image->width / 2.0); //
+// 			rotate.y = (int)round(rotate.j - image->height / 2.0); //
+// 			// rotate.distance = sqrt(rotate.x * rotate.x + rotate.y * rotate.y);
+// 			rotate.x = (int)(round(rotate.new_x * ft_cos(-angle) - rotate.new_y * ft_sin(-angle)) + image->width / 2.0);
+// 			rotate.y = (int)(round(rotate.new_x * ft_sin(-angle) + rotate.new_y * ft_cos(-angle)) + image->height / 2.0);
+// 			if(rotate.x >= 0 && rotate.x < (int)image->width && rotate.y >= 0 && rotate.y < (int)image->height)
+// 				// mlx_put_pixel(new_image, rotate.new_x, rotate.new_y, get_pixel(image, rotate.i, rotate.j));
+// 				mlx_put_pixel(new_image, rotate.i, rotate.j, get_pixel(image, rotate.new_x, rotate.new_x));
+// 			(rotate.j)++;
+// 		}
+// 		(rotate.i)++;
+// 	}
+// 	return (new_image);
+// }
 
 t_player *create_player_image_node(t_all *all, double angle)
 {

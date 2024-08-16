@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/16 16:00:08 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:39:22 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <math.h>
 #include <stdio.h>/////
 
-# define PLAYER_PATH "./textures/player1.png"
+# define PLAYER_PATH "./textures/player-3-0.png"
 
 # define VAOV 90.0
 # define HAOV 90.0
