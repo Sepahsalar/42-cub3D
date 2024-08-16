@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 17:28:24 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/16 14:59:17 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,10 @@ mlx_image_t	*image_maker(t_all *all, char type)
 		address = all->map->west;
 	else if (type == 'S')
 		address = all->map->south;
-	else
+	else if (type == 'N')
 		address = all->map->north;
+	else
+		address = "./textures/player1.png";
 	texture = mlx_load_png(address);
 	if (!texture)
 		terminate(all, 1);
@@ -101,5 +103,8 @@ mlx_image_t	*image_maker(t_all *all, char type)
 	mlx_delete_texture(texture);
 	if (!picture)
 		terminate(all, 1);
+	if (type == 'P')
+		if (mlx_resize_image(picture, MINIMAP_GRID_SIZE, MINIMAP_GRID_SIZE) == 0)
+			terminate(all, 1);
 	return (picture);
 }

@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/15 19:21:50 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:11:35 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 // * agar zavie rond nabud ham x ham y bere jelo?
 // try to hide mlx42 realted valgrind errors
-
+#include <stdio.h>
 int	main(int argc, char **argv)
 {
 	t_all	*all;
@@ -44,6 +44,7 @@ int	main(int argc, char **argv)
 	}
 	all = init_all(argv);
 	fill_strips(all);
+	// enable_correct_player(all);
 	mlx_key_hook(all->window, &press_key, all);
 	mlx_loop(all->window);
 	terminate(all, 0);
