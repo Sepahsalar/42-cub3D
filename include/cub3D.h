@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/16 16:39:22 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:48:42 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,26 @@
 # define PLAYER_PATH "./textures/player-3-0.png"
 
 # define VAOV 90.0
-# define HAOV 90.0
+# define HAOV 75.0
 # define PERSON 1.8
 # define WALL 3.0
 # define EPSILON 0.00001
 # define DISTANCE_FROM_WALL 1.5
+# define MINIMAP_SIDE 150
+
 
 enum				e_general_constants
 {
 	FULL_CIRCLE_DEGREES = 360,
 	TURN_INTERVAL = 15,
-	MINIMAP_GRID_SIZE = 15,
+	// MINIMAP_GRID_SIZE = 15,
 	MINIMAP_PADDING = 25,
 };
 
 enum				e_dimensions
 {
 	WINDOW_HEIGHT = 900,
-	WINDOW_WIDTH = 1600
+	WINDOW_WIDTH = 1600,
 };
 
 typedef struct s_loc
@@ -76,9 +78,12 @@ typedef struct s_render
 	double			wall_height;
 	char			wall_texture;
 	int				x;
+	int				x_wall;
+	int				y_wall;
 	double			x_winner;
 	double			y_winner;
-
+	double			x_intersection;
+	double			y_intersection;
 }					t_render;
 
 typedef struct s_map
@@ -108,8 +113,12 @@ typedef struct s_strip
 	double			floor_h;
 	int				wall_length;
 	int				index;
+	int				x_wall;
+	int				y_wall;
 	double			x_winner;
 	double			y_winner;
+	double			x_intersection;
+	double			y_intersection;
 	int				nb_blocks;
 	struct s_strip	*previous;
 	struct s_strip	*next;
@@ -121,7 +130,9 @@ typedef struct s_winner
 	char			texture;
 	double			x_winner;
 	double			y_winner;
-
+	double			x_intersection;
+	double			y_intersection;
+	double			intersection_distance;
 }					t_winner;
 
 typedef struct s_range
@@ -239,7 +250,7 @@ double				ft_sin(double a);
 double				distance(double x1, double y1, double x2, double y2);
 int					same(double d1, double d2);
 double				height(double distance, char c);
-double				calculate_distance(t_all *all, t_winner final,
+t_winner			calculate_distance(t_all *all, t_winner final,
 						double ray_angle);
 int					check_map_format(char *str);
 double				find_x(double angle, double x_player, double y_player,

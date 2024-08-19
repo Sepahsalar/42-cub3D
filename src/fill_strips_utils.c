@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_strips_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:11:11 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/14 19:15:30 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:53:44 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ t_strip	*create_strips_node(t_render data_render)
 	new->previous = 0;
 	new->x_winner = data_render.x_winner;
 	new->y_winner = data_render.y_winner;
+	new->x_wall = data_render.x_wall;
+	new->y_wall = data_render.y_wall;
+	new->x_intersection = data_render.x_intersection;
+	new->y_intersection = data_render.y_intersection;
 	return (new);
 }
 

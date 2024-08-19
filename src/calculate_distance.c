@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:12:44 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/15 12:58:27 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/19 11:57:05 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,33 @@ double	find_y(double angle, double x_player, double y_player, double x_target)
 	return (y_target);
 }
 
-double	calculate_distance(t_all *all, t_winner final, double ray_angle)
+t_winner	calculate_distance(t_all *all, t_winner final, double ray_angle)
 {
 	t_loc	*winner;
 	char	winner_material;
-	double	intersection_distance;
+	// double	intersection_distance;
 
 	winner = final.pos;
 	winner_material = final.texture;
 	if (winner_material == winner->ew_winner_texture)
-		intersection_distance = distance(all->x, all->y, winner->ew_winner_x,
-				find_y(ray_angle, all->x, all->y, winner->ew_winner_x));
+	{
+		final.x_intersection = winner->ew_winner_x;
+		final.y_intersection = find_y(ray_angle, all->x, all->y, final.x_intersection);
+		// intersection_distance = distance(all->x, all->y, winner->ew_winner_x,
+		// 		find_y(ray_angle, all->x, all->y, winner->ew_winner_x));
+	}
 	else
-		intersection_distance = distance(all->x, all->y, find_x(ray_angle,
-					all->x, all->y, winner->sn_winner_y), winner->sn_winner_y);
-	if (intersection_distance < 0.5)
-		intersection_distance = 0.5;
-	intersection_distance = intersection_distance * fabs(ft_cos(all->angle
+	{
+		final.y_intersection = winner->sn_winner_y;
+		final.x_intersection = find_x(ray_angle, all->x, all->y, final.y_intersection);
+		// intersection_distance = distance(all->x, all->y, find_x(ray_angle,
+		// 			all->x, all->y, winner->sn_winner_y), winner->sn_winner_y);
+	}
+	final.intersection_distance = distance(all->x, all->y, final.x_intersection, final.y_intersection);
+	if (final.intersection_distance < 0.5)
+		final.intersection_distance = 0.5;
+	final.intersection_distance = final.intersection_distance * fabs(ft_cos(all->angle
 				- ray_angle)) + DISTANCE_FROM_WALL;
-	return (intersection_distance);
+	// final.intersection_distance = intersection_distance;
+	return (final);
 }
