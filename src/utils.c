@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/19 16:49:19 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:09:05 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ int	color_maker(t_all *all, char type)
 	split = ft_split(full_color, ',');
 	if (!split)
 		terminate(all, 1);
-	if (!split[3])
-		int_color = color(ft_atoi(split[0]), ft_atoi(split[1]),
-				ft_atoi(split[2]), 255);
-	else
-		int_color = color(ft_atoi(split[0]), ft_atoi(split[1]),
-				ft_atoi(split[2]), ft_atoi(split[3]));
+	// if (!split[3])
+	// 	int_color = color(ft_atoi(split[0]), ft_atoi(split[1]),
+	// 			ft_atoi(split[2]), 255);
+	// else
+	int_color = color(ft_atoi(split[0]), ft_atoi(split[1]), ft_atoi(split[2]),
+			255);
 	clean_2d_char_array(split);
 	return (int_color);
 }
@@ -104,7 +104,8 @@ mlx_image_t	*image_maker(t_all *all, char type)
 	if (!picture)
 		terminate(all, 1);
 	if (type == 'P')
-		if (mlx_resize_image(picture, MINIMAP_SIDE / all->map_width, MINIMAP_SIDE / all->map_height) == 0)
+		if (mlx_resize_image(picture, MINIMAP_SIDE / all->map_width,
+				MINIMAP_SIDE / all->map_height) == 0)
 			terminate(all, 1);
 	return (picture);
 }

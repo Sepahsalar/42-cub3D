@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/19 16:48:42 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:23:27 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 # include "../lib/libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
-#include <stdio.h>/////
+# include <stdio.h> /////
 
-# define PLAYER_PATH "./textures/player-3-0.png"
+# define PLAYER_PATH "./textures/player1.png"
 
 # define VAOV 90.0
 # define HAOV 75.0
@@ -27,14 +27,12 @@
 # define WALL 3.0
 # define EPSILON 0.00001
 # define DISTANCE_FROM_WALL 1.5
-# define MINIMAP_SIDE 150
-
+# define MINIMAP_SIDE 180
 
 enum				e_general_constants
 {
 	FULL_CIRCLE_DEGREES = 360,
 	TURN_INTERVAL = 15,
-	// MINIMAP_GRID_SIZE = 15,
 	MINIMAP_PADDING = 25,
 };
 
@@ -68,8 +66,7 @@ typedef struct s_loc
 	int				consider;
 	struct s_loc	*next;
 	struct s_loc	*previous;
-}
-					t_loc;
+}					t_loc;
 
 typedef struct s_render
 {
@@ -100,7 +97,7 @@ typedef struct s_map
 typedef struct s_player
 {
 	mlx_image_t		*image;
-	double		   	angle;
+	double			angle;
 	struct s_player	*next;
 }					t_player;
 
@@ -170,19 +167,17 @@ typedef struct s_coordinate
 
 typedef struct s_rotate
 {
-	int 			i;
-	int 			j;
-	int 			x;
-	int 			y;
-	int 			new_x;
-	int 			new_y;
-	// double 			distance;
+	int				i;
+	int				j;
+	int				x;
+	int				y;
+	int				new_x;
+	int				new_y;
 }					t_rotate;
 
 typedef struct s_all
 {
 	t_map			*map;
-	char			*window_name;
 	int				floor_color;
 	int				ceil_color;
 	double			x;
@@ -239,7 +234,7 @@ void				temp_movment45(double *new_x, double *new_y, char c);
 void				temp_movment315(double *new_x, double *new_y, char c);
 void				conditional_move(t_all *all, double new_x, double new_y);
 int					is_wall_there(t_all *all, int x, int y);
-void				fill_number_of_blocks(t_all *all);
+// void				fill_number_of_blocks(t_all *all);
 int					get_pixel(mlx_image_t *image, int i, int j);
 char				*custom_strdup(t_all *all, char *found, char *str);
 void				remove_white_space(t_all *all);
@@ -290,8 +285,8 @@ void				south_wins(t_all *all, t_loc *temp);
 void				east_wins(t_all *all, t_loc *temp);
 void				north_wins(t_all *all, t_loc *temp);
 void				west_wins(t_all *all, t_loc *temp);
-void 				create_minimap(t_all *all);
-void 				create_player_image(t_all *all);
-void 				enable_correct_player(t_all *all);
+void				create_minimap(t_all *all);
+void				create_player_image(t_all *all);
+void				enable_correct_player(t_all *all);
 
 #endif // CUB3D_H

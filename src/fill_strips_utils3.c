@@ -49,9 +49,8 @@ void	make_wall_and_ceil_linear(t_all *all)
 			last = last_wall_node(node);
 			first = first_wall_node(node);
 			index = node->index;
-			node->wall_h = ((first->wall_h + first->floor_h)
-					+ (last->wall_h - first->wall_h
-						+ last->floor_h - first->floor_h)
+			node->wall_h = ((first->wall_h + first->floor_h) + (last->wall_h
+						- first->wall_h + last->floor_h - first->floor_h)
 					* ((double)index / (double)last->index)) - node->floor_h;
 			node->ceil_h = WINDOW_HEIGHT - node->wall_h - node->floor_h;
 		}

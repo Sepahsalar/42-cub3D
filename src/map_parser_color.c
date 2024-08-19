@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:42:31 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/15 11:05:32 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:55:51 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,36 @@ static void	only_digit(t_all *all, char **split, char type)
 	}
 }
 
-static void	only_three_or_four_parts(t_all *all, char **split, char type)
+// static void	only_three_or_four_parts(t_all *all, char **split, char type)
+// {
+// 	int	i;
+
+// 	i = 0;
+// 	while (split[i])
+// 		i++;
+// 	if (i != 3 && i != 4)
+// 	{
+// 		clean_2d_char_array(split);
+// 		ft_putstr_fd("The color for ", 2);
+// 		ft_putchar_fd(type, 2);
+// 		ft_putendl_fd(" identifier does not match the RGB or RGBA models", 2);
+// 		terminate(all, 1);
+// 	}
+// }
+
+static void	check_rgb_format(t_all *all, char **split, char type)
 {
 	int	i;
 
 	i = 0;
 	while (split[i])
 		i++;
-	if (i != 3 && i != 4)
+	if (i != 3)
 	{
 		clean_2d_char_array(split);
 		ft_putstr_fd("The color for ", 2);
 		ft_putchar_fd(type, 2);
-		ft_putendl_fd(" identifier does not match the RGB or RGBA models", 2);
+		ft_putendl_fd(" identifier does not match the RGB model", 2);
 		terminate(all, 1);
 	}
 }
@@ -62,7 +79,8 @@ static void	valid_range(t_all *all, char **split, char type)
 	i = 0;
 	while (split[i])
 	{
-		if (ft_atoi(split[i]) < 0 || ft_atoi(split[i]) > 255)
+		if (ft_strlen(split[i]) > 3 || ft_atoi(split[i]) < 0
+			|| ft_atoi(split[i]) > 255)
 		{
 			clean_2d_char_array(split);
 			ft_putstr_fd("Invalid color range for ", 2);
@@ -88,7 +106,7 @@ void	check_valid_color(t_all *all, char type)
 	split = ft_split(full_color, ',');
 	if (!split)
 		terminate(all, 1);
-	only_three_or_four_parts(all, split, type);
+	check_rgb_format(all, split, type);
 	only_digit(all, split, type);
 	valid_range(all, split, type);
 	clean_2d_char_array(split);

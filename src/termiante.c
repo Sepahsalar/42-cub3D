@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/16 11:26:16 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/19 17:35:32 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	terminate(t_all *all, int status)
 	//clean->all->player_image_at_0
 	if (all->window)
 		mlx_terminate(all->window);
-	if (all->window_name)
-		free(all->window_name);
+	// if (all->window_name)
+	// 	free(all->window_name);
 	free(all);
 	exit(status);
 }

@@ -14,11 +14,11 @@
 
 static int	node_belongs_to_wall(t_strip *node, t_current_wall current_wall)
 {
-	if ((node->wall == current_wall.wall)
-		&& (((node->wall == 'E' || node->wall == 'W')
-				&& same(node->x_winner, current_wall.x_winner))
-			|| ((node->wall == 'N' || node->wall == 'S')
-				&& same(node->y_winner, current_wall.y_winner))))
+	if ((node->wall == current_wall.wall) && (((node->wall == 'E'
+					|| node->wall == 'W') && same(node->x_winner,
+					current_wall.x_winner)) || ((node->wall == 'N'
+					|| node->wall == 'S') && same(node->y_winner,
+					current_wall.y_winner))))
 		return (0);
 	else
 		return (1);

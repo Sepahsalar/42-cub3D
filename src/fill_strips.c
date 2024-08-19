@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/19 13:26:26 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:09:33 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,14 @@ static void	create_strips_helper(t_all *all, double temp_angle)
 {
 	double		ray_angle;
 	t_winner	final;
-	// double		intersection_distance;
 	t_render	data_render;
 
+	// double		intersection_distance;
 	ray_angle = under_full_circle(all->angle - (HAOV / 2) + temp_angle);
 	final = find_winner(all, ray_angle);
 	final = calculate_distance(all, final, ray_angle);
 	data_render = create_render_data(all, final);
 	init_strips(all, data_render);
-
 }
 
 static void	create_strips(t_all *all)
@@ -71,17 +70,7 @@ void	fill_strips(t_all *all)
 	enable_correct_player(all);
 	create_strips(all);
 	fill_index_strips(all);
-	
 	fill_length_strips(all);
-	// t_strip	*node = all->strip;
-	// while (node)
-	// {
-	// 	printf("index: %d\n", node->index);
-	// 	printf("x_intersection: %f\n", node->x_intersection);
-	// 	printf("y_intersection: %f\n", node->y_intersection);
-	// 	node = node->next;
-	// }
-	// printf("after fill_length_strips\n");
 	update_strips(all);
 	// fill_number_of_blocks(all);
 	strip_to_image(all);

@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/16 15:07:59 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:25:07 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-
-// from subject:
-// Floor color:
-// F 220,100,0
-// · identifier: F
-// · R,G,B colors in range [0,255]: 0, 255, 255
-// ||
-// \/
-// * maybe we should just check 3 elements for C and F
 
 // * decide whether we should check for file availability in walls identifier
 

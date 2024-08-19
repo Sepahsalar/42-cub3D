@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/16 12:49:40 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/19 18:08:32 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ t_all	*init_all(char **argv)
 	all->y = start_loc_player(all, 'y');
 	all->angle = start_angle_player(all);
 	all->max_distance = max_distance(all);
-	all->window_name = ft_strdup(argv[0]);//////
-	all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, all->window_name, false);
+	all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, argv[0], false);
 	if (!all->window)
 		terminate(all, 1);
 	all->north = image_maker(all, 'N');
@@ -82,6 +81,5 @@ t_all	*init_all(char **argv)
 	all->player_at_0 = image_maker(all, 'P');
 	create_player_image(all);
 	create_minimap(all);
-	
 	return (all);
 }

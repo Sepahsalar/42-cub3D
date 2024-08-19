@@ -76,7 +76,7 @@ void	press_key(mlx_key_data_t keydata, void *param)
 		&& keydata.action == MLX_PRESS)
 		move(param, 'W');
 	else if ((keydata.key == MLX_KEY_S || keydata.key == MLX_KEY_DOWN)
-		&& keydata.action == MLX_PRESS)
+			&& keydata.action == MLX_PRESS)
 		move(param, 'S');
 	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
 		move(param, 'A');

@@ -47,29 +47,32 @@ t_winner	calculate_distance(t_all *all, t_winner final, double ray_angle)
 {
 	t_loc	*winner;
 	char	winner_material;
-	// double	intersection_distance;
 
+	// double	intersection_distance;
 	winner = final.pos;
 	winner_material = final.texture;
 	if (winner_material == winner->ew_winner_texture)
 	{
 		final.x_intersection = winner->ew_winner_x;
-		final.y_intersection = find_y(ray_angle, all->x, all->y, final.x_intersection);
+		final.y_intersection = find_y(ray_angle, all->x, all->y,
+				final.x_intersection);
 		// intersection_distance = distance(all->x, all->y, winner->ew_winner_x,
 		// 		find_y(ray_angle, all->x, all->y, winner->ew_winner_x));
 	}
 	else
 	{
 		final.y_intersection = winner->sn_winner_y;
-		final.x_intersection = find_x(ray_angle, all->x, all->y, final.y_intersection);
+		final.x_intersection = find_x(ray_angle, all->x, all->y,
+				final.y_intersection);
 		// intersection_distance = distance(all->x, all->y, find_x(ray_angle,
 		// 			all->x, all->y, winner->sn_winner_y), winner->sn_winner_y);
 	}
-	final.intersection_distance = distance(all->x, all->y, final.x_intersection, final.y_intersection);
+	final.intersection_distance = distance(all->x, all->y, final.x_intersection,
+			final.y_intersection);
 	if (final.intersection_distance < 0.5)
 		final.intersection_distance = 0.5;
-	final.intersection_distance = final.intersection_distance * fabs(ft_cos(all->angle
-				- ray_angle)) + DISTANCE_FROM_WALL;
+	final.intersection_distance = final.intersection_distance
+		* fabs(ft_cos(all->angle - ray_angle)) + DISTANCE_FROM_WALL;
 	// final.intersection_distance = intersection_distance;
 	return (final);
 }
