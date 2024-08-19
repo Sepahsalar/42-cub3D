@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/19 16:33:38 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:40:24 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@
 # define WALL 3.0
 # define EPSILON 0.00001
 # define DISTANCE_FROM_WALL 1.5
-# define MINIMAP_SIDE 225
+# define MINIMAP_SIDE 150
 
 
 enum				e_general_constants
 {
 	FULL_CIRCLE_DEGREES = 360,
 	TURN_INTERVAL = 15,
-	MINIMAP_GRID_SIZE = 15,
+	// MINIMAP_GRID_SIZE = 15,
 	MINIMAP_PADDING = 25,
 };
 

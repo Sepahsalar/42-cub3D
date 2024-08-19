@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/16 14:59:17 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:39:05 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ mlx_image_t	*image_maker(t_all *all, char type)
 	if (!picture)
 		terminate(all, 1);
 	if (type == 'P')
-		if (mlx_resize_image(picture, MINIMAP_GRID_SIZE, MINIMAP_GRID_SIZE) == 0)
+		if (mlx_resize_image(picture, MINIMAP_SIDE / all->map_width, MINIMAP_SIDE / all->map_height) == 0)
 			terminate(all, 1);
 	return (picture);
 }

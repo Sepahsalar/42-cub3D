@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 19:25:50 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/16 14:59:21 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/19 16:38:34 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int is_there_a_wall(t_all *all, int x, int y)
 	int y_minimap_to_loc;
 	t_loc *loc;
 
-	x_minimap_to_loc = x / MINIMAP_GRID_SIZE;
-	y_minimap_to_loc = y / MINIMAP_GRID_SIZE;
+	x_minimap_to_loc = x / (MINIMAP_SIDE / all->map_width);
+	y_minimap_to_loc = y / (MINIMAP_SIDE / all->map_height);
 	loc = all->map->start;
 	while (loc)
 	{
@@ -42,7 +42,7 @@ void create_minimap(t_all *all)
 	int i;
 	int j;
 
-	all->minimap = mlx_new_image(all->window, all->map_width * MINIMAP_GRID_SIZE, all->map_height * MINIMAP_GRID_SIZE);
+	all->minimap = mlx_new_image(all->window, MINIMAP_SIDE, MINIMAP_SIDE);
 	int_color_wall = color(0, 0, 0, 255);
 	int_color_floor = color(255, 255, 255, 150);
 	i = 0;
@@ -163,8 +163,8 @@ void enable_correct_player(t_all *all)
 	{
 		if (same(current->angle, all->angle))
 		{
-			current->image->instances[0].x = (int)(all->x - 0.5) * MINIMAP_GRID_SIZE + MINIMAP_PADDING;
-			current->image->instances[0].y = (int)(all->y - 0.5) * MINIMAP_GRID_SIZE + MINIMAP_PADDING;
+			current->image->instances[0].x = (int)(all->x - 0.5) * (MINIMAP_SIDE / all->map_width) + MINIMAP_PADDING;
+			current->image->instances[0].y = (int)(all->y - 0.5) * (MINIMAP_SIDE / all->map_height) + MINIMAP_PADDING;
 			current->image->instances[0].enabled = 1;
 			break;
 		}
