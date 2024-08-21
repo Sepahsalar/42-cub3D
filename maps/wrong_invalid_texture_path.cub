@@ -1,10 +1,10 @@
 NO ./textures/wall-1.png
-SO ./textures/wall-4.png
-WE ./textures/new-wall-5.png
-EA ./textures/new-wall-3.png
+SO ./text ures/wall-6.png
+WE ./textures/wall-3.png
+EA ./textures/wall-5.png
 
-F 40,220,0
-C 40,220,220
+F 40,220,45
+C 40,220,45
 
 11111111
 10000001111

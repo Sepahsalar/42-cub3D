@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/21 10:42:21 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:40:15 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,7 +234,6 @@ void				temp_movment45(double *new_x, double *new_y, char c);
 void				temp_movment315(double *new_x, double *new_y, char c);
 void				conditional_move(t_all *all, double new_x, double new_y);
 int					is_wall_there(t_all *all, int x, int y);
-// void				fill_number_of_blocks(t_all *all);
 int					get_pixel(mlx_image_t *image, int i, int j);
 char				*custom_strdup(t_all *all, char *found, char *str);
 void				remove_white_space(t_all *all);
@@ -288,5 +287,6 @@ void				west_wins(t_all *all, t_loc *temp);
 void				create_minimap(t_all *all);
 void				create_player_image(t_all *all);
 void				enable_correct_player(t_all *all);
+void				check_empty_map(t_all *all, char *str, char *error);
 
 #endif // CUB3D_H

@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:01:24 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/21 11:28:07 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	check_map_format(char *str)
 {
 	if (ft_strlen(str) < 5)
+		return (0);
+	if (str[ft_strlen(str) - 5] == '/')
 		return (0);
 	if (str[ft_strlen(str) - 4] != '.' || str[ft_strlen(str) - 3] != 'c'
 		|| str[ft_strlen(str) - 2] != 'u' || str[ft_strlen(str) - 1] != 'b')

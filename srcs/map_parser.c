@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:40:44 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,25 @@ void	reader(t_all *all)
 	}
 }
 
+char *custom_strnstr(char *haystack, char *needle)
+{
+	char	*temp;
+	
+	temp = ft_strnstr(haystack, needle, ft_strlen(haystack));
+	while (temp)
+	{
+		if (temp[ft_strlen(needle)] == ' ')
+			return (temp);
+		temp = ft_strnstr(temp + 1, needle, ft_strlen(haystack));
+	}
+	return (NULL);
+}
+
 char	*finder(t_all *all, char *str)
 {
 	char	*found;
 
-	found = ft_strnstr(all->strmap, str, ft_strlen(all->strmap));
+	found = custom_strnstr(all->strmap, str);
 	if (found)
 		return (custom_strdup(all, found, str));
 	ft_putstr_fd("There is no ", 2);
@@ -72,6 +86,24 @@ static void	check_wrong_identifier(t_all *all)
 	}
 }
 
+void check_empty_map(t_all *all, char *str, char *error)
+{
+	char	*temp;
+
+	if (str)
+		temp = str;
+	else	
+		temp = all->strmap;
+	while (*temp)
+	{
+		if (*temp != ' ' && *temp != '\n')
+			return ;
+		temp++;
+	}
+	ft_putendl_fd(error, 2);
+	terminate(all, 1);
+}
+
 t_map	*map_parser(t_all *all)
 {
 	t_map	*map;
@@ -82,6 +114,7 @@ t_map	*map_parser(t_all *all)
 	ft_memset(map, 0, sizeof(t_map));
 	all->map = map;
 	reader(all);
+	check_empty_map(all, NULL, "Empty map");
 	all->map->north = finder(all, "NO");
 	all->map->south = finder(all, "SO");
 	all->map->west = finder(all, "WE");
@@ -90,6 +123,7 @@ t_map	*map_parser(t_all *all)
 	check_valid_color(all, 'F');
 	all->map->c = finder(all, "C");
 	check_valid_color(all, 'C');
+	check_empty_map(all, NULL, "There is no map content in the file");
 	check_wrong_identifier(all);
 	remove_white_space(all);
 	create_loc(all);

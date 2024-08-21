@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:58:48 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:57:58 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	find_max_x(t_all *all, int y)
 	int		max;
 	int		found;
 
-	max = 0;
+	max = -1;
 	found = 0;
 	temp = all->map->start;
 	while (temp)
@@ -97,7 +97,7 @@ int	find_max_y(t_all *all, int x)
 	int		found;
 
 	found = 0;
-	max = 0;
+	max = -1;
 	temp = all->map->start;
 	while (temp)
 	{

@@ -3,7 +3,7 @@ SO ./textures/wall-4.png
 WE ./textures/new-wall-5.png
 EA ./textures/new-wall-3.png
 
-F 40,220,0
+F 40 ,  220  ,45  
 C 40,220,220
 
 11111111

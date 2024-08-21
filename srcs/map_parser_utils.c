@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:26:07 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:41:51 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	update_map(t_all *all, char *found)
 	check_failure(0, temp, 2, all);
 	ft_memcpy(temp, all->strmap, len);
 	ft_memcpy(temp + len, start_part2, ft_strlen(start_part2) + 1);
+	check_empty_map(all, start_part2, "Wrong map structure");
 	free(all->strmap);
 	all->strmap = temp;
 }
@@ -44,6 +45,19 @@ static int	custom_strdup_len(char *start)
 		end++;
 	len = end - start;
 	return (len);
+}
+
+void check_texture_exists(t_all *all, char *address)
+{
+	int fd;
+	
+	fd = open(address, O_RDONLY);
+	if (fd < 0)
+	{
+		ft_putendl_fd("Invalid texture path", 2);
+		terminate(all, 1);
+	}
+	close(fd);
 }
 
 char	*custom_strdup(t_all *all, char *found, char *str)
@@ -71,6 +85,8 @@ char	*custom_strdup(t_all *all, char *found, char *str)
 		ft_putendl_fd(" identifier in the map", 2);
 		terminate(all, 1);
 	}
+	if (str[0] != 'F' && str[0] != 'C')
+		check_texture_exists(all, temp);
 	return (temp);
 }
 
@@ -87,7 +103,6 @@ void	remove_white_space(t_all *all)
 			start = temp + 1;
 		temp++;
 	}
-	// free(all->strmap);
 	temp = ft_strdup(start);
 	check_failure(0, temp, 2, all);
 	free(all->strmap);

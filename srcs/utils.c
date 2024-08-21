@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:27:03 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ mlx_image_t	*image_maker(t_all *all, char type)
 	mlx_texture_t	*texture;
 	mlx_image_t		*picture;
 	char			*address;
+	// int				fd;
 
 	if (type == 'E')
 		address = all->map->east;
@@ -96,6 +97,13 @@ mlx_image_t	*image_maker(t_all *all, char type)
 		address = all->map->north;
 	else
 		address = PLAYER_PATH;
+	// fd = open(address, O_RDONLY);
+	// if (fd < 0)
+	// {
+	// 	ft_putendl_fd("Invalid texture path", 2);
+	// 	terminate(all, 1);
+	// }
+	// close(fd);
 	texture = mlx_load_png(address);
 	if (!texture)
 		terminate(all, 1);
