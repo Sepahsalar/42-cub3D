@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/21 14:40:15 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/21 15:29:03 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_loc
 	double			wy;
 	double			nx;
 	double			ny;
+	int				wet;
 	double			sn_winner_distance;
 	double			ew_winner_distance;
 	char			sn_winner_texture;

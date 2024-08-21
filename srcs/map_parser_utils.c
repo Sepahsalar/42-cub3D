@@ -47,10 +47,10 @@ static int	custom_strdup_len(char *start)
 	return (len);
 }
 
-void check_texture_exists(t_all *all, char *address)
+void	check_texture_exists(t_all *all, char *address)
 {
-	int fd;
-	
+	int	fd;
+
 	fd = open(address, O_RDONLY);
 	if (fd < 0)
 	{

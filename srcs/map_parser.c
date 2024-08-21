@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/21 14:40:44 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/21 15:59:48 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	reader(t_all *all)
 		ft_putendl_fd("Could not open the map file", 2);
 		terminate(all, 1);
 	}
-	// check_failure(all->fd, NULL, 1, all);
 	byte = read(all->fd, c, 1);
 	check_failure(byte, NULL, 1, all);
 	while (byte)
@@ -40,10 +39,10 @@ void	reader(t_all *all)
 	}
 }
 
-char *custom_strnstr(char *haystack, char *needle)
+char	*custom_strnstr(char *haystack, char *needle)
 {
 	char	*temp;
-	
+
 	temp = ft_strnstr(haystack, needle, ft_strlen(haystack));
 	while (temp)
 	{
@@ -86,13 +85,13 @@ static void	check_wrong_identifier(t_all *all)
 	}
 }
 
-void check_empty_map(t_all *all, char *str, char *error)
+void	check_empty_map(t_all *all, char *str, char *error)
 {
 	char	*temp;
 
 	if (str)
 		temp = str;
-	else	
+	else
 		temp = all->strmap;
 	while (*temp)
 	{
@@ -102,6 +101,82 @@ void check_empty_map(t_all *all, char *str, char *error)
 	}
 	ft_putendl_fd(error, 2);
 	terminate(all, 1);
+}
+
+void	wet_loc(t_all *all, t_loc *loc)
+{
+	int		x;
+	int		y;
+	t_loc	*temp;
+
+	x = loc->x;
+	y = loc->y;
+	temp = all->map->start;
+	while (temp)
+	{
+		if ((temp->x == x && temp->y == y + 1) || (temp->x == x && temp->y == y
+				- 1) || (temp->x == x + 1 && temp->y == y) || (temp->x == x - 1
+				&& temp->y == y))
+			temp->wet = 1;
+		temp = temp->next;
+	}
+}
+
+int	sum_wet(t_all *all)
+{
+	t_loc	*loc;
+	int		sum;
+
+	loc = all->map->start;
+	sum = 0;
+	while (loc)
+	{
+		if (loc->wet == 1)
+			sum++;
+		loc = loc->next;
+	}
+	return (sum);
+}
+
+void	check_dry(t_all *all)
+{
+	t_loc	*loc;
+
+	loc = all->map->start;
+	while (loc)
+	{
+		if (loc->wet == 0)
+		{
+			ft_putendl_fd("Map is separated", 2);
+			terminate(all, 1);
+		}
+		loc = loc->next;
+	}
+}
+
+void	flood_map(t_all *all)
+{
+	t_loc	*loc;
+	int		sum1;
+	int		sum2;
+
+	all->map->start->wet = 1;
+	wet_loc(all, all->map->start);
+	sum1 = 0;
+	sum2 = sum_wet(all);
+	while (sum1 < sum2)
+	{
+		loc = all->map->start;
+		while (loc)
+		{
+			if (loc->wet == 1)
+				wet_loc(all, loc);
+			loc = loc->next;
+		}
+		loc = all->map->start;
+		sum1 = sum2;
+		sum2 = sum_wet(all);
+	}
 }
 
 t_map	*map_parser(t_all *all)
@@ -127,6 +202,8 @@ t_map	*map_parser(t_all *all)
 	check_wrong_identifier(all);
 	remove_white_space(all);
 	create_loc(all);
+	flood_map(all);
+	check_dry(all);
 	all->map_width = game_size(all, 'x');
 	all->map_height = game_size(all, 'y');
 	ignore_inside_surface(all);

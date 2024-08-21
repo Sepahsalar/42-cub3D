@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 13:27:03 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:01:54 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	clean_2d_char_array(char **array)
 
 int	color(int r, int g, int b, int a)
 {
-	if (r >= 0 && g >= 0 && b >= 0 && a >= 0 && r <= 255 && g <= 255 && b <= 255
-		&& a <= 255)
+	if (r >= 0 && g >= 0 && b >= 0 && a >= 0
+		&& r <= 255 && g <= 255 && b <= 255 && a <= 255)
 		return (r << 24 | g << 16 | b << 8 | a);
 	if (r < 0)
 		return (color(0, g, b, a));
@@ -62,12 +62,8 @@ int	color_maker(t_all *all, char type)
 	split = ft_split(full_color, ',');
 	if (!split)
 		terminate(all, 1);
-	// if (!split[3])
-	// 	int_color = color(ft_atoi(split[0]), ft_atoi(split[1]),
-	// 			ft_atoi(split[2]), 255);
-	// else
-	int_color = color(ft_atoi(split[0]), ft_atoi(split[1]), ft_atoi(split[2]),
-			255);
+	int_color = color(ft_atoi(split[0]), ft_atoi(split[1]),
+			ft_atoi(split[2]), 255);
 	clean_2d_char_array(split);
 	return (int_color);
 }
@@ -85,7 +81,6 @@ mlx_image_t	*image_maker(t_all *all, char type)
 	mlx_texture_t	*texture;
 	mlx_image_t		*picture;
 	char			*address;
-	// int				fd;
 
 	if (type == 'E')
 		address = all->map->east;
@@ -97,13 +92,6 @@ mlx_image_t	*image_maker(t_all *all, char type)
 		address = all->map->north;
 	else
 		address = PLAYER_PATH;
-	// fd = open(address, O_RDONLY);
-	// if (fd < 0)
-	// {
-	// 	ft_putendl_fd("Invalid texture path", 2);
-	// 	terminate(all, 1);
-	// }
-	// close(fd);
 	texture = mlx_load_png(address);
 	if (!texture)
 		terminate(all, 1);

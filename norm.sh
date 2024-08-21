@@ -19,5 +19,5 @@ rm -rf srcs
 rm -rf includes
 
 # Rename new_src to src and new_include to include
-mv new_src srcs
-mv new_include includes
+mv new_srcs srcs
+mv new_includes includes
