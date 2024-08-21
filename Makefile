@@ -6,7 +6,7 @@
 #    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/15 19:41:14 by nnourine         ###   ########.fr        #
+#    Updated: 2024/08/21 10:41:38 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,13 +22,13 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 # Directories
-SRCDIR = src
-INCDIR = include
-OBJDIR = obj
+SRCDIR = srcs
+INCDIR = includes
+OBJDIR = objs
 
 # Libraries
-LIBMLX = lib/MLX42
-LIBFT = lib/libft
+LIBMLX = libs/MLX42
+LIBFT = libs/libft
 LIB_BREW = /Users/${USER}/.brew/Cellar/glfw/3.4/lib
 
 # Header files
