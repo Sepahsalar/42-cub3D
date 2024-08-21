@@ -3,18 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:39:44 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-// * decide whether we should check for file availability in walls identifier
+// terminate, check failure, error -> combine
 
-// * agar zavie rond nabud ham x ham y bere jelo?
+// clean minimap
+
+//protect open close ...
+
 // try to hide mlx42 realted valgrind errors
 
 int	main(int argc, char **argv)
@@ -33,6 +36,7 @@ int	main(int argc, char **argv)
 		ft_putendl_fd("Error", 2);
 		return (1);
 	}
+	// printf("main\n");
 	all = init_all(argv);
 	fill_strips(all);
 	// enable_correct_player(all);

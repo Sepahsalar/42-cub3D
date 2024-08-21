@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/21 15:29:03 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:36:21 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define EPSILON 0.00001
 # define DISTANCE_FROM_WALL 1.5
 # define MINIMAP_SIDE 225
+# define MAX_NODE 2500
+# define BUFFER_SIZE 1000000
 
 enum				e_general_constants
 {
@@ -164,6 +166,7 @@ typedef struct s_coordinate
 {
 	int				x;
 	int				y;
+	int				index;
 }					t_coordinate;
 
 typedef struct s_rotate
