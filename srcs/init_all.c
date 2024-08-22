@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/22 12:32:58 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/22 13:44:55 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,5 @@ t_all	*init_all(char **argv)
 	all->east = image_maker(all, 'E');
 	all->player_at_0 = image_maker(all, 'P');
 	create_player_image(all);
-	create_minimap(all);
 	return (all);
 }

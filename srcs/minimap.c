@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 19:25:50 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/21 16:00:31 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/22 14:40:14 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,12 @@ int	is_there_a_wall(t_all *all, int x, int y)
 	int		y_minimap_to_loc;
 	t_loc	*loc;
 
-	x_minimap_to_loc = x / (MINIMAP_SIDE / all->map_width);
-	y_minimap_to_loc = y / (MINIMAP_SIDE / all->map_height);
+	x_minimap_to_loc = all->x - 0.5 - MINIMAP_COVERAGE / 2
+			+ (x + (MINIMAP_SIDE / (2 * MINIMAP_COVERAGE)))
+			/ (MINIMAP_SIDE / MINIMAP_COVERAGE);
+	y_minimap_to_loc = all->y - 0.5 - MINIMAP_COVERAGE / 2
+			+ (y + (MINIMAP_SIDE / (2 * MINIMAP_COVERAGE)))
+			/ (MINIMAP_SIDE / MINIMAP_COVERAGE);
 	loc = all->map->start;
 	while (loc)
 	{
@@ -59,8 +63,8 @@ void	create_minimap(t_all *all)
 		}
 		i++;
 	}
-	mlx_image_to_window(all->window, all->minimap, MINIMAP_PADDING,
-			MINIMAP_PADDING);
+	mlx_image_to_window(all->window, all->minimap,
+			MINIMAP_PADDING, MINIMAP_PADDING);
 	all->minimap->instances[0].z = 1;
 }
 
@@ -79,10 +83,10 @@ mlx_image_t	*rotate_image(t_all *all, mlx_image_t *image, double angle)
 		{
 			rotate.new_x = (int)round(rotate.i - new_image->width / 2.0);
 			rotate.new_y = (int)round(rotate.j - new_image->height / 2.0);
-			rotate.x = (int)(round(rotate.new_x * ft_cos(-angle) - rotate.new_y
-						* ft_sin(-angle)) + image->width / 2.0);
-			rotate.y = (int)(round(rotate.new_x * ft_sin(-angle) + rotate.new_y
-						* ft_cos(-angle)) + image->height / 2.0);
+			rotate.x = (int)(round(rotate.new_x * ft_cos(-angle)
+						- rotate.new_y * ft_sin(-angle)) + image->width / 2.0);
+			rotate.y = (int)(round(rotate.new_x * ft_sin(-angle)
+						+ rotate.new_y * ft_cos(-angle)) + image->height / 2.0);
 			if (rotate.x >= 0 && rotate.x < (int)image->width && rotate.y >= 0
 				&& rotate.y < (int)image->height)
 			{
@@ -98,8 +102,7 @@ mlx_image_t	*rotate_image(t_all *all, mlx_image_t *image, double angle)
 	return (new_image);
 }
 
-t_player	*create_player_image_node(t_all *all,
-									double angle)
+t_player	*create_player_image_node(t_all *all, double angle)
 {
 	t_player	*new;
 
@@ -124,8 +127,7 @@ void	clean_player_image(t_all *all)
 	while (current)
 	{
 		next = current->next;
-		mlx_delete_image(all->window,
-							current->image);
+		mlx_delete_image(all->window, current->image);
 		free(current);
 		current = next;
 	}
@@ -139,6 +141,7 @@ void	create_player_image(t_all *all)
 
 	angle = 0.0;
 	old = NULL; //
+	new = NULL; //
 	while (angle < FULL_CIRCLE_DEGREES)
 	{
 		new = create_player_image_node(all, angle);
@@ -152,6 +155,36 @@ void	create_player_image(t_all *all)
 		angle += TURN_INTERVAL;
 	}
 }
+
+// void	enable_correct_player(t_all *all)
+// {
+// 	t_player	*current;
+
+// 	current = all->player_image;
+// 	while (current)
+// 	{
+// 		if (current->image->instances[0].enabled == 1)
+// 		{
+// 			current->image->instances[0].enabled = 0;
+// 			break ;
+// 		}
+// 		current = current->next;
+// 	}
+// 	current = all->player_image;
+// 	while (current)
+// 	{
+// 		if (same(current->angle, all->angle))
+// 		{
+// 			current->image->instances[0].x = (int)(all->x - 0.5) * (MINIMAP_SIDE
+// 					/ all->map_width) + MINIMAP_PADDING;
+// 			current->image->instances[0].y = (int)(all->y - 0.5) * (MINIMAP_SIDE
+// 					/ all->map_height) + MINIMAP_PADDING;
+// 			current->image->instances[0].enabled = 1;
+// 			break ;
+// 		}
+// 		current = current->next;
+// 	}
+// }
 
 void	enable_correct_player(t_all *all)
 {
@@ -172,10 +205,8 @@ void	enable_correct_player(t_all *all)
 	{
 		if (same(current->angle, all->angle))
 		{
-			current->image->instances[0].x = (int)(all->x - 0.5) * (MINIMAP_SIDE
-					/ all->map_width) + MINIMAP_PADDING;
-			current->image->instances[0].y = (int)(all->y - 0.5) * (MINIMAP_SIDE
-					/ all->map_height) + MINIMAP_PADDING;
+			current->image->instances[0].x = MINIMAP_SIDE / 2 + MINIMAP_PADDING - current->image->width / 2;
+			current->image->instances[0].y = MINIMAP_SIDE / 2 + MINIMAP_PADDING - current->image->height / 2;
 			current->image->instances[0].enabled = 1;
 			break ;
 		}

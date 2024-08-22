@@ -6,23 +6,23 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/22 12:05:21 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/22 14:16:17 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-// terminate, check failure, error -> combine (also reverse the order)
+// 1) clean minimap, player image
 
-// clean minimap
+// 2) terminate, check failure, error -> combine (also reverse the order)
 
-//protect open close ...
+// 3) protect open close ...
 
-// try to hide mlx42 realted valgrind errors (with .supp file)
+// 4) resize the player image (either make it square or just resize it by 0.9)
 
-// resize the player image (either make it square or just resize it by 0.9)
+// 5) delete or solve the problem of cloning mlx42 in Makefile
 
-// delete or solve the problem of cloning mlx42 in Makefile
+// 6) try to hide mlx42 realted valgrind errors (with .supp file)
 
 int	main(int argc, char **argv)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_strips.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/22 13:45:33 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ static void	create_strips(t_all *all)
 void	fill_strips(t_all *all)
 {
 	all->index = 0;
+	mlx_delete_image(all->window, all->minimap);
+	create_minimap(all);
 	enable_correct_player(all);
 	create_strips(all);
 	fill_index_strips(all);

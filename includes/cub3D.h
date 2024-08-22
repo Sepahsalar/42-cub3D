@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/22 12:36:22 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/22 14:16:34 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,17 @@
 # define WALL 3.0
 # define EPSILON 0.00001
 # define DISTANCE_FROM_WALL 1.5
-# define MINIMAP_SIDE 225
+# define MINIMAP_SIDE 220
+# define MINIMAP_COVERAGE 10
 # define MAX_NODE 10001
 # define BUFFER_SIZE 1000000
 # define RENDER_INTERVAL 5
+# define TURN_INTERVAL 18
 
 enum				e_general_constants
 {
 	FULL_CIRCLE_DEGREES = 360,
-	TURN_INTERVAL = 15,
-	MINIMAP_PADDING = 25,
+	MINIMAP_PADDING = 28,
 };
 
 enum				e_dimensions
