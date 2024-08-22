@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/22 14:16:17 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/22 14:44:50 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 // 1) clean minimap, player image
 
-// 2) terminate, check failure, error -> combine (also reverse the order)
+// 2) delete all conditions that includes loc->c == '1'
 
-// 3) protect open close ...
+// 3) terminate, check failure, error -> combine (also reverse the order)
 
-// 4) resize the player image (either make it square or just resize it by 0.9)
+// 4) protect open close ...
 
-// 5) delete or solve the problem of cloning mlx42 in Makefile
+// 5) resize the player image (either make it square or just resize it by 0.9)
 
-// 6) try to hide mlx42 realted valgrind errors (with .supp file)
+// 6) delete or solve the problem of cloning mlx42 in Makefile
+
+// 7) try to hide mlx42 realted valgrind errors (with .supp file)
 
 int	main(int argc, char **argv)
 {
