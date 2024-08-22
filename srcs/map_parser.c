@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/22 09:39:39 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/22 12:32:08 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ void	check_dry(t_all *all)
 	loc = all->map->start;
 	while (loc)
 	{
-		if (loc->wet == 0 && loc->c != '1')
+		if (loc->wet == 0)
 		{
 			ft_putendl_fd("Map is separated", 2);
 			terminate(all, 1);
@@ -203,7 +203,7 @@ t_map	*map_parser(t_all *all)
 	remove_white_space(all);
 	create_loc(all);
 	flood_map(all);
-	// check_dry(all);
+	check_dry(all);
 	all->map_width = game_size(all, 'x');
 	all->map_height = game_size(all, 'y');
 	ignore_inside_surface(all);

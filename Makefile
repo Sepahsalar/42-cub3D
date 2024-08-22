@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/22 09:28:13 by nnourine         ###   ########.fr        #
+#    Updated: 2024/08/22 12:29:51 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/compare_adjacent_walls.c\
 		$(SRCDIR)/create_loc.c \
 		$(SRCDIR)/create_loc_utils.c \
+		$(SRCDIR)/create_loc_utils2.c \
 		$(SRCDIR)/fill_index_strips.c \
 		$(SRCDIR)/fill_strips.c \
 		$(SRCDIR)/fill_strips_utils.c \

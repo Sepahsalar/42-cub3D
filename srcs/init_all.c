@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/22 12:32:58 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ t_all	*init_all(char **argv)
 	all->y = start_loc_player(all, 'y');
 	all->angle = start_angle_player(all);
 	all->max_distance = max_distance(all);
+	remove_unnecessary_nodes(all);
 	all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, argv[0], false);
 	if (!all->window)
 		terminate(all, 1);

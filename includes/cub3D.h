@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/22 11:29:58 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/22 12:36:22 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 # define EPSILON 0.00001
 # define DISTANCE_FROM_WALL 1.5
 # define MINIMAP_SIDE 225
-# define MAX_NODE 2500
+# define MAX_NODE 10001
 # define BUFFER_SIZE 1000000
 # define RENDER_INTERVAL 5
 
@@ -220,6 +220,7 @@ void				check_failure(int input1, void *input2, int type,
 void				reader(t_all *all);
 void				create_loc(t_all *all);
 t_loc				*create_loc_node(char temp, int x, int y);
+void 				remove_unnecessary_nodes(t_all *all);
 t_loc				*clean_loc(t_loc *first);
 void				init_strips(t_all *all, t_render data_render);
 void				fill_index_strips(t_all *all);

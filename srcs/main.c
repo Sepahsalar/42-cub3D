@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/22 11:17:21 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/22 12:05:21 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-// terminate, check failure, error -> combine
+// terminate, check failure, error -> combine (also reverse the order)
 
 // clean minimap
 
@@ -21,6 +21,8 @@
 // try to hide mlx42 realted valgrind errors (with .supp file)
 
 // resize the player image (either make it square or just resize it by 0.9)
+
+// delete or solve the problem of cloning mlx42 in Makefile
 
 int	main(int argc, char **argv)
 {

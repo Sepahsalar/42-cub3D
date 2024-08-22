@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_loc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:07:14 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/22 09:40:13 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/22 12:34:58 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,15 @@ void	create_loc(t_all *all)
 	// printf("create_loc\n");
 	while (*temp)
 	{
-		if (*temp != ' ' && *temp != '\n' && *temp != '0')
+		if (*temp != ' ' && *temp != '\n')
 		{
 			check_character_increase_player(*temp, &nb_player);
 			coordinate.index++;
-			// if (coordinate.index >= MAX_NODE)
-			// {
-			// 	ft_putendl_fd("Too big map", 2);
-			// 	terminate(all, 1);
-			// }
+			if (coordinate.index >= MAX_NODE)
+			{
+				ft_putendl_fd("Too big map", 2);
+				terminate(all, 1);
+			}
 			new = create_loc_node(*temp, coordinate.x, coordinate.y);
 			link_new_node(all, new, old);
 			old = new;
