@@ -6,7 +6,7 @@
 #    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/21 10:41:38 by nnourine         ###   ########.fr        #
+#    Updated: 2024/08/22 09:28:13 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -70,6 +70,7 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/press_key.c \
 		$(SRCDIR)/strip_to_image.c \
 		$(SRCDIR)/termiante.c \
+		$(SRCDIR)/time.c \
 		$(SRCDIR)/utils.c \
 		$(SRCDIR)/utils2.c
 

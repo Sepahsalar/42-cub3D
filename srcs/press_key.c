@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/22 11:12:25 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ double	under_full_circle(double angle)
 	return (angle);
 }
 
-static void	turn(void *param, char c)
+static void	turn_press(void *param, char c)
 {
 	t_all	*all;
 
@@ -48,6 +48,48 @@ static void	turn(void *param, char c)
 		all->angle -= TURN_INTERVAL;
 	all->angle = under_full_circle(all->angle);
 	fill_strips(all);
+}
+
+static void	turn_repeat(void *param, char c)
+{
+	t_all	*all;
+	// int		target;
+	// int time;
+
+	all = (t_all *)param;
+	if (all->started_button == 0)
+	{
+		// all->start_time = ft_timestamp_ms(all);
+		// all->started_button = 1;
+		// clean_strips(all);
+		// mlx_delete_image(all->window, all->image);
+		// if (c == 'R')
+		// 	all->angle += TURN_INTERVAL;
+		// else
+		// 	all->angle -= TURN_INTERVAL;
+		// all->angle = under_full_circle(all->angle);
+		// fill_strips(all);
+		turn_press(param, c);
+		all->start_time = ft_timestamp_ms(all);
+		all->current_time  = all->start_time;
+		all->started_button = 1;
+	}
+	// target = 2000;
+	all->current_time =ft_timestamp_ms(all);
+	if (all->current_time - all->start_time >= RENDER_INTERVAL)
+	{
+		turn_press(param, c);
+		// clean_strips(all);
+		// mlx_delete_image(all->window, all->image);
+		// if (c == 'R')
+		// 	all->angle += TURN_INTERVAL;
+		// else
+		// 	all->angle -= TURN_INTERVAL;
+		// all->angle = under_full_circle(all->angle);
+		// fill_strips(all);
+		all->start_time = ft_timestamp_ms(all);
+		all->current_time  = all->start_time;
+	}
 }
 
 static void	move(void *param, char c)
@@ -72,6 +114,9 @@ static void	move(void *param, char c)
 
 void	press_key(mlx_key_data_t keydata, void *param)
 {
+	t_all	*all;
+
+	all = (t_all *)param;
 	if ((keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_UP)
 		&& keydata.action == MLX_PRESS)
 		move(param, 'W');
@@ -82,10 +127,19 @@ void	press_key(mlx_key_data_t keydata, void *param)
 		move(param, 'A');
 	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
 		move(param, 'D');
+		
 	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-		turn(param, 'L');
+		turn_press(param, 'L');
 	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-		turn(param, 'R');
+		turn_press(param, 'R');
+	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_REPEAT)
+		turn_repeat(param, 'L');
+	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_REPEAT)
+		turn_repeat(param, 'R');
+	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_RELEASE)
+		all->started_button = 0;
+	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_RELEASE)
+		all->started_button = 0;
 	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
 		terminate(param, 0);
 }

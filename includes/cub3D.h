@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/21 16:36:21 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/22 11:29:58 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "../libs/libft/libft.h"
 # include <fcntl.h>
 # include <math.h>
+# include <sys/time.h>
 # include <stdio.h> /////
 
 # define PLAYER_PATH "./textures/player1.png"
@@ -30,6 +31,7 @@
 # define MINIMAP_SIDE 225
 # define MAX_NODE 2500
 # define BUFFER_SIZE 1000000
+# define RENDER_INTERVAL 5
 
 enum				e_general_constants
 {
@@ -195,6 +197,9 @@ typedef struct s_all
 	char			*strmap;
 	char			*argv;
 	int				index;
+	int 			started_button;
+	long long		start_time;
+	long long		current_time;
 	mlx_t			*window;
 	t_strip			*strip;
 	mlx_image_t		*image;
@@ -292,5 +297,6 @@ void				create_minimap(t_all *all);
 void				create_player_image(t_all *all);
 void				enable_correct_player(t_all *all);
 void				check_empty_map(t_all *all, char *str, char *error);
+long long			ft_timestamp_ms(t_all *all);
 
 #endif // CUB3D_H
