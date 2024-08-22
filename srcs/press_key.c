@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/22 11:38:09 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/22 21:28:17 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,32 @@ static void	move_repeat(void *param, char c)
 	}
 }
 
+void shoot(void *param, char type)
+{
+	t_all	*all;
+
+	all = (t_all *)param;
+	if (type == '0')
+		all->blast->instances[0].enabled = true;
+	else if (type == '1')
+	{
+		all->blast->instances[0].enabled = false;
+		all->started_button = 0;
+	}
+	else
+	{
+		if (all->started_button == 0)
+		{
+			all->blast->instances[0].enabled = true;
+			all->start_time = ft_timestamp_ms(all);
+			all->started_button = 1;
+		}
+		all->current_time = ft_timestamp_ms(all);
+		if (all->current_time - all->start_time >= 1)
+			all->blast->instances[0].enabled =false;
+	}
+}
+
 void	press_key(mlx_key_data_t keydata, void *param)
 {
 	t_all	*all;
@@ -125,6 +151,12 @@ void	press_key(mlx_key_data_t keydata, void *param)
 		move_press(param, 'A');
 	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
 		move_press(param, 'D');
+	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
+		shoot(param, '0');
+	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_RELEASE)
+		shoot(param, '1');
+	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_REPEAT)
+		shoot(param, '2');
 	
 	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
 		move_repeat(param, 'W');

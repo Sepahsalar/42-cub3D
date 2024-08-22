@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/22 13:43:36 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/22 20:23:41 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,10 @@ mlx_image_t	*image_maker(t_all *all, char type)
 		address = all->map->south;
 	else if (type == 'N')
 		address = all->map->north;
+	else if (type == 'G')
+		address = "./textures/gun.png";
+	else if (type == 'B')
+		address = "./textures/blast1.png";
 	else
 		address = PLAYER_PATH;
 	texture = mlx_load_png(address);
@@ -102,6 +106,12 @@ mlx_image_t	*image_maker(t_all *all, char type)
 	if (type == 'P')
 		if (mlx_resize_image(picture, MINIMAP_SIDE / MINIMAP_COVERAGE,
 				MINIMAP_SIDE / MINIMAP_COVERAGE) == 0)
+			terminate(all, 1);
+	if (type == 'G')
+		if (mlx_resize_image(picture, 200, 200) == 0)
+			terminate(all, 1);
+	if (type == 'B')
+		if (mlx_resize_image(picture, 50, 50) == 0)
 			terminate(all, 1);
 	return (picture);
 }
