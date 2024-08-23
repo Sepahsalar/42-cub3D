@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/23 09:04:38 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/23 10:14:37 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ t_all	*init_all(char **argv)
 	all->player_at_0 = image_maker(all, 'P');
 	create_player_image(all);
 	all->gun = image_maker(all, 'G');
-	mlx_image_to_window(all->window, all->gun, 700, 700);
+	mlx_image_to_window(all->window, all->gun, START_GUN_X, START_GUN_Y);
 	all->gun->instances[0].z = 3;
 	all->blast = image_maker(all, 'B');
-	mlx_image_to_window(all->window, all->blast, 780, 715);
+	mlx_image_to_window(all->window, all->blast, START_BLAST_X, START_BLAST_Y);
 	all->blast->instances[0].z = 2;
 	all->blast->instances[0].enabled = false;
 	return (all);

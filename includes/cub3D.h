@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/23 09:03:18 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/23 10:17:50 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <stdio.h> /////
 
 # define PLAYER_PATH "./textures/player1.png"
+# define GUN_PATH "./textures/gun2.png"
+# define BLAST_PATH "./textures/blast1.png"
 
 # define VAOV 90.0
 # define HAOV 75.0
@@ -34,18 +36,15 @@
 # define BUFFER_SIZE 1000000
 # define RENDER_INTERVAL 5
 # define TURN_INTERVAL 18
-
-enum				e_general_constants
-{
-	FULL_CIRCLE_DEGREES = 360,
-	MINIMAP_PADDING = 28,
-};
-
-enum				e_dimensions
-{
-	WINDOW_HEIGHT = 900,
-	WINDOW_WIDTH = 1600,
-};
+# define FULL_CIRCLE_DEGREES 360
+# define MINIMAP_PADDING 28
+# define WINDOW_HEIGHT 900
+# define WINDOW_WIDTH 1600
+# define START_GUN_X 700
+# define START_GUN_Y 770
+# define END_GUN_Y 710
+# define START_BLAST_X 770
+# define START_BLAST_Y 685
 
 typedef struct s_loc
 {
@@ -301,6 +300,6 @@ void				create_minimap(t_all *all);
 void				create_player_image(t_all *all);
 void				enable_correct_player(t_all *all);
 void				check_empty_map(t_all *all, char *str, char *error);
-long long			ft_timestamp_ms(t_all *all);
+long long			ft_timestamp_milis(t_all *all);
 
 #endif // CUB3D_H

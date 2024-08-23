@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/23 09:28:26 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/23 10:16:10 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ static void	turn_repeat(void *param, char c)
 	if (all->started_button == 0)
 	{
 		turn_press(param, c);
-		all->start_time = ft_timestamp_ms(all);
+		all->start_time = ft_timestamp_milis(all);
 		all->current_time  = all->start_time;
 		all->started_button = 1;
 	}
-	all->current_time =ft_timestamp_ms(all);
+	all->current_time =ft_timestamp_milis(all);
 	if (all->current_time - all->start_time >= RENDER_INTERVAL)
 	{
 		turn_press(param, c);
-		all->start_time = ft_timestamp_ms(all);
+		all->start_time = ft_timestamp_milis(all);
 		all->current_time  = all->start_time;
 	}
 }
@@ -99,15 +99,15 @@ static void	move_repeat(void *param, char c)
 	if (all->started_button == 0)
 	{
 		move_press(param, c);
-		all->start_time = ft_timestamp_ms(all);
+		all->start_time = ft_timestamp_milis(all);
 		all->current_time  = all->start_time;
 		all->started_button = 1;
 	}
-	all->current_time =ft_timestamp_ms(all);
+	all->current_time =ft_timestamp_milis(all);
 	if (all->current_time - all->start_time >= RENDER_INTERVAL)
 	{
 		move_press(param, c);
-		all->start_time = ft_timestamp_ms(all);
+		all->start_time = ft_timestamp_milis(all);
 		all->current_time  = all->start_time;
 	}
 }
@@ -118,23 +118,21 @@ void shoot(void *param, char type)
 
 	all = (t_all *)param;
 	if (type == '0')
-		all->blast->instances[0].enabled = true;
-	else if (type == '1')
 	{
+		all->gun->instances[0].y = END_GUN_Y;
+		all->blast->instances[0].enabled = true;
+		all->started_button = 1;
+	}
+	 if (type == '1')
+	{
+		all->gun->instances[0].y = START_GUN_Y;
 		all->blast->instances[0].enabled = false;
 		all->started_button = 0;
 	}
-	else
+	else if (type == '2')
 	{
-		if (all->started_button == 0)
-		{
-			all->blast->instances[0].enabled = true;
-			all->start_time = ft_timestamp_ms(all);
-			all->started_button = 1;
-		}
-		all->current_time = ft_timestamp_ms(all);
-		if (all->current_time > all->start_time)
-			all->blast->instances[0].enabled =false;
+		all->blast->instances[0].enabled =false;
+		all->gun->instances[0].y = START_GUN_Y;
 	}
 }
 

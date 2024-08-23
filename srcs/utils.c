@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/22 20:23:41 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/23 10:17:58 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ mlx_image_t	*image_maker(t_all *all, char type)
 	else if (type == 'N')
 		address = all->map->north;
 	else if (type == 'G')
-		address = "./textures/gun.png";
+		address = GUN_PATH;
 	else if (type == 'B')
-		address = "./textures/blast1.png";
+		address = BLAST_PATH;
 	else
 		address = PLAYER_PATH;
 	texture = mlx_load_png(address);
