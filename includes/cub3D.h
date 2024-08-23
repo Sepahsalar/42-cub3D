@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/22 21:29:18 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/23 09:03:18 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ enum				e_general_constants
 
 enum				e_dimensions
 {
-	WINDOW_HEIGHT = 600,
-	WINDOW_WIDTH = 1200,
+	WINDOW_HEIGHT = 900,
+	WINDOW_WIDTH = 1600,
 };
 
 typedef struct s_loc

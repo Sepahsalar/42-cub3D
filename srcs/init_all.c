@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/22 21:29:44 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/23 09:04:38 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ t_all	*init_all(char **argv)
 	all->player_at_0 = image_maker(all, 'P');
 	create_player_image(all);
 	all->gun = image_maker(all, 'G');
-	mlx_image_to_window(all->window, all->gun, 500, 400);
+	mlx_image_to_window(all->window, all->gun, 700, 700);
 	all->gun->instances[0].z = 3;
 	all->blast = image_maker(all, 'B');
-	mlx_image_to_window(all->window, all->blast, 580, 415);
+	mlx_image_to_window(all->window, all->blast, 780, 715);
 	all->blast->instances[0].z = 2;
 	all->blast->instances[0].enabled = false;
 	return (all);

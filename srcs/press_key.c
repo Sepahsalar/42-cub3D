@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/22 21:28:17 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/23 09:28:26 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void shoot(void *param, char type)
 			all->started_button = 1;
 		}
 		all->current_time = ft_timestamp_ms(all);
-		if (all->current_time - all->start_time >= 1)
+		if (all->current_time > all->start_time)
 			all->blast->instances[0].enabled =false;
 	}
 }
