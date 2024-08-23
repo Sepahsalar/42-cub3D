@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/22 13:45:33 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:14:39 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	fill_strips(t_all *all)
 	create_strips(all);
 	fill_index_strips(all);
 	fill_length_strips(all);
-	update_strips(all);
+	// update_strips(all);
 	// fill_number_of_blocks(all);
 	strip_to_image(all);
 }

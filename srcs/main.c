@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/23 11:12:41 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:44:38 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 
 // 8) mlx_get_time
 
+// 9) find good material for walls
+
 int	main(int argc, char **argv)
 {
 	t_all	*all;
@@ -44,10 +46,8 @@ int	main(int argc, char **argv)
 		ft_putendl_fd("Error", 2);
 		return (1);
 	}
-	// printf("main\n");
 	all = init_all(argv);
 	fill_strips(all);
-	// enable_correct_player(all);
 	mlx_key_hook(all->window, &press_key, all);
 	mlx_get_mouse_pos(all->window, &all->x_mouse, &all->y_mouse);
 	mlx_cursor_hook(all->window, &mouse, all);

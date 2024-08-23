@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   termiante.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/21 11:40:37 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:57:12 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	free_map_contents(t_map *map)
 	if (map->start)
 		clean_loc(map->start);
 	if (map)
-		free(map); //update this to free_map
+		free(map);
 }
 
 void	terminate(t_all *all, int status)
@@ -54,13 +54,18 @@ void	terminate(t_all *all, int status)
 		mlx_delete_image(all->window, all->west);
 	if (all->east)
 		mlx_delete_image(all->window, all->east);
-	//clean all->minimap
-	//clean->all->player_image
-	//clean->all->player_image_at_0
+	if (all->minimap)
+		mlx_delete_image(all->window, all->minimap);
+	if (all->gun)
+		mlx_delete_image(all->window, all->gun);
+	if (all->blast)
+		mlx_delete_image(all->window, all->blast);
+	if (all->player_image)
+		clean_player_image(all);
+	if (all->player_at_0)
+		mlx_delete_image(all->window, all->player_at_0);
 	if (all->window)
 		mlx_terminate(all->window);
-	// if (all->window_name)
-	// 	free(all->window_name);
 	free(all);
 	exit(status);
 }

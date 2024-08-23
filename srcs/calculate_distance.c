@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_distance.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:12:44 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:56:31 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,12 @@ t_winner	calculate_distance(t_all *all, t_winner final, double ray_angle)
 	}
 	final.intersection_distance = distance(all->x, all->y, final.x_intersection,
 			final.y_intersection);
-	if (final.intersection_distance < 0.5)
-		final.intersection_distance = 0.5;
-	final.intersection_distance = final.intersection_distance
-		* fabs(ft_cos(all->angle - ray_angle)) + DISTANCE_FROM_WALL;
+	if (final.intersection_distance < MIN_CALCULATED_DISTANCE)
+		final.intersection_distance = MIN_CALCULATED_DISTANCE;
+	final.intersection_distance = final.intersection_distance * fabs(ft_cos(all->angle - ray_angle));
+	// final.intersection_distance = (final.intersection_distance + DISTANCE_FROM_WALL) * fabs(ft_cos(all->angle - ray_angle));
+	// final.intersection_distance = final.intersection_distance * ft_cos(all->angle - ray_angle) + DISTANCE_FROM_WALL;
+	// final.intersection_distance = final.intersection_distance + DISTANCE_FROM_WALL;
 	// final.intersection_distance = intersection_distance;
 	return (final);
 }

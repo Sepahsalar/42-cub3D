@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 19:25:50 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/22 14:40:14 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/23 12:10:29 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,4 +212,6 @@ void	enable_correct_player(t_all *all)
 		}
 		current = current->next;
 	}
+	// all->gun->instances[0].x = all->map_width - all->x ;
+	// all->blast->instances[0].x = all->x + 70;
 }

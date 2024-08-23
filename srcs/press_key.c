@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/23 11:30:43 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:45:22 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,9 +167,8 @@ void	press_key(mlx_key_data_t keydata, void *param)
 	
 	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
 		shoot(param, '0');
-	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_RELEASE)
-		shoot(param, '1');
-	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_REPEAT)
+	else if (keydata.key == MLX_KEY_SPACE &&
+			(keydata.action == MLX_RELEASE || keydata.action == MLX_REPEAT))
 		shoot(param, '1');
 	
 	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)

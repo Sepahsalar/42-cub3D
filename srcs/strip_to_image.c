@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strip_to_image.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 16:01:14 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:55:29 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ static int	get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 	else
 		size.x_in_resized_brick = (int)round((double)(strip->y_intersection
 					- strip->y_wall) * size.w_resized_brick);
+	// if (strip->ceil_h >= 0)
 	size.y_in_wall = y_in_window - (int)round(strip->ceil_h);
+	// else
+	// 	size.y_in_wall = y_in_window;
 	size.y_in_resized_brick = size.y_in_wall % size.h_resized_brick;
 	size.y_in_brick = round(size.y_in_resized_brick * brick->height
 			/ size.h_resized_brick);
@@ -64,20 +67,37 @@ static void	put_pixels_of_strips(t_all *all, t_strip *strip)
 {
 	int	int_color;
 	int	j;
+	// double temp;
 
 	j = 0;
-	while (j < WINDOW_HEIGHT)
+	if (strip->wall_h < WINDOW_HEIGHT)
 	{
-		if (j <= (int)floor(strip->ceil_h))
-			int_color = all->ceil_color;
-		else if (j > (int)floor(strip->ceil_h)
-				&& j < ((int)(floor(strip->ceil_h) + floor(strip->wall_h))))
+		while (j < WINDOW_HEIGHT)
+		{
+			if (j <= (int)floor(strip->ceil_h))
+				int_color = all->ceil_color;
+			else if (j > (int)floor(strip->ceil_h)
+					&& j < ((int)(floor(strip->ceil_h) + floor(strip->wall_h))))
+				int_color = get_pixel_from_brick(all, strip, j);
+			else
+				int_color = all->floor_color;
+			if (strip->x >= 0 && strip->x < WINDOW_WIDTH)
+				mlx_put_pixel(all->image, strip->x, j, int_color);
+			j++;
+		}
+	}
+	else
+	{
+		while (j < WINDOW_HEIGHT)
+		{
+			// temp = strip->wall_h;
+			// strip->wall_h = WINDOW_HEIGHT;
 			int_color = get_pixel_from_brick(all, strip, j);
-		else
-			int_color = all->floor_color;
-		if (strip->x >= 0 && strip->x < WINDOW_WIDTH)
-			mlx_put_pixel(all->image, strip->x, j, int_color);
-		j++;
+			// - (strip->wall_h - WINDOW_HEIGHT));
+			if (strip->x >= 0 && strip->x < WINDOW_WIDTH)
+				mlx_put_pixel(all->image, strip->x, j, int_color);
+			j++;
+		}
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/23 10:17:58 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/23 13:48:57 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ mlx_image_t	*image_maker(t_all *all, char type)
 		if (mlx_resize_image(picture, MINIMAP_SIDE / MINIMAP_COVERAGE,
 				MINIMAP_SIDE / MINIMAP_COVERAGE) == 0)
 			terminate(all, 1);
-	if (type == 'G')
-		if (mlx_resize_image(picture, 200, 200) == 0)
-			terminate(all, 1);
+	// if (type == 'G')
+	// 	if (mlx_resize_image(picture, 200, 260) == 0)
+	// 		terminate(all, 1);
 	if (type == 'B')
 		if (mlx_resize_image(picture, 50, 50) == 0)
 			terminate(all, 1);

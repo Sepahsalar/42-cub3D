@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/23 11:23:35 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/23 16:58:02 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,16 @@
 # include <stdio.h> /////
 
 # define PLAYER_PATH "./textures/player1.png"
-# define GUN_PATH "./textures/gun2.png"
+# define GUN_PATH "./textures/gun7.png"
 # define BLAST_PATH "./textures/blast1.png"
 
 # define VAOV 90.0
-# define HAOV 75.0
-# define PERSON 1.8
-# define WALL 3.0
+# define HAOV 60.0
+# define PERSON 2.0
+# define WALL 4.0
 # define EPSILON 0.00001
-# define DISTANCE_FROM_WALL 1.5
+// # define DISTANCE_FROM_WALL 1.5
+# define MIN_CALCULATED_DISTANCE 0.5
 # define MINIMAP_SIDE 220
 # define MINIMAP_COVERAGE 10
 # define MAX_NODE 10001
@@ -38,13 +39,24 @@
 # define TURN_INTERVAL 18
 # define FULL_CIRCLE_DEGREES 360
 # define MINIMAP_PADDING 28
-# define WINDOW_HEIGHT 900
-# define WINDOW_WIDTH 1600
-# define START_GUN_X 700
-# define START_GUN_Y 770
-# define END_GUN_Y 710
-# define START_BLAST_X 770
-# define START_BLAST_Y 685
+# define WINDOW_HEIGHT 1000
+# define WINDOW_WIDTH 1000
+# define START_GUN_X 610
+# define START_GUN_Y 800
+# define END_GUN_Y 700
+# define START_BLAST_X 610
+# define START_BLAST_Y 735
+// # define START_GUN_X 200
+// # define START_GUN_Y 850
+// # define END_GUN_Y 800
+// # define START_BLAST_X 350
+// # define START_BLAST_Y 775
+// # define WINDOW_WIDTH 900
+// # define START_GUN_X 650
+// # define START_GUN_Y 730
+// # define END_GUN_Y 700
+// # define START_BLAST_X 630
+// # define START_BLAST_Y 780
 
 typedef struct s_loc
 {
@@ -78,6 +90,7 @@ typedef struct s_render
 	double			ceil_height;
 	double			floor_height;
 	double			wall_height;
+	double 			fictional_wall_height;
 	char			wall_texture;
 	int				x;
 	int				x_wall;
@@ -111,6 +124,7 @@ typedef struct s_strip
 	int				x;
 	char			wall;
 	double			wall_h;
+	double 			fictional_wall_height;
 	double			ceil_h;
 	double			floor_h;
 	int				wall_length;
@@ -304,5 +318,6 @@ void				enable_correct_player(t_all *all);
 void				check_empty_map(t_all *all, char *str, char *error);
 long long			ft_timestamp_milis(t_all *all);
 void				mouse(double xpos, double ypos, void* param);
+void				clean_player_image(t_all *all);
 
 #endif // CUB3D_H
