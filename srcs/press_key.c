@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/23 10:16:10 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:30:43 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,17 +123,32 @@ void shoot(void *param, char type)
 		all->blast->instances[0].enabled = true;
 		all->started_button = 1;
 	}
-	 if (type == '1')
+	else if (type == '1')
 	{
 		all->gun->instances[0].y = START_GUN_Y;
 		all->blast->instances[0].enabled = false;
 		all->started_button = 0;
 	}
-	else if (type == '2')
-	{
-		all->blast->instances[0].enabled =false;
-		all->gun->instances[0].y = START_GUN_Y;
-	}
+	// else if (type == '2')
+	// {
+	// 	all->blast->instances[0].enabled =false;
+	// 	all->gun->instances[0].y = START_GUN_Y;
+	// }
+}
+
+void	mouse(double xpos, double ypos, void* param)
+{
+	t_all	*all;
+
+	all = (t_all *)param;
+	(void)ypos;
+	if (xpos > all->x_mouse)
+		turn_repeat(param, 'R');
+	else if (xpos < all->x_mouse)
+		turn_repeat(param, 'L');
+	all->x_mouse = xpos;
+	
+	
 }
 
 void	press_key(mlx_key_data_t keydata, void *param)
@@ -149,12 +164,13 @@ void	press_key(mlx_key_data_t keydata, void *param)
 		move_press(param, 'A');
 	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
 		move_press(param, 'D');
+	
 	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
 		shoot(param, '0');
 	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_RELEASE)
 		shoot(param, '1');
 	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_REPEAT)
-		shoot(param, '2');
+		shoot(param, '1');
 	
 	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
 		move_repeat(param, 'W');

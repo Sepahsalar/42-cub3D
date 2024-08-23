@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/23 10:17:50 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:23:35 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,6 +200,8 @@ typedef struct s_all
 	int 			started_button;
 	long long		start_time;
 	long long		current_time;
+	int				x_mouse;
+	int				y_mouse;
 	mlx_t			*window;
 	t_strip			*strip;
 	mlx_image_t		*image;
@@ -301,5 +303,6 @@ void				create_player_image(t_all *all);
 void				enable_correct_player(t_all *all);
 void				check_empty_map(t_all *all, char *str, char *error);
 long long			ft_timestamp_milis(t_all *all);
+void				mouse(double xpos, double ypos, void* param);
 
 #endif // CUB3D_H

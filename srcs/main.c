@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/22 14:44:50 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:12:41 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 // 6) delete or solve the problem of cloning mlx42 in Makefile
 
 // 7) try to hide mlx42 realted valgrind errors (with .supp file)
+
+// 8) mlx_get_time
 
 int	main(int argc, char **argv)
 {
@@ -47,6 +49,8 @@ int	main(int argc, char **argv)
 	fill_strips(all);
 	// enable_correct_player(all);
 	mlx_key_hook(all->window, &press_key, all);
+	mlx_get_mouse_pos(all->window, &all->x_mouse, &all->y_mouse);
+	mlx_cursor_hook(all->window, &mouse, all);
 	mlx_loop(all->window);
 	terminate(all, 0);
 }
