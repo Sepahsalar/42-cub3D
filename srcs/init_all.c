@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/24 10:15:36 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/24 15:10:14 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ t_all	*init_all(char **argv)
 	all->blast->instances[0].z = 2;
 	all->blast->instances[0].enabled = false;
 	all->knife = image_maker(all, 'K');
-	mlx_image_to_window(all->window, all->knife, 650, 760);
+	mlx_image_to_window(all->window, all->knife, 700, 810);
 	all->knife->instances[0].z = 2;
 	all->knife->instances[0].enabled = false;
 	return (all);

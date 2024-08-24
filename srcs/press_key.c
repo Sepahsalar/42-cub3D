@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/24 10:26:27 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/24 15:20:15 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,14 +144,34 @@ void click(mouse_key_t button, action_t action, modifier_key_t mods, void* param
 	(void)mods;
 	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_RELEASE)
 	{
-		all->knife->instances[0].enabled = false;
-		all->gun->instances[0].enabled = true;
+		
+		{
+			all->knife->instances[0].x = 700;
+			all->knife->instances[0].y = 810;
+		}
+
 	}
 	else if (button == MLX_MOUSE_BUTTON_LEFT)
 	{
-		all->knife->instances[0].enabled = true;
-		all->gun->instances[0].enabled = false;
+		if (all->knife->instances[0].enabled == false)
+		{
+			all->knife->instances[0].enabled = true;
+			all->gun->instances[0].enabled = false;
+		}
+		else
+		{
+			all->knife->instances[0].x = 650;
+			all->knife->instances[0].y = 760;
+		}
 	}
+	else if (button == MLX_MOUSE_BUTTON_RIGHT)
+	{
+		all->knife->instances[0].enabled = false;
+		all->gun->instances[0].enabled = true;
+		all->knife->instances[0].x = 700;
+		all->knife->instances[0].y = 810;	
+	}
+	
 
 }
 

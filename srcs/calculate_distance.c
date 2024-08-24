@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_distance.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:12:44 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/23 16:56:31 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/24 14:28:18 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ t_winner	calculate_distance(t_all *all, t_winner final, double ray_angle)
 			final.y_intersection);
 	if (final.intersection_distance < MIN_CALCULATED_DISTANCE)
 		final.intersection_distance = MIN_CALCULATED_DISTANCE;
-	final.intersection_distance = final.intersection_distance * fabs(ft_cos(all->angle - ray_angle));
+	final.intersection_distance = 2 * final.intersection_distance * fabs(ft_cos(all->angle - ray_angle));
 	// final.intersection_distance = (final.intersection_distance + DISTANCE_FROM_WALL) * fabs(ft_cos(all->angle - ray_angle));
 	// final.intersection_distance = final.intersection_distance * ft_cos(all->angle - ray_angle) + DISTANCE_FROM_WALL;
 	// final.intersection_distance = final.intersection_distance + DISTANCE_FROM_WALL;
