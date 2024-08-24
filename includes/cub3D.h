@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/23 16:58:02 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/24 10:12:47 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,6 +221,7 @@ typedef struct s_all
 	mlx_image_t		*image;
 	mlx_image_t		*minimap;
 	mlx_image_t		*gun;
+	mlx_image_t		*knife;
 	mlx_image_t		*blast;
 	t_player		*player_image;
 	mlx_image_t		*north;
@@ -319,5 +320,6 @@ void				check_empty_map(t_all *all, char *str, char *error);
 long long			ft_timestamp_milis(t_all *all);
 void				mouse(double xpos, double ypos, void* param);
 void				clean_player_image(t_all *all);
+void				click(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
 
 #endif // CUB3D_H

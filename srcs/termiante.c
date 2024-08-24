@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   termiante.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/23 11:57:12 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/24 10:17:12 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	terminate(t_all *all, int status)
 		mlx_delete_image(all->window, all->gun);
 	if (all->blast)
 		mlx_delete_image(all->window, all->blast);
+	if (all->knife)
+		mlx_delete_image(all->window, all->knife);
 	if (all->player_image)
 		clean_player_image(all);
 	if (all->player_at_0)

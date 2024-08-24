@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/23 12:10:45 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/24 10:15:36 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,11 @@ t_all	*init_all(char **argv)
 	all->gun->instances[0].z = 3;
 	all->blast = image_maker(all, 'B');
 	mlx_image_to_window(all->window, all->blast, START_BLAST_X, START_BLAST_Y);
-	// mlx_image_to_window(all->window, all->blast, all->x + 70, START_BLAST_Y);
 	all->blast->instances[0].z = 2;
 	all->blast->instances[0].enabled = false;
+	all->knife = image_maker(all, 'K');
+	mlx_image_to_window(all->window, all->knife, 650, 760);
+	all->knife->instances[0].z = 2;
+	all->knife->instances[0].enabled = false;
 	return (all);
 }

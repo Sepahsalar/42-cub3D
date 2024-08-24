@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   press_key.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/23 11:45:22 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/24 10:26:27 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,25 @@ void shoot(void *param, char type)
 	// 	all->blast->instances[0].enabled =false;
 	// 	all->gun->instances[0].y = START_GUN_Y;
 	// }
+}
+
+void click(mouse_key_t button, action_t action, modifier_key_t mods, void* param)
+{
+	t_all	*all;
+
+	all = (t_all *)param;
+	(void)mods;
+	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_RELEASE)
+	{
+		all->knife->instances[0].enabled = false;
+		all->gun->instances[0].enabled = true;
+	}
+	else if (button == MLX_MOUSE_BUTTON_LEFT)
+	{
+		all->knife->instances[0].enabled = true;
+		all->gun->instances[0].enabled = false;
+	}
+
 }
 
 void	mouse(double xpos, double ypos, void* param)

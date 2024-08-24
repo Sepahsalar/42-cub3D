@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/23 13:48:57 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/24 10:14:07 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ mlx_image_t	*image_maker(t_all *all, char type)
 		address = GUN_PATH;
 	else if (type == 'B')
 		address = BLAST_PATH;
+	else if (type == 'K')
+		address = "./textures/knife.png";
 	else
 		address = PLAYER_PATH;
 	texture = mlx_load_png(address);
