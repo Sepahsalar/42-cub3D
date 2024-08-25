@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/25 13:54:44 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 14:25:24 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,7 +253,7 @@ void				clean_strips(t_all *all);
 mlx_image_t			*image_maker(t_all *all, char type);
 int					color_maker(t_all *all, char type);
 void				strip_to_image(t_all *all);
-void				press_key(mlx_key_data_t keydata, void *param);
+void				keyboard(mlx_key_data_t keydata, void *param);
 void				fill_strips(t_all *all);
 double				under_full_circle(double angle);
 void				find_winner_surface(t_all *all);

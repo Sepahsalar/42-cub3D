@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/25 14:12:50 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 14:24:25 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,47 +250,53 @@ void key_press(mlx_key_data_t keydata, void *param)
 		move_press(param, 'D');
 	else if (keydata.key == MLX_KEY_SPACE)
 		use_weapon(param);
+	else if (keydata.key == MLX_KEY_LEFT)
+		turn_press(param, 'L');
+	else if (keydata.key == MLX_KEY_RIGHT)
+		turn_press(param, 'R');
 	else if (keydata.key == MLX_KEY_LEFT_SHIFT
 		|| keydata.key == MLX_KEY_RIGHT_SHIFT)
 		change_weapon(param);
 	else if (keydata.key == MLX_KEY_ESCAPE)
 		terminate(param, 0);
 }
-void	press_key(mlx_key_data_t keydata, void *param)
+
+void key_repeat(mlx_key_data_t keydata, void *param)
+{
+	if (keydata.key == MLX_KEY_W)
+		move_repeat(param, 'W');
+	else if (keydata.key == MLX_KEY_S)
+		move_repeat(param, 'S');
+	else if (keydata.key == MLX_KEY_A)
+		move_repeat(param, 'A');
+	else if (keydata.key == MLX_KEY_D)
+		move_repeat(param, 'D');
+	else if (keydata.key == MLX_KEY_LEFT)
+		turn_repeat(param, 'L');
+	else if (keydata.key == MLX_KEY_RIGHT)
+		turn_repeat(param, 'R');
+}
+
+void key_release(mlx_key_data_t keydata, void *param)
 {
 	t_all	*all;
 
 	all = (t_all *)param;
+	if (keydata.key == MLX_KEY_W
+		|| keydata.key == MLX_KEY_S
+		|| keydata.key == MLX_KEY_A
+		|| keydata.key == MLX_KEY_D
+		|| keydata.key == MLX_KEY_LEFT
+		|| keydata.key == MLX_KEY_RIGHT)
+		all->started_button = 0;
+}
+
+void	keyboard(mlx_key_data_t keydata, void *param)
+{
 	if (keydata.action == MLX_PRESS)
 		key_press(keydata, param);
-	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
-		move_repeat(param, 'W');
-	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_REPEAT)
-		move_repeat(param, 'S');
-	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_REPEAT)
-		move_repeat(param, 'A');
-	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_REPEAT)
-		move_repeat(param, 'D');
-	
-	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_RELEASE)
-		all->started_button = 0;
-	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_RELEASE)
-		all->started_button = 0;
-	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_RELEASE)
-		all->started_button = 0;
-	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_RELEASE)
-		all->started_button = 0;
-	
-	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_PRESS)
-		turn_press(param, 'L');
-	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_PRESS)
-		turn_press(param, 'R');
-	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_REPEAT)
-		turn_repeat(param, 'L');
-	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_REPEAT)
-		turn_repeat(param, 'R');
-	else if (keydata.key == MLX_KEY_RIGHT && keydata.action == MLX_RELEASE)
-		all->started_button = 0;
-	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_RELEASE)
-		all->started_button = 0;
+	else if (keydata.action == MLX_REPEAT)
+		key_repeat(keydata, param);
+	else if (keydata.action == MLX_RELEASE)
+		key_release(keydata, param);
 }
