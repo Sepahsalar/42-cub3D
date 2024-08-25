@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/24 10:12:47 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 08:38:26 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@
 # define START_GUN_X 610
 # define START_GUN_Y 800
 # define END_GUN_Y 700
-# define START_BLAST_X 610
-# define START_BLAST_Y 735
+# define START_BLAST_X 550
+# define START_BLAST_Y 730
 // # define START_GUN_X 200
 // # define START_GUN_Y 850
 // # define END_GUN_Y 800
@@ -214,6 +214,11 @@ typedef struct s_all
 	int 			started_button;
 	long long		start_time;
 	long long		current_time;
+	int				active_weapon;
+	double			time1;
+	double			time2;
+	int				sw1;
+	int				sw2;
 	int				x_mouse;
 	int				y_mouse;
 	mlx_t			*window;
@@ -321,5 +326,6 @@ long long			ft_timestamp_milis(t_all *all);
 void				mouse(double xpos, double ypos, void* param);
 void				clean_player_image(t_all *all);
 void				click(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
+void fu(void *param);
 
 #endif // CUB3D_H

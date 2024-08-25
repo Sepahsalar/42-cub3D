@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/24 10:16:24 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/24 18:40:01 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	mlx_mouse_hook(all->window, &click, all);
 	mlx_get_mouse_pos(all->window, &all->x_mouse, &all->y_mouse);
 	mlx_cursor_hook(all->window, &mouse, all);
-	
+	mlx_loop_hook(all->window,fu, all);
 	mlx_loop(all->window);
 	terminate(all, 0);
 }
