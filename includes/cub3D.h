@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/25 08:38:26 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 11:30:41 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,8 +217,8 @@ typedef struct s_all
 	int				active_weapon;
 	double			time1;
 	double			time2;
-	int				sw1;
-	int				sw2;
+	int				gun_used;
+	int				animation_started;
 	int				x_mouse;
 	int				y_mouse;
 	mlx_t			*window;
@@ -326,6 +326,6 @@ long long			ft_timestamp_milis(t_all *all);
 void				mouse(double xpos, double ypos, void* param);
 void				clean_player_image(t_all *all);
 void				click(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
-void fu(void *param);
+void				animation(void *param);
 
 #endif // CUB3D_H

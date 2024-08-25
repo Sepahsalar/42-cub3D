@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/25 09:06:05 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 11:46:30 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,25 @@ double	under_full_circle(double angle)
 	if (angle < 0)
 		return (angle += FULL_CIRCLE_DEGREES);
 	return (angle);
+}
+
+void change_weapon(void *param)
+{
+	t_all	*all;
+	
+	all = (t_all *)param;
+	if (all->active_weapon == 0)
+	{
+		all->knife->instances[0].enabled = true;
+		all->gun->instances[0].enabled = false;
+		all->active_weapon = 1;
+	}
+	else if (all->active_weapon == 1)
+	{
+		all->knife->instances[0].enabled = false;
+		all->gun->instances[0].enabled = true;
+		all->active_weapon = 0;
+	}
 }
 
 static void	turn_press(void *param, char c)
@@ -112,110 +131,89 @@ static void	move_repeat(void *param, char c)
 	}
 }
 
-void shoot(void *param)
+void use_weapon(void *param)
 {
 	t_all	*all;
 
 	all = (t_all *)param;
+	all->gun_used = 1;
 	if (all->active_weapon == 0)
-	{
 		all->gun->instances[0].y = END_GUN_Y;
-		all->sw1 = 2;
-	}
 	else if (all->active_weapon == 1)
 	{
-		all->sw1 = 1;
 		all->knife->instances[0].x = 650;
 		all->knife->instances[0].y = 760;
 	}
 }
 
-void fu(void *param)
+void start_timer(t_all *all)
+{
+	if(all->animation_started == 0)
+	{
+		all->time1 = ft_timestamp_milis(all);
+		all->animation_started = 1;			
+	}
+}
+
+void end_animation(t_all *all)
+{
+	all->gun_used = 0;
+	all->animation_started = 0;
+}
+
+void gun_animation(t_all *all)
+{
+	start_timer(all);
+	all->time2 = ft_timestamp_milis(all);
+	if (all->time2 > all->time1 + 500)
+	{
+		all->gun->instances[0].y = START_GUN_Y;
+		end_animation(all);
+	}
+	if (all->time2 > all->time1 + 400)
+		all->blast->instances[0].enabled = false;
+	else if (all->time2 > all->time1 + 250)
+	{
+		all->gun->instances[0].x = START_GUN_X;
+		all->blast->instances[0].enabled = true;
+	}
+	else if (all->time2 > all->time1 + 200)
+		all->gun->instances[0].x = START_GUN_X + 50;
+}
+
+void knife_animation(t_all *all)
+{
+	start_timer(all);
+	all->time2 = ft_timestamp_milis(all);
+	if (all->time2 > all->time1 + 200)
+	{
+		all->knife->instances[0].x = 700;
+		all->knife->instances[0].y = 810;
+		end_animation(all);
+	}
+}
+
+void animation(void *param)
 {
 	t_all *all;
 
 	all = (t_all *) param;
-	if (all->sw1 == 1 && all->active_weapon == 1)
+	if (all->gun_used)
 	{
-		if(all->sw2 == 0)
-		{
-			all->time1 = ft_timestamp_milis(all);
-			
-			all->sw2 = 1;			
-		}
-		all->time2 = ft_timestamp_milis(all);
-		if (all->time2 > all->time1 + 200)
-		{
-			all->knife->instances[0].x = 700;
-			all->knife->instances[0].y = 810;
-			all->sw1 = 0;
-			all->sw2 = 0;
-			
-		}
-	}
-	if (all->sw1 == 2 && all->active_weapon == 0)
-	{
-		if(all->sw2 == 0)
-		{
-			all->time1 = ft_timestamp_milis(all);
-			all->sw2 = 1;			
-		}
-		all->time2 = ft_timestamp_milis(all);
-		if (all->time2 > all->time1 + 500)
-		{
-			all->gun->instances[0].y = START_GUN_Y;
-			all->sw1 = 0;
-			all->sw2 = 0;
-		}
-		if (all->time2 > all->time1 + 400)
-			all->blast->instances[0].enabled = false;
-		else if (all->time2 > all->time1 + 250)
-		{
-			all->gun->instances[0].x = START_GUN_X;
-			all->blast->instances[0].enabled = true;
-		}
-		else if (all->time2 > all->time1 + 200)
-			all->gun->instances[0].x = START_GUN_X + 50;
+		if (all->active_weapon == 1)
+			knife_animation(all);
+		else if (all->active_weapon == 0)
+			gun_animation(all);
 	}
 }
 
 void click(mouse_key_t button, action_t action, modifier_key_t mods, void* param)
 {
-	t_all	*all;
-
-	all = (t_all *)param;
 	(void)mods;
 	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
-	{
-		if (all->active_weapon == 0)
-		{
-			all->gun->instances[0].y = END_GUN_Y;
-			all->sw1 = 2;
-		}
-		else
-		{
-			all->sw1 = 1;
-			all->knife->instances[0].x = 650;
-			all->knife->instances[0].y = 760;
-			
-		}
-	}
+		use_weapon(param);
 	else if (button == MLX_MOUSE_BUTTON_RIGHT && action == MLX_PRESS)
-	{
-		if (all->active_weapon == 0)
-		{
-			all->knife->instances[0].enabled = true;
-			all->gun->instances[0].enabled = false;
-			all->active_weapon = 1;
-		}
-		else if (all->active_weapon == 1)
-		{
-			all->knife->instances[0].enabled = false;
-			all->gun->instances[0].enabled = true;
-			all->active_weapon = 0;
-		}
-		
-	}
+		change_weapon(param);
 }
 
 void	mouse(double xpos, double ypos, void* param)
@@ -229,8 +227,6 @@ void	mouse(double xpos, double ypos, void* param)
 	else if (xpos < all->x_mouse)
 		turn_repeat(param, 'L');
 	all->x_mouse = xpos;
-	
-	
 }
 
 void	press_key(mlx_key_data_t keydata, void *param)
@@ -248,24 +244,10 @@ void	press_key(mlx_key_data_t keydata, void *param)
 		move_press(param, 'D');
 	
 	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
-		shoot(param);
+		use_weapon(param);
 	
 	else if (keydata.key == MLX_KEY_LEFT_SHIFT && keydata.action == MLX_PRESS)
-	{
-		if (all->active_weapon == 0)
-		{
-			all->knife->instances[0].enabled = true;
-			all->gun->instances[0].enabled = false;
-			all->active_weapon = 1;
-		}
-		else if (all->active_weapon == 1)
-		{
-			all->knife->instances[0].enabled = false;
-			all->gun->instances[0].enabled = true;
-			all->active_weapon = 0;
-		}
-		
-	}
+		change_weapon(param);
 	
 	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
 		move_repeat(param, 'W');
