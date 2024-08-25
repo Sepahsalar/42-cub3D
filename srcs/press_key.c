@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/25 14:01:05 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 14:12:50 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,26 +238,31 @@ void	scroll(double xpos, double ypos, void* param)
 		move_repeat(param, 'S');
 }
 
+void key_press(mlx_key_data_t keydata, void *param)
+{
+	if (keydata.key == MLX_KEY_W)
+		move_press(param, 'W');
+	else if (keydata.key == MLX_KEY_S)
+		move_press(param, 'S');
+	else if (keydata.key == MLX_KEY_A)
+		move_press(param, 'A');
+	else if (keydata.key == MLX_KEY_D)
+		move_press(param, 'D');
+	else if (keydata.key == MLX_KEY_SPACE)
+		use_weapon(param);
+	else if (keydata.key == MLX_KEY_LEFT_SHIFT
+		|| keydata.key == MLX_KEY_RIGHT_SHIFT)
+		change_weapon(param);
+	else if (keydata.key == MLX_KEY_ESCAPE)
+		terminate(param, 0);
+}
 void	press_key(mlx_key_data_t keydata, void *param)
 {
 	t_all	*all;
 
 	all = (t_all *)param;
-	if (keydata.key == MLX_KEY_W && keydata.action == MLX_PRESS)
-		move_press(param, 'W');
-	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_PRESS)
-		move_press(param, 'S');
-	else if (keydata.key == MLX_KEY_A && keydata.action == MLX_PRESS)
-		move_press(param, 'A');
-	else if (keydata.key == MLX_KEY_D && keydata.action == MLX_PRESS)
-		move_press(param, 'D');
-	
-	else if (keydata.key == MLX_KEY_SPACE && keydata.action == MLX_PRESS)
-		use_weapon(param);
-	
-	else if (keydata.key == MLX_KEY_LEFT_SHIFT && keydata.action == MLX_PRESS)
-		change_weapon(param);
-	
+	if (keydata.action == MLX_PRESS)
+		key_press(keydata, param);
 	else if (keydata.key == MLX_KEY_W && keydata.action == MLX_REPEAT)
 		move_repeat(param, 'W');
 	else if (keydata.key == MLX_KEY_S && keydata.action == MLX_REPEAT)
@@ -288,6 +293,4 @@ void	press_key(mlx_key_data_t keydata, void *param)
 		all->started_button = 0;
 	else if (keydata.key == MLX_KEY_LEFT && keydata.action == MLX_RELEASE)
 		all->started_button = 0;
-	else if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-		terminate(param, 0);
 }
