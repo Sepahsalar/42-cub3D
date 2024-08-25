@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:26:07 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/21 14:41:51 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/25 15:46:18 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,17 @@ void	check_texture_exists(t_all *all, char *address)
 	close(fd);
 }
 
+void	check_no_information(t_all *all, char *str, char *temp)
+{
+	if (ft_strlen(temp) == 0)
+	{
+		ft_putstr_fd("There is no information for ", 2);
+		ft_putstr_fd(str, 2);
+		ft_putendl_fd(" identifier in the map", 2);
+		terminate(all, 1);
+	}
+}
+
 char	*custom_strdup(t_all *all, char *found, char *str)
 {
 	char	*start;
@@ -78,13 +89,7 @@ char	*custom_strdup(t_all *all, char *found, char *str)
 	update_map(all, found);
 	temp = ft_strtrim(dup, " ");
 	free(dup);
-	if (ft_strlen(temp) == 0)
-	{
-		ft_putstr_fd("There is no information for ", 2);
-		ft_putstr_fd(str, 2);
-		ft_putendl_fd(" identifier in the map", 2);
-		terminate(all, 1);
-	}
+	check_no_information(all, str, temp);
 	if (str[0] != 'F' && str[0] != 'C')
 		check_texture_exists(all, temp);
 	return (temp);

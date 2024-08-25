@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_color.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:42:31 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 15:59:06 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/25 15:41:35 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,30 @@ static void	check_rgb_format(t_all *all, char **split, char type)
 	}
 }
 
+void	check_valid_range_foramat(t_all *all, char **split,
+	char *trimmed, char type)
+{
+	if (trimmed[0] == '0' && ft_strlen(trimmed) > 1)
+	{
+		free(trimmed);
+		clean_2d_char_array(split);
+		ft_putstr_fd("Invalid number format for ", 2);
+		ft_putchar_fd(type, 2);
+		ft_putendl_fd(" identifier in the map", 2);
+		terminate(all, 1);
+	}
+	if (ft_strlen(trimmed) > 3 || ft_atoi(trimmed) < 0
+		|| ft_atoi(trimmed) > 255)
+	{
+		free(trimmed);
+		clean_2d_char_array(split);
+		ft_putstr_fd("Invalid color range for ", 2);
+		ft_putchar_fd(type, 2);
+		ft_putendl_fd(" identifier in the map", 2);
+		terminate(all, 1);
+	}
+}
+
 static void	valid_range(t_all *all, char **split, char type)
 {
 	int		i;
@@ -65,25 +89,7 @@ static void	valid_range(t_all *all, char **split, char type)
 		trimmed = ft_strtrim(split[i], " ");
 		if (!trimmed)
 			terminate(all, 1);
-		if (trimmed[0] == '0' && ft_strlen(trimmed) > 1)
-		{
-			free(trimmed);
-			clean_2d_char_array(split);
-			ft_putstr_fd("Invalid number format for ", 2);
-			ft_putchar_fd(type, 2);
-			ft_putendl_fd(" identifier in the map", 2);
-			terminate(all, 1);
-		}
-		if (ft_strlen(trimmed) > 3 || ft_atoi(trimmed) < 0
-			|| ft_atoi(trimmed) > 255)
-		{
-			free(trimmed);
-			clean_2d_char_array(split);
-			ft_putstr_fd("Invalid color range for ", 2);
-			ft_putchar_fd(type, 2);
-			ft_putendl_fd(" identifier in the map", 2);
-			terminate(all, 1);
-		}
+		check_valid_range_foramat(all, split, trimmed, type);
 		free(trimmed);
 		i++;
 	}
