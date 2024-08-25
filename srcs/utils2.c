@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:01:24 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/23 16:22:57 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:59:05 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ double	height(double distance, char c)
 		target_height = half_full_height - PERSON;
 	else
 		target_height = half_full_height - WALL + PERSON;
-	// if (target_height <= 0)
-	// 	return (0);
-	// else
-		return ((WINDOW_HEIGHT * target_height / (2 * half_full_height)));
+	return ((WINDOW_HEIGHT * target_height / (2 * half_full_height)));
 }
 
 int	same(double d1, double d2)

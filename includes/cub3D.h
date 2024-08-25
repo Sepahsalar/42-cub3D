@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/25 15:31:26 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 16:57:05 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define PLAYER_PATH "./textures/player1.png"
 # define GUN_PATH "./textures/gun7.png"
 # define BLAST_PATH "./textures/blast1.png"
+# define KNIFE_PATH "./textures/knife.png"
 
 # define VAOV 90.0
 # define HAOV 60.0
@@ -322,10 +323,12 @@ void				create_player_image(t_all *all);
 void				enable_correct_player(t_all *all);
 void				check_empty_map(t_all *all, char *str, char *error);
 long long			ft_timestamp_milis(t_all *all);
-void				mouse(double xpos, double ypos, void* param);
+void				mouse(double xpos, double ypos, void *param);
 void				clean_player_image(t_all *all);
-void				click(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
+void				click(mouse_key_t button, action_t action,
+						modifier_key_t mods, void *param);
 void				animation(void *param);
-void				scroll(double xpos, double ypos, void* param);
+void				scroll(double xpos, double ypos, void *param);
+void				check_texture_exists(t_all *all, char *address);
 
 #endif // CUB3D_H

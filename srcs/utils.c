@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/24 10:14:07 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 16:58:02 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,8 @@ int	get_pixel(mlx_image_t *image, int i, int j)
 	return (color(pixel[0], pixel[1], pixel[2], pixel[3]));
 }
 
-mlx_image_t	*image_maker(t_all *all, char type)
+char	*address_finder(t_all *all, char type)
 {
-	mlx_texture_t	*texture;
-	mlx_image_t		*picture;
 	char			*address;
 
 	if (type == 'E')
@@ -95,9 +93,20 @@ mlx_image_t	*image_maker(t_all *all, char type)
 	else if (type == 'B')
 		address = BLAST_PATH;
 	else if (type == 'K')
-		address = "./textures/knife.png";
+		address = KNIFE_PATH;
 	else
 		address = PLAYER_PATH;
+	check_texture_exists(all, address);
+	return (address);
+}
+
+mlx_image_t	*image_maker(t_all *all, char type)
+{
+	mlx_texture_t	*texture;
+	mlx_image_t		*picture;
+	char			*address;
+
+	address = address_finder(all, type);
 	texture = mlx_load_png(address);
 	if (!texture)
 		terminate(all, 1);
@@ -109,9 +118,6 @@ mlx_image_t	*image_maker(t_all *all, char type)
 		if (mlx_resize_image(picture, MINIMAP_SIDE / MINIMAP_COVERAGE,
 				MINIMAP_SIDE / MINIMAP_COVERAGE) == 0)
 			terminate(all, 1);
-	// if (type == 'G')
-	// 	if (mlx_resize_image(picture, 200, 260) == 0)
-	// 		terminate(all, 1);
 	if (type == 'B')
 		if (mlx_resize_image(picture, 50, 50) == 0)
 			terminate(all, 1);
