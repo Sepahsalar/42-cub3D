@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_loc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:07:14 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/22 12:34:58 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/25 15:28:52 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ static void	check_character_increase_player(char c, int *nb_player)
 		(*nb_player)++;
 }
 
+void	check_max_node(t_all *all, t_coordinate *coordinate)
+{
+	coordinate->index++;
+	if (coordinate->index >= MAX_NODE)
+	{
+		ft_putendl_fd("Too big map", 2);
+		terminate(all, 1);
+	}
+}
+
 void	create_loc(t_all *all)
 {
 	t_loc			*new;
@@ -40,18 +50,12 @@ void	create_loc(t_all *all)
 	coordinate.y = 0;
 	coordinate.index = 0;
 	nb_player = 0;
-	// printf("create_loc\n");
 	while (*temp)
 	{
 		if (*temp != ' ' && *temp != '\n')
 		{
 			check_character_increase_player(*temp, &nb_player);
-			coordinate.index++;
-			if (coordinate.index >= MAX_NODE)
-			{
-				ft_putendl_fd("Too big map", 2);
-				terminate(all, 1);
-			}
+			check_max_node(all, &coordinate);
 			new = create_loc_node(*temp, coordinate.x, coordinate.y);
 			link_new_node(all, new, old);
 			old = new;

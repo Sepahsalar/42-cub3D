@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/25 14:24:55 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 15:15:37 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,39 @@
 
 // 9) find good material for walls
 
-int	main(int argc, char **argv)
+void	check_args(int argc, char **argv)
 {
-	t_all	*all;
-
 	if (argc != 2)
 	{
 		ft_putendl_fd("Invalid number of arguments", 2);
 		ft_putendl_fd("Error", 2);
-		return (1);
+		exit (1);
 	}
 	if (!check_map_format(argv[1]))
 	{
 		ft_putendl_fd("Invalid map format", 2);
 		ft_putendl_fd("Error", 2);
-		return (1);
+		exit (1);
 	}
-	all = init_all(argv);
-	fill_strips(all);
+}
+
+void	hooks_loops(t_all *all)
+{
 	mlx_key_hook(all->window, &keyboard, all);
 	mlx_mouse_hook(all->window, &click, all);
-	mlx_get_mouse_pos(all->window, &all->x_mouse, &all->y_mouse);
 	mlx_cursor_hook(all->window, &mouse, all);
 	mlx_scroll_hook(all->window, &scroll, all);
-	mlx_loop_hook(all->window, animation, all);
+	mlx_loop_hook(all->window, &animation, all);
 	mlx_loop(all->window);
+}
+
+int	main(int argc, char **argv)
+{
+	t_all	*all;
+
+	check_args(argc, argv);
+	all = init_all(argv);
+	fill_strips(all);
+	hooks_loops(all);
 	terminate(all, 0);
 }

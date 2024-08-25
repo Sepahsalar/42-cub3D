@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
+#    By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/22 12:29:51 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/25 15:32:32 by nima             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,6 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/fill_strips.c \
 		$(SRCDIR)/fill_strips_utils.c \
 		$(SRCDIR)/fill_strips_utils2.c \
-		$(SRCDIR)/fill_strips_utils3.c \
 		$(SRCDIR)/find_coordinate_ranges.c \
 		$(SRCDIR)/find_general_intersection.c \
 		$(SRCDIR)/find_specific_intersection.c \

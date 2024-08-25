@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/25 14:25:24 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 15:31:26 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,6 @@ void				find_winner_surface(t_all *all);
 void				ignore_inside_surface(t_all *all);
 int					game_size(t_all *all, char c);
 double				max_distance(t_all *all);
-void				update_strips(t_all *all);
 void				clean_2d_char_array(char **array);
 void				temp_movment225(double *new_x, double *new_y, char c);
 void				temp_movment135(double *new_x, double *new_y, char c);

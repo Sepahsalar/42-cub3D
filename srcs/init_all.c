@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/24 15:10:14 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 15:15:06 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,27 @@ static double	start_angle_player(t_all *all)
 	return (-1);
 }
 
+void	image_loading(t_all *all)
+{
+	all->north = image_maker(all, 'N');
+	all->west = image_maker(all, 'W');
+	all->south = image_maker(all, 'S');
+	all->east = image_maker(all, 'E');
+	all->player_at_0 = image_maker(all, 'P');
+	create_player_image(all);
+	all->gun = image_maker(all, 'G');
+	mlx_image_to_window(all->window, all->gun, START_GUN_X, START_GUN_Y);
+	all->gun->instances[0].z = 3;
+	all->blast = image_maker(all, 'B');
+	mlx_image_to_window(all->window, all->blast, START_BLAST_X, START_BLAST_Y);
+	all->blast->instances[0].z = 2;
+	all->blast->instances[0].enabled = false;
+	all->knife = image_maker(all, 'K');
+	mlx_image_to_window(all->window, all->knife, 700, 810);
+	all->knife->instances[0].z = 2;
+	all->knife->instances[0].enabled = false;
+}
+
 t_all	*init_all(char **argv)
 {
 	t_all	*all;
@@ -75,23 +96,7 @@ t_all	*init_all(char **argv)
 	all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, argv[0], false);
 	if (!all->window)
 		terminate(all, 1);
-	all->north = image_maker(all, 'N');
-	all->west = image_maker(all, 'W');
-	all->south = image_maker(all, 'S');
-	all->east = image_maker(all, 'E');
-	all->player_at_0 = image_maker(all, 'P');
-	create_player_image(all);
-	all->gun = image_maker(all, 'G');
-	mlx_image_to_window(all->window, all->gun, START_GUN_X, START_GUN_Y);
-	// mlx_image_to_window(all->window, all->gun, all->x, START_GUN_Y);
-	all->gun->instances[0].z = 3;
-	all->blast = image_maker(all, 'B');
-	mlx_image_to_window(all->window, all->blast, START_BLAST_X, START_BLAST_Y);
-	all->blast->instances[0].z = 2;
-	all->blast->instances[0].enabled = false;
-	all->knife = image_maker(all, 'K');
-	mlx_image_to_window(all->window, all->knife, 700, 810);
-	all->knife->instances[0].z = 2;
-	all->knife->instances[0].enabled = false;
+	image_loading(all);
+	mlx_get_mouse_pos(all->window, &all->x_mouse, &all->y_mouse);
 	return (all);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_strips.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/23 16:14:39 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/25 15:31:40 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ static void	create_strips_helper(t_all *all, double temp_angle)
 	t_winner	final;
 	t_render	data_render;
 
-	// double		intersection_distance;
 	ray_angle = under_full_circle(all->angle - (HAOV / 2) + temp_angle);
 	final = find_winner(all, ray_angle);
 	final = calculate_distance(all, final, ray_angle);
@@ -73,7 +72,5 @@ void	fill_strips(t_all *all)
 	create_strips(all);
 	fill_index_strips(all);
 	fill_length_strips(all);
-	// update_strips(all);
-	// fill_number_of_blocks(all);
 	strip_to_image(all);
 }
