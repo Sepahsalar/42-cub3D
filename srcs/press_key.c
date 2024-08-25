@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/25 14:24:25 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 17:17:33 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,7 +195,7 @@ void knife_animation(t_all *all)
 
 void animation(void *param)
 {
-	t_all *all;
+	t_all	*all;
 
 	all = (t_all *) param;
 	if (all->gun_used)
@@ -207,7 +207,7 @@ void animation(void *param)
 	}
 }
 
-void click(mouse_key_t button, action_t action, modifier_key_t mods, void* param)
+void click(mouse_key_t button, action_t action, modifier_key_t mods, void *param)
 {
 	(void)mods;
 	if (button == MLX_MOUSE_BUTTON_LEFT && action == MLX_PRESS)
@@ -216,7 +216,7 @@ void click(mouse_key_t button, action_t action, modifier_key_t mods, void* param
 		change_weapon(param);
 }
 
-void	mouse(double xpos, double ypos, void* param)
+void	mouse(double xpos, double ypos, void *param)
 {
 	t_all	*all;
 
@@ -229,7 +229,7 @@ void	mouse(double xpos, double ypos, void* param)
 	all->x_mouse = xpos;
 }
 
-void	scroll(double xpos, double ypos, void* param)
+void	scroll(double xpos, double ypos, void *param)
 {
 	(void)xpos;
 	if (ypos > 0)
