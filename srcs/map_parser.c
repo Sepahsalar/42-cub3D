@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/22 12:32:08 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/25 15:57:15 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -179,6 +179,18 @@ void	flood_map(t_all *all)
 	}
 }
 
+void find_remove_texture_color(t_all *all)
+{
+	all->map->north = finder(all, "NO");
+	all->map->south = finder(all, "SO");
+	all->map->west = finder(all, "WE");
+	all->map->east = finder(all, "EA");
+	all->map->f = finder(all, "F");
+	check_valid_color(all, 'F');
+	all->map->c = finder(all, "C");
+	check_valid_color(all, 'C');
+}
+
 t_map	*map_parser(t_all *all)
 {
 	t_map	*map;
@@ -190,14 +202,7 @@ t_map	*map_parser(t_all *all)
 	all->map = map;
 	reader(all);
 	check_empty_map(all, NULL, "Empty map");
-	all->map->north = finder(all, "NO");
-	all->map->south = finder(all, "SO");
-	all->map->west = finder(all, "WE");
-	all->map->east = finder(all, "EA");
-	all->map->f = finder(all, "F");
-	check_valid_color(all, 'F');
-	all->map->c = finder(all, "C");
-	check_valid_color(all, 'C');
+	find_remove_texture_color(all);
 	check_empty_map(all, NULL, "There is no map content in the file");
 	check_wrong_identifier(all);
 	remove_white_space(all);
