@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/25 11:46:30 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 14:01:05 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -227,6 +227,15 @@ void	mouse(double xpos, double ypos, void* param)
 	else if (xpos < all->x_mouse)
 		turn_repeat(param, 'L');
 	all->x_mouse = xpos;
+}
+
+void	scroll(double xpos, double ypos, void* param)
+{
+	(void)xpos;
+	if (ypos > 0)
+		move_repeat(param, 'W');
+	else if (ypos < 0)
+		move_repeat(param, 'S');
 }
 
 void	press_key(mlx_key_data_t keydata, void *param)

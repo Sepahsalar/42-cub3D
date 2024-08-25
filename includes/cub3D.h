@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/25 11:30:41 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/25 13:54:44 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -327,5 +327,6 @@ void				mouse(double xpos, double ypos, void* param);
 void				clean_player_image(t_all *all);
 void				click(mouse_key_t button, action_t action, modifier_key_t mods, void* param);
 void				animation(void *param);
+void				scroll(double xpos, double ypos, void* param);
 
 #endif // CUB3D_H
