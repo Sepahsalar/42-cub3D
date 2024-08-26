@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 07:04:38 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 09:15:19 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ void	image_loading(t_all *all)
 	all->knife->instances[0].z = 2;
 	all->knife->instances[0].enabled = false;
 	all->hole = image_maker(all, 'H');
-	mlx_image_to_window(all->window, all->hole, 475, 475);
+	mlx_image_to_window(all->window, all->hole, 300, 400);
 	all->hole->instances[0].enabled = false;
-	all->hole->instances[0].z = 2;
+	all->hole->instances[0].z = 3;
 }
 
 t_all	*init_all(char **argv)

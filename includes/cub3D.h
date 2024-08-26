@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 06:51:20 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 09:14:27 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@
 # define START_GUN_X 610
 # define START_GUN_Y 800
 # define END_GUN_Y 700
-# define START_BLAST_X 550
-# define START_BLAST_Y 730
+# define START_BLAST_X 600
+# define START_BLAST_Y 740
 // # define START_GUN_X 200
 // # define START_GUN_Y 850
 // # define END_GUN_Y 800

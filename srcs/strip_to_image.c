@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strip_to_image.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 07:07:55 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 09:16:56 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ void	strip_to_image(t_all *all)
 			if (strip->ceil_h > 0)
 				all->hole_h = strip->ceil_h + strip->wall_h / 2;
 			else
-				all->hole_h = strip->wall_h / 2;
-			all->hole_h = all->hole_h - 25;
+				all->hole_h = WINDOW_HEIGHT / 2;
+			all->hole_h = all->hole_h - 100;
 		}
 		put_pixels_of_strips(all, strip);
 		strip = strip->next;
