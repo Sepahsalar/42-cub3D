@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   keyboard.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 09:34:36 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 12:20:22 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:33:20 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void key_press(mlx_key_data_t keydata, void *param)
+void	key_press(mlx_key_data_t keydata, void *param)
 {
 	if (keydata.key == MLX_KEY_W)
 		move_press(param, 'W');
@@ -35,7 +35,7 @@ void key_press(mlx_key_data_t keydata, void *param)
 		terminate((t_all *)param, NULL, NULL, NULL);
 }
 
-void key_repeat(mlx_key_data_t keydata, void *param)
+void	key_repeat(mlx_key_data_t keydata, void *param)
 {
 	if (keydata.key == MLX_KEY_W)
 		move_repeat(param, 'W');
@@ -51,17 +51,14 @@ void key_repeat(mlx_key_data_t keydata, void *param)
 		turn_repeat(param, 'R');
 }
 
-void key_release(mlx_key_data_t keydata, void *param)
+void	key_release(mlx_key_data_t keydata, void *param)
 {
 	t_all	*all;
 
 	all = (t_all *)param;
-	if (keydata.key == MLX_KEY_W
-		|| keydata.key == MLX_KEY_S
-		|| keydata.key == MLX_KEY_A
-		|| keydata.key == MLX_KEY_D
-		|| keydata.key == MLX_KEY_LEFT
-		|| keydata.key == MLX_KEY_RIGHT)
+	if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S
+		|| keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D
+		|| keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_RIGHT)
 		all->started_button = 0;
 }
 

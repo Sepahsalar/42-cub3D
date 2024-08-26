@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 14:15:50 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:30:31 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	put_pixels_of_strips(t_all *all, t_strip *strip)
 		if (j <= (int)floor(strip->ceil_h))
 			int_color = all->ceil_color;
 		else if (j > (int)floor(strip->ceil_h)
-				&& j < ((int)(floor(strip->ceil_h) + floor(strip->wall_h))))
+			&& j < ((int)(floor(strip->ceil_h) + floor(strip->wall_h))))
 			int_color = get_pixel_from_brick(all, strip, j);
 		else
 			int_color = all->floor_color;

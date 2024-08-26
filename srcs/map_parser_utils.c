@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:26:07 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 12:46:17 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:31:14 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	check_texture_exists(t_all *all, char *address)
 void	check_no_information(t_all *all, char *str, char *temp)
 {
 	if (ft_strlen(temp) == 0)
-		terminate(all, "There is no information for ", str, " identifier in the map");
+		terminate(all, "There is no information for ", str,
+			" identifier in the map");
 }
 
 char	*custom_strdup(t_all *all, char *found, char *str)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 12:46:52 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:32:58 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void check_open_failure(t_all *all, int fd)
+void	check_open_failure(t_all *all, int fd)
 {
 	if (fd == -1)
 		terminate(all, "Opening map file failed", NULL, NULL);
@@ -81,7 +81,8 @@ static void	check_wrong_identifier(t_all *all)
 	{
 		if (*temp != 'N' && *temp != 'S' && *temp != 'E' && *temp != 'W'
 			&& *temp != '1' && *temp != '0' && *temp != ' ' && *temp != '\n')
-			terminate(all, "Invalid character", " or extra identifier in the map", NULL);
+			terminate(all, "Invalid character",
+				" or extra identifier in the map", NULL);
 		temp++;
 	}
 }
@@ -114,9 +115,10 @@ void	wet_loc(t_all *all, t_loc *loc)
 	temp = all->map->start;
 	while (temp)
 	{
-		if ((temp->x == x && temp->y == y + 1) || (temp->x == x && temp->y == y
-				- 1) || (temp->x == x + 1 && temp->y == y) || (temp->x == x - 1
-				&& temp->y == y))
+		if ((temp->x == x && temp->y == y + 1)
+			|| (temp->x == x && temp->y == y - 1)
+			|| (temp->x == x + 1 && temp->y == y)
+			|| (temp->x == x - 1 && temp->y == y))
 			temp->wet = 1;
 		temp = temp->next;
 	}
@@ -176,7 +178,7 @@ void	flood_map(t_all *all)
 	}
 }
 
-void find_remove_texture_color(t_all *all)
+void	find_remove_texture_color(t_all *all)
 {
 	all->map->north = finder(all, "NO");
 	all->map->south = finder(all, "SO");

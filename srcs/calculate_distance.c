@@ -66,6 +66,7 @@ t_winner	calculate_distance(t_all *all, t_winner final, double ray_angle)
 			final.y_intersection);
 	if (final.intersection_distance < MIN_CALCULATED_DISTANCE)
 		final.intersection_distance = MIN_CALCULATED_DISTANCE;
-	final.intersection_distance = DISTANCE_FACTOR * final.intersection_distance * fabs(ft_cos(all->angle - ray_angle));
+	final.intersection_distance = DISTANCE_FACTOR * final.intersection_distance
+		* fabs(ft_cos(all->angle - ray_angle));
 	return (final);
 }

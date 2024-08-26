@@ -21,7 +21,7 @@ long long	ft_timestamp_milis(t_all *all)
 	error = gettimeofday(&tv, 0);
 	if (error == -1)
 		terminate(all, "Gettimeofday failed", NULL, NULL);
-	timestamp = (((long long)(tv.tv_sec)) * 1000)
-		+ (((long long)(tv.tv_usec)) / 1000);
+	timestamp = (((long long)(tv.tv_sec)) * 1000) + (((long long)(tv.tv_usec))
+			/ 1000);
 	return (timestamp);
 }

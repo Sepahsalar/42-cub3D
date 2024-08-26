@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_color.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:42:31 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 12:45:57 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:31:49 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ static void	only_digit(t_all *all, char **split, char type)
 			if (!ft_isdigit(split[i][j]) && split[i][j] != ' ')
 			{
 				clean_2d_char_array(split);
-				terminate(all, &type, " identifier contains characters", " which are not digits");
+				terminate(all, &type, " identifier contains characters",
+					" which are not digits");
 			}
 			j++;
 		}
@@ -44,25 +45,28 @@ static void	check_rgb_format(t_all *all, char **split, char type)
 	if (i != 3)
 	{
 		clean_2d_char_array(split);
-		terminate(all, "The color for ", &type, " identifier does not match the RGB model");
+		terminate(all, "The color for ", &type,
+			" identifier does not match the RGB model");
 	}
 }
 
-void	check_valid_range_foramat(t_all *all, char **split,
-	char *trimmed, char type)
+void	check_valid_range_foramat(t_all *all, char **split, char *trimmed,
+		char type)
 {
 	if (trimmed[0] == '0' && ft_strlen(trimmed) > 1)
 	{
 		free(trimmed);
 		clean_2d_char_array(split);
-		terminate(all, "Invalid number format for ", &type, " identifier in the map");
+		terminate(all, "Invalid number format for ", &type,
+			" identifier in the map");
 	}
 	if (ft_strlen(trimmed) > 3 || ft_atoi(trimmed) < 0
 		|| ft_atoi(trimmed) > 255)
 	{
 		free(trimmed);
 		clean_2d_char_array(split);
-		terminate(all, "Invalid color range for ", &type, " identifier in the map");
+		terminate(all, "Invalid color range for ", &type,
+			" identifier in the map");
 	}
 }
 
@@ -93,9 +97,11 @@ void	check_valid_color(t_all *all, char type)
 	else
 		full_color = all->map->c;
 	if (!full_color)
-		terminate(all, "There is no information for ", &type, " identifier in the map");
+		terminate(all, "There is no information for ", &type,
+			" identifier in the map");
 	if (full_color[ft_strlen(full_color) - 1] == ',')
-		terminate(all, "The color for ", &type, " identifier does not match the RGB model");
+		terminate(all, "The color for ", &type,
+			" identifier does not match the RGB model");
 	split = ft_split(full_color, ',');
 	if (!split)
 		terminate(all, "Splitting string failed", NULL, NULL);

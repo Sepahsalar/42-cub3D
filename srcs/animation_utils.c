@@ -15,7 +15,7 @@
 void	change_weapon(void *param)
 {
 	t_all	*all;
-	
+
 	all = (t_all *)param;
 	if (all->active_weapon == 0)
 	{
@@ -34,7 +34,7 @@ void	change_weapon(void *param)
 	}
 }
 
-void use_weapon(void *param)
+void	use_weapon(void *param)
 {
 	t_all	*all;
 

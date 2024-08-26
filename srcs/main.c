@@ -22,13 +22,13 @@ void	check_args(int argc, char **argv)
 	{
 		ft_putendl_fd("Invalid number of arguments", 2);
 		ft_putendl_fd("Error", 2);
-		exit (1);
+		exit(1);
 	}
 	if (!check_map_format(argv[1]))
 	{
 		ft_putendl_fd("Invalid map format", 2);
 		ft_putendl_fd("Error", 2);
-		exit (1);
+		exit(1);
 	}
 }
 

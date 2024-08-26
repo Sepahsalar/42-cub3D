@@ -55,14 +55,14 @@ void	move_repeat(void *param, char c)
 	{
 		move_press(param, c);
 		all->start_time = ft_timestamp_milis(all);
-		all->current_time  = all->start_time;
+		all->current_time = all->start_time;
 		all->started_button = 1;
 	}
-	all->current_time =ft_timestamp_milis(all);
+	all->current_time = ft_timestamp_milis(all);
 	if (all->current_time - all->start_time >= RENDER_INTERVAL)
 	{
 		move_press(param, c);
 		all->start_time = ft_timestamp_milis(all);
-		all->current_time  = all->start_time;
+		all->current_time = all->start_time;
 	}
 }

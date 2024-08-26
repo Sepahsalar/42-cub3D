@@ -12,22 +12,22 @@
 
 #include "../includes/cub3D.h"
 
-void start_timer(t_all *all)
+void	start_timer(t_all *all)
 {
-	if(all->animation_started == 0)
+	if (all->animation_started == 0)
 	{
 		all->time1 = ft_timestamp_milis(all);
-		all->animation_started = 1;			
+		all->animation_started = 1;
 	}
 }
 
-void end_animation(t_all *all)
+void	end_animation(t_all *all)
 {
 	all->gun_used = 0;
 	all->animation_started = 0;
 }
 
-void gun_animation(t_all *all)
+void	gun_animation(t_all *all)
 {
 	start_timer(all);
 	all->time2 = ft_timestamp_milis(all);
@@ -47,7 +47,7 @@ void gun_animation(t_all *all)
 		all->gun->instances[0].x = START_GUN_X + 50;
 }
 
-void knife_animation(t_all *all)
+void	knife_animation(t_all *all)
 {
 	start_timer(all);
 	all->time2 = ft_timestamp_milis(all);
@@ -59,11 +59,11 @@ void knife_animation(t_all *all)
 	}
 }
 
-void animation(void *param)
+void	animation(void *param)
 {
 	t_all	*all;
 
-	all = (t_all *) param;
+	all = (t_all *)param;
 	if (all->gun_used)
 	{
 		if (all->active_weapon == 1)

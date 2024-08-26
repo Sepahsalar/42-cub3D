@@ -80,7 +80,7 @@ typedef struct s_render
 	double			ceil_height;
 	double			floor_height;
 	double			wall_height;
-	double 			fictional_wall_height;
+	double			fictional_wall_height;
 	char			wall_texture;
 	int				x;
 	int				x_wall;
@@ -114,7 +114,7 @@ typedef struct s_strip
 	int				x;
 	char			wall;
 	double			wall_h;
-	double 			fictional_wall_height;
+	double			fictional_wall_height;
 	double			ceil_h;
 	double			floor_h;
 	int				wall_length;
@@ -200,7 +200,7 @@ typedef struct s_all
 	char			*strmap;
 	char			*argv;
 	int				index;
-	int 			started_button;
+	int				started_button;
 	long long		start_time;
 	long long		current_time;
 	int				active_weapon;
@@ -233,7 +233,7 @@ void				terminate(t_all *all, char *str1, char *str2, char *str3);
 void				reader(t_all *all);
 void				create_loc(t_all *all);
 t_loc				*create_loc_node(char temp, int x, int y);
-void 				remove_unnecessary_nodes(t_all *all);
+void				remove_unnecessary_nodes(t_all *all);
 t_loc				*clean_loc(t_loc *first);
 void				init_strips(t_all *all, t_render data_render);
 void				fill_index_strips(t_all *all);
@@ -323,6 +323,6 @@ void				move_repeat(void *param, char c);
 void				turn_press(void *param, char c);
 void				turn_repeat(void *param, char c);
 void				use_weapon(void *param);
-void 				change_weapon(void *param);
+void				change_weapon(void *param);
 
 #endif // CUB3D_H
