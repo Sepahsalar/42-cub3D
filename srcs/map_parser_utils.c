@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:26:07 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 14:31:14 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:52:12 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	check_texture_exists(t_all *all, char *address)
 		terminate(all, "Closing file failed", NULL, NULL);
 }
 
-void	check_no_information(t_all *all, char *str, char *temp)
+static void	check_no_information(t_all *all, char *str, char *temp)
 {
 	if (ft_strlen(temp) == 0)
 		terminate(all, "There is no information for ", str,
@@ -89,24 +89,4 @@ char	*custom_strdup(t_all *all, char *found, char *str)
 	if (str[0] != 'F' && str[0] != 'C')
 		check_texture_exists(all, temp);
 	return (temp);
-}
-
-void	remove_white_space(t_all *all)
-{
-	char	*start;
-	char	*temp;
-
-	start = all->strmap;
-	temp = all->strmap;
-	while (temp && *temp != '1')
-	{
-		if (*temp == '\n')
-			start = temp + 1;
-		temp++;
-	}
-	temp = ft_strdup(start);
-	if (!temp)
-		terminate(all, "Duplicating string failed", NULL, NULL);
-	free(all->strmap);
-	all->strmap = temp;
 }
