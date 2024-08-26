@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 09:09:11 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 09:48:01 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*address_finder(t_all *all, char type)
 	else if (type == 'K')
 		address = KNIFE_PATH;
 	else if (type == 'H')
-		address = "./textures/hole.png";
+		address = HOLE_PATH;
 	else
 		address = PLAYER_PATH;
 	check_texture_exists(all, address);

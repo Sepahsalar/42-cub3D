@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 09:14:27 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 09:57:12 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,15 @@
 # define GUN_PATH "./textures/gun7.png"
 # define BLAST_PATH "./textures/blast1.png"
 # define KNIFE_PATH "./textures/knife.png"
+# define HOLE_PATH "./textures/hole.png"
 
 # define VAOV 90.0
 # define HAOV 60.0
 # define PERSON 2.0
 # define WALL 4.0
 # define EPSILON 0.00001
-// # define DISTANCE_FROM_WALL 1.5
 # define MIN_CALCULATED_DISTANCE 0.5
+# define DISTANCE_FACTOR 1.5
 # define MINIMAP_SIDE 220
 # define MINIMAP_COVERAGE 10
 # define MAX_NODE 10001
@@ -46,7 +47,7 @@
 # define START_GUN_Y 800
 # define END_GUN_Y 700
 # define START_BLAST_X 600
-# define START_BLAST_Y 740
+# define START_BLAST_Y 735
 // # define START_GUN_X 200
 // # define START_GUN_Y 850
 // # define END_GUN_Y 800
@@ -332,5 +333,11 @@ void				click(mouse_key_t button, action_t action,
 void				animation(void *param);
 void				scroll(double xpos, double ypos, void *param);
 void				check_texture_exists(t_all *all, char *address);
+void				move_press(void *param, char c);
+void				move_repeat(void *param, char c);
+void				turn_press(void *param, char c);
+void				turn_repeat(void *param, char c);
+void				use_weapon(void *param);
+void 				change_weapon(void *param);
 
 #endif // CUB3D_H

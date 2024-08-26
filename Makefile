@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+         #
+#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/25 15:32:32 by nima             ###   ########.fr        #
+#    Updated: 2024/08/26 09:46:14 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
 
 # Source files
 SRCS = 	$(SRCDIR)/acceptable_range.c \
+		$(SRCDIR)/animation.c \
+		$(SRCDIR)/animation_utils.c \
 		$(SRCDIR)/calculate_distance.c \
 		$(SRCDIR)/compare_adjacent_walls.c\
 		$(SRCDIR)/create_loc.c \
@@ -60,14 +62,17 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/ignore_inside_surface.c \
 		$(SRCDIR)/ignore_inside_surface_utils.c \
 		$(SRCDIR)/init_all.c \
+		$(SRCDIR)/keyboard.c \
 		$(SRCDIR)/loc_visibility.c \
 		$(SRCDIR)/main.c  \
 		$(SRCDIR)/map_parser.c  \
 		$(SRCDIR)/map_parser_color.c \
 		$(SRCDIR)/map_parser_utils.c \
 		$(SRCDIR)/minimap.c \
+		$(SRCDIR)/mouse.c \
 		$(SRCDIR)/move.c \
-		$(SRCDIR)/press_key.c \
+		$(SRCDIR)/move_utils.c \
+		$(SRCDIR)/turn.c \
 		$(SRCDIR)/strip_to_image.c \
 		$(SRCDIR)/termiante.c \
 		$(SRCDIR)/time.c \
