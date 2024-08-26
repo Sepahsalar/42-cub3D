@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 12:47:42 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:37:50 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,28 @@ static void	free_map_contents(t_map *map)
 		free(map);
 }
 
-void	terminate(t_all *all, char *str1, char *str2, char *str3)
+void print_error(char *str1, char *str2, char *str3)
 {
-	if (all->strip)
-		clean_strips(all);
-	if (all->map)
-		free_map_contents(all->map);
-	if (all->strmap)
-		free(all->strmap);
+	if (str1)
+	{
+		ft_putendl_fd("Error", 2);
+		ft_putstr_fd(str1, 2);
+		if (str2)
+		{
+			ft_putstr_fd(str2, 2);
+			if (str3)
+				ft_putendl_fd(str3, 2);
+			else
+				ft_putchar_fd('\n', 2);
+		}
+		else
+			ft_putchar_fd('\n', 2);
+		exit(1);
+	}
+}
+
+void delete_images(t_all *all)
+{
 	if (all->image)
 		mlx_delete_image(all->window, all->image);
 	if (all->north)
@@ -60,28 +74,24 @@ void	terminate(t_all *all, char *str1, char *str2, char *str3)
 		mlx_delete_image(all->window, all->knife);
 	if (all->hole)
 		mlx_delete_image(all->window, all->hole);
-	if (all->player_image)
-		clean_player_image(all);
 	if (all->player_at_0)
 		mlx_delete_image(all->window, all->player_at_0);
+}
+
+void	terminate(t_all *all, char *str1, char *str2, char *str3)
+{
+	if (all->strip)
+		clean_strips(all);
+	if (all->map)
+		free_map_contents(all->map);
+	if (all->strmap)
+		free(all->strmap);
+	if (all->player_image)
+		clean_player_image(all);
+	delete_images(all);
 	if (all->window)
 		mlx_terminate(all->window);
 	free(all);
-	if (str1)
-	{
-		ft_putendl_fd("Error", 2);
-		ft_putstr_fd(str1, 2);
-		if (str2)
-		{
-			ft_putstr_fd(str2, 2);
-			if (str3)
-				ft_putendl_fd(str3, 2);
-			else
-				ft_putchar_fd('\n', 2);
-		}
-		else
-			ft_putchar_fd('\n', 2);
-		exit(1);
-	}
+	print_error(str1, str2, str3);
 	exit(0);
 }
