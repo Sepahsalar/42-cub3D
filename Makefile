@@ -6,7 +6,7 @@
 #    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/26 15:56:45 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/26 16:09:11 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,8 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/map_parser_utils.c \
 		$(SRCDIR)/map_parser_utils2.c \
 		$(SRCDIR)/minimap.c \
+		$(SRCDIR)/minimap_player.c \
+		$(SRCDIR)/minimap_player2.c \
 		$(SRCDIR)/mouse.c \
 		$(SRCDIR)/move.c \
 		$(SRCDIR)/move_utils.c \

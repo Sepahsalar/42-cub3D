@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 15:56:08 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:19:20 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@
 # define BLAST_PATH "./textures/blast1.png"
 # define KNIFE_PATH "./textures/knife.png"
 # define HOLE_PATH "./textures/hole3.png"
-
 # define VAOV 90.0
 # define HAOV 60.0
 # define PERSON 1.0
