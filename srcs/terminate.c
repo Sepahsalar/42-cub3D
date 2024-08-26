@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 15:37:50 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:39:07 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	free_map_contents(t_map *map)
 		free(map);
 }
 
-void print_error(char *str1, char *str2, char *str3)
+void	print_error(char *str1, char *str2, char *str3)
 {
 	if (str1)
 	{
@@ -52,7 +52,7 @@ void print_error(char *str1, char *str2, char *str3)
 	}
 }
 
-void delete_images(t_all *all)
+void	delete_images(t_all *all)
 {
 	if (all->image)
 		mlx_delete_image(all->window, all->image);

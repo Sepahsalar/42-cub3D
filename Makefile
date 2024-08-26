@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
+#    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/26 12:33:23 by nnourine         ###   ########.fr        #
+#    Updated: 2024/08/26 15:56:45 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,6 +58,7 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/find_winner_surface.c \
 		$(SRCDIR)/find_winner_surface_utils.c \
 		$(SRCDIR)/find_winner.c \
+		$(SRCDIR)/flood_map.c \
 		$(SRCDIR)/ft_math.c \
 		$(SRCDIR)/ignore_inside_surface.c \
 		$(SRCDIR)/ignore_inside_surface_utils.c \
@@ -68,6 +69,7 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/map_parser.c  \
 		$(SRCDIR)/map_parser_color.c \
 		$(SRCDIR)/map_parser_utils.c \
+		$(SRCDIR)/map_parser_utils2.c \
 		$(SRCDIR)/minimap.c \
 		$(SRCDIR)/mouse.c \
 		$(SRCDIR)/move.c \

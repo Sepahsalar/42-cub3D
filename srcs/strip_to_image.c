@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 14:30:31 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:45:30 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,22 @@ static int	get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 	t_pixel_bricks	size;
 
 	brick = choose_brick(all, strip->wall);
-	size.h_resized_brick = dimension_resized_brick(strip, 'h', brick);
-	if (size.h_resized_brick == 0)
-		size.h_resized_brick = 1;
-	size.w_resized_brick = dimension_resized_brick(strip, 'w', brick);
-	if (size.w_resized_brick == 0)
-		size.w_resized_brick = 1;
+	size.h_rs_brick = dimension_resized_brick(strip, 'h', brick);
+	if (size.h_rs_brick == 0)
+		size.h_rs_brick = 1;
+	size.w_rs_brick = dimension_resized_brick(strip, 'w', brick);
+	if (size.w_rs_brick == 0)
+		size.w_rs_brick = 1;
 	if (strip->wall == 'N' || strip->wall == 'S')
-		size.x_in_resized_brick = (int)round((double)(strip->x_intersection
-					- strip->x_wall) * size.w_resized_brick);
+		size.x_rs_brick = (int)round((double)(strip->x_intersection
+					- strip->x_wall) * size.w_rs_brick);
 	else
-		size.x_in_resized_brick = (int)round((double)(strip->y_intersection
-					- strip->y_wall) * size.w_resized_brick);
+		size.x_rs_brick = (int)round((double)(strip->y_intersection
+					- strip->y_wall) * size.w_rs_brick);
 	size.y_in_wall = y_in_window - (int)round(strip->ceil_h);
-	size.y_in_resized_brick = size.y_in_wall % size.h_resized_brick;
-	size.y_in_brick = round(size.y_in_resized_brick * brick->height
-			/ size.h_resized_brick);
-	size.x_in_brick = round(size.x_in_resized_brick * brick->width
-			/ size.w_resized_brick);
+	size.y_rs_brick = size.y_in_wall % size.h_rs_brick;
+	size.y_in_brick = round(size.y_rs_brick * brick->height / size.h_rs_brick);
+	size.x_in_brick = round(size.x_rs_brick * brick->width / size.w_rs_brick);
 	if (size.x_in_brick >= (int)brick->width)
 		size.x_in_brick = brick->width - 1;
 	if (size.y_in_brick >= (int)brick->height)

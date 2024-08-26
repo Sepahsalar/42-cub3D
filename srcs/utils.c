@@ -6,29 +6,16 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 14:30:13 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:48:37 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	clean_2d_char_array(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-
 int	color(int r, int g, int b, int a)
 {
-	if (r >= 0 && g >= 0 && b >= 0 && a >= 0 && r <= 255 && g <= 255 && b <= 255
-		&& a <= 255)
+	if (r >= 0 && g >= 0 && b >= 0 && a >= 0
+		&& r <= 255 && g <= 255 && b <= 255 && a <= 255)
 		return (r << 24 | g << 16 | b << 8 | a);
 	if (r < 0)
 		return (color(0, g, b, a));
@@ -77,7 +64,7 @@ int	get_pixel(mlx_image_t *image, int i, int j)
 	return (color(pixel[0], pixel[1], pixel[2], pixel[3]));
 }
 
-char	*address_finder(t_all *all, char type)
+static char	*address_finder(t_all *all, char type)
 {
 	char	*address;
 

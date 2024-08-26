@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_specific_intersection.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 13:27:08 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/25 15:34:14 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 15:40:20 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ static t_winner	find_specific_intersection_vertical(t_all *all, char flag)
 	{
 		if (temp_pos->sn_winner_texture == flag && same(temp_pos->sn_winner_x,
 				all->x))
-			if (!final.pos
-				|| (temp_pos->sn_winner_distance < final.pos->sn_winner_distance))
+			if (!final.pos || (temp_pos->sn_winner_distance
+					< final.pos->sn_winner_distance))
 				final.pos = temp_pos;
 		temp_pos = temp_pos->next;
 	}
@@ -46,8 +46,8 @@ static t_winner	find_specific_intersection_horizental(t_all *all, char flag)
 	{
 		if (temp_pos->ew_winner_texture == flag && same(temp_pos->ew_winner_y,
 				all->y))
-			if (!final.pos
-				|| (temp_pos->ew_winner_distance < final.pos->ew_winner_distance))
+			if (!final.pos || (temp_pos->ew_winner_distance
+					< final.pos->ew_winner_distance))
 				final.pos = temp_pos;
 		temp_pos = temp_pos->next;
 	}

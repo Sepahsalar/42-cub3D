@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 12:48:20 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:56:08 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,13 +151,13 @@ typedef struct s_range
 
 typedef struct s_pixel_bricks
 {
-	int				x_in_resized_brick;
-	int				y_in_resized_brick;
+	int				x_rs_brick;
+	int				y_rs_brick;
 	int				y_in_wall;
 	int				x_in_brick;
 	int				y_in_brick;
-	int				h_resized_brick;
-	int				w_resized_brick;
+	int				h_rs_brick;
+	int				w_rs_brick;
 }					t_pixel_bricks;
 
 typedef struct s_current_wall
@@ -324,5 +324,8 @@ void				turn_press(void *param, char c);
 void				turn_repeat(void *param, char c);
 void				use_weapon(void *param);
 void				change_weapon(void *param);
+void				check_dry(t_all *all);
+void				flood_map(t_all *all);
+char				*finder(t_all *all, char *str);
 
 #endif // CUB3D_H
