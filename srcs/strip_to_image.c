@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/25 17:02:58 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 07:07:55 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,14 @@ void	strip_to_image(t_all *all)
 	strip = all->strip;
 	while (strip)
 	{
+		if (strip->x == 500)
+		{
+			if (strip->ceil_h > 0)
+				all->hole_h = strip->ceil_h + strip->wall_h / 2;
+			else
+				all->hole_h = strip->wall_h / 2;
+			all->hole_h = all->hole_h - 25;
+		}
 		put_pixels_of_strips(all, strip);
 		strip = strip->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/25 16:58:02 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 07:03:57 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ char	*address_finder(t_all *all, char type)
 		address = BLAST_PATH;
 	else if (type == 'K')
 		address = KNIFE_PATH;
+	else if (type == 'H')
+		address = "./textures/hole.png";
 	else
 		address = PLAYER_PATH;
 	check_texture_exists(all, address);
@@ -118,7 +120,7 @@ mlx_image_t	*image_maker(t_all *all, char type)
 		if (mlx_resize_image(picture, MINIMAP_SIDE / MINIMAP_COVERAGE,
 				MINIMAP_SIDE / MINIMAP_COVERAGE) == 0)
 			terminate(all, 1);
-	if (type == 'B')
+	if (type == 'B' || type == 'H')
 		if (mlx_resize_image(picture, 50, 50) == 0)
 			terminate(all, 1);
 	return (picture);

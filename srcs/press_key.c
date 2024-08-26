@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 13:23:58 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/25 17:17:33 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 07:08:20 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,12 +165,19 @@ void gun_animation(t_all *all)
 {
 	start_timer(all);
 	all->time2 = ft_timestamp_milis(all);
-	if (all->time2 > all->time1 + 500)
+	if (all->time2 > all->time1 + 1000)
 	{
-		all->gun->instances[0].y = START_GUN_Y;
+		all->hole->instances[0].enabled = false;
 		end_animation(all);
 	}
-	if (all->time2 > all->time1 + 400)
+	else if (all->time2 > all->time1 + 600)
+	{
+		all->hole->instances[0].y = all->hole_h;
+		all->hole->instances[0].enabled = true;
+	}
+	else if (all->time2 > all->time1 + 500)
+		all->gun->instances[0].y = START_GUN_Y;
+	else if (all->time2 > all->time1 + 400)
 		all->blast->instances[0].enabled = false;
 	else if (all->time2 > all->time1 + 250)
 	{

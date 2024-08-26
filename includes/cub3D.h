@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/25 16:57:05 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 06:51:20 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,6 +222,7 @@ typedef struct s_all
 	int				animation_started;
 	int				x_mouse;
 	int				y_mouse;
+	double			hole_h;
 	mlx_t			*window;
 	t_strip			*strip;
 	mlx_image_t		*image;
@@ -229,6 +230,7 @@ typedef struct s_all
 	mlx_image_t		*gun;
 	mlx_image_t		*knife;
 	mlx_image_t		*blast;
+	mlx_image_t		*hole;
 	t_player		*player_image;
 	mlx_image_t		*north;
 	mlx_image_t		*west;

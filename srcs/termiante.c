@@ -6,7 +6,7 @@
 /*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/24 10:17:12 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 06:50:46 by nima             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	terminate(t_all *all, int status)
 		mlx_delete_image(all->window, all->blast);
 	if (all->knife)
 		mlx_delete_image(all->window, all->knife);
+	if (all->hole)
+		mlx_delete_image(all->window, all->hole);
 	if (all->player_image)
 		clean_player_image(all);
 	if (all->player_at_0)
