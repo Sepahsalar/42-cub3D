@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 16:48:34 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:59:23 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define GUN_PATH "./textures/gun.png"
 # define BLAST_PATH "./textures/blast.png"
 # define KNIFE_PATH "./textures/knife.png"
-# define HOLE_PATH "./textures/aim.png"
+# define AIM_PATH "./textures/aim.png"
 # define VAOV 90.0
 # define HAOV 60.0
 # define PERSON 1.0
@@ -209,7 +209,6 @@ typedef struct s_all
 	int				animation_started;
 	int				x_mouse;
 	int				y_mouse;
-	// double			aim_h;
 	mlx_t			*window;
 	t_strip			*strip;
 	mlx_image_t		*image;

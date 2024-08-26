@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 16:48:18 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:59:34 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,15 @@ void	image_loading(t_all *all)
 	all->aim->instances[0].z = 3;
 }
 
+void	check_necessary_textures(t_all *all)
+{
+	check_texture_exists(all, AIM_PATH);
+	check_texture_exists(all, GUN_PATH);
+	check_texture_exists(all, KNIFE_PATH);
+	check_texture_exists(all, BLAST_PATH);
+	check_texture_exists(all, PLAYER_PATH);
+}
+
 t_all	*init_all(char **argv)
 {
 	t_all	*all;
@@ -96,6 +105,7 @@ t_all	*init_all(char **argv)
 	all->angle = start_angle_player(all);
 	all->max_distance = max_distance(all);
 	remove_unnecessary_nodes(all);
+	check_necessary_textures(all);
 	all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, argv[0], false);
 	if (!all->window)
 		terminate(all, "Initializing window failed", NULL, NULL);
