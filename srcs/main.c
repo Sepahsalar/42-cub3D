@@ -3,27 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 12:43:32 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:27:13 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-// 1) animating the player movement and turns
-
-// 2) delete all conditions that includes loc->c == '1' fekr konam done
-
-// 3) terminate, check failure, error -> combine (also reverse the order)
-
-// 4) protect open close ... done
-
-
 // 6) delete or solve the problem of cloning mlx42 in Makefile
-
-// 7) try to hide mlx42 realted valgrind errors (with .supp file)
 
 // 9) find good material for walls
 

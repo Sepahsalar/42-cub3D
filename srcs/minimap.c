@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 19:25:50 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 12:47:16 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:10:09 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,7 @@ int	is_there_a_wall(t_all *all, int x, int y)
 	while (loc)
 	{
 		if (loc->x == x_minimap_to_loc && loc->y == y_minimap_to_loc)
-		{
-			if (loc->c == '1')
-				return (1);
-			else
-				return (0);
-		}
+			return (1);
 		loc = loc->next;
 	}
 	return (0);

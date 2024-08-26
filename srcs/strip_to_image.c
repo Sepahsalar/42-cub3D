@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strip_to_image.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 12:47:22 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 14:15:50 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ static int	get_pixel_from_brick(t_all *all, t_strip *strip, int y_in_window)
 			/ size.h_resized_brick);
 	size.x_in_brick = round(size.x_in_resized_brick * brick->width
 			/ size.w_resized_brick);
+	if (size.x_in_brick >= (int)brick->width)
+		size.x_in_brick = brick->width - 1;
+	if (size.y_in_brick >= (int)brick->height)
+		size.y_in_brick = brick->height - 1;
 	return (get_pixel(brick, size.x_in_brick, size.y_in_brick));
 }
 
