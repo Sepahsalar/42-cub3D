@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 09:41:20 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 12:55:31 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:48:18 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	change_weapon(void *param)
 	if (all->active_weapon == 0)
 	{
 		all->gun->instances[0].enabled = false;
-		all->hole->instances[0].enabled = false;
+		all->aim->instances[0].enabled = false;
 		all->blast->instances[0].enabled = false;
 		all->knife->instances[0].enabled = true;
 		all->active_weapon = 1;
@@ -29,7 +29,7 @@ void	change_weapon(void *param)
 	{
 		all->knife->instances[0].enabled = false;
 		all->gun->instances[0].enabled = true;
-		all->hole->instances[0].enabled = true;
+		all->aim->instances[0].enabled = true;
 		all->active_weapon = 0;
 	}
 }

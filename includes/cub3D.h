@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 16:19:20 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:48:34 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include <math.h>
 # include <sys/time.h>
 
-# define PLAYER_PATH "./textures/player1.png"
-# define GUN_PATH "./textures/gun7.png"
-# define BLAST_PATH "./textures/blast1.png"
+# define PLAYER_PATH "./textures/player.png"
+# define GUN_PATH "./textures/gun.png"
+# define BLAST_PATH "./textures/blast.png"
 # define KNIFE_PATH "./textures/knife.png"
-# define HOLE_PATH "./textures/hole3.png"
+# define HOLE_PATH "./textures/aim.png"
 # define VAOV 90.0
 # define HAOV 60.0
 # define PERSON 1.0
@@ -209,7 +209,7 @@ typedef struct s_all
 	int				animation_started;
 	int				x_mouse;
 	int				y_mouse;
-	double			hole_h;
+	// double			aim_h;
 	mlx_t			*window;
 	t_strip			*strip;
 	mlx_image_t		*image;
@@ -217,7 +217,7 @@ typedef struct s_all
 	mlx_image_t		*gun;
 	mlx_image_t		*knife;
 	mlx_image_t		*blast;
-	mlx_image_t		*hole;
+	mlx_image_t		*aim;
 	t_player		*player_image;
 	mlx_image_t		*north;
 	mlx_image_t		*west;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   terminate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 15:39:07 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:48:18 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,8 @@ void	delete_images(t_all *all)
 		mlx_delete_image(all->window, all->blast);
 	if (all->knife)
 		mlx_delete_image(all->window, all->knife);
-	if (all->hole)
-		mlx_delete_image(all->window, all->hole);
+	if (all->aim)
+		mlx_delete_image(all->window, all->aim);
 	if (all->player_at_0)
 		mlx_delete_image(all->window, all->player_at_0);
 }

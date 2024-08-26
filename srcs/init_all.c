@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 12:45:26 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 16:48:18 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ void	image_loading(t_all *all)
 	mlx_image_to_window(all->window, all->knife, 700, 810);
 	all->knife->instances[0].z = 2;
 	all->knife->instances[0].enabled = false;
-	all->hole = image_maker(all, 'H');
-	mlx_image_to_window(all->window, all->hole, 450, 450);
-	all->hole->instances[0].enabled = true;
-	all->hole->instances[0].z = 3;
+	all->aim = image_maker(all, 'H');
+	mlx_image_to_window(all->window, all->aim, 450, 450);
+	all->aim->instances[0].enabled = true;
+	all->aim->instances[0].z = 3;
 }
 
 t_all	*init_all(char **argv)

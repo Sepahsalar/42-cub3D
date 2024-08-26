@@ -1,7 +1,7 @@
-NO ./textures/wall-1.png
-SO ./textures/2.png
-WE ./textures/wall-4.png
-EA ./textures/4.png
+NO ./textures/north-img.png
+SO ./textures/south-img.png
+WE ./textures/west-img.png
+EA ./textures/east-img.png
 
 F 40,220,0
 C 40,220,220
