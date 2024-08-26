@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:11:11 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:39:50 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ void	init_strips(t_all *all, t_render data_render)
 		old->next = new;
 		new->previous = old;
 	}
-	check_failure(0, new, 2, all);
+	if (!new)
+		terminate(all, "Allocating memory failed", NULL, NULL);
 }

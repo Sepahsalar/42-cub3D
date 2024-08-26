@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:02:20 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:39:35 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ void	link_new_node(t_all *all, t_loc *new, t_loc *old)
 		old->next = new;
 		new->previous = old;
 	}
-	check_failure(0, new, 2, all);
+	if (!new)
+		terminate(all, "Allocating memory failed", NULL, NULL);
 }

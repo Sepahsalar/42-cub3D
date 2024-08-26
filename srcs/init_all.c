@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:33:05 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 09:15:19 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:45:26 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ void	image_loading(t_all *all)
 	all->knife->instances[0].z = 2;
 	all->knife->instances[0].enabled = false;
 	all->hole = image_maker(all, 'H');
-	mlx_image_to_window(all->window, all->hole, 300, 400);
-	all->hole->instances[0].enabled = false;
+	mlx_image_to_window(all->window, all->hole, 450, 450);
+	all->hole->instances[0].enabled = true;
 	all->hole->instances[0].z = 3;
 }
 
@@ -85,10 +85,9 @@ t_all	*init_all(char **argv)
 
 	all = malloc(sizeof(t_all));
 	if (!all)
-		terminate(all, 1);
+		terminate(all, "Allocating memory failed", NULL, NULL);
 	ft_memset(all, 0, sizeof(t_all));
 	all->argv = argv[1];
-	all->fd = -1;
 	all->map = map_parser(all);
 	all->floor_color = color_maker(all, 'f');
 	all->ceil_color = color_maker(all, 'c');
@@ -99,7 +98,8 @@ t_all	*init_all(char **argv)
 	remove_unnecessary_nodes(all);
 	all->window = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, argv[0], false);
 	if (!all->window)
-		terminate(all, 1);
+		terminate(all, "Initializing window failed", NULL, NULL);
+	mlx_set_cursor_mode(all->window, MLX_MOUSE_HIDDEN);
 	image_loading(all);
 	mlx_get_mouse_pos(all->window, &all->x_mouse, &all->y_mouse);
 	return (all);

@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 09:34:36 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 09:35:15 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:20:22 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void key_press(mlx_key_data_t keydata, void *param)
 		|| keydata.key == MLX_KEY_RIGHT_SHIFT)
 		change_weapon(param);
 	else if (keydata.key == MLX_KEY_ESCAPE)
-		terminate(param, 0);
+		terminate((t_all *)param, NULL, NULL, NULL);
 }
 
 void key_repeat(mlx_key_data_t keydata, void *param)

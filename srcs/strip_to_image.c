@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 10:13:10 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 09:16:56 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:47:22 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,18 +87,10 @@ void	strip_to_image(t_all *all)
 
 	all->image = mlx_new_image(all->window, WINDOW_WIDTH, WINDOW_HEIGHT);
 	if (!all->image)
-		terminate(all, 1);
+		terminate(all, "Creating image failed", NULL, NULL);
 	strip = all->strip;
 	while (strip)
 	{
-		if (strip->x == 500)
-		{
-			if (strip->ceil_h > 0)
-				all->hole_h = strip->ceil_h + strip->wall_h / 2;
-			else
-				all->hole_h = WINDOW_HEIGHT / 2;
-			all->hole_h = all->hole_h - 100;
-		}
 		put_pixels_of_strips(all, strip);
 		strip = strip->next;
 	}

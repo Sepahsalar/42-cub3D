@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:24:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:45:19 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@ void	ignore_upper_wall(t_all *all, t_loc *loc)
 		loc->ny = -1;
 	}
 	else
-	{
-		ft_putendl_fd("Not surrounded by walls", 2);
-		terminate(all, 1);
-	}
+		terminate(all, "Not surrounded by walls", NULL, NULL);
 }
 
 void	ignore_lower_wall(t_all *all, t_loc *loc)
@@ -34,10 +31,7 @@ void	ignore_lower_wall(t_all *all, t_loc *loc)
 		loc->sy = -1;
 	}
 	else
-	{
-		ft_putendl_fd("Not surrounded by walls", 2);
-		terminate(all, 1);
-	}
+		terminate(all, "Not surrounded by walls", NULL, NULL);
 }
 
 void	ignore_left_wall(t_all *all, t_loc *loc)
@@ -48,10 +42,7 @@ void	ignore_left_wall(t_all *all, t_loc *loc)
 		loc->wy = -1;
 	}
 	else
-	{
-		ft_putendl_fd("Not surrounded by walls", 2);
-		terminate(all, 1);
-	}
+		terminate(all, "Not surrounded by walls", NULL, NULL);
 }
 
 void	ignore_right_wall(t_all *all, t_loc *loc)
@@ -62,8 +53,5 @@ void	ignore_right_wall(t_all *all, t_loc *loc)
 		loc->ey = -1;
 	}
 	else
-	{
-		ft_putendl_fd("Not surrounded by walls", 2);
-		terminate(all, 1);
-	}
+		terminate(all, "Not surrounded by walls", NULL, NULL);
 }

@@ -6,7 +6,7 @@
 #    By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/26 09:46:14 by nnourine         ###   ########.fr        #
+#    Updated: 2024/08/26 12:33:23 by nnourine         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/move_utils.c \
 		$(SRCDIR)/turn.c \
 		$(SRCDIR)/strip_to_image.c \
-		$(SRCDIR)/termiante.c \
+		$(SRCDIR)/terminate.c \
 		$(SRCDIR)/time.c \
 		$(SRCDIR)/utils.c \
 		$(SRCDIR)/utils2.c

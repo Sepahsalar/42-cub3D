@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   termiante.c                                        :+:      :+:    :+:   */
+/*   terminate.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:23:46 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 06:50:46 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 12:47:42 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,14 @@ static void	free_map_contents(t_map *map)
 		free(map);
 }
 
-void	terminate(t_all *all, int status)
+void	terminate(t_all *all, char *str1, char *str2, char *str3)
 {
-	if (all->fd != -1)
-		close(all->fd);
 	if (all->strip)
 		clean_strips(all);
 	if (all->map)
 		free_map_contents(all->map);
 	if (all->strmap)
 		free(all->strmap);
-	if (status)
-		ft_putendl_fd("Error", 2);
 	if (all->image)
 		mlx_delete_image(all->window, all->image);
 	if (all->north)
@@ -71,11 +67,21 @@ void	terminate(t_all *all, int status)
 	if (all->window)
 		mlx_terminate(all->window);
 	free(all);
-	exit(status);
-}
-
-void	check_failure(int input1, void *input2, int type, t_all *all)
-{
-	if ((input1 < 0 && type == 1) || (type == 2 && input2 == NULL))
-		terminate(all, 1);
+	if (str1)
+	{
+		ft_putendl_fd("Error", 2);
+		ft_putstr_fd(str1, 2);
+		if (str2)
+		{
+			ft_putstr_fd(str2, 2);
+			if (str3)
+				ft_putendl_fd(str3, 2);
+			else
+				ft_putchar_fd('\n', 2);
+		}
+		else
+			ft_putchar_fd('\n', 2);
+		exit(1);
+	}
+	exit(0);
 }

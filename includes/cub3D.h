@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 09:57:12 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:48:20 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,26 @@
 # include <fcntl.h>
 # include <math.h>
 # include <sys/time.h>
-# include <stdio.h> /////
 
 # define PLAYER_PATH "./textures/player1.png"
 # define GUN_PATH "./textures/gun7.png"
 # define BLAST_PATH "./textures/blast1.png"
 # define KNIFE_PATH "./textures/knife.png"
-# define HOLE_PATH "./textures/hole.png"
+# define HOLE_PATH "./textures/hole3.png"
 
 # define VAOV 90.0
 # define HAOV 60.0
-# define PERSON 2.0
-# define WALL 4.0
+# define PERSON 1.0
+# define WALL 2.0
 # define EPSILON 0.00001
 # define MIN_CALCULATED_DISTANCE 0.5
-# define DISTANCE_FACTOR 1.5
+# define DISTANCE_FACTOR 1.0
 # define MINIMAP_SIDE 220
 # define MINIMAP_COVERAGE 10
 # define MAX_NODE 10001
 # define BUFFER_SIZE 1000000
 # define RENDER_INTERVAL 5
-# define TURN_INTERVAL 18
+# define TURN_INTERVAL 10
 # define FULL_CIRCLE_DEGREES 360
 # define MINIMAP_PADDING 28
 # define WINDOW_HEIGHT 1000
@@ -48,17 +47,6 @@
 # define END_GUN_Y 700
 # define START_BLAST_X 600
 # define START_BLAST_Y 735
-// # define START_GUN_X 200
-// # define START_GUN_Y 850
-// # define END_GUN_Y 800
-// # define START_BLAST_X 350
-// # define START_BLAST_Y 775
-// # define WINDOW_WIDTH 900
-// # define START_GUN_X 650
-// # define START_GUN_Y 730
-// # define END_GUN_Y 700
-// # define START_BLAST_X 630
-// # define START_BLAST_Y 780
 
 typedef struct s_loc
 {
@@ -209,7 +197,6 @@ typedef struct s_all
 	double			map_width;
 	double			map_height;
 	double			max_distance;
-	int				fd;
 	char			*strmap;
 	char			*argv;
 	int				index;
@@ -242,9 +229,7 @@ typedef struct s_all
 
 int					color(int r, int g, int b, int a);
 t_map				*map_parser(t_all *all);
-void				terminate(t_all *all, int status);
-void				check_failure(int input1, void *input2, int type,
-						t_all *all);
+void				terminate(t_all *all, char *str1, char *str2, char *str3);
 void				reader(t_all *all);
 void				create_loc(t_all *all);
 t_loc				*create_loc_node(char temp, int x, int y);

@@ -3,40 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/25 15:57:15 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 12:46:52 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+void check_open_failure(t_all *all, int fd)
+{
+	if (fd == -1)
+		terminate(all, "Opening map file failed", NULL, NULL);
+}
 
 void	reader(t_all *all)
 {
 	char	c[2];
 	int		byte;
 	char	*temp;
+	int		fd;
 
 	c[1] = '\0';
 	all->strmap = NULL;
-	all->fd = open(all->argv, O_RDONLY);
-	if (all->fd == -1)
-	{
-		ft_putendl_fd("Could not open the map file", 2);
-		terminate(all, 1);
-	}
-	byte = read(all->fd, c, 1);
-	check_failure(byte, NULL, 1, all);
+	fd = open(all->argv, O_RDONLY);
+	check_open_failure(all, fd);
+	byte = read(fd, c, 1);
+	if (byte == -1)
+		terminate(all, "Reading from file failed", NULL, NULL);
 	while (byte)
 	{
 		temp = all->strmap;
 		all->strmap = ft_strjoin(all->strmap, c);
 		free(temp);
-		check_failure(0, all->strmap, 2, all);
-		byte = read(all->fd, c, 1);
-		check_failure(byte, NULL, 1, all);
+		if (!all->strmap)
+			terminate(all, "Joining strings failed", NULL, NULL);
+		byte = read(fd, c, 1);
+		if (byte == -1)
+			terminate(all, "Reading from file failed", NULL, NULL);
 	}
+	if (close(fd) == -1)
+		terminate(all, "Closing file failed", NULL, NULL);
 }
 
 char	*custom_strnstr(char *haystack, char *needle)
@@ -60,10 +68,7 @@ char	*finder(t_all *all, char *str)
 	found = custom_strnstr(all->strmap, str);
 	if (found)
 		return (custom_strdup(all, found, str));
-	ft_putstr_fd("There is no ", 2);
-	ft_putstr_fd(str, 2);
-	ft_putendl_fd(" identifier in the map", 2);
-	terminate(all, 1);
+	terminate(all, "There is no ", str, " identifier in the map");
 	return (NULL);
 }
 
@@ -76,11 +81,7 @@ static void	check_wrong_identifier(t_all *all)
 	{
 		if (*temp != 'N' && *temp != 'S' && *temp != 'E' && *temp != 'W'
 			&& *temp != '1' && *temp != '0' && *temp != ' ' && *temp != '\n')
-		{
-			ft_putstr_fd("Invalid character", 2);
-			ft_putendl_fd(" or extra identifier in the map", 2);
-			terminate(all, 1);
-		}
+			terminate(all, "Invalid character", " or extra identifier in the map", NULL);
 		temp++;
 	}
 }
@@ -99,8 +100,7 @@ void	check_empty_map(t_all *all, char *str, char *error)
 			return ;
 		temp++;
 	}
-	ft_putendl_fd(error, 2);
-	terminate(all, 1);
+	terminate(all, error, NULL, NULL);
 }
 
 void	wet_loc(t_all *all, t_loc *loc)
@@ -146,10 +146,7 @@ void	check_dry(t_all *all)
 	while (loc)
 	{
 		if (loc->wet == 0)
-		{
-			ft_putendl_fd("Map is separated", 2);
-			terminate(all, 1);
-		}
+			terminate(all, "Map is separated", NULL, NULL);
 		loc = loc->next;
 	}
 }

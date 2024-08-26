@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:58:48 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 13:57:58 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:44:53 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int	find_min_x(t_all *all, int y)
 		temp = temp->next;
 	}
 	if (!found)
-	{
-		ft_putendl_fd("Not surrounded by walls", 2);
-		terminate(all, 1);
-	}
+		terminate(all, "Not surrounded by walls", NULL, NULL);
 	return (min);
 }
 
@@ -57,10 +54,7 @@ int	find_max_x(t_all *all, int y)
 		temp = temp->next;
 	}
 	if (!found)
-	{
-		ft_putendl_fd("Not surrounded by walls", 2);
-		terminate(all, 1);
-	}
+		terminate(all, "Not surrounded by walls", NULL, NULL);
 	return (max);
 }
 
@@ -83,10 +77,7 @@ int	find_min_y(t_all *all, int x)
 		temp = temp->next;
 	}
 	if (!found)
-	{
-		ft_putendl_fd("Not surrounded by walls", 2);
-		terminate(all, 1);
-	}
+		terminate(all, "Not surrounded by walls", NULL, NULL);
 	return (min);
 }
 
@@ -109,9 +100,6 @@ int	find_max_y(t_all *all, int x)
 		temp = temp->next;
 	}
 	if (!found)
-	{
-		ft_putendl_fd("Not surrounded by walls", 2);
-		terminate(all, 1);
-	}
+		terminate(all, "Not surrounded by walls", NULL, NULL);
 	return (max);
 }

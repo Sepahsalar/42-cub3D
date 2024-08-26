@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:17:43 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:44:16 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,6 @@ void	fill_length_strips(t_all *all)
 		node = node->next;
 	}
 }
-
-// void	fill_number_of_blocks(t_all *all)
-// {
-// 	t_strip	*node;
-// 	t_strip	*start;
-// 	t_strip	*end;
-
-// 	node = all->strip;
-// 	while (node)
-// 	{
-// 		start = first_wall_node(node);
-// 		end = last_wall_node(node);
-// 		if (same(start->x_winner, end->x_winner))
-// 			node->nb_blocks = fabs(end->y_winner - start->y_winner) + 1;
-// 		else
-// 			node->nb_blocks = fabs(end->x_winner - start->x_winner) + 1;
-// 		node = node->next;
-// 	}
-// }
 
 void	clean_strips(t_all *all)
 {

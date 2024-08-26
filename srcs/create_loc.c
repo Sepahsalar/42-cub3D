@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_loc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:07:14 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/25 15:28:52 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 12:44:09 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 static void	check_nb_player(t_all *all, int nb_player)
 {
 	if (nb_player != 1)
-	{
-		ft_putendl_fd("There must be one player", 2);
-		terminate(all, 1);
-	}
+		terminate(all, "There must be one player", NULL, NULL);
 }
 
 static void	check_character_increase_player(char c, int *nb_player)
@@ -31,10 +28,7 @@ void	check_max_node(t_all *all, t_coordinate *coordinate)
 {
 	coordinate->index++;
 	if (coordinate->index >= MAX_NODE)
-	{
-		ft_putendl_fd("Too big map", 2);
-		terminate(all, 1);
-	}
+		terminate(all, "Too big map", NULL, NULL);
 }
 
 void	create_loc(t_all *all)

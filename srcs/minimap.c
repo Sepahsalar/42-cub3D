@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 19:25:50 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/23 12:10:29 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:47:16 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,8 +140,8 @@ void	create_player_image(t_all *all)
 	double		angle;
 
 	angle = 0.0;
-	old = NULL; //
-	new = NULL; //
+	old = NULL;
+	new = NULL;
 	while (angle < FULL_CIRCLE_DEGREES)
 	{
 		new = create_player_image_node(all, angle);
@@ -150,41 +150,11 @@ void	create_player_image(t_all *all)
 		else
 			old->next = new;
 		if (!new)
-			terminate(all, 1);
+			terminate(all, "Allocating memory failed", NULL, NULL);
 		old = new;
 		angle += TURN_INTERVAL;
 	}
 }
-
-// void	enable_correct_player(t_all *all)
-// {
-// 	t_player	*current;
-
-// 	current = all->player_image;
-// 	while (current)
-// 	{
-// 		if (current->image->instances[0].enabled == 1)
-// 		{
-// 			current->image->instances[0].enabled = 0;
-// 			break ;
-// 		}
-// 		current = current->next;
-// 	}
-// 	current = all->player_image;
-// 	while (current)
-// 	{
-// 		if (same(current->angle, all->angle))
-// 		{
-// 			current->image->instances[0].x = (int)(all->x - 0.5) * (MINIMAP_SIDE
-// 					/ all->map_width) + MINIMAP_PADDING;
-// 			current->image->instances[0].y = (int)(all->y - 0.5) * (MINIMAP_SIDE
-// 					/ all->map_height) + MINIMAP_PADDING;
-// 			current->image->instances[0].enabled = 1;
-// 			break ;
-// 		}
-// 		current = current->next;
-// 	}
-// }
 
 void	enable_correct_player(t_all *all)
 {
@@ -212,6 +182,4 @@ void	enable_correct_player(t_all *all)
 		}
 		current = current->next;
 	}
-	// all->gun->instances[0].x = all->map_width - all->x ;
-	// all->blast->instances[0].x = all->x + 70;
 }

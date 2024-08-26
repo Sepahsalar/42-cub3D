@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:26:07 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/25 15:46:18 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 12:46:17 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static void	update_map(t_all *all, char *found)
 		start_part2++;
 	len = end_part1 - start_part1;
 	temp = malloc(len + ft_strlen(start_part2) + 1);
-	check_failure(0, temp, 2, all);
+	if (!temp)
+		terminate(all, "Allocating memory failed", NULL, NULL);
 	ft_memcpy(temp, all->strmap, len);
 	ft_memcpy(temp + len, start_part2, ft_strlen(start_part2) + 1);
 	check_empty_map(all, start_part2, "Wrong map structure");
@@ -53,22 +54,15 @@ void	check_texture_exists(t_all *all, char *address)
 
 	fd = open(address, O_RDONLY);
 	if (fd < 0)
-	{
-		ft_putendl_fd("Invalid texture path", 2);
-		terminate(all, 1);
-	}
-	close(fd);
+		terminate(all, "Invalid texture path", NULL, NULL);
+	if (close(fd) == -1)
+		terminate(all, "Closing file failed", NULL, NULL);
 }
 
 void	check_no_information(t_all *all, char *str, char *temp)
 {
 	if (ft_strlen(temp) == 0)
-	{
-		ft_putstr_fd("There is no information for ", 2);
-		ft_putstr_fd(str, 2);
-		ft_putendl_fd(" identifier in the map", 2);
-		terminate(all, 1);
-	}
+		terminate(all, "There is no information for ", str, " identifier in the map");
 }
 
 char	*custom_strdup(t_all *all, char *found, char *str)
@@ -83,7 +77,8 @@ char	*custom_strdup(t_all *all, char *found, char *str)
 		start++;
 	len = custom_strdup_len(start);
 	dup = malloc(len + 1);
-	check_failure(0, dup, 2, all);
+	if (!dup)
+		terminate(all, "Allocating memory failed", NULL, NULL);
 	ft_memcpy(dup, start, len);
 	dup[len] = '\0';
 	update_map(all, found);
@@ -109,7 +104,8 @@ void	remove_white_space(t_all *all)
 		temp++;
 	}
 	temp = ft_strdup(start);
-	check_failure(0, temp, 2, all);
+	if (!temp)
+		terminate(all, "Duplicating string failed", NULL, NULL);
 	free(all->strmap);
 	all->strmap = temp;
 }

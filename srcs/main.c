@@ -3,30 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nima <nnourine@student.hive.fi>            +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/25 15:15:37 by nima             ###   ########.fr       */
+/*   Updated: 2024/08/26 12:43:32 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-// 1) clean minimap, player image
+// 1) animating the player movement and turns
 
-// 2) delete all conditions that includes loc->c == '1'
+// 2) delete all conditions that includes loc->c == '1' fekr konam done
 
 // 3) terminate, check failure, error -> combine (also reverse the order)
 
-// 4) protect open close ...
+// 4) protect open close ... done
 
-// 5) resize the player image (either make it square or just resize it by 0.9)
 
 // 6) delete or solve the problem of cloning mlx42 in Makefile
 
 // 7) try to hide mlx42 realted valgrind errors (with .supp file)
-
-// 8) mlx_get_time
 
 // 9) find good material for walls
 
@@ -64,5 +61,5 @@ int	main(int argc, char **argv)
 	all = init_all(argv);
 	fill_strips(all);
 	hooks_loops(all);
-	terminate(all, 0);
+	terminate(all, NULL, NULL, NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 09:48:01 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 12:37:38 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ int	color_maker(t_all *all, char type)
 	else
 		full_color = all->map->c;
 	if (!full_color)
-		terminate(all, 1);
+		terminate(all, "There is no information for ", &type, " identifier in the map");
 	split = ft_split(full_color, ',');
 	if (!split)
-		terminate(all, 1);
+		terminate(all, "Splitting string failed", NULL, NULL);
 	int_color = color(ft_atoi(split[0]), ft_atoi(split[1]),
 			ft_atoi(split[2]), 255);
 	clean_2d_char_array(split);
@@ -111,20 +111,20 @@ mlx_image_t	*image_maker(t_all *all, char type)
 	address = address_finder(all, type);
 	texture = mlx_load_png(address);
 	if (!texture)
-		terminate(all, 1);
+		terminate(all, "Loading texture failed", NULL, NULL);
 	picture = mlx_texture_to_image(all->window, texture);
 	mlx_delete_texture(texture);
 	if (!picture)
-		terminate(all, 1);
+		terminate(all, "Converting texture to image failed", NULL, NULL);
 	if (type == 'P')
 		if (mlx_resize_image(picture, MINIMAP_SIDE / MINIMAP_COVERAGE,
 				MINIMAP_SIDE / MINIMAP_COVERAGE) == 0)
-			terminate(all, 1);
+			terminate(all, "Resizing image failed", NULL, NULL);
 	if (type == 'B')
 		if (mlx_resize_image(picture, 50, 50) == 0)
-			terminate(all, 1);
+			terminate(all, "Resizing image failed", NULL, NULL);
 	if (type == 'H')
-		if (mlx_resize_image(picture, 200, 200) == 0)
-			terminate(all, 1);
+		if (mlx_resize_image(picture, 100, 100) == 0)
+			terminate(all, "Resizing image failed", NULL, NULL);
 	return (picture);
 }
