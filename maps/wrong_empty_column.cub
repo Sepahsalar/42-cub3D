@@ -2,12 +2,11 @@ NO ./textures/north-img.png
 SO ./textures/south-img.png
 WE ./textures/west-img.png
 EA ./textures/east-img.png
-n
+
 
 F 40,220,45
 C 40,220,220
 
-n
 
 11 111111
 10 000001111

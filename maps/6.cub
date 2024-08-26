@@ -3,16 +3,12 @@ SO ./textures/south-img.png
 WE ./textures/west-img.png
 EA ./textures/east-img.png
 
-F 220,100,0
-C 225,30,0
+F 40,220,45
+C 40,220,220
 
-
-
-
-1111111
-1100011
-1000011
-1100011
-110N011
-110N011
-1111111
+1
+11
+111
+1111
+1N111
+111111

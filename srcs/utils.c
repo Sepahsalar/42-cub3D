@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 16:56:36 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:40:52 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,16 @@ int	color_maker(t_all *all, char type)
 	char	*full_color;
 	char	**split;
 	int		int_color;
+	char	str[2];
 
+	str[1] = '\0';
+	str[0] = type;
 	if (type == 'f')
 		full_color = all->map->f;
 	else
 		full_color = all->map->c;
 	if (!full_color)
-		terminate(all, "There is no information for ", &type,
+		terminate(all, "There is no information for ", str,
 			" identifier in the map");
 	split = ft_split(full_color, ',');
 	if (!split)

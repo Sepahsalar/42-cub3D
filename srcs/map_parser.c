@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 11:09:57 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 15:57:15 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:24:24 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
+
+void	remove_white_space(t_all *all)
+{
+	char	*start;
+	char	*temp;
+
+	start = all->strmap;
+	temp = all->strmap;
+	while (temp && *temp != '1')
+	{
+		if (*temp == '\n')
+			start = temp + 1;
+		temp++;
+	}
+	temp = ft_strdup(start);
+	if (!temp)
+		terminate(all, "Duplicating string failed", NULL, NULL);
+	free(all->strmap);
+	all->strmap = temp;
+}
 
 static void	check_wrong_identifier(t_all *all)
 {

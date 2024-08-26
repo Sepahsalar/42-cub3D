@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 14:27:13 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/26 17:35:49 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ void	check_args(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		ft_putendl_fd("Invalid number of arguments", 2);
 		ft_putendl_fd("Error", 2);
+		ft_putendl_fd("Invalid number of arguments", 2);
 		exit(1);
 	}
 	if (!check_map_format(argv[1]))
 	{
-		ft_putendl_fd("Invalid map format", 2);
 		ft_putendl_fd("Error", 2);
+		ft_putendl_fd("Invalid map extension", 2);
 		exit(1);
 	}
 }

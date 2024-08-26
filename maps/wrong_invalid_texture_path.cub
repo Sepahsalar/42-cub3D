@@ -1,4 +1,4 @@
-NO ./textures/north-img.png
+NO ./textures/1north-img.png
 SO ./textures/south-img.png
 WE ./textures/west-img.png
 EA ./textures/east-img.png
