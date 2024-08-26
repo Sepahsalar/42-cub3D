@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 19:25:50 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 14:30:55 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/26 15:52:31 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,36 +61,44 @@ void	create_minimap(t_all *all)
 	all->minimap->instances[0].z = 1;
 }
 
+void rotate_image_helper(int i, mlx_image_t *image, mlx_image_t *new_image, double angle)
+{
+	t_rotate	rotate;
+	int			color_player;
+	
+	rotate.i = i;
+	rotate.j = 0;
+	while (rotate.j < (int)new_image->height)
+	{
+		rotate.new_x = (int)round(rotate.i - new_image->width / 2.0);
+		rotate.new_y = (int)round(rotate.j - new_image->height / 2.0);
+		rotate.x = (int)(round(rotate.new_x * ft_cos(-angle) - rotate.new_y
+					* ft_sin(-angle)) + image->width / 2.0);
+		rotate.y = (int)(round(rotate.new_x * ft_sin(-angle) + rotate.new_y
+					* ft_cos(-angle)) + image->height / 2.0);
+		if (rotate.x >= 0 && rotate.x < (int)image->width && rotate.y >= 0
+			&& rotate.y < (int)image->height)
+		{
+			color_player = get_pixel(image, rotate.x, rotate.y);
+			if (color_player)
+				color_player = color(255, 0, 0, 255);
+			mlx_put_pixel(new_image, rotate.i, rotate.j, color_player);
+		}
+		(rotate.j)++;
+	}
+}
+
 mlx_image_t	*rotate_image(t_all *all, mlx_image_t *image, double angle)
 {
 	mlx_image_t	*new_image;
-	t_rotate	rotate;
-	int			color_player;
+	int			i;
 
 	new_image = mlx_new_image(all->window, image->width, image->height);
-	rotate.i = 0;
-	while (rotate.i < (int)new_image->width)
+	i = 0;
+	while (i < (int)new_image->width)
 	{
-		rotate.j = 0;
-		while (rotate.j < (int)new_image->height)
-		{
-			rotate.new_x = (int)round(rotate.i - new_image->width / 2.0);
-			rotate.new_y = (int)round(rotate.j - new_image->height / 2.0);
-			rotate.x = (int)(round(rotate.new_x * ft_cos(-angle) - rotate.new_y
-						* ft_sin(-angle)) + image->width / 2.0);
-			rotate.y = (int)(round(rotate.new_x * ft_sin(-angle) + rotate.new_y
-						* ft_cos(-angle)) + image->height / 2.0);
-			if (rotate.x >= 0 && rotate.x < (int)image->width && rotate.y >= 0
-				&& rotate.y < (int)image->height)
-			{
-				color_player = get_pixel(image, rotate.x, rotate.y);
-				if (color_player)
-					color_player = color(255, 0, 0, 255);
-				mlx_put_pixel(new_image, rotate.i, rotate.j, color_player);
-			}
-			(rotate.j)++;
-		}
-		(rotate.i)++;
+		rotate_image_helper(i, image, new_image, angle);
+		i++;
 	}
 	return (new_image);
 }
@@ -149,7 +157,15 @@ void	create_player_image(t_all *all)
 	}
 }
 
-void	enable_correct_player(t_all *all)
+void set_player_position(t_player	*current)
+{
+	current->image->instances[0].x = MINIMAP_SIDE / 2 + MINIMAP_PADDING
+		- current->image->width / 2;
+	current->image->instances[0].y = MINIMAP_SIDE / 2 + MINIMAP_PADDING
+		- current->image->height / 2;
+}
+
+void disable_previous_player(t_all *all)
 {
 	t_player	*current;
 
@@ -163,18 +179,27 @@ void	enable_correct_player(t_all *all)
 		}
 		current = current->next;
 	}
+}
+
+void activate_current_player(t_all *all)
+{
+	t_player	*current;
+
 	current = all->player_image;
 	while (current)
 	{
 		if (same(current->angle, all->angle))
 		{
-			current->image->instances[0].x = MINIMAP_SIDE / 2 + MINIMAP_PADDING
-				- current->image->width / 2;
-			current->image->instances[0].y = MINIMAP_SIDE / 2 + MINIMAP_PADDING
-				- current->image->height / 2;
+			set_player_position(current);
 			current->image->instances[0].enabled = 1;
 			break ;
 		}
 		current = current->next;
 	}
+}
+
+void	enable_correct_player(t_all *all)
+{
+	disable_previous_player(all);
+	activate_current_player(all);
 }
