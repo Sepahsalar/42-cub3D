@@ -1,8 +1,7 @@
-NO ./textures/wall-1.png
-SO ./text ures/wall-6.png
-WE ./textures/wall-3.png
-EA ./textures/wall-5.png
-
+NO ./textures/north-img.png
+SO ./textures/south-img.png
+WE ./textures/west-img.png
+EA ./textures/east-img.png
 F 40,220,45
 C 40,220,45
 
