@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 09:48:29 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/21 10:40:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/27 09:36:27 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	reset_loc(t_all *all)
 			loc->consider = 1;
 		else
 			loc->consider = 0;
-		loc->consider = 1;
 		loc->sn_winner_texture = '0';
 		loc->ew_winner_texture = '0';
 		loc->sn_winner_x = -1.0;

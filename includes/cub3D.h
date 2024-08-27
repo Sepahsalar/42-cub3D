@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 16:59:23 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/27 09:46:38 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 # define END_GUN_Y 700
 # define START_BLAST_X 600
 # define START_BLAST_Y 735
+# define GUN 0
+# define KNIFE 1
 
 typedef struct s_loc
 {

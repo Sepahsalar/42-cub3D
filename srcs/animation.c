@@ -6,7 +6,7 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 09:27:21 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 12:50:23 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/27 09:48:32 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,31 @@ void	end_animation(t_all *all)
 void	gun_animation(t_all *all)
 {
 	start_timer(all);
+	all->gun->instances[0].y = END_GUN_Y;
 	all->time2 = ft_timestamp_milis(all);
-	if (all->time2 > all->time1 + 500 && all->active_weapon == 0)
+	if (all->time2 > all->time1 + 500 && all->active_weapon == GUN)
 	{
 		all->gun->instances[0].y = START_GUN_Y;
 		end_animation(all);
 	}
-	else if (all->time2 > all->time1 + 400 && all->active_weapon == 0)
+	else if (all->time2 > all->time1 + 400 && all->active_weapon == GUN)
 		all->blast->instances[0].enabled = false;
 	else if (all->time2 > all->time1 + 250)
 	{
 		all->gun->instances[0].x = START_GUN_X;
 		all->blast->instances[0].enabled = true;
 	}
-	else if (all->time2 > all->time1 + 200 && all->active_weapon == 0)
+	else if (all->time2 > all->time1 + 200 && all->active_weapon == GUN)
 		all->gun->instances[0].x = START_GUN_X + 50;
 }
 
 void	knife_animation(t_all *all)
 {
 	start_timer(all);
+	all->knife->instances[0].x = 650;
+	all->knife->instances[0].y = 760;
 	all->time2 = ft_timestamp_milis(all);
-	if (all->time2 > all->time1 + 200 && all->active_weapon == 1)
+	if (all->time2 > all->time1 + 200 && all->active_weapon == KNIFE)
 	{
 		all->knife->instances[0].x = 700;
 		all->knife->instances[0].y = 810;
@@ -66,9 +69,9 @@ void	animation(void *param)
 	all = (t_all *)param;
 	if (all->gun_used)
 	{
-		if (all->active_weapon == 1)
+		if (all->active_weapon == KNIFE)
 			knife_animation(all);
-		else if (all->active_weapon == 0)
+		else if (all->active_weapon == GUN)
 			gun_animation(all);
 	}
 }

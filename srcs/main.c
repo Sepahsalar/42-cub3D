@@ -6,15 +6,11 @@
 /*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 17:35:49 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/27 09:34:24 by nnourine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
-
-// 6) delete or solve the problem of cloning mlx42 in Makefile
-
-// 9) find good material for walls
 
 void	check_args(int argc, char **argv)
 {
