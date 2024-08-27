@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 14:26:07 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 17:30:01 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/27 10:24:36 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	check_texture_exists(t_all *all, char *address)
 	int	fd;
 
 	fd = open(address, O_RDONLY);
-	if (fd < 0)
+	if (fd == -1)
 		terminate(all, "Invalid texture path", NULL, NULL);
 	if (close(fd) == -1)
 		terminate(all, "Closing file failed", NULL, NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_loc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 11:07:14 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 12:44:09 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/27 10:31:57 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ static void	check_character_increase_player(char c, int *nb_player)
 void	check_max_node(t_all *all, t_coordinate *coordinate)
 {
 	coordinate->index++;
-	if (coordinate->index >= MAX_NODE)
-		terminate(all, "Too big map", NULL, NULL);
+	(void)all;
+	// if (coordinate->index >= MAX_NODE)
+	// 	terminate(all, "Too big map", NULL, NULL);
 }
 
 void	create_loc(t_all *all)

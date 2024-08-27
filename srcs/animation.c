@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 09:27:21 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/27 09:48:32 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/27 10:18:40 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ void	gun_animation(t_all *all)
 void	knife_animation(t_all *all)
 {
 	start_timer(all);
-	all->knife->instances[0].x = 650;
-	all->knife->instances[0].y = 760;
+	all->knife->instances[0].x = END_KNIFE_X;
+	all->knife->instances[0].y = END_KNIFE_Y;
 	all->time2 = ft_timestamp_milis(all);
 	if (all->time2 > all->time1 + 200 && all->active_weapon == KNIFE)
 	{
-		all->knife->instances[0].x = 700;
-		all->knife->instances[0].y = 810;
+		all->knife->instances[0].x = START_KNIFE_X;
+		all->knife->instances[0].y = START_KNIFE_Y;
 		end_animation(all);
 	}
 }

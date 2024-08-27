@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parser_utils2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:50:55 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 17:28:34 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/27 10:29:17 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	check_open_failure(t_all *all, int fd)
 		terminate(all, "Opening map file failed", NULL, NULL);
 }
 
-void	check_read_failure(t_all *all, int byte, int flag)
+static void	check_read_failure(t_all *all, int byte, int flag)
 {
 	if (byte == -1)
 		terminate(all, "Reading from file failed", NULL, NULL);
@@ -28,16 +28,17 @@ void	check_read_failure(t_all *all, int byte, int flag)
 
 void	reader(t_all *all)
 {
-	char	c[2];
+	char	c[BUFFER_SIZE + 1];
 	int		byte;
 	char	*temp;
 	int		fd;
 
-	c[1] = '\0';
+	// c[1] = '\0';
+	ft_memset(c, 0, BUFFER_SIZE + 1);
 	all->strmap = NULL;
 	fd = open(all->argv, O_RDONLY);
 	check_open_failure(all, fd);
-	byte = read(fd, c, 1);
+	byte = read(fd, c, BUFFER_SIZE);
 	check_read_failure(all, byte, 0);
 	while (byte)
 	{
@@ -46,7 +47,8 @@ void	reader(t_all *all)
 		free(temp);
 		if (!all->strmap)
 			terminate(all, "Joining strings failed", NULL, NULL);
-		byte = read(fd, c, 1);
+		ft_memset(c, 0, BUFFER_SIZE);
+		byte = read(fd, c, BUFFER_SIZE);
 		check_read_failure(all, byte, 1);
 	}
 	if (close(fd) == -1)

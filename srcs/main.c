@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/27 09:34:24 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/27 10:20:02 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3D.h"
 
-void	check_args(int argc, char **argv)
+static void	check_args(int argc, char **argv)
 {
 	if (argc != 2)
 	{
@@ -28,7 +28,7 @@ void	check_args(int argc, char **argv)
 	}
 }
 
-void	hooks_loops(t_all *all)
+static void	loop_hooks(t_all *all)
 {
 	mlx_key_hook(all->window, &keyboard, all);
 	mlx_mouse_hook(all->window, &click, all);
@@ -45,6 +45,6 @@ int	main(int argc, char **argv)
 	check_args(argc, argv);
 	all = init_all(argv);
 	fill_strips(all);
-	hooks_loops(all);
+	loop_hooks(all);
 	terminate(all, NULL, NULL, NULL);
 }
