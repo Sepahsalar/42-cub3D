@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_coordinate_ranges.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:58:48 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 12:44:53 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/29 12:26:58 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
