@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/29 12:26:57 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/29 14:49:11 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,6 @@ static void	create_strips(t_all *all)
 void	fill_strips(t_all *all)
 {
 	all->index = 0;
-	mlx_delete_image(all->window, all->minimap);
-	create_minimap(all);
-	enable_correct_player(all);
 	create_strips(all);
 	fill_index_strips(all);
 	fill_length_strips(all);

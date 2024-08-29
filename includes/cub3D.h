@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/29 11:19:20 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:05:09 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,38 +19,19 @@
 # include <math.h>
 # include <sys/time.h>
 
-# define PLAYER_PATH "./textures/player.png"
-# define GUN_PATH "./textures/gun.png"
-# define BLAST_PATH "./textures/blast.png"
-# define KNIFE_PATH "./textures/knife.png"
-# define AIM_PATH "./textures/aim.png"
 # define VAOV 90.0
 # define HAOV 60.0
 # define PERSON 1.0
 # define WALL 2.0
 # define EPSILON 0.00001
 # define MIN_CALCULATED_DISTANCE 0.5
-# define MINIMAP_SIDE 220
-# define MINIMAP_COVERAGE 10
 # define MAX_NODE 10001
 # define BUFFER_SIZE 1000000
 # define RENDER_INTERVAL 5
 # define TURN_INTERVAL 10
 # define FULL_CIRCLE_DEGREES 360
-# define MINIMAP_PADDING 28
 # define WINDOW_HEIGHT 1000
 # define WINDOW_WIDTH 1000
-# define START_GUN_X 610
-# define START_GUN_Y 800
-# define END_GUN_Y 700
-# define START_KNIFE_X 700
-# define START_KNIFE_Y 810
-# define END_KNIFE_X 650
-# define END_KNIFE_Y 760
-# define START_BLAST_X 600
-# define START_BLAST_Y 735
-# define GUN 0
-# define KNIFE 1
 
 typedef struct s_loc
 {
@@ -84,7 +65,6 @@ typedef struct s_render
 	double			ceil_height;
 	double			floor_height;
 	double			wall_height;
-	double			fictional_wall_height;
 	char			wall_texture;
 	int				x;
 	int				x_wall;
@@ -118,7 +98,6 @@ typedef struct s_strip
 	int				x;
 	char			wall;
 	double			wall_h;
-	double			fictional_wall_height;
 	double			ceil_h;
 	double			floor_h;
 	int				wall_length;
@@ -192,20 +171,13 @@ typedef struct s_rotate
 typedef struct s_all
 {
 	int				index;
-	int				x_mouse;
-	int				y_mouse;
-	int				gun_used;
 	int				ceil_color;
 	int				floor_color;
-	int				active_weapon;
 	int				started_button;
-	int				animation_started;
 	char			*argv;
 	char			*strmap;
 	double			x;
 	double			y;
-	double			time1;
-	double			time2;
 	double			angle;
 	double			map_width;
 	double			map_height;
@@ -217,16 +189,10 @@ typedef struct s_all
 	t_player		*player_image;
 	mlx_t			*window;
 	mlx_image_t		*image;
-	mlx_image_t		*minimap;
-	mlx_image_t		*gun;
-	mlx_image_t		*knife;
-	mlx_image_t		*blast;
-	mlx_image_t		*aim;
 	mlx_image_t		*north;
 	mlx_image_t		*west;
 	mlx_image_t		*south;
 	mlx_image_t		*east;
-	mlx_image_t		*player_at_0;
 }					t_all;
 
 int					color(int r, int g, int b, int a);
@@ -264,7 +230,6 @@ void				remove_white_space(t_all *all);
 void				check_valid_color(t_all *all, char type);
 double				ft_tan(double a);
 double				ft_cos(double a);
-double				ft_sin(double a);
 double				distance(double x1, double y1, double x2, double y2);
 int					same(double d1, double d2);
 double				height(double distance, char c);
@@ -308,24 +273,13 @@ void				south_wins(t_all *all, t_loc *temp);
 void				east_wins(t_all *all, t_loc *temp);
 void				north_wins(t_all *all, t_loc *temp);
 void				west_wins(t_all *all, t_loc *temp);
-void				create_minimap(t_all *all);
-void				create_player_image(t_all *all);
-void				enable_correct_player(t_all *all);
 void				check_empty_map(t_all *all, char *str, char *error);
 long long			ft_timestamp_milis(t_all *all);
-void				mouse(double xpos, double ypos, void *param);
-void				clean_player_image(t_all *all);
-void				click(mouse_key_t button, action_t action,
-						modifier_key_t mods, void *param);
-void				animation(void *param);
-void				scroll(double xpos, double ypos, void *param);
 void				check_texture_exists(t_all *all, char *address);
 void				move_press(void *param, char c);
 void				move_repeat(void *param, char c);
 void				turn_press(void *param, char c);
 void				turn_repeat(void *param, char c);
-void				use_weapon(void *param);
-void				change_weapon(void *param);
 void				check_dry(t_all *all);
 void				flood_map(t_all *all);
 char				*finder(t_all *all, char *str);

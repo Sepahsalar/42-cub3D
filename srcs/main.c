@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 13:43:59 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/29 12:27:20 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/29 14:56:04 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,6 @@ static void	check_args(int argc, char **argv)
 	}
 }
 
-static void	loop_hooks(t_all *all)
-{
-	mlx_key_hook(all->window, &keyboard, all);
-	mlx_mouse_hook(all->window, &click, all);
-	mlx_cursor_hook(all->window, &mouse, all);
-	mlx_scroll_hook(all->window, &scroll, all);
-	mlx_loop_hook(all->window, &animation, all);
-	mlx_loop(all->window);
-}
-
 int	main(int argc, char **argv)
 {
 	t_all	*all;
@@ -45,6 +35,7 @@ int	main(int argc, char **argv)
 	check_args(argc, argv);
 	all = init_all(argv);
 	fill_strips(all);
-	loop_hooks(all);
+	mlx_key_hook(all->window, &keyboard, all);
+	mlx_loop(all->window);
 	terminate(all, NULL, NULL, NULL);
 }

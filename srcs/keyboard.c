@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 09:34:36 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/29 12:27:15 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/29 14:44:09 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,10 @@ void	key_press(mlx_key_data_t keydata, void *param)
 		move_press(param, 'A');
 	else if (keydata.key == MLX_KEY_D)
 		move_press(param, 'D');
-	else if (keydata.key == MLX_KEY_SPACE)
-		use_weapon(param);
 	else if (keydata.key == MLX_KEY_LEFT)
 		turn_press(param, 'L');
 	else if (keydata.key == MLX_KEY_RIGHT)
 		turn_press(param, 'R');
-	else if (keydata.key == MLX_KEY_LEFT_SHIFT
-		|| keydata.key == MLX_KEY_RIGHT_SHIFT)
-		change_weapon(param);
 	else if (keydata.key == MLX_KEY_ESCAPE)
 		terminate((t_all *)param, NULL, NULL, NULL);
 }

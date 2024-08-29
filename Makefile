@@ -6,7 +6,7 @@
 #    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/29 12:20:38 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/29 14:59:11 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,7 +42,7 @@ LMX_FLAGS = -L$(LIBMLX)/build -L$(LIB_BREW) -lmlx42 -ldl -pthread -lglfw -lm
 LIBS_FLAGS = $(LIBFT_FLAGS) $(LMX_FLAGS)
 
 # Source files
-MANDATORY_FILES = acceptable_range.c animation.c animation_utils.c \
+MANDATORY_FILES = acceptable_range.c \
 					calculate_distance.c compare_adjacent_walls.c \
 					create_loc.c create_loc_utils.c \
 					create_loc_utils2.c fill_index_strips.c \
@@ -53,9 +53,8 @@ MANDATORY_FILES = acceptable_range.c animation.c animation_utils.c \
 					find_winner.c flood_map.c flood_map_utils.c \
 					ft_math.c ignore_inside_surface.c \
 					ignore_inside_surface_utils.c init_all.c keyboard.c \
-					loc_visibility.c main.c  map_parser.c \
+					loc_visibility.c main.c map_parser.c \
 					map_parser_color.c map_parser_utils.c map_parser_utils2.c \
-					minimap.c minimap_player.c minimap_player2.c mouse.c \
 					move.c move_utils.c turn.c strip_to_image.c \
 					terminate.c time.c utils.c utils2.c
 
@@ -110,7 +109,7 @@ $(OBJSDIR_BONUS)/%.o: $(SRCSDIR_BONUS)/%.c
 	@mkdir -p $(OBJSDIR_BONUS)
 	@$(CC) $(CFLAGS) $(HEADERS) -c $< -o $@
 
-.bonus: $(OBJS_BONUS)
+.bonus: clone_mlx42 $(OBJS_BONUS)
 	@cmake $(LIBMLX) -B $(LIBMLX)/build
 	@make -C $(LIBMLX)/build -j4
 	@make -C $(LIBFT)

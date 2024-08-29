@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/29 12:27:41 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/29 14:54:51 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,8 @@ static char	*address_finder(t_all *all, char type)
 		address = all->map->west;
 	else if (type == 'S')
 		address = all->map->south;
-	else if (type == 'N')
-		address = all->map->north;
-	else if (type == 'G')
-		address = GUN_PATH;
-	else if (type == 'B')
-		address = BLAST_PATH;
-	else if (type == 'K')
-		address = KNIFE_PATH;
-	else if (type == 'A')
-		address = AIM_PATH;
 	else
-		address = PLAYER_PATH;
+		address = all->map->north;
 	check_texture_exists(all, address);
 	return (address);
 }
@@ -107,15 +97,5 @@ mlx_image_t	*image_maker(t_all *all, char type)
 	mlx_delete_texture(texture);
 	if (!picture)
 		terminate(all, "Converting texture to image failed", NULL, NULL);
-	if (type == 'P')
-		if (mlx_resize_image(picture, MINIMAP_SIDE / MINIMAP_COVERAGE,
-				MINIMAP_SIDE / MINIMAP_COVERAGE) == 0)
-			terminate(all, "Resizing image failed", NULL, NULL);
-	if (type == 'B')
-		if (mlx_resize_image(picture, 50, 50) == 0)
-			terminate(all, "Resizing image failed", NULL, NULL);
-	if (type == 'A')
-		if (mlx_resize_image(picture, 100, 100) == 0)
-			terminate(all, "Resizing image failed", NULL, NULL);
 	return (picture);
 }

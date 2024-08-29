@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/29 11:32:35 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/29 15:07:29 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ typedef struct s_render
 	double			ceil_height;
 	double			floor_height;
 	double			wall_height;
-	double			fictional_wall_height;
 	char			wall_texture;
 	int				x;
 	int				x_wall;
@@ -118,7 +117,6 @@ typedef struct s_strip
 	int				x;
 	char			wall;
 	double			wall_h;
-	double			fictional_wall_height;
 	double			ceil_h;
 	double			floor_h;
 	int				wall_length;
