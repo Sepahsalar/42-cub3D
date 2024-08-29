@@ -6,7 +6,7 @@
 #    By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/27 15:48:51 by asohrabi          #+#    #+#              #
-#    Updated: 2024/08/26 16:09:11 by asohrabi         ###   ########.fr        #
+#    Updated: 2024/08/29 11:23:38 by asohrabi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,7 @@ SRCS = 	$(SRCDIR)/acceptable_range.c \
 		$(SRCDIR)/find_winner_surface_utils.c \
 		$(SRCDIR)/find_winner.c \
 		$(SRCDIR)/flood_map.c \
+		$(SRCDIR)/flood_map_utils.c \
 		$(SRCDIR)/ft_math.c \
 		$(SRCDIR)/ignore_inside_surface.c \
 		$(SRCDIR)/ignore_inside_surface_utils.c \
@@ -112,6 +113,9 @@ clone_mlx42:
 		git clone https://github.com/codam-coding-college/MLX42.git $(LIBMLX); \
 	fi
 
+delete_mlx:
+	@rm -rf $(LIBMLX)
+
 # Clean target
 clean:
 	@rm -f $(OBJS)
@@ -123,7 +127,6 @@ clean:
 fclean: clean
 	@rm -f $(NAME)
 	@make -C $(LIBFT) fclean
-	@rm -rf $(LIBMLX)
 	@echo "$(COLOR)Full clean: done$(RESET_COLOR)"
 
 # Rebuild target

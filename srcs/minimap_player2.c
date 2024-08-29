@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 16:08:07 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 16:08:52 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:13:04 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,12 @@ static t_player	*create_player_image_node(t_all *all, double angle)
 	new = malloc(sizeof(t_player));
 	if (!new)
 		return (NULL);
+	ft_memset(new, 0, sizeof(t_player));
 	new->image = rotate_image(all, all->player_at_0, angle);
 	new->angle = angle;
 	mlx_image_to_window(all->window, new->image, 0, 0);
 	new->image->instances[0].z = 2;
 	new->image->instances[0].enabled = 0;
-	new->next = 0;
 	return (new);
 }
 

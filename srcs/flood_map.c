@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:54:25 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 15:54:33 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:01:23 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	check_dry(t_all *all)
 	loc = all->map->start;
 	while (loc)
 	{
-		if (loc->wet == 0)
+		if (loc->wet == 0 && !node_is_inside(all, loc))
 			terminate(all, "Map is separated", NULL, NULL);
 		loc = loc->next;
 	}

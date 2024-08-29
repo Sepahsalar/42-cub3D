@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_strips_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 19:11:11 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 12:39:50 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:12:23 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,12 @@ t_strip	*create_strips_node(t_render data_render)
 	new = (t_strip *)malloc(sizeof(t_strip));
 	if (!new)
 		return (0);
-	new->next = 0;
+	ft_memset(new, 0, sizeof(t_strip));
 	new->x = data_render.x;
 	new->ceil_h = data_render.ceil_height;
 	new->floor_h = data_render.floor_height;
 	new->wall_h = data_render.wall_height;
 	new->wall = data_render.wall_texture;
-	new->index = 0;
-	new->wall_length = 0;
-	new->next = 0;
-	new->previous = 0;
 	new->x_winner = data_render.x_winner;
 	new->y_winner = data_render.y_winner;
 	new->x_wall = data_render.x_wall;

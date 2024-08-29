@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animation_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 09:41:20 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/27 09:47:30 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:15:45 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,15 @@ void	change_weapon(void *param)
 		all->gun->instances[0].enabled = false;
 		all->aim->instances[0].enabled = false;
 		all->blast->instances[0].enabled = false;
-		all->knife->instances[0].enabled = true;
 		all->active_weapon = KNIFE;
+		all->knife->instances[0].enabled = true;
 	}
 	else if (all->active_weapon == KNIFE)
 	{
 		all->knife->instances[0].enabled = false;
+		all->active_weapon = GUN;
 		all->gun->instances[0].enabled = true;
 		all->aim->instances[0].enabled = true;
-		all->active_weapon = GUN;
 	}
 }
 

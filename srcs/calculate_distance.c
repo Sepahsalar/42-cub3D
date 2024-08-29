@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   calculate_distance.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:12:44 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 09:57:40 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:06:14 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_winner	calculate_distance(t_all *all, t_winner final, double ray_angle)
 			final.y_intersection);
 	if (final.intersection_distance < MIN_CALCULATED_DISTANCE)
 		final.intersection_distance = MIN_CALCULATED_DISTANCE;
-	final.intersection_distance = DISTANCE_FACTOR * final.intersection_distance
+	final.intersection_distance = final.intersection_distance
 		* fabs(ft_cos(all->angle - ray_angle));
 	return (final);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:15:54 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/26 17:40:52 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:09:08 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static char	*address_finder(t_all *all, char type)
 		address = BLAST_PATH;
 	else if (type == 'K')
 		address = KNIFE_PATH;
-	else if (type == 'H')
+	else if (type == 'A')
 		address = AIM_PATH;
 	else
 		address = PLAYER_PATH;
@@ -114,7 +114,7 @@ mlx_image_t	*image_maker(t_all *all, char type)
 	if (type == 'B')
 		if (mlx_resize_image(picture, 50, 50) == 0)
 			terminate(all, "Resizing image failed", NULL, NULL);
-	if (type == 'H')
+	if (type == 'A')
 		if (mlx_resize_image(picture, 100, 100) == 0)
 			terminate(all, "Resizing image failed", NULL, NULL);
 	return (picture);

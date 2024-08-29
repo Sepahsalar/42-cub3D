@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_strips.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nnourine <nnourine@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 14:39:08 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/26 12:44:28 by nnourine         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:11:19 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static void	create_strips(t_all *all)
 
 	temp_angle = 0;
 	counter = 0;
-	all->distance_flag = 0;
 	while (counter <= WINDOW_WIDTH)
 	{
 		create_strips_helper(all, temp_angle);

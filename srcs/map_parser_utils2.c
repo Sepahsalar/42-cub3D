@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 15:50:55 by asohrabi          #+#    #+#             */
-/*   Updated: 2024/08/27 10:29:17 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/29 10:59:15 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	reader(t_all *all)
 	char	*temp;
 	int		fd;
 
-	// c[1] = '\0';
 	ft_memset(c, 0, BUFFER_SIZE + 1);
 	all->strmap = NULL;
 	fd = open(all->argv, O_RDONLY);

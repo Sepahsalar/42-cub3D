@@ -6,7 +6,7 @@
 /*   By: asohrabi <asohrabi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 11:36:16 by nnourine          #+#    #+#             */
-/*   Updated: 2024/08/27 10:18:21 by asohrabi         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:19:20 by asohrabi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # define WALL 2.0
 # define EPSILON 0.00001
 # define MIN_CALCULATED_DISTANCE 0.5
-# define DISTANCE_FACTOR 1.0
 # define MINIMAP_SIDE 220
 # define MINIMAP_COVERAGE 10
 # define MAX_NODE 10001
@@ -192,38 +191,37 @@ typedef struct s_rotate
 
 typedef struct s_all
 {
-	t_map			*map;
-	int				floor_color;
+	int				index;
+	int				x_mouse;
+	int				y_mouse;
+	int				gun_used;
 	int				ceil_color;
+	int				floor_color;
+	int				active_weapon;
+	int				started_button;
+	int				animation_started;
+	char			*argv;
+	char			*strmap;
 	double			x;
 	double			y;
+	double			time1;
+	double			time2;
 	double			angle;
-	int				distance_flag;
 	double			map_width;
 	double			map_height;
 	double			max_distance;
-	char			*strmap;
-	char			*argv;
-	int				index;
-	int				started_button;
 	long long		start_time;
 	long long		current_time;
-	int				active_weapon;
-	double			time1;
-	double			time2;
-	int				gun_used;
-	int				animation_started;
-	int				x_mouse;
-	int				y_mouse;
-	mlx_t			*window;
+	t_map			*map;
 	t_strip			*strip;
+	t_player		*player_image;
+	mlx_t			*window;
 	mlx_image_t		*image;
 	mlx_image_t		*minimap;
 	mlx_image_t		*gun;
 	mlx_image_t		*knife;
 	mlx_image_t		*blast;
 	mlx_image_t		*aim;
-	t_player		*player_image;
 	mlx_image_t		*north;
 	mlx_image_t		*west;
 	mlx_image_t		*south;
@@ -331,5 +329,6 @@ void				change_weapon(void *param);
 void				check_dry(t_all *all);
 void				flood_map(t_all *all);
 char				*finder(t_all *all, char *str);
+int					node_is_inside(t_all *all, t_loc *loc);
 
-#endif // CUB3D_H
+#endif
