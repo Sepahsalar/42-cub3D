@@ -22,10 +22,7 @@ Cub3D is a ray-casting project inspired by the legendary FPS game Wolfenstein 3D
     cd 42-cube3D
     ```
 
-2. **Install MLX42**
-    Follow the instructions on the [MLX42 repository](https://github.com/codam-coding-college/MLX42) to install MLX42.
-
-3. **Build the project**
+2. **Build the project**
     ```sh
     make
     ```
@@ -33,7 +30,7 @@ Cub3D is a ray-casting project inspired by the legendary FPS game Wolfenstein 3D
 ## Usage
 1. **Run the program**
     ```sh
-    ./cub3D map.cub
+    ./cub3D maps/8.cub
     ```
 
 2. **Controls**
